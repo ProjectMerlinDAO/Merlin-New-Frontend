@@ -1,0 +1,39 @@
+{
+  "name": "merlin_app_tailwind",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@tailwindcss/forms": "^0.5.7",
+    "news-ticker-davidkrack": "^2.1.9",
+    "next": "14.2.3",
+    "react": "^18",
+    "react-accessible-accordion": "^5.0.0",
+    "react-dom": "^18",
+    "react-marquee-slider": "^1.1.5",
+    "react-modal": "^3.16.1",
+    "react-slick": "^0.30.2",
+    "react-sticky-box": "^2.0.5",
+    "react-toastify": "^10.0.5",
+    "react-tooltip": "^5.26.4",
+    "slick-carousel": "^1.8.1",
+    "sticky-sidebar": "^3.3.1",
+    "tailwindcss-filters": "^3.0.0",
+    "use-typing-headlines": "^0.9.1",
+    "yet-another-react-lightbox": "^3.19.0"
+  },
+  "devDependencies": {
+    "@iconify/tailwind": "^1.0.1",
+    "autoprefixer": "^10.4.19",
+    "daisyui": "^4.11.1",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.3",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.3"
+  }
+}
