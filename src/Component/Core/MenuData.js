@@ -33,7 +33,7 @@ const Data = [
     url: "/crystal-cave",
   },
   {
-    title: "Ravan Message",
+    title: "Raven Message",
     src: "/assets/images/menuIcons/IconMessage.svg",
     url: "/create-raven-message",
   },

@@ -54,7 +54,8 @@ const Statistic = () => {
                 <div className="rounded-[20px] bg-[rgba(255,255,255,0.05)] backdrop-blur-[5px] p-[40px] 2xl:p-[25px] lg:p-[20px] h-[250px] 2xl:h-[220px] lg:h-[180px] flex items-start justify-center flex-col">
                     <p className='text-[18px] 2xl:text-[16px] blur text-white uppercase font-[400] mb-[50px]'>Transactions</p>
                     <h3 className='text-[50px] 2xl:text-[40px] blur xl:text-[32px] text-white font-[700] uppercase quantico'>
-                        {transactions.toLocaleString()}
+                        {/* {transactions.toLocaleString()} */}
+                        100000
                     </h3>
                 </div>
             </div>
@@ -62,7 +63,8 @@ const Statistic = () => {
                 <div className="rounded-[20px] bg-[rgba(255,255,255,0.05)] backdrop-blur-[5px] p-[40px] 2xl:p-[25px] lg:p-[20px] h-[250px] 2xl:h-[220px] lg:h-[180px] flex items-start justify-center flex-col">
                     <p className='text-[18px] 2xl:text-[16px] blur text-white uppercase font-[400] mb-[50px]'>Market Cap</p>
                     <h3 className='text-[50px] 2xl:text-[40px] blur xl:text-[32px] text-white font-[700] uppercase quantico'>
-                        {marketCap.toFixed(2)}M+
+                        {/* {marketCap.toFixed(2)}M+ */}
+                        3M
                     </h3>
                 </div>
             </div>
@@ -72,7 +74,8 @@ const Statistic = () => {
                         <div className="rounded-[20px] bg-[rgba(255,255,255,0.05)] backdrop-blur-[5px] p-[40px] 2xl:p-[25px] lg:p-[20px] mb-[30px] lg:mb-[0] h-[110px] 2xl:h-[95px] lg:mt-[30px] flex items-center justify-between">
                             <p className='text-[18px] 2xl:text-[16px] blur text-white uppercase font-[400]'>Active account</p>
                             <h3 className='text-[50px] 2xl:text-[40px] blur xl:text-[32px] text-white font-[700] uppercase quantico'>
-                                {activeAccounts}M+
+                                {/* {activeAccounts}M+ */}
+                                1M
                             </h3>
                         </div>
                     </div>
@@ -80,7 +83,8 @@ const Statistic = () => {
                         <div className="rounded-[20px] bg-[rgba(255,255,255,0.05)] backdrop-blur-[5px] p-[40px] 2xl:p-[25px] lg:p-[20px] h-[110px] 2xl:h-[95px] lg:mt-[30px] flex items-center justify-between">
                             <p className='text-[18px] 2xl:text-[16px] blur text-white uppercase font-[400]'>% Staked</p>
                             <h3 className='text-[50px] 2xl:text-[40px] blur xl:text-[32px] text-white font-[700] uppercase quantico'>
-                                {stakedPercentage}%
+                                {/* {stakedPercentage}% */}
+                                70&#37;
                             </h3>
                         </div>
                     </div>
