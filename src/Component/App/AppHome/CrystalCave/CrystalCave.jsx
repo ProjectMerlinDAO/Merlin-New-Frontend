@@ -54,7 +54,7 @@ const CrystalCave = ({ isSidebarVisible }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default CrystalCave;

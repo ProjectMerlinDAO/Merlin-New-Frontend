@@ -23,7 +23,7 @@ const Header = () => {
               <li><Link target="_blank" href="https://docs.projectmerlin.io/projectmerlin">Docs</Link></li>
               <li><Link href="/about">About</Link></li>
               <li><Link href={router.pathname === "/" ? "#faq" : "/#faq"}>FAQ</Link></li>
-              <li className="disabled:opacity-75"><Link  href="#">Articles</Link></li>
+              <li className="pointer-events-none text-gray-500"><Link  href="#">Articles</Link></li>
             </ul>
           </div>
           <div className="right">

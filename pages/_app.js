@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 export default function App({ Component, pageProps }) {
   return (
     <>
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -19,5 +19,5 @@ export default function App({ Component, pageProps }) {
         theme="light"
       />
     </>
-  );
+  )
 }

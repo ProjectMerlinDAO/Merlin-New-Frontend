@@ -39,7 +39,7 @@ const CamelotCard = ({ title, imageSrc, editorAvatar, editorName, treasury, cate
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default CamelotCard;

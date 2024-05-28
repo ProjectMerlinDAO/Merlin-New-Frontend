@@ -48,7 +48,7 @@ const AppBanner = ({ isSidebarVisible }) => {
                 </div>
 
         </div>
-    );
-};
+    )
+}
 
 export default AppBanner;

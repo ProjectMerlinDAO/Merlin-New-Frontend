@@ -52,7 +52,6 @@ const HowWork = ({ isSidebarVisible }) => {
         </div>
       </div>
     </div>
-  );
-};
-
+  )
+}
 export default HowWork;

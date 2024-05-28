@@ -18,8 +18,8 @@ const CustomPrevArrow = (props) => {
         height={24}
       />
     </div>
-  );
-};
+  )
+}
 
 const CustomNextArrow = (props) => {
   const { className, style, onClick } = props;
@@ -32,8 +32,8 @@ const CustomNextArrow = (props) => {
         height={24}
       />
     </div>
-  );
-};
+  )
+}
 
 const Proposal = ({ isSidebarVisible }) => {
   const [nav1, setNav1] = useState(null);

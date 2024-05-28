@@ -163,7 +163,7 @@ const CrystalTable = () => {
       ))}
     </div>
     </div>
-  );
-};
+  )
+}
 
 export default CrystalTable;

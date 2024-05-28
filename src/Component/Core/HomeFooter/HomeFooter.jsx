@@ -237,8 +237,8 @@ const HomeFooter = () => {
                   <li>
                     <Link href={router.pathname === "/" ? "#faq" : "/#faq"}>FAQ</Link>
                   </li>
-                  <li>
-                    <Link href="/articles">Articles</Link>
+                  <li >
+                    <Link className="pointer-events-none text-gray-500 opacity-10"  href="/articles">Articles</Link>
                   </li>
                 </ul>
               </div>
@@ -247,7 +247,7 @@ const HomeFooter = () => {
         </div>
       </div>
     </div>
-  );
+  )
 };
 
 export default HomeFooter;
