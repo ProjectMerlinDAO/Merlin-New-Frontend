@@ -5,12 +5,12 @@ import Header from '@/src/Component/App/Home/Header/Header'
 
 function PrivacyPolicy() {
   return (
-    <div>
+    <div className='bg-[rgba(255,255,255,0.05)]'>
       <Header/>
       <section className="PolicySections">
-        <div className="container">
+        <div className="px-[20px] pb-[400px] pt-[200px] md:px-[10px] max-w-[1450px] mx-auto lg:max-w-[720px]">
           <PolicyMainHeading Head="Privacy Policy"/>
-          <div className="PolicyDivs">
+          <div className="PolicyDivs pt-[40px]">
             <div className="policyitems">
                 <PolPara Paragraphs="This Privacy Policy provides our privacy policy regarding the
                   nature, purpose, use, and sharing of personal data or other

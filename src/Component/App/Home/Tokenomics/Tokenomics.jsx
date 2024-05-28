@@ -38,7 +38,7 @@ const Tokenomics = () => {
   }, []);
 
   return (
-    <div className="tokenomics-section" id="tokeneconomics">
+    <div className="tokenomics-section" id="Tokeneconomics">
       <div className="px-[20px] md:px-[10px] max-w-[1210px] mx-auto lg:max-w-[720px]">
         <div className='max-w-[669px] mx-auto'>
           <HomeSectionTitle

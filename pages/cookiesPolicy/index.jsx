@@ -3,12 +3,15 @@ import HomeFooter from "@/src/Component/Core/HomeFooter/HomeFooter";
 import Header from '@/src/Component/App/Home/Header/Header'
 function CookiesPolicy() {
   return (
-    <div>
-      <Header />
+    <>
+   
+    <Header />
+    <div className='bg-[rgba(255,255,255,0.05)]'>
+      
       <section className="PolicySections">
-        <div className="container">
+        <div className="px-[20px] pb-[400px] pt-[200px] md:px-[10px] max-w-[1450px] mx-auto lg:max-w-[720px]">
           <PolicyMainHeading Head="Cookies Policy"/>
-          <div className="PolicyDivs">
+          <div className="PolicyDivs pt-[40px]">
             <div className="policyitems">
               <PolText Textheading="Introduction"/>
               <PolPara Paragraphs=" This cookie policy explains what cookies are and how Project Merlin and its
@@ -145,22 +148,23 @@ function CookiesPolicy() {
       </section>
       <HomeFooter />
     </div>
+    </>
   );
 }
 
 export default CookiesPolicy;
 
 export function PolPara({Paragraphs,Links,path}) {
-  return <p>{Paragraphs}<span><a href={path}>{Links}</a></span></p>;
+  return <p className='font-[400] leading-[187.5%] mb-[10px] '>{Paragraphs}<span><a className='text-[#12CFA7] text-[14px] font-[600] capitalize quantico ' href={path}>{Links}</a></span></p>;
 }
 
 export function PolText({Textheading}) {
-  return <h6>{Textheading}</h6>;
+  return <h6 className='text-[#12CFA7] font-[600] uppercase quantico '>{Textheading}</h6>;
 }
 
 export function PolicyMainHeading({Head}) {
-  return <div className="PolicyHead">
-    <h2>{Head}</h2>
+  return <div className="PolicyHead flex justify-center">
+    <h2 className="rounded-full text-[60px] font-semibold lexend text-white px-[20px] py-[5px] mb-[22px] w-[max-content]" style={{ background: 'linear-gradient(90deg, rgba(208, 46, 190, 0.20) 0%, rgba(108, 211, 108, 0.20) 100%)' }}>{Head}</h2>
   </div>;
 }
 

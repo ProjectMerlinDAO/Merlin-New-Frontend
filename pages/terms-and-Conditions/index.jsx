@@ -7,12 +7,12 @@ function TermsConditions() {
   return (
     <>
     <Header />
-    <div>
+    <div className='bg-[rgba(255,255,255,0.05)]'>
       <section className="PolicySections">
-        <div className="container">
+        <div className="px-[20px] pb-[400px] pt-[200px] md:px-[10px] max-w-[1450px] mx-auto lg:max-w-[720px]">
           <PolicyMainHeading Head="Terms of Service"/>
 
-          <div className="PolicyDivs">
+          <div className="PolicyDivs pt-[40px]">
             <div className="policyitems">
               <PolText Textheading="1. Introduction"/>
               <PolPara Paragraphs="These Terms of Use (these “Terms”) govern your access to and use of certain
