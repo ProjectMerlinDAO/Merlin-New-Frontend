@@ -1640,6 +1640,17 @@ textarea.no-outline:focus-visible {
   z-index: 999;
 }
 
+
+.custom_toast_error .Toastify__toast {
+  background: linear-gradient(to right,  #424b37 0%,#20293a 50%,#11213f 100%); 
+  color: #fff !important;
+  backdrop-filter: blur(40px) !important;
+}
+.custom_toast_error .Toastify__close-button {
+  color: #fff !important;
+  opacity: 1 !important;
+}
+
 @media screen and (max-width: 1480px) {
   .home-footer-section {
     padding-bottom: 30px;

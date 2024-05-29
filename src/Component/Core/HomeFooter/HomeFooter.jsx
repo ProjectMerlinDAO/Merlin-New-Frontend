@@ -3,7 +3,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
-
+import axios from "axios";
 const HomeFooter = () => {
   const router = useRouter();
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
@@ -32,12 +32,13 @@ const HomeFooter = () => {
        
         setEmail("");
       } else {
-        toast.error("Email is not valid!");
+        toast.error("Email is not valid!",{className: 'bg-black-500 text-white',
+        progressClassName: 'bg-green-500'});
         return;
       }
     } catch (error) {
       console.log(error?.response?.data?.msg);
-      toast.error(error?.response?.data?.msg);
+      toast.error(error?.response?.data?.msg,{className:"toast-error"});
       setEmail("");
       return;
     }
@@ -62,7 +63,8 @@ const HomeFooter = () => {
                 <ul>
                   <li className="social-icon-btn">
                     <Link
-                      href="#"
+                      href="https://t.me/ProjectMerlin"
+                      target="_blank"
                       className="flex btn-has-shape items-center justify-center rounded-[16px] sm:rounded-[10px] bg-[#FFFFFF05] backdrop-blur-[5px] h-[70px] w-[70px] sm:h-[50px] sm:w-[50px]"
                     >
                       <span className="btn-icons !h-[28px]">
@@ -83,7 +85,8 @@ const HomeFooter = () => {
                   </li>
                   <li className="social-icon-btn">
                     <Link
-                      href="#"
+                       href="https://www.linkedin.com/company/projectmerlinio"
+                       target="_blank"
                       className="flex btn-has-shape items-center justify-center rounded-[16px] sm:rounded-[10px] bg-[#FFFFFF05] backdrop-blur-[5px] h-[70px] w-[70px] sm:h-[50px] sm:w-[50px]"
                     >
                       <span className="btn-icons !h-[34px]">
@@ -98,7 +101,8 @@ const HomeFooter = () => {
                   </li>
                   <li className="social-icon-btn">
                     <Link
-                      href="#"
+                      href="https://discord.gg/projectmerlin"
+                      target="_blank"
                       className="flex btn-has-shape items-center justify-center rounded-[16px] sm:rounded-[10px] bg-[#FFFFFF05] backdrop-blur-[5px] h-[70px] w-[70px] sm:h-[50px] sm:w-[50px]"
                     >
                       <span className="btn-icons !h-[28px]">
@@ -119,7 +123,8 @@ const HomeFooter = () => {
                   </li>
                   <li className="social-icon-btn">
                     <Link
-                      href="#"
+                      href="https://twitter.com/ProjectMerlinio"
+                      target="_blank"
                       className="flex btn-has-shape items-center justify-center rounded-[16px] sm:rounded-[10px] bg-[#FFFFFF05] backdrop-blur-[5px] h-[70px] w-[70px] sm:h-[50px] sm:w-[50px]"
                     >
                       <span className="btn-icons !h-[34px]">
@@ -164,7 +169,8 @@ const HomeFooter = () => {
               <div className="home-footer-center mt-[180px] lg:mt-0">
                 <div className="mb-[80px] lg:mb-0 lg:absolute top-[30px]">
                   <Link
-                    href="#"
+                   href="https://discord.gg/projectmerlin"
+                   target="_blank"
                     className="hov-btn btn-has-shape gap-[7px] bg-[#5865F2] rounded-full backdrop-blur-[5px] h-[60px] w-[220px] mx-auto flex items-center justify-center text-white text-center leading-trim-both text-edge-cap font-[600] text-[16px] uppercase quantico mt-[20px]"
                   >
                     <Image
