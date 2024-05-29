@@ -221,7 +221,7 @@ const HomeFooter = () => {
                 </form>
                 <h5>
                   Mail us:{" "}
-                  <Link href="mailto:info@projectmerlin.io">
+                  <Link href="mailto:info@projectmerlin.io" target="_blank">
                     info@projectmerlin.io
                   </Link>
                 </h5>
@@ -233,7 +233,7 @@ const HomeFooter = () => {
                     <Link href={router.pathname === "/" ? "#Tokeneconomics" : "/#Tokeneconomics"}>Token</Link>
                   </li>
                   <li>
-                    <Link href="https://docs.projectmerlin.io/projectmerlin">
+                    <Link href="https://docs.projectmerlin.io/projectmerlin" target="_blank">
                       Docs
                     </Link>
                   </li>
