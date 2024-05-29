@@ -224,7 +224,7 @@ const HomeFooter = () => {
                     <Link href={router.pathname === "/" ? "#home" : "/#home"}>Home</Link>
                   </li>
                   <li>
-                    <Link href="#tokenomics">Token</Link>
+                    <Link href={router.pathname === "/" ? "#Tokeneconomics" : "/#Tokeneconomics"}>Token</Link>
                   </li>
                   <li>
                     <Link href="https://docs.projectmerlin.io/projectmerlin">
@@ -232,7 +232,7 @@ const HomeFooter = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/AboutPage" target="_blank">About</Link>
+                    <Link href="/about" target="_blank">About</Link>
                   </li>
                   <li>
                     <Link href={router.pathname === "/" ? "#faq" : "/#faq"}>FAQ</Link>
