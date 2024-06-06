@@ -10,7 +10,12 @@
   },
   "dependencies": {
     "@tailwindcss/forms": "^0.5.7",
+    "@tanstack/react-query": "^5.40.1",
+    "@web3modal/ethers": "^4.2.3",
+    "@web3modal/wagmi": "^4.2.3",
     "axios": "^1.7.2",
+    "ethers": "^6.13.0",
+    "isotope-layout": "^3.0.6",
     "news-ticker-davidkrack": "^2.1.9",
     "next": "14.2.3",
     "react": "^18",
@@ -26,6 +31,8 @@
     "sticky-sidebar": "^3.3.1",
     "tailwindcss-filters": "^3.0.0",
     "use-typing-headlines": "^0.9.1",
+    "viem": "^2.13.6",
+    "wagmi": "^2.9.8",
     "yet-another-react-lightbox": "^3.19.0"
   },
   "devDependencies": {

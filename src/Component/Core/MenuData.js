@@ -11,15 +11,15 @@ const Data = [
     subMenus: [
       {
         title: "Camelot Proposal",
-        url: "#",
+        url: "/camelot-proposals",
       },
       {
         title: "community Assesment",
-        url: "#",
+        url: "/community-assesment",
       },
       {
         title: "Senator Assessment",
-        url: "#",
+        url: "/senatorAssesment",
       },
       {
         title: "Excalibur Proposal",
@@ -44,7 +44,7 @@ const Data = [
     subMenus: [
       {
         title: "Claim Rewards",
-        url: "#",
+        url: "/treasury",
       },
     ],
   },

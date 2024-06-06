@@ -27,8 +27,6 @@ const CreateRavenMessage = () => {
                 setIsSidebarVisible={setIsSidebarVisible}
             />
             <CreateRavenMessageCard isSidebarVisible={isSidebarVisible}/>
-
-
             <AppFooter isSidebarVisible={isSidebarVisible} />
         </>
     )

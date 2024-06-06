@@ -1,11 +1,17 @@
+import { config } from "@/config";
+import Web3ModalProvider from "@/context";
 import "@/styles/globals.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { cookieToInitialState } from "wagmi";
 
 export default function App({ Component, pageProps }) {
+  // const initialState = cookieToInitialState(config, headers().get('cookie'))
   return (
     <>
-      <Component {...pageProps} />
+      <Web3ModalProvider>
+        <Component {...pageProps} />
+      </Web3ModalProvider>
       <ToastContainer
         position="top-right"
         className="custom_toast_error"
@@ -20,5 +26,5 @@ export default function App({ Component, pageProps }) {
         theme="light"
       />
     </>
-  )
+  );
 }

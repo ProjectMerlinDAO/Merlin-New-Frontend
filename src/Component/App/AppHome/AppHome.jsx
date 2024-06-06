@@ -10,6 +10,7 @@ import CrystalCave from "./CrystalCave/CrystalCave";
 import CamelotProposals from "./CamelotProposals/CamelotProposals";
 import Treasury from "./Treasury/Treasury";
 import AppFooter from "../../Core/AppFooter/AppFooter";
+import SignInPopup from "../Auth/SignInPopup";
 
 const AppHome = () => {
   const [isSidebarVisible, setIsSidebarVisible] = useState(true);

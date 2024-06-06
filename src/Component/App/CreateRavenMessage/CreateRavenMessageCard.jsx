@@ -10,9 +10,12 @@ import Categories from './Categories'
 import Cost from './Cost'
 import PreviewCard from './PreviewCard'
 import { useStickyBox } from 'react-sticky-box'
+import { useAccount } from 'wagmi'
 
 
 const CreateRavenMessageCard = ({ isSidebarVisible }) => {
+    const {address} = useAccount();
+    console.log(address,"Account")
     const stickyRef = useStickyBox({offsetTop: 20, offsetBottom: 20})
     return (
         <div className="pt-[110px] relative bg-no-repeat position-top bg-contain" style={{backgroundImage: 'url(./assets/images/bg/sub-bg.png)', backgroundSize: '100% 388px'}}>
@@ -34,7 +37,7 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
                                                     <Image src="/assets/images/coins/eth.png" alt="coin" fill={true} />
                                                 </div>
                                                 <p className="mb-0">
-                                                    <span className='text-white leading-[16px]'>0x478...2f32</span>
+                                                    <span className='text-white leading-[16px]'>{address ? address.slice(0,4)+"...."+address.slice(-5): null}</span>
                                                     <br />
                                                     <span className='text-[14px] leading-[14px]'>Ethereum</span>
                                                 </p>

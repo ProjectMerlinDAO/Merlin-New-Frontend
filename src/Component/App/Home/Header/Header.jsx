@@ -24,6 +24,7 @@ const Header = () => {
               <li><Link href="/about">About</Link></li>
               <li><Link href={router.pathname === "/" ? "#faq" : "/#faq"}>FAQ</Link></li>
               <li className="pointer-events-none text-gray-500"><Link  href="#">Articles</Link></li>
+              <li><Link  href="/blog">Blog</Link></li>
             </ul>
           </div>
           <div className="right">

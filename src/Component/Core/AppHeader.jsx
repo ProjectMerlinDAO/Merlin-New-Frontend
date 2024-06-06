@@ -1,11 +1,20 @@
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import MenuData from "./MenuData";
 import Link from "next/link";
+import SignInPopup from "../App/Auth/SignInPopup";
+import { useAccount } from "wagmi";
 
 const AppHeader = ({ isSidebarVisible }) => {
+  const { address } = useAccount();
+  const [isOpen, setIsOpen] = useState(false);
+  const handleSignin = () => {
+    // document.getElementById('signInModal').showModal()
+      setIsOpen(true);
+  }
   return (
     <>
+    {isOpen ? <SignInPopup isOpen={isOpen} setIsOpen={setIsOpen}/> : null}
       <header className="absolute top-0 left-0 z-[999] flex items-center w-full h-[110px]">
         <div
           className={`app-home-wrapper ${isSidebarVisible ? "sidebar-visible" : "sidebar-hidden"
@@ -77,6 +86,7 @@ const AppHeader = ({ isSidebarVisible }) => {
                 <li>
                   <a
                     href="#"
+                    onClick={handleSignin}
                     className="flex btn-has-shape items-center justify-center hov-btn rounded-full gap-[8px] connect-btn bg-12CFA7 h-[50px] w-[170px] sm:w-[140px] bg-[#12CFA7] text-white text-center leading-trim-both text-edge-cap font-[600] text-[16px] sm:text[14px] uppercase quantico"
                   >
                     <Image
@@ -85,9 +95,9 @@ const AppHeader = ({ isSidebarVisible }) => {
                       width="20"
                       height="20"
                     />
-                    <span className="btn-hov-text">
-                      <span className="btn-text">Connect</span>
-                      <span className="btn-text">Connect</span>
+                    <span className="btn-hov-text" >
+                      <span className="btn-text">{address ?  address.slice(0,2) + "...." +address.slice(-5) : "Connect" }</span>
+                      <span className="btn-text">{address ? address.slice(0,2) + "...." +address.slice(-5) : "Connect" }</span>
                     </span>
                   </a>
                 </li>

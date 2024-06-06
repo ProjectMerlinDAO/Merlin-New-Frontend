@@ -56,7 +56,6 @@ const Sidebar = ({ isSidebarVisible, setIsSidebarVisible }) => {
       });
     }
   };
-
   const handleMouseEnter = () => {
     if (!isSidebarVisible) {
       setTogglerUpStyle({
@@ -184,16 +183,14 @@ const Sidebar = ({ isSidebarVisible, setIsSidebarVisible }) => {
                 height="45"
               />
             </a>
-            
           )}
         </div>
-
         {isSidebarVisible ? (
           <ul className="sidebar-menu p-[10px]">
-            {MenuData?.map((menuItem, menuId) => (
+            {MenuData?.map((menuItem, menuId) => (              
               <li
                 key={menuId}
-                className={`my-[10px] ${menuItem?.subMenus ? "has-submenu" : ""
+                className={`my-[10px] ${menuItem?.subMenus?.length > 0 ? "has-submenu" : ""
                   }`}
               >
                 <a
@@ -255,62 +252,6 @@ const Sidebar = ({ isSidebarVisible, setIsSidebarVisible }) => {
             ))}
           </ul>
         )}
-
-        {/* <ul className="menu mt-[20px] bg-transparent rounded-lg w-full">
-          {MenuData?.map((menuItem, menuId) => (
-            <div key={menuId} className="w-full">
-              {menuItem?.subMenus ? (
-                <li className="mb-[5px]">
-                  <details className="rounded-[15px] open:bg-gradient-to-br open:from-[#ffffff19] open:to-[#ffffff00]">
-                    <summary className="hover:bg-transparent active:!bg-transparent">
-                      <a
-                        href={menuItem.url}
-                        className="pt-[5px] pb-[12px] flex items-center gap-[14px] capitalize text-[16px] font-normal text-[#ffffffcc] hover:text-white"
-                      >
-                        <Image
-                          src={menuItem.src}
-                          alt="icon"
-                          width="16"
-                          height="16"
-                        />
-                        {isSidebarVisible && menuItem.title}
-                      </a>
-                    </summary>
-                    <ul className="mt-[-10px] mb-[12px] before:bg-[#ffffff1f] before:opacity-100">
-                      {menuItem.subMenus?.map((submenuItem, submenuId) => (
-                        <li key={submenuId}>
-                          <span className="absolute top-[50%] left-[-7px] w-[10px] h-[1px] p-0 bg-[#ffffff1f] hover:bg-[#ffffff1f]"></span>
-                          <a
-                            href={submenuItem.url}
-                            className="pt-[10px] pb-[10px] px-[20px] ml-[6px] flex items-center gap-[14px]  capitalize text-[16px] font-normal text-[#ffffffcc] hover:text-[#12CFA7] hover:bg-gradient-to-br hover:from-[#ffffff19] hover:to-[#ffffff00]"
-                          >
-                            {isSidebarVisible && submenuItem.title}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </details>
-                </li>
-              ) : (
-                <li key={menuId} className="mb-[10px]">
-                  <a
-                    href={menuItem.url}
-                    className="px-[15px] flex items-center gap-[14px] capitalize text-[16px] font-normal text-[#ffffffcc] bg-transparent hover:text-white hover:bg-transparent active:!bg-transparent"
-                  >
-                    <Image
-                      src={menuItem.src}
-                      alt="icon"
-                      width="16"
-                      height="16"
-                    />
-                    {isSidebarVisible && menuItem.title}
-                  </a>
-                </li>
-              )}
-            </div>
-          ))}
-        </ul> */}
-
         <div className="fixed bottom-0 left-0 w-full">
           <div className="p-[10px]">
             {isSidebarVisible ? (
