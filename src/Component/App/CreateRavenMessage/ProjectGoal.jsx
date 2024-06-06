@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
 
-
-const ProjectGoal = () => {
+const ProjectGoal = ({name, onChange, value}) => {
     const [isTextVisible, setIsTextVisible] = useState(false);
-
+    const mrlnTokenPrice = 0.5 //(1 mrlnToken == 0.5 USDT);
   const toggleTextVisibility = () => {
     setIsTextVisible(!isTextVisible);
   }
+  console.log(value,"VALUEEEEEEEEEEEE")
     return (
         <div className='mt-[40px] xl:mt-[30px]'>
             <label className='font-[400] uppercase text-white'>Project Goal</label>
@@ -18,12 +18,12 @@ const ProjectGoal = () => {
                             <div className="h-[30px] relative w-[30px] rounded-full overflow-hidden flex items-center justify-center">
                                 <Image src="/assets/images/coins/usdt.svg" alt="coin" fill={true} />
                             </div>
-                            <input type="text" placeholder='USDT Amount' className='text-white no-outline bg-transparent border-0'/>
+                            <input type="text" placeholder='USDT Amount' className='text-white no-outline bg-transparent border-0' name={name} onChange={onChange} value={value}/>
                         </div>
                     </div>
                     <div className="w-1/2 xsm:w-full">
                         <div className="flex items-center justify-between px-[20px] py-[10px] gap-[13px] bg-[#ffffff05] h-[60px]">
-                            <span>0.000</span>
+                            <span>{value ? Number(value) * mrlnTokenPrice : 0.00}</span>
                             <div className="flex items-center gap-[13px]">
                                 <p>MRLN</p>
                                 <div className="h-[30px] relative w-[30px] rounded-full overflow-hidden flex items-center justify-center">

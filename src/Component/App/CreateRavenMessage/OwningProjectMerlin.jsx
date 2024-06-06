@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import React, { useState } from 'react'
 
-const OwningProjectMerlin = () => {
+const OwningProjectMerlin = ({onChange, name}) => {
   const [isTextVisible, setIsTextVisible] = useState(false);
 
   const toggleTextVisibility = () => {
@@ -16,11 +16,11 @@ const OwningProjectMerlin = () => {
           <div className="flex justify-between">
             <div className="flex items-center justify-start gap-[30px]">
               <span className='flex items-center justify-start gap-[10px] text-white'>
-                <input type="radio" name="radio-5" className="radio radio-accent" defaultChecked />
+                <input type="radio" name={name} className="radio radio-accent" defaultChecked onChange={onChange} value={"Yes"}/>
                 <label>Yes</label>
               </span>
               <span className='flex items-center justify-start gap-[10px] text-white'>
-                <input type="radio" name="radio-5" className="radio radio-accent" />
+                <input type="radio" name={name} className="radio radio-accent" onChange={onChange} value={"No"}/>
                 <label>No</label>
               </span>
             </div>

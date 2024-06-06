@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Categories = () => {
+const Categories = ({onChange}) => {
   return (
     <div className='mt-[40px] xl:mt-[30px]'>
             <label className='font-[400] uppercase text-white'>Categories <span className='normal-case'>(Multiple options can be selected)</span></label>
@@ -10,7 +10,7 @@ const Categories = () => {
                         <li className='mb-[10px]'>
                             <div className="w-full form-control">
                                 <label className="justify-start cursor-pointer gap-[10px] label">
-                                    <input type="checkbox" className="toggle toggle-accent" />
+                                    <input type="checkbox" className="toggle toggle-accent" onChange={onChange} name='personalPurpose' />
                                     <span className="label-text text-white text-[16px]">Personal Purpose</span> 
                                 </label>
                             </div>
@@ -18,7 +18,7 @@ const Categories = () => {
                         <li className='mb-[10px]'>
                             <div className="w-full form-control">
                                 <label className="justify-start cursor-pointer gap-[10px] label">
-                                    <input type="checkbox" className="toggle toggle-accent" />
+                                    <input type="checkbox" className="toggle toggle-accent" onChange={onChange} name="sportsAndArts" />
                                     <span className="label-text text-white text-[16px]">Sports and Arts</span> 
                                 </label>
                             </div>
@@ -26,7 +26,7 @@ const Categories = () => {
                         <li className='mb-[10px]'>
                             <div className="w-full form-control">
                                 <label className="justify-start cursor-pointer gap-[10px] label">
-                                    <input type="checkbox" className="toggle toggle-accent" />
+                                    <input type="checkbox" className="toggle toggle-accent" onChange={onChange} name="socialResponbilities" />
                                     <span className="label-text text-white text-[16px]">Social Responsibilities</span> 
                                 </label>
                             </div>
@@ -34,7 +34,7 @@ const Categories = () => {
                         <li className='mb-[10px]'>
                             <div className="w-full form-control">
                                 <label className="justify-start cursor-pointer gap-[10px] label">
-                                    <input type="checkbox" className="toggle toggle-accent" />
+                                    <input type="checkbox" className="toggle toggle-accent" onChange={onChange} name="innovation"/>
                                     <span className="label-text text-white text-[16px]">Innovation</span> 
                                 </label>
                             </div>
