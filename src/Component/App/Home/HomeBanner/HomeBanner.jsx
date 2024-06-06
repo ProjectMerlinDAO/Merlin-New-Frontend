@@ -34,8 +34,8 @@ const HomeBanner = () => {
         <Statistic/>
         <div className="absolute top-0 right-0 z-[4] xl:max-w-[600px] lg:max-w-[500px]">
           <div className="relative flex items-center justify-center">
-              <img src="../assets/images/img/banner-img-min.png" alt="img" />
-              <img src="../assets/images/coins/coin.gif" alt="img" className='absolute translate-x-[-20px] lg:max-w-[200px] md:max-w-[180px] sm:max-w-[150px]' />
+              <img className=' w-full max-w-xl'  src="../assets/images/img/banner-img-min.png" alt="img" />
+              <img  src="../assets/images/coins/coin.gif" alt="img" className=' w-full max-w-36  absolute translate-x-[-20px] lg:max-w-[200px] md:max-w-[180px] sm:max-w-[150px]' />
           </div>
         </div>
       </div>
