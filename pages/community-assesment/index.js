@@ -25,7 +25,7 @@ const Index = () => {
         isSidebarVisible={isSidebarVisible}
         setIsSidebarVisible={setIsSidebarVisible}
       />
-      <CommunityAssessment />
+      <CommunityAssessment isSidebarVisible={isSidebarVisible} />
       <AppFooter isSidebarVisible={isSidebarVisible} />
     </>
   );

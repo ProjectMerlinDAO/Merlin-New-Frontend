@@ -2,7 +2,7 @@ const Data = [
   {
     title: "Home",
     src: "/assets/images/menuIcons/IconHome.svg",
-    url: "/",
+    url: "/launch-app",
   },
   {
     title: "Proposals",

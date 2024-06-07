@@ -26,7 +26,7 @@ const Index = () => {
         isSidebarVisible={isSidebarVisible}
         setIsSidebarVisible={setIsSidebarVisible}
       />
-      <CamelotProposals />
+      <CamelotProposals isSidebarVisible={isSidebarVisible}/>
       <AppFooter isSidebarVisible={isSidebarVisible} />
     </>
   );

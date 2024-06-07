@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import MenuData from "../MenuData";
+import Link from "next/link";
 
 const Sidebar = ({ isSidebarVisible, setIsSidebarVisible }) => {
   const [sidebarStyle, setSidebarStyle] = useState({ width: "270px" });
@@ -166,23 +167,23 @@ const Sidebar = ({ isSidebarVisible, setIsSidebarVisible }) => {
       >
         <div className="pt-[22px] pl-[25px] pb-[23px] border-b border-[#ffffff12]">
           {isSidebarVisible ? (
-            <a href="#">
+            <Link href="/">
               <Image
                 src="/assets/images/logo/logo.svg"
                 alt="logo"
                 width="145"
                 height="45"
               />
-            </a>
+            </Link>
           ) : (
-            <a href="#">
+            <Link href="#">
               <Image
                 src="/assets/images/logo/logo-short.svg"
                 alt="logo"
                 width="31"
                 height="45"
               />
-            </a>
+            </Link>
           )}
         </div>
         {isSidebarVisible ? (
@@ -193,24 +194,24 @@ const Sidebar = ({ isSidebarVisible, setIsSidebarVisible }) => {
                 className={`my-[10px] ${menuItem?.subMenus?.length > 0 ? "has-submenu" : ""
                   }`}
               >
-                <a
+                <Link
                   href={menuItem.url}
                   className={`px-[15px] py-[5px] flex items-center gap-[14px] capitalize text-[16px] font-normal text-[#ffffffcc] bg-transparent hover:text-white hover:bg-transparent active:!bg-transparent ${menuItem?.subMenus ? "submenu-toggle" : ""
                     }`}
                 >
                   <Image src={menuItem.src} alt="icon" width="18" height="18" />
                   {menuItem.title}
-                </a>
+                </Link>
                 {menuItem?.subMenus && (
                   <ul className="pl-[20px] submenu">
                     {menuItem.subMenus?.map((submenuItem, submenuId) => (
                       <li key={submenuId}>
-                        <a
+                        <Link
                           href={submenuItem.url}
                           className="py-[5px] px-[15px] ml-[15px] rounded-l-[10px] flex items-center gap-[14px] capitalize text-[16px] font-normal text-[#ffffffcc] hover:text-[#12CFA7] hover:bg-gradient-to-br hover:from-[#ffffff19] hover:to-[#ffffff00]"
                         >
                           {submenuItem.title}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>

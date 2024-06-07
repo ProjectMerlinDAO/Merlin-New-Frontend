@@ -33,7 +33,9 @@
     "use-typing-headlines": "^0.9.1",
     "viem": "^2.13.6",
     "wagmi": "^2.9.8",
-    "yet-another-react-lightbox": "^3.19.0"
+    "yet-another-react-lightbox": "^3.19.0",
+    "chart.js": "^4.4.3",
+    "react-tabs": "^6.0.2"
   },
   "devDependencies": {
     "@iconify/tailwind": "^1.0.1",

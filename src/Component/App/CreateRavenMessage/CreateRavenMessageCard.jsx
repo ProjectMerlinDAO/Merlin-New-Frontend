@@ -19,22 +19,23 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
   const [formData, setFormData] = useState({
     title: "",
     shortBrief: "",
-    avatarImage:"",
+    avatarImage: "",
     images: {},
     proposalDetail: "",
     videoLink: "",
     projectGoal: 0,
     mrlnAmt: 0,
     memberNft: "",
-    categories: {
-      personalPurpose: false,
-      sportsAndArts: false,
-      socialResponbilities: false,
-      innovation: false,
-    },
+    categories: [
+      { Personal: false },
+      { SportsArts: false },
+      { Social: false },
+      { Innovation: false },
+    ],
     cost: 0,
     fee: 0,
     termsAndConditions: false,
+    previewCategory: [],
   });
 
   const handleChange = (e) => {
@@ -47,23 +48,52 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
 
   const handleCategory = (e) => {
     const { name, checked } = e.target;
+    if (checked == true) {
+      formData.previewCategory.push(name);
+    } else if (checked == false) {
+      if (formData.previewCategory.includes(name)) {
+        formData.previewCategory = formData.previewCategory.filter(
+          (item) => item != name
+        );
+      }
+    }
     if (name === "checkbox") {
       setFormData((prevData) => ({
         ...prevData,
         termsAndConditions: !prevData.termsAndConditions,
       }));
     } else {
+      // if (name == "Sports&Arts") {
+      //   setFormData((prevData) => ({
+      //     ...prevData,
+      //     categories: {
+      //       ...prevData.categories,
+      //       SportsArts: checked,
+      //     },
+      //   }));
+      // } else {
+      //   setFormData((prevData) => ({
+      //     ...prevData,
+      //     categories: {
+      //       ...prevData.categories,
+      //       [name]: checked,
+      //     },
+      //   }));
+      // }
       setFormData((prevData) => ({
         ...prevData,
-        categories: {
-          ...prevData.categories,
-          [name]: checked,
-        },
+        categories: prevData.categories.map(category => {
+          const categoryName = Object.keys(category)[0];
+          if (categoryName === name || (name === "Sports&Arts" && categoryName === "SportsArts")) {
+            return { [categoryName]: checked };
+          }
+          return category;
+        }),
       }));
     }
   };
 
-  // console.log(formData, "FORMDATA");
+  console.log(formData, "FORMDATA");
   return (
     <div
       className="pt-[110px] relative bg-no-repeat position-top bg-contain"
@@ -144,8 +174,14 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
                         name="shortBrief"
                       />
                     </div>
-                    <RavenUploadImg  formData={formData} setFormData={setFormData}/>
-                    <UploadOptional formData={formData} setFormData={setFormData}/>
+                    <RavenUploadImg
+                      formData={formData}
+                      setFormData={setFormData}
+                    />
+                    <UploadOptional
+                      formData={formData}
+                      setFormData={setFormData}
+                    />
                     <ProposalDetail
                       onChange={(e) => handleChange(e)}
                       name="proposalDetail"
@@ -204,7 +240,12 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
                   ref={stickyRef}
                   className="w-[35%] lg:w-full px-[15px] mt-[40px] xl:mt-[30px]"
                 >
-                  <PreviewCard title={formData.title} goal={Number(formData.projectGoal) * 0.5} img={formData.avatarImage} />
+                  <PreviewCard
+                    title={formData.title}
+                    goal={Number(formData.projectGoal) * 0.5}
+                    img={formData.avatarImage}
+                    category={formData.previewCategory}
+                  />
                 </aside>
               </div>
             </div>

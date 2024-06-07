@@ -10,7 +10,7 @@ const Categories = ({onChange}) => {
                         <li className='mb-[10px]'>
                             <div className="w-full form-control">
                                 <label className="justify-start cursor-pointer gap-[10px] label">
-                                    <input type="checkbox" className="toggle toggle-accent" onChange={onChange} name='personalPurpose' />
+                                    <input type="checkbox" className="toggle toggle-accent" onChange={onChange} name='Personal' />
                                     <span className="label-text text-white text-[16px]">Personal Purpose</span> 
                                 </label>
                             </div>
@@ -18,7 +18,7 @@ const Categories = ({onChange}) => {
                         <li className='mb-[10px]'>
                             <div className="w-full form-control">
                                 <label className="justify-start cursor-pointer gap-[10px] label">
-                                    <input type="checkbox" className="toggle toggle-accent" onChange={onChange} name="sportsAndArts" />
+                                    <input type="checkbox" className="toggle toggle-accent" onChange={onChange} name="Sports&Arts" />
                                     <span className="label-text text-white text-[16px]">Sports and Arts</span> 
                                 </label>
                             </div>
@@ -26,7 +26,7 @@ const Categories = ({onChange}) => {
                         <li className='mb-[10px]'>
                             <div className="w-full form-control">
                                 <label className="justify-start cursor-pointer gap-[10px] label">
-                                    <input type="checkbox" className="toggle toggle-accent" onChange={onChange} name="socialResponbilities" />
+                                    <input type="checkbox" className="toggle toggle-accent" onChange={onChange} name="Social" />
                                     <span className="label-text text-white text-[16px]">Social Responsibilities</span> 
                                 </label>
                             </div>
@@ -34,7 +34,7 @@ const Categories = ({onChange}) => {
                         <li className='mb-[10px]'>
                             <div className="w-full form-control">
                                 <label className="justify-start cursor-pointer gap-[10px] label">
-                                    <input type="checkbox" className="toggle toggle-accent" onChange={onChange} name="innovation"/>
+                                    <input type="checkbox" className="toggle toggle-accent" onChange={onChange} name="Innovation"/>
                                     <span className="label-text text-white text-[16px]">Innovation</span> 
                                 </label>
                             </div>
