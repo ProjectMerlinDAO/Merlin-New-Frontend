@@ -63,7 +63,7 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
     }
   };
 
-  console.log(formData, "FORMDATA");
+  // console.log(formData, "FORMDATA");
   return (
     <div
       className="pt-[110px] relative bg-no-repeat position-top bg-contain"
@@ -204,7 +204,7 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
                   ref={stickyRef}
                   className="w-[35%] lg:w-full px-[15px] mt-[40px] xl:mt-[30px]"
                 >
-                  <PreviewCard />
+                  <PreviewCard title={formData.title} goal={Number(formData.projectGoal) * 0.5} img={formData.avatarImage} />
                 </aside>
               </div>
             </div>

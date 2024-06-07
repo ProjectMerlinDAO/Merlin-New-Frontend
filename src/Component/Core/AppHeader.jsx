@@ -4,21 +4,29 @@ import MenuData from "./MenuData";
 import Link from "next/link";
 import SignInPopup from "../App/Auth/SignInPopup";
 import { useAccount } from "wagmi";
+import { useWeb3Modal } from "@web3modal/wagmi/react";
 
 const AppHeader = ({ isSidebarVisible }) => {
+  const { open } = useWeb3Modal()
   const { address } = useAccount();
+
+
   const [isOpen, setIsOpen] = useState(false);
   const handleSignin = () => {
-    // document.getElementById('signInModal').showModal()
+    if (address) {
+      open();
+    }else{
       setIsOpen(true);
-  }
+    }
+  };
   return (
     <>
-    {isOpen ? <SignInPopup isOpen={isOpen} setIsOpen={setIsOpen}/> : null}
+      {isOpen ? <SignInPopup isOpen={isOpen} setIsOpen={setIsOpen} /> : null}
       <header className="absolute top-0 left-0 z-[999] flex items-center w-full h-[110px]">
         <div
-          className={`app-home-wrapper ${isSidebarVisible ? "sidebar-visible" : "sidebar-hidden"
-            }`}
+          className={`app-home-wrapper ${
+            isSidebarVisible ? "sidebar-visible" : "sidebar-hidden"
+          }`}
         >
           <div className="px-[20px] md:px-[10px] max-w-[1365px] mx-auto lg:max-w-[720px]">
             <div className="flex items-center app-header-content relative z-[9999]">
@@ -33,15 +41,13 @@ const AppHeader = ({ isSidebarVisible }) => {
                   height="25"
                 />
               </label>
-              <label
-                className="hidden cursor-pointer xl:block ml-[25px]"
-              >
-                <Link href='/'>
+              <label className="hidden cursor-pointer xl:block ml-[25px]">
+                <Link href="/">
                   <Image
-                  src="/assets/images/logo/logo-short.svg"
-                  alt="icon"
-                  width="29"
-                  height="40"
+                    src="/assets/images/logo/logo-short.svg"
+                    alt="icon"
+                    width="29"
+                    height="40"
                   />
                 </Link>
               </label>
@@ -95,9 +101,17 @@ const AppHeader = ({ isSidebarVisible }) => {
                       width="20"
                       height="20"
                     />
-                    <span className="btn-hov-text" >
-                      <span className="btn-text">{address ?  address.slice(0,2) + "...." +address.slice(-5) : "Connect" }</span>
-                      <span className="btn-text">{address ? address.slice(0,2) + "...." +address.slice(-5) : "Connect" }</span>
+                    <span className="btn-hov-text">
+                      <span className="btn-text">
+                        {address
+                          ? address.slice(0, 2) + "...." + address.slice(-5)
+                          : "Connect"}
+                      </span>
+                      <span className="btn-text">
+                        {address
+                          ? address.slice(0, 2) + "...." + address.slice(-5)
+                          : "Connect"}
+                      </span>
                     </span>
                   </a>
                 </li>
@@ -158,7 +172,7 @@ const AppHeader = ({ isSidebarVisible }) => {
                 href="#"
                 className="buy-btn btn-has-shape hov-btn bg-[#ffffff19] rounded-full bg-opacity-10 backdrop-blur-[5px] h-[50px] w-[170px] sm:w-[120px] flex items-center justify-center text-white text-center leading-trim-both text-edge-cap font-[600] text-[16px] sm:text[14px] uppercase quantico"
               >
-                <span className="btn-hov-text mobile-menu-buy-btn !h-[17px]" >
+                <span className="btn-hov-text mobile-menu-buy-btn !h-[17px]">
                   <span className="btn-text">Buy NFT</span>
                   <span className="btn-text">Buy NFT</span>
                 </span>

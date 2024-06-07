@@ -1,8 +1,11 @@
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import CommonerSignIn from "./CommonerSignIn";
+import { useWeb3Modal } from '@web3modal/ethers/react'
+
 
 const SignInPopup = ({ isOpen, setIsOpen }) => {
+  const { open } = useWeb3Modal()
   const [showCommonerSignIn, setShowCommonerSignIn] = useState(false);
   const dialogRef = useRef(null);
   const handleCommonerClick = () => {
@@ -33,6 +36,12 @@ const SignInPopup = ({ isOpen, setIsOpen }) => {
       }
     };
   }, [isOpen, setIsOpen]);
+
+  const handleWalletConnect = () => {
+    // document.getElementById('signInModal').close();
+    setIsOpen(false);
+    open();
+   }
   return (
     <>
       {isOpen ? (
@@ -52,7 +61,7 @@ const SignInPopup = ({ isOpen, setIsOpen }) => {
                       as Commoner
                     </p>
                     <button
-                      onClick={handleCommonerClick}
+                      onClick={handleWalletConnect}
                       className="hov-btn btn-has-shape bg-[#12CFA7] h-[60px] text-white quantico font-[700] w-full rounded-[18px] uppercase mb-[30px]"
                     >
                       <span className="btn-hov-text !h-[27px]">
@@ -63,6 +72,7 @@ const SignInPopup = ({ isOpen, setIsOpen }) => {
                     <button
                       type="submit"
                       className="hov-btn btn-has-shape bg-[#12CFA7] h-[60px] text-white quantico font-[700] w-full rounded-[18px] uppercase mb-[0px]"
+                      onClick={handleCommonerClick}
                     >
                       <span className="btn-hov-text !h-[27px]">
                         <span className="btn-text">Community Member</span>

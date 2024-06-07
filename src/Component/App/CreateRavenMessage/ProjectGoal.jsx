@@ -7,7 +7,7 @@ const ProjectGoal = ({name, onChange, value}) => {
   const toggleTextVisibility = () => {
     setIsTextVisible(!isTextVisible);
   }
-  console.log(value,"VALUEEEEEEEEEEEE")
+  
     return (
         <div className='mt-[40px] xl:mt-[30px]'>
             <label className='font-[400] uppercase text-white'>Project Goal</label>
