@@ -4,17 +4,17 @@ import Image from "next/image";
 const FooterCard = () => {
   // Define arrays for footer links and social media icons
   const firstColumnLinks = [
-    { text: "Home", href: "launch-app" },
-    { text: "Proposals", href: "#" },
-    { text: "The Crystal Cave", href: "#" },
-    { text: "Raven Message", href: "#" },
-    { text: "Treasury", href: "#" },
+    { text: "Home", href: "/launch-app#" },
+    { text: "Proposals", href: "/camelot-proposals#" },
+    { text: "The Crystal Cave", href: "/crystal-cave#" },
+    { text: "Raven Message", href: "/create-raven-message#" },
+    { text: "Treasury", href: "create-raven-message#" },
   ];
 
   const secondColumnLinks = [
-    { text: "Latest Articles", href: "#" },
-    { text: "Docs", href: "#" },
-    { text: "Tokenomic", href: "#" },
+    { text: "Latest Articles", href: "" },
+    { text: "Docs", href: "https://docs.projectmerlin.io/projectmerlin" },
+    { text: "Tokenomic", href: "/#Tokeneconomics" },
   ];
 
   const socialIcons = [
