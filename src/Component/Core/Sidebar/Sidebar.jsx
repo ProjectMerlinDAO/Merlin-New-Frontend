@@ -196,9 +196,12 @@ const Sidebar = ({ isSidebarVisible, setIsSidebarVisible }) => {
               >
                 <Link
                   href={menuItem.url}
-                  className={`px-[15px] py-[5px] flex items-center gap-[14px] capitalize text-[16px] font-normal text-[#ffffffcc] bg-transparent hover:text-white hover:bg-transparent active:!bg-transparent ${menuItem?.subMenus ? "submenu-toggle" : ""
-                    }`}
+                  // className={ menuItem.title === "Grants" ? " px-[15px] py-[5px] flex items-center gap-[14px] capitalize text-[16px] font-normal text-[#ffffffcc] bg-transparent hover:text-white hover:bg-transparent active:!bg-transparent pointer-events-none text-gray-500 ": `px-[15px] py-[5px] flex items-center gap-[14px] capitalize text-[16px] font-normal text-[#ffffffcc] bg-transparent hover:text-white hover:bg-transparent active:!bg-transparent ${menuItem?.subMenus ? "submenu-toggle" : ""
+                  //   }`}
+
+                    className={`px-[15px] py-[5px] flex items-center gap-[14px] capitalize text-[16px] font-normal text-[#ffffffcc] bg-transparent  hover:bg-transparent active:!bg-transparent ${menuItem.title === "Grants" ?  "text-gray-500" :null } text-[#ffffffcc] ${menuItem?.subMenus ? "submenu-toggle" : ""}`}
                 >
+                  
                   <Image src={menuItem.src} alt="icon" width="18" height="18" />
                   {menuItem.title}
                 </Link>
@@ -208,8 +211,11 @@ const Sidebar = ({ isSidebarVisible, setIsSidebarVisible }) => {
                       <li key={submenuId}>
                         <Link
                           href={submenuItem.url}
-                          className="py-[5px] px-[15px] ml-[15px] rounded-l-[10px] flex items-center gap-[14px] capitalize text-[16px] font-normal text-[#ffffffcc] hover:text-[#12CFA7] hover:bg-gradient-to-br hover:from-[#ffffff19] hover:to-[#ffffff00]"
+                         className={`py-[5px] px-[15px] ml-[15px] rounded-l-[10px] flex items-center gap-[14px] capitalize text-[16px] font-normal ${submenuItem.title === "projects" || submenuItem.title === "Grant bonuses" || submenuItem.title === "Apply for a grant" ? "pointer-events-none text-gray-500" : "text-[#ffffffcc] hover:text-[#12CFA7] hover:bg-gradient-to-br hover:from-[#ffffff19] hover:to-[#ffffff00]" }`}
+                          // className="py-[5px] px-[15px] ml-[15px] rounded-l-[10px] flex items-center gap-[14px] capitalize text-[16px] font-normal text-[#ffffffcc] hover:text-[#12CFA7] hover:bg-gradient-to-br hover:from-[#ffffff19] hover:to-[#ffffff00]"
                         >
+                          
+
                           {submenuItem.title}
                         </Link>
                       </li>

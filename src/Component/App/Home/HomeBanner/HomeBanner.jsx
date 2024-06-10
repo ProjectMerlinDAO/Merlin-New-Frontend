@@ -24,7 +24,7 @@ const HomeBanner = () => {
         <div className="text pb-[128px] xl:pb-[100px] lg:pb-[80px] md:pb-[60px] sm:pb-[40px] relative z-[5]">
             <h1 className='text-[80px] xl:text-[60px] lg:text-[50px] md:text-[40px] font-[700] uppercase leading-[125%] quantico max-w-[794px] xl:max-w-[550px] text-white mb-[20px]'>Make Dreams into the Future</h1>
             <p className='text-white mb-[50px] lg:mb-[30px] max-w-[677px] xl:max-w-[550px]'>Project Merlin provides community members with the opportunity to actualize their dreams. As integral parts of the community, members share their dreams and receive support. At each step of the process leading to the realization of a community member&apos;s dream, each individual community member is rewarded separately.</p>
-            <Link href="/launch-app" className="buy-btn btn-has-shape hov-btn bg-[#12CFA7] rounded-full h-[60px] w-[220px] flex items-center justify-center text-white text-center leading-trim-both text-edge-cap font-[600] text-[16px] sm:text[14px] uppercase quantico">
+            <Link href="https://docs.projectmerlin.io/projectmerlin" target='_blank'  className="buy-btn btn-has-shape hov-btn bg-[#12CFA7] rounded-full h-[60px] w-[220px] flex items-center justify-center text-white text-center leading-trim-both text-edge-cap font-[600] text-[16px] sm:text[14px] uppercase quantico">
               <span className="btn-hov-text">
                 <span className="btn-text">Learn More</span>
                 <span className="btn-text">Learn More</span>
@@ -35,7 +35,7 @@ const HomeBanner = () => {
         <div className="absolute top-0 right-0 z-[4] xl:max-w-[600px] lg:max-w-[500px]">
           <div className="relative flex items-center justify-center">
               <img className=' w-full max-w-xl'  src="../assets/images/img/banner-img-min.png" alt="img" />
-              <img  src="../assets/images/coins/coin.gif" alt="img" className=' w-full max-w-36  absolute translate-x-[-20px] lg:max-w-[200px] md:max-w-[180px] sm:max-w-[150px]' />
+              <img  src="../assets/images/coins/coin.gif" alt="img" className=' w-full max-w-36  absolute translate-x-[-40px] lg:max-w-[200px] md:max-w-[180px] sm:max-w-[150px]' />
           </div>
         </div>
       </div>
