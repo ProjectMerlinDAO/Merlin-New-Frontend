@@ -160,8 +160,8 @@ const TheCrystalCaveTable = () => {
                         <li className="px-[15px] xl:px-[5px] pr-15px w-[15%] text-right xl:min-w-[max-content]">Like / Dislike</li>
                     </ul>
                     {crystalData.map((crystal, index) => (
-                      <Link href="/raven-detail">
-                        <ul key={index} className="rounded-[20px] mb-[15px] relative crystal-table-row backdrop-blur-[10px] py-[15px] flex items-center justify-between" style={{ background: 'linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 50%, rgba(255, 255, 255, 0.08) 100%);' }}>
+                      <Link key={index} href="/raven-detail">
+                        <ul  className="rounded-[20px] mb-[15px] relative crystal-table-row backdrop-blur-[10px] py-[15px] flex items-center justify-between" style={{ background: 'linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 50%, rgba(255, 255, 255, 0.08) 100%);' }}>
                             <li className="w-[40%] px-[15px] xl:pr-[5px]">
                                 <div className="flex items-center justify-start">
                                     <div className="min-h-[60px] min-w-[60px] max-h-[60px] max-w-[60px] rounded-[15px] overflow-hidden">
