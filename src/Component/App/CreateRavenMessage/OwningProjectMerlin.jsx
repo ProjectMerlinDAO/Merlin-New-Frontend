@@ -16,11 +16,11 @@ const OwningProjectMerlin = ({onChange, name}) => {
           <div className="flex justify-between">
             <div className="flex items-center justify-start gap-[30px]">
               <span className='flex items-center justify-start gap-[10px] text-white'>
-                <input type="radio" name={name} className="radio radio-accent" defaultChecked onChange={onChange} value={"Yes"}/>
+                <input type="radio" name={name} className="radio radio-accent" onChange={onChange} value={"Yes"}/>
                 <label>Yes</label>
               </span>
               <span className='flex items-center justify-start gap-[10px] text-white'>
-                <input type="radio" name={name} className="radio radio-accent" onChange={onChange} value={"No"}/>
+                <input type="radio" name={name} className="radio radio-accent" defaultChecked onChange={onChange} value={"No"}/>
                 <label>No</label>
               </span>
             </div>

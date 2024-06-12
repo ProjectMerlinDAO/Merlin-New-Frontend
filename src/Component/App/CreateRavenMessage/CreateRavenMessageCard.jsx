@@ -41,6 +41,7 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    // if(name === "memberNft" && value === "")
     setData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -114,7 +115,7 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
   useEffect(() => {
    calculateCost();
   },[data.categories])
-  console.log(data.fee,"DATA")
+  console.log(data.memberNft,"DATA")
   return (
     <div
       className="pt-[110px] relative bg-no-repeat position-top bg-contain"
