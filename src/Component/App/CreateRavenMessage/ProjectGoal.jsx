@@ -18,7 +18,7 @@ const ProjectGoal = ({name, onChange, value}) => {
                             <div className="h-[30px] relative w-[30px] rounded-full overflow-hidden flex items-center justify-center">
                                 <Image src="/assets/images/coins/usdt.svg" alt="coin" fill={true} />
                             </div>
-                            <input type="text" placeholder='USDT Amount' className='text-white no-outline bg-transparent border-0' name={name} onChange={onChange} value={value}/>
+                            <input type="text" placeholder='USDT Amount' className='text-white no-outline bg-transparent border-0' name={name} onChange={onChange} value={value == 0 }/>
                         </div>
                     </div>
                     <div className="w-1/2 xsm:w-full">

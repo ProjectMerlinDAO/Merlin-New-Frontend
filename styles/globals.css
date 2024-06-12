@@ -1671,10 +1671,12 @@ textarea.no-outline:focus-visible {
   background: linear-gradient(to right,  #424b37 0%,#20293a 50%,#11213f 100%); 
   color: #fff !important;
   backdrop-filter: blur(40px) !important;
+  font-family: "Lexend", sans-serif !important
 }
 .custom_toast_error .Toastify__close-button {
   color: #fff !important;
   opacity: 1 !important;
+  font-family: "Lexend", sans-serif !important
 }
 
 /*-- member profile --*/

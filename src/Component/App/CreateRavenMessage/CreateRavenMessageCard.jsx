@@ -12,6 +12,7 @@ import PreviewCard from "./PreviewCard";
 import { useStickyBox } from "react-sticky-box";
 import { useAccount } from "wagmi";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const CreateRavenMessageCard = ({ isSidebarVisible }) => {
   const { address } = useAccount();
@@ -41,7 +42,10 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    // if(name === "memberNft" && value === "")
+    if(name === "memberNft" && value === "Yes"){
+      toast.error("You don't have a community NFT. Please select 'No'.")
+      return;
+    }
     setData((prevData) => ({
       ...prevData,
       [name]: value,
