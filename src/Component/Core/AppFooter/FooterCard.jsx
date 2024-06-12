@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const FooterCard = () => {
   // Define arrays for footer links and social media icons
@@ -8,20 +9,20 @@ const FooterCard = () => {
     { text: "Proposals", href: "/camelot-proposals#" },
     { text: "The Crystal Cave", href: "/crystal-cave#" },
     { text: "Raven Message", href: "/create-raven-message#" },
-    { text: "Treasury", href: "create-raven-message#" },
+    { text: "Treasury", href: "treasury#" },
   ];
 
   const secondColumnLinks = [
-    { text: "Latest Articles", href: "" },
+    { text: "Latest Articles", href: "#" },
     { text: "Docs", href: "https://docs.projectmerlin.io/projectmerlin" },
     { text: "Tokenomic", href: "/#Tokeneconomics" },
   ];
 
   const socialIcons = [
     {
-      src: "/assets/images/icons/twitter.svg",
+      src: "./assets/images/icons/x.svg",
       alt: "Twitter",
-      href: "https://x.com/i/flow/login?redirect_after_login=%2FProjectMerlinio",
+      href: "https://x.com/ProjectMerlinio",
       height: "22",
       width: "22",
     },
@@ -42,7 +43,7 @@ const FooterCard = () => {
     {
       src: "/assets/images/icons/mediam.svg",
       alt: "Medium",
-      href: "#",
+      href: "https://projectmerlin.medium.com/",
       height: "30",
       width: "30",
     },
@@ -53,7 +54,7 @@ const FooterCard = () => {
       <div className="p-[70px] lg:p-[40px] overflow-hidden rounded-[40px] bg-gradient-to-l from-[#FFFFFF04] to-[#060cbf05] backdrop-blur-[5px]">
         <div className="flex flex-wrap">
           <div className="w-2/3 lg:w-full">
-            <a href="#">
+            <Link href="/">
               <Image
                 src="/assets/images/logo/logo.svg"
                 alt="logo"
@@ -61,7 +62,7 @@ const FooterCard = () => {
                 height="500"
                 className="lg:mx-auto"
               />
-            </a>
+            </Link>
             <div className="flex items-start mt-[55px] lg:mt-[30px] justify-start text-[#ffffffd2] font-[400] lg:flex-wrap lg:max-w-[300px] lg:mx-auto">
               <div className="w-2/5 lg:w-full lg:mb-[20px] lg:text-center">
                 <p className="max-w-[246px] lg:mx-auto leading-[24px]">
@@ -81,7 +82,7 @@ const FooterCard = () => {
               <div className="w-[30%] lg:w-1/2 lg:pl-[30px]">
                 <ul>
                   {secondColumnLinks.map((link, index) => (
-                    <li key={index} className="hover:text-white mb-[10px]">
+                    <li key={index} className={link.text === "Latest Articles" ? "pointer-events-none text-gray-500" : "hover:text-white mb-[10px]"}>
                       <a href={link.href}>{link.text}</a>
                     </li>
                   ))}

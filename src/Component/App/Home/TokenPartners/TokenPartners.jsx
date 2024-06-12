@@ -101,7 +101,7 @@ const TokenPartners = () => {
           </ul>
         </div>
         <div>
-          <a href="#" className='hov-btn btn-has-shape gap-[7px] bg-[rgba(255,255,255,0.10)] rounded-full bg-opacity-10 backdrop-blur-[5px] h-[60px] w-[270px] mx-auto flex items-center justify-center text-white text-center leading-trim-both text-edge-cap font-[600] text-[16px] uppercase quantico mt-[20px]' >
+          <a href="https://wkf.ms/3RqpEi5" target='_blank' className='hov-btn btn-has-shape gap-[7px] bg-[rgba(255,255,255,0.10)] rounded-full bg-opacity-10 backdrop-blur-[5px] h-[60px] w-[270px] mx-auto flex items-center justify-center text-white text-center leading-trim-both text-edge-cap font-[600] text-[16px] uppercase quantico mt-[20px]' >
             <span className="btn-hov-text">
               <span className="btn-text">Become an Investor</span>
               <span className="btn-text">Become an Investor</span>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 
-const UploadOptional = ({ formData, setFormData }) => {
+const UploadOptional = ({ image, setImage }) => {
   const [images, setImages] = useState(Array(4).fill(null));
 
   const handleImageUpload = (e, index) => {
@@ -14,7 +14,7 @@ const UploadOptional = ({ formData, setFormData }) => {
         setImages(newImages);
       };
       reader.readAsDataURL(file);
-      setFormData((prevData) => {
+      setImage((prevData) => {
         const imageKey = `image${Object.keys(prevData.images).length + 1}`;
         return {
           ...prevData,

@@ -74,13 +74,13 @@ const Tokenomics = () => {
               TOKEN TYPE
             </li>
             <li>
-              Liquidity pools<br />
-              management
+              800M<br />
+              Total Supply
             </li>
             <li>
-              Instant token
+              260.000
               <br />
-              swaps
+              Initial Market Cap
             </li>
           </ul>
         </div>

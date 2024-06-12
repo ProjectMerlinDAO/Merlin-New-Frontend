@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AppInput from "../../Core/AppInput";
 import RavenUploadImg from "./RavenUploadImg";
 import UploadOptional from "./UploadOptional";
@@ -11,12 +11,14 @@ import Cost from "./Cost";
 import PreviewCard from "./PreviewCard";
 import { useStickyBox } from "react-sticky-box";
 import { useAccount } from "wagmi";
+import axios from "axios";
 
 const CreateRavenMessageCard = ({ isSidebarVisible }) => {
   const { address } = useAccount();
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   const stickyRef = useStickyBox({ offsetTop: 20, offsetBottom: 20 });
 
-  const [formData, setFormData] = useState({
+  const [data, setData] = useState({
     title: "",
     shortBrief: "",
     avatarImage: "",
@@ -26,21 +28,20 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
     projectGoal: 0,
     mrlnAmt: 0,
     memberNft: "",
-    categories: [
-      { Personal: false },
-      { SportsArts: false },
-      { Social: false },
-      { Innovation: false },
-    ],
     cost: 0,
     fee: 0,
     termsAndConditions: false,
-    previewCategory: [],
+    categories: [],
+  });
+
+  const [uploadImages, setUploadImages] = useState({
+    avatarImage: "",
+    images: {},
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
+    setData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
@@ -49,51 +50,71 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
   const handleCategory = (e) => {
     const { name, checked } = e.target;
     if (checked == true) {
-      formData.previewCategory.push(name);
+      setData((prev) => ({
+        ...prev,
+        categories:[...data.categories,name]
+      }))
     } else if (checked == false) {
-      if (formData.previewCategory.includes(name)) {
-        formData.previewCategory = formData.previewCategory.filter(
-          (item) => item != name
-        );
+      if (data.categories.includes(name)) {
+        setData((prev) => ({
+          ...prev,
+          categories : data.categories.filter((item) => item != name)
+        }))
       }
     }
     if (name === "checkbox") {
-      setFormData((prevData) => ({
+      setData((prevData) => ({
         ...prevData,
         termsAndConditions: !prevData.termsAndConditions,
-      }));
-    } else {
-      // if (name == "Sports&Arts") {
-      //   setFormData((prevData) => ({
-      //     ...prevData,
-      //     categories: {
-      //       ...prevData.categories,
-      //       SportsArts: checked,
-      //     },
-      //   }));
-      // } else {
-      //   setFormData((prevData) => ({
-      //     ...prevData,
-      //     categories: {
-      //       ...prevData.categories,
-      //       [name]: checked,
-      //     },
-      //   }));
-      // }
-      setFormData((prevData) => ({
-        ...prevData,
-        categories: prevData.categories.map(category => {
-          const categoryName = Object.keys(category)[0];
-          if (categoryName === name || (name === "Sports&Arts" && categoryName === "SportsArts")) {
-            return { [categoryName]: checked };
-          }
-          return category;
-        }),
       }));
     }
   };
 
-  console.log(formData, "FORMDATA");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const formData = new FormData();
+      formData.append("avatarImage", image.avatarImage);
+      Object.values(image.images).forEach(file => {
+        formData.append("images", file);
+      });
+      const imageUrls = await axios.post(`${baseUrl}/image/Upload`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+  if(imageUrls.status === 200){
+    let obj = {
+      ...data,
+      avatarImage : imageUrls?.data?.avatarImageUrl,
+      images : imageUrls.data?.imageUrls
+
+    }
+    const createMsg = await axios.post(`${baseUrl}/raven/create-raven`, obj);
+    console.log(createMsg);
+  }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
+  const calculateCost = () => {
+    let fee = 0;
+    if(data.categories.length === 1){
+      fee = 300;
+    }
+    if(data.categories.length > 1){
+      fee = 300 + 150 * (data.categories.length -1);
+    }
+    setData((prev) => ({
+      ...prev,
+      fee: fee
+    }))
+  }
+  useEffect(() => {
+   calculateCost();
+  },[data.categories])
+  console.log(data.fee,"DATA")
   return (
     <div
       className="pt-[110px] relative bg-no-repeat position-top bg-contain"
@@ -174,14 +195,8 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
                         name="shortBrief"
                       />
                     </div>
-                    <RavenUploadImg
-                      formData={formData}
-                      setFormData={setFormData}
-                    />
-                    <UploadOptional
-                      formData={formData}
-                      setFormData={setFormData}
-                    />
+                    <RavenUploadImg image={uploadImages} setImage={setUploadImages} />
+                    <UploadOptional image={uploadImages} setImage={setUploadImages} />
                     <ProposalDetail
                       onChange={(e) => handleChange(e)}
                       name="proposalDetail"
@@ -199,14 +214,14 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
                     <ProjectGoal
                       name="projectGoal"
                       onChange={(e) => handleChange(e)}
-                      value={formData.projectGoal}
+                      value={data.projectGoal}
                     />
                     <OwningProjectMerlin
                       onChange={(e) => handleChange(e)}
                       name="memberNft"
                     />
                     <Categories onChange={(e) => handleCategory(e)} />
-                    <Cost />
+                    <Cost data={data}/>
                     <div className="flex items-start justify-start gap-[10px] mt-[30px]">
                       <input
                         type="checkbox"
@@ -226,6 +241,7 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
                       </p>
                     </div>
                     <button
+                      onClick={handleSubmit}
                       type="submit"
                       className="hov-btn btn-has-shape bg-[#12CFA7] h-[60px] text-white quantico font-[700] w-full rounded-[18px] uppercase mt-[30px]"
                     >
@@ -241,10 +257,10 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
                   className="w-[35%] lg:w-full px-[15px] mt-[40px] xl:mt-[30px]"
                 >
                   <PreviewCard
-                    title={formData.title}
-                    goal={Number(formData.projectGoal) * 0.5}
-                    img={formData.avatarImage}
-                    category={formData.previewCategory}
+                    title={data.title}
+                    goal={Number(data.projectGoal) * 0.5}
+                    img={data.avatarImage}
+                    category={data.categories}
                   />
                 </aside>
               </div>
@@ -255,5 +271,4 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
     </div>
   );
 };
-
 export default CreateRavenMessageCard;

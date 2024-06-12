@@ -188,20 +188,27 @@ const Sidebar = ({ isSidebarVisible, setIsSidebarVisible }) => {
         </div>
         {isSidebarVisible ? (
           <ul className="sidebar-menu p-[10px]">
-            {MenuData?.map((menuItem, menuId) => (              
+            {MenuData?.map((menuItem, menuId) => (
               <li
                 key={menuId}
-                className={`my-[10px] ${menuItem?.subMenus?.length > 0 ? "has-submenu" : ""
-                  }`}
+                className={`my-[10px] ${
+                  menuItem?.subMenus?.length > 0 ? "has-submenu" : ""
+                }`}
               >
                 <Link
                   href={menuItem.url}
                   // className={ menuItem.title === "Grants" ? " px-[15px] py-[5px] flex items-center gap-[14px] capitalize text-[16px] font-normal text-[#ffffffcc] bg-transparent hover:text-white hover:bg-transparent active:!bg-transparent pointer-events-none text-gray-500 ": `px-[15px] py-[5px] flex items-center gap-[14px] capitalize text-[16px] font-normal text-[#ffffffcc] bg-transparent hover:text-white hover:bg-transparent active:!bg-transparent ${menuItem?.subMenus ? "submenu-toggle" : ""
                   //   }`}
 
-                    className={`px-[15px] py-[5px] flex items-center gap-[14px] capitalize text-[16px] font-normal text-[#ffffffcc] bg-transparent  hover:bg-transparent active:!bg-transparent ${menuItem.title === "Grants" ?  "text-gray-500" :null } text-[#ffffffcc] ${menuItem?.subMenus ? "submenu-toggle" : ""}`}
+                  className={`px-[15px] py-[5px] flex items-center gap-[14px] capitalize text-[16px] font-normal text-[#ffffffcc] bg-transparent  hover:bg-transparent active:!bg-transparent ${
+                    menuItem.title === "Grants" ||
+                    menuItem.title === "Proposals"
+                      ? "text-gray-500"
+                      : null
+                  } text-[#ffffffcc] ${
+                    menuItem?.subMenus ? "submenu-toggle" : ""
+                  }`}
                 >
-                  
                   <Image src={menuItem.src} alt="icon" width="18" height="18" />
                   {menuItem.title}
                 </Link>
@@ -211,11 +218,19 @@ const Sidebar = ({ isSidebarVisible, setIsSidebarVisible }) => {
                       <li key={submenuId}>
                         <Link
                           href={submenuItem.url}
-                         className={`py-[5px] px-[15px] ml-[15px] rounded-l-[10px] flex items-center gap-[14px] capitalize text-[16px] font-normal ${submenuItem.title === "projects" || submenuItem.title === "Grant bonuses" || submenuItem.title === "Apply for a grant" ? "pointer-events-none text-gray-500" : "text-[#ffffffcc] hover:text-[#12CFA7] hover:bg-gradient-to-br hover:from-[#ffffff19] hover:to-[#ffffff00]" }`}
+                          className={`py-[5px] px-[15px] ml-[15px] rounded-l-[10px] flex items-center gap-[14px] capitalize text-[16px] font-normal ${
+                            submenuItem.title === "projects" ||
+                            submenuItem.title === "Grant bonuses" ||
+                            submenuItem.title === "Apply for a grant" ||
+                            submenuItem.title === "Camelot Proposal" ||
+                            submenuItem.title === "community Assesment" ||
+                            submenuItem.title === "Senator Assessment" ||
+                            submenuItem.title === "Excalibur Proposal"
+                              ? "pointer-events-none text-gray-500"
+                              : "text-[#ffffffcc] hover:text-[#12CFA7] hover:bg-gradient-to-br hover:from-[#ffffff19] hover:to-[#ffffff00]"
+                          }`}
                           // className="py-[5px] px-[15px] ml-[15px] rounded-l-[10px] flex items-center gap-[14px] capitalize text-[16px] font-normal text-[#ffffffcc] hover:text-[#12CFA7] hover:bg-gradient-to-br hover:from-[#ffffff19] hover:to-[#ffffff00]"
                         >
-                          
-
                           {submenuItem.title}
                         </Link>
                       </li>
@@ -230,13 +245,15 @@ const Sidebar = ({ isSidebarVisible, setIsSidebarVisible }) => {
             {MenuData?.map((menuItem, menuId) => (
               <li
                 key={menuId}
-                className={`my-[13px] ${menuItem?.subMenus ? "has-submenu" : ""
-                  }`}
+                className={`my-[13px] ${
+                  menuItem?.subMenus ? "has-submenu" : ""
+                }`}
               >
                 <a
                   href={menuItem.url}
-                  className={`px-[15px] py-[5px] flex items-center gap-[14px] capitalize text-[16px] font-normal text-[#ffffffcc] bg-transparent hover:text-white hover:bg-transparent active:!bg-transparent ${menuItem?.subMenus ? "submenu-toggle" : ""
-                    }`}
+                  className={`px-[15px] py-[5px] flex items-center gap-[14px] capitalize text-[16px] font-normal text-[#ffffffcc] bg-transparent hover:text-white hover:bg-transparent active:!bg-transparent ${
+                    menuItem?.subMenus ? "submenu-toggle" : ""
+                  }`}
                 >
                   <Image src={menuItem.src} alt="icon" width="16" height="16" />
                   <span> {menuItem.title} </span>
@@ -264,7 +281,8 @@ const Sidebar = ({ isSidebarVisible, setIsSidebarVisible }) => {
             {isSidebarVisible ? (
               <a
                 href="#"
-                className="pl-[15px] flex items-center gap-[14px] h-[40px] w-full text-[16px] font-normal text-white capitalize rounded-full bg-gradient-to-br from-[#ffffff19] to-[#ffffff00]"
+              className="pl-[15px] flex items-center gap-[14px] h-[40px] w-full text-[16px]  pointer-events-none text-gray-500"
+                // className="pl-[15px] flex items-center gap-[14px] h-[40px] w-full text-[16px] font-normal text-white capitalize rounded-full bg-gradient-to-br from-[#ffffff19] to-[#ffffff00]"
               >
                 <Image
                   src="/assets/images/icons/help.svg"

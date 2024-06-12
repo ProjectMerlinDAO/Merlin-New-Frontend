@@ -22,7 +22,7 @@ const AppBanner = ({ isSidebarVisible }) => {
                                             <p className="text-white font-normal mb-[40px] max-w-[540px] lg:text-[14px] lg:mx-auto lg:mb-[20px]">
                                                 Project Merlin, as a next-generation crowdfunding and DAO platform, facilitates the realization of projects and dreams while also rewarding The Great Project Merlin Community.
                                             </p>
-                                            <a href="#" className="flex btn-has-shape items-center justify-center hov-btn h-[60px] w-[220px] text-[16px] font-semibold text-white uppercase rounded-full learn-more-btn bg-[#12CFA7] quantico lg:mx-auto">
+                                            <a href="https://docs.projectmerlin.io/projectmerlin" target="_blank" className="flex btn-has-shape items-center justify-center hov-btn h-[60px] w-[220px] text-[16px] font-semibold text-white uppercase rounded-full learn-more-btn bg-[#12CFA7] quantico lg:mx-auto">
                                             <span className="btn-hov-text">
                                                 <span className="btn-text" >Learn More</span>
                                                 <span className="btn-text" >Learn More</span>

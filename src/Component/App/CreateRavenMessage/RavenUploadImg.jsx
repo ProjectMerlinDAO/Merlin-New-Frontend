@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
 
-const RavenUploadImg = ({formData, setFormData}) => {
+const RavenUploadImg = ({image, setImage}) => {
   const [uploadedImage, setUploadedImage] = useState(null);
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
@@ -11,8 +11,8 @@ const RavenUploadImg = ({formData, setFormData}) => {
         setUploadedImage(reader.result);
       };
       reader.readAsDataURL(file);
-      setFormData((formData) => ({
-        ...formData,
+      setImage((image) => ({
+        ...image,
         avatarImage: file
       }))
     }

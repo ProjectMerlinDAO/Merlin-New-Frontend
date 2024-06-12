@@ -13,7 +13,7 @@ const FeatureCard = ({ tag, featureTitle, featureParagraph, linkText, featureImg
                 </div>
                 <h3 className='uppercase quantico text-[30px] xl:text-[26px] leading-[120%] text-white font-[700] mb-[28px] xl:max-w-[200px]'>{featureTitle}</h3>
                 <p className='font-[400] leading-[187.5%] mb-[24px] max-w-[295px]'>{featureParagraph}</p>
-                <Link href="#" className='text-[#12CFA7] font-[600] uppercase quantico flex items-center justify-start gap-[10px]'>{linkText} <Image src="/assets/images/icons/arrow-right-green.svg" alt="icon" width='16' height='14' /></Link>
+                <Link href="raven-detail" className='text-[#12CFA7] font-[600] uppercase quantico flex items-center justify-start gap-[10px]'>{linkText} <Image src="/assets/images/icons/arrow-right-green.svg" alt="icon" width='16' height='14' /></Link>
 
                 <div className='mt-[80px]'>
                     <Image src={featureImgUrl} alt="icon" width='91' height='80' />
