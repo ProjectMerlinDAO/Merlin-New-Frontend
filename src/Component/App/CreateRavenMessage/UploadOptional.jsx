@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
+import { toast } from "react-toastify";
 
 const UploadOptional = ({ image, setImage }) => {
   const [images, setImages] = useState(Array(4).fill(null));
@@ -7,6 +8,10 @@ const UploadOptional = ({ image, setImage }) => {
   const handleImageUpload = (e, index) => {
     const file = e.target.files[0];
     if (file) {
+      if(file.size > 5 * 1024 *1024){
+        toast.error("Image size is greater than 10mb");
+        return
+      }
       const reader = new FileReader();
       reader.onloadend = () => {
         const newImages = [...images];

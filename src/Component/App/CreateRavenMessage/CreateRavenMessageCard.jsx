@@ -13,12 +13,16 @@ import { useStickyBox } from "react-sticky-box";
 import { useAccount } from "wagmi";
 import axios from "axios";
 import { toast } from "react-toastify";
+import Loader from "../../Core/Loader/Loader";
+import { useRouter } from 'next/router';
 
 const CreateRavenMessageCard = ({ isSidebarVisible }) => {
   const { address } = useAccount();
+  const router = useRouter();
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   const stickyRef = useStickyBox({ offsetTop: 20, offsetBottom: 20 });
 
+  const [load, setLoad] = useState(false);
   const [data, setData] = useState({
     title: "",
     shortBrief: "",
@@ -28,22 +32,21 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
     videoLink: "",
     projectGoal: 0,
     mrlnAmt: 0,
-    memberNft: "",
-    cost: 0,
+    memberNft: "No",
     fee: 0,
     termsAndConditions: false,
     categories: [],
+    walletAddress: address,
   });
-
   const [uploadImages, setUploadImages] = useState({
     avatarImage: "",
     images: {},
   });
-
+  const [errors, setErrors] = useState({});
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if(name === "memberNft" && value === "Yes"){
-      toast.error("You don't have a community NFT. Please select 'No'.")
+    if (name === "memberNft" && value === "Yes") {
+      toast.error("You don't have a community NFT. Please select 'No'.");
       return;
     }
     setData((prevData) => ({
@@ -54,33 +57,107 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
 
   const handleCategory = (e) => {
     const { name, checked } = e.target;
-    if (checked == true) {
-      setData((prev) => ({
-        ...prev,
-        categories:[...data.categories,name]
-      }))
-    } else if (checked == false) {
-      if (data.categories.includes(name)) {
-        setData((prev) => ({
-          ...prev,
-          categories : data.categories.filter((item) => item != name)
-        }))
-      }
-    }
     if (name === "checkbox") {
       setData((prevData) => ({
         ...prevData,
         termsAndConditions: !prevData.termsAndConditions,
       }));
     }
+    if (checked == true && name !== "checkbox") {
+      setData((prev) => ({
+        ...prev,
+        categories: [...data.categories, name],
+      }));
+    } else if (checked == false) {
+      if (data.categories.includes(name)) {
+        setData((prev) => ({
+          ...prev,
+          categories: data.categories.filter((item) => item != name),
+        }));
+      }
+    }
+  };
+
+  const checkValidations = () => {
+    let isValidationsFailed = false;
+    let newErrors = {};
+    if (!data?.title || data.title.trim().length === 0) {
+      isValidationsFailed = true;
+      newErrors["title"] = "Title can't be empty";
+    }
+    if (!data.shortBrief || data.shortBrief.trim().length === 0) {
+      isValidationsFailed = true;
+      newErrors["shortBrief"] = "ShortBrief can't be empty!";
+    }
+    if (data.shortBrief.length > 120) {
+      isValidationsFailed = true;
+      newErrors["shortBrief"] = "Maximum length exceeds!";
+    }
+    if (!data.proposalDetail || data.proposalDetail.trim().length === 0) {
+      isValidationsFailed = true;
+      newErrors["proposalDetail"] = "Proposal Detail can't be empty!";
+    }
+    if (!data.videoLink || data.videoLink.trim().length === 0) {
+      isValidationsFailed = true;
+      newErrors["videoLink"] = "Video Link can't be empty!";
+    }
+    if (data.projectGoal <= 0) {
+      isValidationsFailed = true;
+      newErrors["projectGoal"] = "Please enter a valid amount!";
+    }
+    if (data?.categories.length === 0) {
+      isValidationsFailed = true;
+      newErrors["categories"] = "Please select at least one Category!";
+    }
+    if (data.termsAndConditions !== true) {
+      isValidationsFailed = true;
+      newErrors["checkbox"] = "Please select terms and conditions";
+    }
+    if (uploadImages.avatarImage === "") {
+      isValidationsFailed = true;
+      newErrors["avatarImage"] = "Please upload a valid image";
+    }
+
+    setErrors((prev) => ({
+      ...prev,
+      ...newErrors,
+    }));
+
+    return isValidationsFailed;
+  };
+
+  const handleReset = () => {
+    setData(() => ({
+      title: "",
+      shortBrief: "",
+      avatarImage: "",
+      images: {},
+      proposalDetail: "",
+      videoLink: "",
+      projectGoal: 0,
+      mrlnAmt: 0,
+      memberNft: "",
+      fee: 0,
+      termsAndConditions: false,
+      categories: [],
+      walletAddress: address,
+    }));
+    setUploadImages(() => ({
+      avatarImage: "",
+      images: {},
+    }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (checkValidations()) {
+      return;
+    }
     try {
+      setLoad(true);
       const formData = new FormData();
-      formData.append("avatarImage", image.avatarImage);
-      Object.values(image.images).forEach(file => {
+      formData.append("avatarImage", uploadImages.avatarImage);
+      Object.values(uploadImages.images).forEach((file) => {
         formData.append("images", file);
       });
       const imageUrls = await axios.post(`${baseUrl}/image/Upload`, formData, {
@@ -88,39 +165,60 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
           "Content-Type": "multipart/form-data",
         },
       });
-  if(imageUrls.status === 200){
-    let obj = {
-      ...data,
-      avatarImage : imageUrls?.data?.avatarImageUrl,
-      images : imageUrls.data?.imageUrls
-
-    }
-    const createMsg = await axios.post(`${baseUrl}/raven/create-raven`, obj);
-    console.log(createMsg);
-  }
+      if (imageUrls.status === 200) {
+        let obj = {
+          ...data,
+          avatarImage: imageUrls?.data?.avatarImageUrl,
+          images: imageUrls.data?.imageUrls,
+        };
+        const createMsg = await axios.post(
+          `${baseUrl}/raven/create-raven`,
+          obj
+        );
+        console.log(createMsg);
+        if (createMsg.status === 200) {
+          handleReset();
+          setLoad(false);
+          router.push("/crystal-cave")
+        }
+      }
     } catch (error) {
+      setLoad(false)
       console.log(error);
     }
   };
-  
+
   const calculateCost = () => {
     let fee = 0;
-    if(data.categories.length === 1){
+    if (data.categories.length === 1) {
       fee = 300;
     }
-    if(data.categories.length > 1){
-      fee = 300 + 150 * (data.categories.length -1);
+    if (data.categories.length > 1) {
+      fee = 300 + 150 * (data.categories.length - 1);
     }
     setData((prev) => ({
       ...prev,
-      fee: fee
-    }))
-  }
+      fee: fee,
+    }));
+  };
+
   useEffect(() => {
-   calculateCost();
-  },[data.categories])
-  console.log(data.memberNft,"DATA")
+    calculateCost();
+  }, [data.categories]);
+
+  useEffect(() => {
+    if (address) {
+      setData((prevData) => ({
+        ...prevData,
+        walletAddress: address,
+      }));
+    }
+  }, [address]);
+  console.log(data, "DATA");
+  console.log(errors, "ERRORS");
   return (
+    <>
+    
     <div
       className="pt-[110px] relative bg-no-repeat position-top bg-contain"
       style={{
@@ -128,6 +226,7 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
         backgroundSize: "100% 388px",
       }}
     >
+     
       <div
         className={`app-home-wrapper ${
           isSidebarVisible ? "sidebar-visible" : "sidebar-hidden"
@@ -189,6 +288,7 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
                         inputType="text"
                         onChange={(e) => handleChange(e)}
                         name="title"
+                        errors={errors}
                       />
                     </div>
                     <div className="mt-[40px] xl:mt-[30px]">
@@ -198,13 +298,22 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
                         inputType="text"
                         onChange={(e) => handleChange(e)}
                         name="shortBrief"
+                        errors={errors}
                       />
                     </div>
-                    <RavenUploadImg image={uploadImages} setImage={setUploadImages} />
-                    <UploadOptional image={uploadImages} setImage={setUploadImages} />
+                    <RavenUploadImg
+                      image={uploadImages}
+                      setImage={setUploadImages}
+                      errors={errors}
+                    />
+                    <UploadOptional
+                      image={uploadImages}
+                      setImage={setUploadImages}
+                    />
                     <ProposalDetail
                       onChange={(e) => handleChange(e)}
                       name="proposalDetail"
+                      errors={errors}
                     />
                     <div className="mt-[40px] xl:mt-[30px]">
                       <AppInput
@@ -214,19 +323,25 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
                         inputType="text"
                         onChange={(e) => handleChange(e)}
                         name="videoLink"
+                        errors={errors}
                       />
                     </div>
                     <ProjectGoal
                       name="projectGoal"
                       onChange={(e) => handleChange(e)}
                       value={data.projectGoal}
+                      errors={errors}
                     />
                     <OwningProjectMerlin
                       onChange={(e) => handleChange(e)}
                       name="memberNft"
                     />
-                    <Categories onChange={(e) => handleCategory(e)} />
-                    <Cost data={data}/>
+                    <Categories
+                      onChange={(e) => handleCategory(e)}
+                      errors={errors}
+                      categories={data.categories}
+                    />
+                    <Cost data={data} />
                     <div className="flex items-start justify-start gap-[10px] mt-[30px]">
                       <input
                         type="checkbox"
@@ -245,15 +360,23 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
                         </a>
                       </p>
                     </div>
+                    {!data.termsAndConditions &&
+                    errors &&
+                    Object.keys(errors).length > 0 &&
+                    errors?.hasOwnProperty("checkbox") ? (
+                      <div class="error-message">{errors["checkbox"]}</div>
+                    ) : null}
                     <button
                       onClick={handleSubmit}
                       type="submit"
                       className="hov-btn btn-has-shape bg-[#12CFA7] h-[60px] text-white quantico font-[700] w-full rounded-[18px] uppercase mt-[30px]"
                     >
-                      <span className="btn-hov-text !h-[27px]">
+                      {load ?  <span className="btn-hov-text !h-[27px]">
+                        <span className="btn-text"><Loader /> </span>
+                      </span> : <span className="btn-hov-text !h-[27px]">
                         <span className="btn-text">Submit Your Message</span>
                         <span className="btn-text">Submit Your Message</span>
-                      </span>
+                      </span>}
                     </button>
                   </div>
                 </div>
@@ -274,6 +397,7 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 export default CreateRavenMessageCard;

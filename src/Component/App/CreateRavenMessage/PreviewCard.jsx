@@ -18,7 +18,6 @@ const PreviewCard = ({title,goal,img,category}) => {
     // const handleCategory = () => {
     //     // for(let i=0; i<)
     // }
-    console.log(category,"IMAGE")
     
     useEffect(() => {
     handleImageUpload()

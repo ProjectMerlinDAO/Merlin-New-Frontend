@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
 
-const ProjectGoal = ({name, onChange, value}) => {
+const ProjectGoal = ({name, onChange, value, errors}) => {
     const [isTextVisible, setIsTextVisible] = useState(false);
     const mrlnTokenPrice = 0.5 //(1 mrlnToken == 0.5 USDT);
   const toggleTextVisibility = () => {
@@ -18,8 +18,9 @@ const ProjectGoal = ({name, onChange, value}) => {
                             <div className="h-[30px] relative w-[30px] rounded-full overflow-hidden flex items-center justify-center">
                                 <Image src="/assets/images/coins/usdt.svg" alt="coin" fill={true} />
                             </div>
-                            <input type="text" placeholder='USDT Amount' className='text-white no-outline bg-transparent border-0' name={name} onChange={onChange} value={value == 0 }/>
+                            <input type="text" placeholder='USDT Amount' className='text-white no-outline bg-transparent border-0' name={name} onChange={onChange} value={value == 0 ? null : value }/>
                         </div>
+                        {errors && Object.keys(errors).length > 0 && errors?.hasOwnProperty(name) ? <div className="error-message">{errors[name]}</div> : null}
                     </div>
                     <div className="w-1/2 xsm:w-full">
                         <div className="flex items-center justify-between px-[20px] py-[10px] gap-[13px] bg-[#ffffff05] h-[60px]">

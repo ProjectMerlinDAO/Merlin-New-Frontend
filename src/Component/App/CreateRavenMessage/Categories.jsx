@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Categories = ({onChange}) => {
+const Categories = ({onChange, errors, categories}) => {
   return (
     <div className='mt-[40px] xl:mt-[30px]'>
             <label className='font-[400] uppercase text-white'>Categories <span className='normal-case'>(Multiple options can be selected)</span></label>
@@ -18,7 +18,7 @@ const Categories = ({onChange}) => {
                         <li className='mb-[10px]'>
                             <div className="w-full form-control">
                                 <label className="justify-start cursor-pointer gap-[10px] label">
-                                    <input type="checkbox" className="toggle toggle-accent" onChange={onChange} name="Sports&Arts" />
+                                    <input type="checkbox" className="toggle toggle-accent" onChange={onChange} name="SportsAndArts" />
                                     <span className="label-text text-white text-[16px]">Sports and Arts</span> 
                                 </label>
                             </div>
@@ -51,6 +51,7 @@ const Categories = ({onChange}) => {
                     </div>
                 </div>
             </div>
+            {categories.length == 0 && errors && Object.keys(errors).length > 0 && errors?.hasOwnProperty("categories") ? <div className="error-message">{errors["categories"]}</div> : null}
         </div>
   )
 }

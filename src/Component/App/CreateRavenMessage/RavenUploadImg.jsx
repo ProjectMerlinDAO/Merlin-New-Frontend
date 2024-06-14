@@ -1,11 +1,16 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
+import { toast } from 'react-toastify';
 
-const RavenUploadImg = ({image, setImage}) => {
+const RavenUploadImg = ({image, setImage, errors}) => {
   const [uploadedImage, setUploadedImage] = useState(null);
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
+      if(file.size > 10 * 1024 *1024){
+        toast.error("Image size is greater than 10mb");
+        return
+      }
       const reader = new FileReader();
       reader.onloadend = () => {
         setUploadedImage(reader.result);
@@ -35,8 +40,10 @@ const RavenUploadImg = ({image, setImage}) => {
           accept="image/*"
           className='absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer'
           onChange={handleImageUpload}
+          
         />
       </div>
+      {errors && Object.keys(errors).length > 0  && errors?.hasOwnProperty("avatarImage")? <div class="error-message">{errors["avatarImage"]}</div> : null}
     </div>
   )
 }

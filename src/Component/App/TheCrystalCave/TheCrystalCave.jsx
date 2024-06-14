@@ -27,7 +27,6 @@ const TheCrystalCave = () => {
                 setIsSidebarVisible={setIsSidebarVisible}
             />
             <TheCrystalCaveContent isSidebarVisible={isSidebarVisible}/>
-
             <AppFooter isSidebarVisible={isSidebarVisible} />
         </>
     )

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const AppInput = ({inputTitle, inputPlaceholder, inputType, inputSubTitle,name,onChange}) => {
+const AppInput = ({inputTitle, inputPlaceholder, inputType, inputSubTitle,name,onChange, errors}) => {
   return (
     <div>
         <label className='font-[400] uppercase text-white'>{inputTitle} <span className="normal-case">{inputSubTitle}</span></label>
@@ -10,6 +10,8 @@ const AppInput = ({inputTitle, inputPlaceholder, inputType, inputSubTitle,name,o
             name={name}
             onChange={onChange}
          />
+         {errors && Object.keys(errors).length > 0  && errors?.hasOwnProperty(name)? <div class="error-message">{errors[name]}</div> : null}
+        
     </div>
   )
 }
