@@ -55,7 +55,8 @@ const AppHeader = ({ isSidebarVisible }) => {
               <ul className="flex items-center justify-end gap-[20px] ml-auto app-header-right">
                 <li className="xl:hidden">
                   <a
-                    href="#"
+                    href="https://discord.gg/projectmerlin"
+                    target="_blank"
                     className="icon-btn btn-has-shape social-icon hov-btn bg-[#ffffff19] h-[50px] w-[50px] rounded-full bg-opacity-10 backdrop-blur-[5px] flex items-center justify-center"
                   >
                     <span className="btn-icons">

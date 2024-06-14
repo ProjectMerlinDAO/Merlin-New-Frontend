@@ -27,8 +27,6 @@ const RavenDetail = () => {
                 setIsSidebarVisible={setIsSidebarVisible}
             />
             <RavenDetailCard isSidebarVisible={isSidebarVisible} />
-
-
             <AppFooter isSidebarVisible={isSidebarVisible} />
         </>
 

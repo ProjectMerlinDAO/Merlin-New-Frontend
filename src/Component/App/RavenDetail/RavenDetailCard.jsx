@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import RavenDetailVideo from './RavenDetailVideo'
 import RavenImages from './RavenImages'
@@ -8,9 +8,22 @@ import ProposalInfoCard from './ProposalInfoCard'
 import LikeShareCard from './LikeShareCard'
 import {useStickyBox} from "react-sticky-box";
 import Link from 'next/link'
+import axios from 'axios'
 
 const RavenDetailCard = ({ isSidebarVisible }) => {
     const stickyRef = useStickyBox({offsetTop: 20, offsetBottom: 20})
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+    const [detail, setDetail] = useState();
+    const fetchDetails = async () => {
+        try {
+            const details = await axios.get(`${baseUrl}/`)
+        } catch (error) {
+            
+        }
+    }
+    useEffect(() => {
+
+    },[])
     return (
         <div className="pt-[110px] relative bg-no-repeat position-top bg-contain" style={{ backgroundImage: 'url(./assets/images/bg/sub-bg.png)', backgroundSize: '100% 388px' }}>
             <div className={`app-home-wrapper mt-[-70px] lg:mt-[0px]  ${isSidebarVisible ? "sidebar-visible" : "sidebar-hidden"}`}>

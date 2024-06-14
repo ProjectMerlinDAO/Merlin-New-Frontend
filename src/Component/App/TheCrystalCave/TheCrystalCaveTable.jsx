@@ -6,6 +6,7 @@ import CategoriesDropdown from "../../Core/CategoriesDropdown";
 import Pagination2 from "../../Core/Pagination2";
 import Link from "next/link";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 const crystalData = [
   {
@@ -144,6 +145,7 @@ const crystalData = [
 
 const TheCrystalCaveTable = () => {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const router = useRouter();
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("all");
   const [sort, setSort] = useState("latest");
@@ -162,6 +164,17 @@ const TheCrystalCaveTable = () => {
     }
     console.log(data, "DATATAATAT");
   };
+
+  const handleClick = (id) => {
+    console.log(id,"ID")
+    router.push({
+      pathname:"/raven-detail",
+      query:{
+        id : id
+      }
+    })
+  }
+ 
   console.log(msgList, "LIST");
   useEffect(() => {
     fetchMsgs();
@@ -286,9 +299,11 @@ const TheCrystalCaveTable = () => {
               </ul>
             </Link>
           ))} */}
-
-          {msgList ? msgList?.map((data,index) => (
-             <Link key={index} href="/raven-detail">
+{/* href="/raven-detail" */}
+{/* onClick={() => handleClick(data?._id)} */}
+          {msgList ? msgList?.map((data,index) => {
+            return(
+             <Link key={index}  href="/raven-detail">
              <ul
                className="rounded-[20px] mb-[15px] relative crystal-table-row backdrop-blur-[10px] py-[15px] flex items-center justify-between"
                style={{
@@ -370,8 +385,8 @@ const TheCrystalCaveTable = () => {
                   </div>
                 </li>
               </ul>
-            </Link>
-          )) : <p>No msgs yet</p>}
+            </Link>)
+}) : <p>No msgs yet</p>}
         </div>
       </div>
       <div className="mt-[30px]">
