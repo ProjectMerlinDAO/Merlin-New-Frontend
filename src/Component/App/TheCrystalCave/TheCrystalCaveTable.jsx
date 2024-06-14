@@ -287,7 +287,7 @@ const TheCrystalCaveTable = () => {
             </Link>
           ))} */}
 
-          {msgList && msgList.map((data,index) => (
+          {msgList ? msgList?.map((data,index) => (
              <Link key={index} href="/raven-detail">
              <ul
                className="rounded-[20px] mb-[15px] relative crystal-table-row backdrop-blur-[10px] py-[15px] flex items-center justify-between"
@@ -371,7 +371,7 @@ const TheCrystalCaveTable = () => {
                 </li>
               </ul>
             </Link>
-          ))}
+          )) : <p>No msgs yet</p>}
         </div>
       </div>
       <div className="mt-[30px]">

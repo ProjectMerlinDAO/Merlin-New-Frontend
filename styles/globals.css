@@ -94,6 +94,13 @@ body::-webkit-scrollbar-thumb {
   top: 0%;
 }
 
+.disable{
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  height: 30px;
+  overflow: hidden;
+}
 
 
 .hov-btn .btn-hov-text {

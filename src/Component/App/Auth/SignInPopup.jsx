@@ -12,11 +12,8 @@ const SignInPopup = ({ isOpen, setIsOpen }) => {
     setShowCommonerSignIn(true);
   };
   const handleBackClick = () => {
-    console.log("dlelel;el,el;lelel;")
     setShowCommonerSignIn(false);
   };
-  // id="signInModal"
-  console.log(showCommonerSignIn,"sweeedfewwedfwefewfew")
   const handleClose = () => {
     setIsOpen(false);
   };

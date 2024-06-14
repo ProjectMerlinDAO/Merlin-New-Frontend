@@ -43,11 +43,18 @@ const AssessmentCard = ({ title, cardImg, totalPreProposal, description, descrip
         </div>
 
         <div className="flex mt-[45px] gap-[20px]">
-          <a href={voteLink} className='buy-btn hov-btn bg-[#12CFA715] rounded-full h-[50px] w-[170px] flex items-center justify-center text-white text-center leading-trim-both text-edge-cap font-[600] text-[16px] uppercase quantico'>
-            <span className="btn-hov-text">
+          <a 
+          // href={voteLink}
+          //  className='buy-btn hov-btn bg-[#12CFA715] rounded-full h-[50px] w-[170px] flex items-center justify-center text-white text-center leading-trim-both text-edge-cap font-[600] text-[16px] uppercase quantico'>
+          className='buy-btn  rounded-full h-[50px] w-[170px] flex items-center justify-center text-white text-center leading-trim-both text-edge-cap font-[600] text-[16px] uppercase quantico'>
+
+          <span className="disable">
+          <span className="">Vote Now</span>
+          </span>
+            {/* <span className="btn-hov-text">
               <span className="btn-text" >Vote Now</span>
               <span className="btn-text" >Vote Now</span>
-            </span>
+            </span> */}
           </a>
           <div className='px-[20px] py-[8px] flex justify-end items-center gap-[20px] rounded-full h-[50px] w-[207px] lg:w-[140px] ml-auto bg-gradient-to-l from-[#ffffff10] to-[transparent]' >
             {icons && icons.map((icon, index) => (

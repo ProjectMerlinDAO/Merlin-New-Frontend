@@ -28,7 +28,9 @@ const CamelotCard = ({ title, imageSrc, editorAvatar, editorName, treasury, cate
         </li>
       </ul>
       <div className="flex items-center justify-between gap-[20px] mt-[20px]">
-        <a href="#" className='hov-btn relative gap-[7px] bg-[#ffffff10] rounded-full bg-opacity-10 backdrop-blur-[5px] h-[45px] w-[120px] flex items-center justify-center text-white text-center leading-trim-both text-edge-cap font-[600] text-[16px] uppercase quantico' >
+        <a 
+        //  href=""
+         className='hov-btn relative gap-[7px] bg-[#ffffff10] rounded-full bg-opacity-10 backdrop-blur-[5px] h-[45px] w-[120px] flex items-center justify-center text-white text-center leading-trim-both text-edge-cap font-[600] text-[16px] uppercase quantico' >
           <span className="btn-hov-text">
               <span className="btn-text" >Vote Now</span>
               <span className="btn-text" >Vote Now</span>

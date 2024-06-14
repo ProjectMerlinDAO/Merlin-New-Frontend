@@ -27,8 +27,6 @@ const MemberProfile = () => {
                 setIsSidebarVisible={setIsSidebarVisible}
             />
             <MemberProfileCard isSidebarVisible={isSidebarVisible}/>
-
-
             <AppFooter isSidebarVisible={isSidebarVisible} />
         </>
     )

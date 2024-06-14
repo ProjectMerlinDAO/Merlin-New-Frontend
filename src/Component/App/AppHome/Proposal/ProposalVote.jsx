@@ -31,13 +31,18 @@ const ProposalVote = ({ leftVoteImages, rightVoteImages }) => {
             ))}
         </ul>
         <a
-          href="#"
-          className="h-[50px] btn-has-shape w-[170px] flex items-center justify-center hov-btn bg-[#12CFA7] rounded-full text-white text-center leading-trim-both text-edge-cap font-[600] text-[16px] uppercase quantico"
+          // href="#"
+          // className="h-[50px] btn-has-shape w-[170px] flex items-center justify-center hov-btn bg-[#12CFA7] rounded-full text-white text-center leading-trim-both text-edge-cap font-[600] text-[16px] uppercase quantico"
+          className="h-[50px] btn-has-shape w-[170px] flex items-center justify-center rounded-full text-white text-center leading-trim-both text-edge-cap font-[600] text-[16px] uppercase quantico"
         >
-          <span className="btn-hov-text">
-            <span className="btn-text">Vote Now</span>
-            <span className="btn-text">Vote Now</span>
+          {/* text-gray-500 */}
+          <span className="disable">
+          <span className="">Vote Now</span>
           </span>
+          {/* <span className="btn-hov-text">
+            <span className="btn-text">Vote Now</span>
+            <span className="btn-text">Vote Now</span>
+          </span> */}
         </a>
         <ul className="flex items-center justify-between max-w-[405px] w-full mx-[-6px] lg:w-full">
           {rightVoteImages
