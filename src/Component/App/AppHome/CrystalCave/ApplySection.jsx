@@ -11,7 +11,7 @@ const ApplySection = () => {
             <p className='max-w-[788px] lg:max-w-[500px]0 mx-auto mb-[20px] font-[400] text-white leading-[187.5%] lg:text-[14px]'>
                 Welcome to The Crystal Cave, a mystical realm where lives and dreams from across the globe converge. Each glimmer reveals a dream awaiting fulfillment, a whisper of what could be. Do you have a dream you wish to manifest? Share it with us through the Raven Message.
             </p>
-            <a href="#" className='hov-btn btn-has-shape apply-btn gap-[7px] bg-[#ffffff10] rounded-full bg-opacity-10 backdrop-blur-[5px] h-[60px] w-[220px] mx-auto flex items-center justify-center text-white text-center leading-trim-both text-edge-cap font-[600] text-[16px] uppercase quantico' 
+            <a href="/create-raven-message" className='hov-btn btn-has-shape apply-btn gap-[7px] bg-[#ffffff10] rounded-full bg-opacity-10 backdrop-blur-[5px] h-[60px] w-[220px] mx-auto flex items-center justify-center text-white text-center leading-trim-both text-edge-cap font-[600] text-[16px] uppercase quantico' 
             >
               <span className="btn-hov-text">
                     <span className="btn-text" >raven message</span>
