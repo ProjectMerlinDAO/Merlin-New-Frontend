@@ -2,7 +2,13 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['merlin-prod1.s3.eu-central-1.amazonaws.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'merlin-prod1.s3.eu-central-1.amazonaws.com',
+        pathname: '/**',
+      },
+    ],
   },
 };
 

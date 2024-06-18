@@ -19,7 +19,7 @@ const SenatorAssessment = ({ isSidebarVisible }) => {
         },
         {
             title: "Sports and Arts",
-            cardImg: '/assets/images/img/sports.png',
+            cardImg: '/assets/images/img/SportsAndArts.png',
             totalPreProposal: 180,
             description: "At this stage, 180 different pre-proposals are evaluated by the senators. Senator members participating in this stage are rewarded with Merlin Tokens.",
             description2: "Evaluate the pre-proposals created by the editors and the candidates in these pre-proposals. Vote for the pre-proposal that you believe will benefit the community or deserves it, and make it become the Camelot Proposal.",
@@ -30,7 +30,7 @@ const SenatorAssessment = ({ isSidebarVisible }) => {
         },
         {
             title: "Social Responsibilities",
-            cardImg: '/assets/images/img/social.png',
+            cardImg: '/assets/images/img/Social.png',
             totalPreProposal: 180,
             description: "At this stage, 180 different pre-proposals are evaluated by the senators. Senator members participating in this stage are rewarded with Merlin Tokens.",
             description2: "Evaluate the pre-proposals created by the editors and the candidates in these pre-proposals. Vote for the pre-proposal that you believe will benefit the community or deserves it, and make it become the Camelot Proposal.",

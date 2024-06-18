@@ -12,7 +12,7 @@ const tableData1 = [
     code: "Code: #A00049",
     icons: [
       { src: "/assets/images/img/personal.png", tooltip: "Personal Goals" },
-      { src: "/assets/images/img/sports.png", tooltip: "Sports and Arts" },
+      { src: "/assets/images/img/SportsAndArts.png", tooltip: "Sports and Arts" },
     ],
     inProposal: "No",
     balance: '00,000 MRLN',
@@ -33,7 +33,7 @@ const tableData1 = [
     code: "Code: #A00047",
     icons: [
       { src: "/assets/images/img/innovation.png", tooltip: "Innovation" },
-      { src: "/assets/images/img/social.png", tooltip: "Social Responsibilities" }
+      { src: "/assets/images/img/Social.png", tooltip: "Social Responsibilities" }
     ],
     inProposal: "No",
     balance: '00,000 MRLN',
@@ -43,7 +43,7 @@ const tableData1 = [
     title: "Need funding for my next match",
     code: "Code: #A00048",
     icons: [
-      { src: "/assets/images/img/sports.png", tooltip: "Sports and Arts" }
+      { src: "/assets/images/img/SportsAndArts.png", tooltip: "Sports and Arts" }
     ],
     inProposal: "No",
     balance: '00,000 MRLN',
@@ -53,7 +53,7 @@ const tableData1 = [
     title: "I want plant 10 million tree",
     code: "Code: #A00045",
     icons: [
-      { src: "/assets/images/img/social.png", tooltip: "Social Responsibilities" }
+      { src: "/assets/images/img/Social.png", tooltip: "Social Responsibilities" }
     ],
     inProposal: "No",
     balance: '00,000 MRLN',
@@ -63,7 +63,7 @@ const tableData1 = [
     title: "I need sports shoes",
     code: "Code: #A00044",
     icons: [
-      { src: "/assets/images/img/sports.png", tooltip: "Sports and Arts" }
+      { src: "/assets/images/img/SportsAndArts.png", tooltip: "Sports and Arts" }
     ],
     inProposal: "No",
     balance: '00,000 MRLN',
@@ -76,7 +76,7 @@ const tableData2 = [
     title: "I need sports shoes",
     code: "Code: #A00044",
     icons: [
-      { src: "/assets/images/img/sports.png", tooltip: "Sports and Arts" }
+      { src: "/assets/images/img/SportsAndArts.png", tooltip: "Sports and Arts" }
     ],
     inProposal: "No",
     balance: '00,000 MRLN',
@@ -86,7 +86,7 @@ const tableData2 = [
     title: "I want plant 10 million tree",
     code: "Code: #A00045",
     icons: [
-      { src: "/assets/images/img/social.png", tooltip: "Social Responsibilities" }
+      { src: "/assets/images/img/Social.png", tooltip: "Social Responsibilities" }
     ],
     inProposal: "No",
     balance: '00,000 MRLN',
@@ -96,7 +96,7 @@ const tableData2 = [
     title: "Need funding for my next match",
     code: "Code: #A00048",
     icons: [
-      { src: "/assets/images/img/sports.png", tooltip: "Sports and Arts" }
+      { src: "/assets/images/img/SportsAndArts.png", tooltip: "Sports and Arts" }
     ],
     inProposal: "No",
     balance: '00,000 MRLN',
@@ -107,7 +107,7 @@ const tableData2 = [
     code: "Code: #A00047",
     icons: [
       { src: "/assets/images/img/innovation.png", tooltip: "Innovation" },
-      { src: "/assets/images/img/social.png", tooltip: "Social Responsibilities" }
+      { src: "/assets/images/img/Social.png", tooltip: "Social Responsibilities" }
     ],
     inProposal: "No",
     balance: '00,000 MRLN',
@@ -128,7 +128,7 @@ const tableData2 = [
     code: "Code: #A00049",
     icons: [
       { src: "/assets/images/img/personal.png", tooltip: "Personal Goals" },
-      { src: "/assets/images/img/sports.png", tooltip: "Sports and Arts" },
+      { src: "/assets/images/img/SportsAndArts.png", tooltip: "Sports and Arts" },
     ],
     inProposal: "No",
     balance: '00,000 MRLN',

@@ -10,7 +10,7 @@ const crystalData = [
         title: "Need funding for my next match",
         code: "Code: #A00048",
         icons: [
-            { src: "/assets/images/img/sports.png", tooltip: "Sports and Arts" }
+            { src: "/assets/images/img/SportsAndArts.png", tooltip: "Sports and Arts" }
         ],
         userType: "Member",
         goal: "250,000 MRLN (25.5%)",
@@ -24,7 +24,7 @@ const crystalData = [
         title: "I want plant 10 million tree",
         code: "Code: #A00045",
         icons: [
-            { src: "/assets/images/img/social.png", tooltip: "Social Responsibilities" }
+            { src: "/assets/images/img/Social.png", tooltip: "Social Responsibilities" }
         ],
         userType: "Member",
         goal: "250,000 MRLN (25.5%)",
@@ -37,7 +37,7 @@ const crystalData = [
         title: "I need sports shoes",
         code: "Code: #A00044",
         icons: [
-            { src: "/assets/images/img/sports.png", tooltip: "Sports and Arts" }
+            { src: "/assets/images/img/SportsAndArts.png", tooltip: "Sports and Arts" }
         ],
         userType: "Commoner",
         goal: "250,000 MRLN (25.5%)",

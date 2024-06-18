@@ -21,7 +21,7 @@ const CommunityAssessment = ({ isSidebarVisible }) => {
     },
     {
       title: "Sports and Arts",
-      cardImg: "/assets/images/img/sports.png",
+      cardImg: "/assets/images/img/SportsAndArts.png",
       totalPreProposal: 20,
       description: 'At this stage, 20 different pre-proposals are evaluated by the community. Community members participating in this stage are rewarded with both Merlin Tokens and bonus tokens.',
       description2: 'Evaluate the pre-proposals created by the editors and the candidates in these pre-proposals. Vote for the pre-proposal that you believe will benefit the community or deserves it, and make it become the Camelot Proposal.',
@@ -35,7 +35,7 @@ const CommunityAssessment = ({ isSidebarVisible }) => {
     },
     {
       title: "Social Responsibilities",
-      cardImg: "/assets/images/img/social.png",
+      cardImg: "/assets/images/img/Social.png",
       totalPreProposal: 20,
       description: 'At this stage, 20 different pre-proposals are evaluated by the community. Community members participating in this stage are rewarded with both Merlin Tokens and bonus tokens.',
       description2: 'Evaluate the pre-proposals created by the editors and the candidates in these pre-proposals. Vote for the pre-proposal that you believe will benefit the community or deserves it, and make it become the Camelot Proposal.',

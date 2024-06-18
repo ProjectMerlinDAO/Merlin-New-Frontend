@@ -9,7 +9,7 @@ const CrystalTable = () => {
       author: "Fargo HKN",
       icons: [
         { src: "/assets/images/img/personal.png", tooltip: "Personal Goals" },
-        { src: "/assets/images/img/sports.png", tooltip: "Sports and Arts" },
+        { src: "/assets/images/img/SportsAndArts.png", tooltip: "Sports and Arts" },
       ],
       created: "10m ago",
       goal: "250,000 MRLN",
@@ -32,7 +32,7 @@ const CrystalTable = () => {
       author: "Estevan",
       icons: [
         { src: "/assets/images/img/innovation.png", tooltip: "Innovation" },
-        { src: "/assets/images/img/social.png", tooltip: "Social Responsibilities" }
+        { src: "/assets/images/img/Social.png", tooltip: "Social Responsibilities" }
       ],
       created: "5h ago",
       goal: "896,000 MRLN",
@@ -43,7 +43,7 @@ const CrystalTable = () => {
       title: "Need funding for my next match",
       author: "Cardoso Pereira",
       icons: [
-        { src: "/assets/images/img/sports.png", tooltip: "Sports and Arts" }
+        { src: "/assets/images/img/SportsAndArts.png", tooltip: "Sports and Arts" }
       ],
       created: "6h ago",
       goal: "100,000 MRLN",
@@ -54,7 +54,7 @@ const CrystalTable = () => {
       title: "I want plant 10 million tree",
       author: "Crooks",
       icons: [
-        { src: "/assets/images/img/social.png", tooltip: "Social Responsibilities" }
+        { src: "/assets/images/img/Social.png", tooltip: "Social Responsibilities" }
       ],
       created: "2h ago",
       goal: "999,000 MRLN",
@@ -65,7 +65,7 @@ const CrystalTable = () => {
       title: "I need sports shoes",
       author: "David E",
       icons: [
-        { src: "/assets/images/img/sports.png", tooltip: "Sports and Arts" }
+        { src: "/assets/images/img/SportsAndArts.png", tooltip: "Sports and Arts" }
       ],
       created: "18h ago",
       goal: "885,000 MRLN",
@@ -99,7 +99,7 @@ const CrystalTable = () => {
       title: "Wants to build old age home",
       author: "Michael",
       icons: [
-        { src: "/assets/images/img/social.png", tooltip: "Social Responsibilities" }
+        { src: "/assets/images/img/Social.png", tooltip: "Social Responsibilities" }
       ],
       created: "2d ago",
       goal: "30,60,000 MRLN",

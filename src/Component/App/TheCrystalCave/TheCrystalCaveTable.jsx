@@ -8,140 +8,6 @@ import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/router";
 
-const crystalData = [
-  {
-    imgSrc: "/assets/images/img/cave1.png",
-    title: "I want sport equipments for ...",
-    code: "Code: #A00049",
-    icons: [
-      { src: "/assets/images/img/personal.png", tooltip: "Personal Goals" },
-      { src: "/assets/images/img/sports.png", tooltip: "Sports and Arts" },
-    ],
-    userType: "Member",
-    goal: "250,000 MRLN (25.5%)",
-    like: "459",
-    dislike: "36",
-  },
-  {
-    imgSrc: "/assets/images/img/cave2.png",
-    title: "I need Fund for a AI software",
-    code: "Code: #A00048",
-    icons: [
-      { src: "/assets/images/img/innovation.png", tooltip: "Innovation" },
-    ],
-    userType: "Commoner",
-    goal: "250,000 MRLN (25.5%)",
-    like: "1,249",
-    dislike: "248",
-  },
-  {
-    imgSrc: "/assets/images/img/cave3.png",
-    title: "We want to build VR",
-    code: "Code: #A00047",
-    icons: [
-      { src: "/assets/images/img/innovation.png", tooltip: "Innovation" },
-      {
-        src: "/assets/images/img/social.png",
-        tooltip: "Social Responsibilities",
-      },
-    ],
-    userType: "Commoner",
-    goal: "250,000 MRLN (25.5%)",
-    like: "2,566",
-    dislike: "121",
-  },
-  {
-    imgSrc: "/assets/images/img/cave4.png",
-    title: "Need funding for my next match",
-    code: "Code: #A00048",
-    icons: [
-      { src: "/assets/images/img/sports.png", tooltip: "Sports and Arts" },
-    ],
-    userType: "Member",
-    goal: "250,000 MRLN (25.5%)",
-    like: "236",
-    dislike: "5",
-  },
-  {
-    imgSrc: "/assets/images/img/cave5.png",
-    title: "I want plant 10 million tree",
-    code: "Code: #A00045",
-    icons: [
-      {
-        src: "/assets/images/img/social.png",
-        tooltip: "Social Responsibilities",
-      },
-    ],
-    userType: "Member",
-    goal: "250,000 MRLN (25.5%)",
-    like: "459",
-    dislike: "36",
-  },
-  {
-    imgSrc: "/assets/images/img/cave6.png",
-    title: "I need sports shoes",
-    code: "Code: #A00044",
-    icons: [
-      { src: "/assets/images/img/sports.png", tooltip: "Sports and Arts" },
-    ],
-    userType: "Commoner",
-    goal: "250,000 MRLN (25.5%)",
-    like: "130",
-    dislike: "85",
-  },
-  {
-    imgSrc: "/assets/images/img/cave7.png",
-    title: "Want to visit Maldives",
-    code: "Code: #A00043",
-    icons: [
-      { src: "/assets/images/img/personal.png", tooltip: "Personal Goals" },
-    ],
-    userType: "Member",
-    goal: "250,000 MRLN (25.5%)",
-    like: "1,006",
-    dislike: "488",
-  },
-  {
-    imgSrc: "/assets/images/img/cave8.png",
-    title: "Seeking funds for a Business",
-    code: "Code: #A00042 ",
-    icons: [
-      { src: "/assets/images/img/innovation.png", tooltip: "Innovation" },
-      { src: "/assets/images/img/personal.png", tooltip: "Personal Goals" },
-    ],
-    userType: "Member",
-    goal: "250,000 MRLN (25.5%)",
-    like: "289",
-    dislike: "100",
-  },
-  {
-    imgSrc: "/assets/images/img/cave9.png",
-    title: "Wants to build old age home",
-    code: "Code: #A00041",
-    icons: [
-      {
-        src: "/assets/images/img/social.png",
-        tooltip: "Social Responsibilities",
-      },
-    ],
-    userType: "Member",
-    goal: "250,000 MRLN (25.5%)",
-    like: "459",
-    dislike: "36",
-  },
-  {
-    imgSrc: "/assets/images/img/cave10.png",
-    title: "Seeking funds for our group tour",
-    code: "Code: #A00040",
-    icons: [
-      { src: "/assets/images/img/personal.png", tooltip: "Personal Goals" },
-    ],
-    userType: "Commoner",
-    goal: "250,000 MRLN (25.5%)",
-    like: "45",
-    dislike: "2",
-  },
-];
 
 const TheCrystalCaveTable = () => {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
@@ -154,28 +20,27 @@ const TheCrystalCaveTable = () => {
   const [totalPages, setTotalPages] = useState();
   const fetchMsgs = async () => {
     const queryUrl = `?search=${search}&categories=${category}&sort=${sort}&page=${page}`;
-    console.log(queryUrl,"URL")
+    console.log(queryUrl, "URL");
     const data = await axios.get(
       `${baseUrl}/raven/fetch-all-raven/${queryUrl}`
     );
     if (data.status === 200) {
       setMsgList(data.data?.ravenMsgs);
-      setTotalPages(data?.data?.numOfPages)
+      setTotalPages(data?.data?.numOfPages);
     }
-    console.log(data, "DATATAATAT");
+    // console.log(data, "DATATAATAT");
   };
-
   const handleClick = (id) => {
-    console.log(id,"ID")
+    console.log(id, "ID");
     router.push({
-      pathname:"/raven-detail",
-      query:{
-        id : id
-      }
-    })
-  }
- 
+      pathname: "/raven-detail",
+      query: {
+        id: id,
+      },
+    });
+  };
   console.log(msgList, "LIST");
+
   useEffect(() => {
     fetchMsgs();
   }, [search, category, sort, page]);
@@ -216,181 +81,101 @@ const TheCrystalCaveTable = () => {
               Like / Dislike
             </li>
           </ul>
-          {/* {crystalData.map((crystal, index) => (
-            <Link key={index} href="/raven-detail">
-              <ul
-                className="rounded-[20px] mb-[15px] relative crystal-table-row backdrop-blur-[10px] py-[15px] flex items-center justify-between"
-                style={{
-                  background:
-                    "linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 50%, rgba(255, 255, 255, 0.08) 100%);",
-                }}
-              >
-                <li className="w-[40%] px-[15px] xl:pr-[5px]">
-                  <div className="flex items-center justify-start">
-                    <div className="min-h-[60px] min-w-[60px] max-h-[60px] max-w-[60px] rounded-[15px] overflow-hidden">
-                      <Image
-                        src={crystal.imgSrc}
-                        alt="img"
-                        className="object-cover w-full h-full"
-                        width="60"
-                        height="60"
-                      />
-                    </div>
-                    <div className="ml-[14px]">
-                      <h3 className="overflow-hidden text-ellipsis text-[20px] lg:text-[18px] md:text-[16px] font-[500] text-white lexend mb-[5px] text-nowrap max-w-[320px] 2xl:max-w-[260px]">
-                        {crystal.title}
-                      </h3>
-                      <p className="text-[16px] lg:text-[15px] md:text-[14px] font-[300] lexend uppercase">
-                        {crystal.code}
-                      </p>
-                    </div>
-                  </div>
-                </li>
-                <li className="px-[15px] xl:px-[5px] w-[15%]">
-                  <span className="text-[16px] lg:text-[15px] md:text-[14px] text-white font-[400] lexend">
-                    {crystal.goal}
-                  </span>
-                </li>
-                <li className="px-[15px] xl:px-[5px] w-[15%]">
-                  <div className="flex items-center justify-start gap-[20px]">
-                    {crystal.icons.map((icon, idx) => (
-                      <div
-                        className="tooltip"
-                        data-tip={icon.tooltip}
-                        key={idx}
-                      >
-                        <Image
-                          src={icon.src}
-                          alt="icon"
-                          width={34}
-                          height={34}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </li>
-                <li className="px-[15px] xl:px-[5px] w-[15%]">
-                  <span className="text-[16px] lg:text-[15px] md:text-[14px] text-white font-[400] lexend">
-                    {crystal.userType}
-                  </span>
-                </li>
-                <li className="px-[15px] xl:pr-0 w-[15%] text-right pr-[15px]">
-                  <div className="flex items-center justify-end gap-[5px]">
-                    <button className="rounded-full flex items-center justify-center gap-[6px] px-[14px] h-[32px] bg-[#19c85f33]">
-                      <Image
-                        src="/assets/images/icons/like.svg"
-                        alt="icon"
-                        width="13"
-                        height="12"
-                      />
-                      <span>{crystal.like}</span>
-                    </button>
-                    <button className="rounded-full flex items-center justify-center gap-[6px] px-[14px] h-[32px] bg-[#e32d2d26]">
-                      <Image
-                        src="/assets/images/icons/dislike.svg"
-                        alt="icon"
-                        width="13"
-                        height="12"
-                      />
-                      <span>{crystal.dislike}</span>
-                    </button>
-                  </div>
-                </li>
-              </ul>
-            </Link>
-          ))} */}
-{/* href="/raven-detail" */}
-{/* onClick={() => handleClick(data?._id)} */}
-          {msgList ? msgList?.map((data,index) => {
-            return(
-             <Link key={index}  href="/raven-detail">
-             <ul
-               className="rounded-[20px] mb-[15px] relative crystal-table-row backdrop-blur-[10px] py-[15px] flex items-center justify-between"
-               style={{
-                 background:
-                   "linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 50%, rgba(255, 255, 255, 0.08) 100%);",
-               }}
-             >
-              <li className="w-[40%] px-[15px] xl:pr-[5px]">
-                  <div className="flex items-center justify-start">
-                    <div className="min-h-[60px] min-w-[60px] max-h-[60px] max-w-[60px] rounded-[15px] overflow-hidden">
-                      <Image
-                        src={data?.avatarImage}
-                        alt="img"
-                        className="object-cover w-full h-full"
-                        width="60"
-                        height="60"
-                      />
-                    </div>
-                    <div className="ml-[14px]">
-                      <h3 className="overflow-hidden text-ellipsis text-[20px] lg:text-[18px] md:text-[16px] font-[500] text-white lexend mb-[5px] text-nowrap max-w-[320px] 2xl:max-w-[260px]">
-                        {data.title}
-                      </h3>
-                      <p className="text-[16px] lg:text-[15px] md:text-[14px] font-[300] lexend uppercase">
-                        {data.code}
-                      </p>
-                    </div>
-                  </div>
-                </li>
-                <li className="px-[15px] xl:px-[5px] w-[15%]">
-                  <span className="text-[16px] lg:text-[15px] md:text-[14px] text-white font-[400] lexend">
-                    {data.projectGoal}
-                  </span>
-                </li>
-                <li className="px-[15px] xl:px-[5px] w-[15%]">
-                  <div className="flex items-center justify-start gap-[20px]">
-                        {data.categories.map((item,index) => {
-                          return(
-                           <div
-                           className="tooltip"
-                           data-tip={item}
-                           key={index}
-                         >
+          {msgList ? (
+            msgList?.map((data, index) => {
+              return (
+                <Link key={index} href="/raven-detail">
+                  <ul
+                    className="rounded-[20px] mb-[15px] relative crystal-table-row backdrop-blur-[10px] py-[15px] flex items-center justify-between"
+                    style={{
+                      background:
+                        "linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 50%, rgba(255, 255, 255, 0.08) 100%);",
+                    }}
+                  >
+                    <li className="w-[40%] px-[15px] xl:pr-[5px]">
+                      <div className="flex items-center justify-start">
+                        <div className="min-h-[60px] min-w-[60px] max-h-[60px] max-w-[60px] rounded-[15px] overflow-hidden">
                           <Image
-                          src={`/assets/images/img/${item}.png`}
-                          alt="icon"
-                          width={34}
-                          height={34}
-                        />
+                            src={data?.avatarImage}
+                            alt="img"
+                            className="object-cover w-full h-full"
+                            width="60"
+                            height="60"
+                          />
+                        </div>
+                        <div className="ml-[14px]">
+                          <h3 className="overflow-hidden text-ellipsis text-[20px] lg:text-[18px] md:text-[16px] font-[500] text-white lexend mb-[5px] text-nowrap max-w-[320px] 2xl:max-w-[260px]">
+                            {data.title}
+                          </h3>
+                          <p className="text-[16px] lg:text-[15px] md:text-[14px] font-[300] lexend uppercase">
+                            {data.code}
+                          </p>
+                        </div>
                       </div>
-                          )
+                    </li>
+                    <li className="px-[15px] xl:px-[5px] w-[15%]">
+                      <span className="text-[16px] lg:text-[15px] md:text-[14px] text-white font-[400] lexend">
+                        {data.projectGoal}
+                      </span>
+                    </li>
+                    <li className="px-[15px] xl:px-[5px] w-[15%]">
+                      <div className="flex items-center justify-start gap-[20px]">
+                        {data.categories.map((item, index) => {
+                          return (
+                            <div
+                              className="tooltip"
+                              data-tip={item}
+                              key={index}
+                            >
+                              <Image
+                                src={`/assets/images/img/${item}.png`}
+                                alt="icon"
+                                width={34}
+                                height={34}
+                              />
+                            </div>
+                          );
                         })}
-                  </div>
-                </li>
-                <li className="px-[15px] xl:px-[5px] w-[15%]">
-                  <span className="text-[16px] lg:text-[15px] md:text-[14px] text-white font-[400] lexend">
-                    {data.UserType}
-                  </span>
-                </li>
-                <li className="px-[15px] xl:pr-0 w-[15%] text-right pr-[15px]">
-                  <div className="flex items-center justify-end gap-[5px]">
-                    <button className="rounded-full flex items-center justify-center gap-[6px] px-[14px] h-[32px] bg-[#19c85f33]">
-                      <Image
-                        src="/assets/images/icons/like.svg"
-                        alt="icon"
-                        width="13"
-                        height="12"
-                      />
-                      <span>{data.like}</span>
-                    </button>
-                    <button className="rounded-full flex items-center justify-center gap-[6px] px-[14px] h-[32px] bg-[#e32d2d26]">
-                      <Image
-                        src="/assets/images/icons/dislike.svg"
-                        alt="icon"
-                        width="13"
-                        height="12"
-                      />
-                      <span>{data.dislike}</span>
-                    </button>
-                  </div>
-                </li>
-              </ul>
-            </Link>)
-}) : <p>No msgs yet</p>}
+                      </div>
+                    </li>
+                    <li className="px-[15px] xl:px-[5px] w-[15%]">
+                      <span className="text-[16px] lg:text-[15px] md:text-[14px] text-white font-[400] lexend">
+                        {data.UserType}
+                      </span>
+                    </li>
+                    <li className="px-[15px] xl:pr-0 w-[15%] text-right pr-[15px]">
+                      <div className="flex items-center justify-end gap-[5px]">
+                        <button className="rounded-full flex items-center justify-center gap-[6px] px-[14px] h-[32px] bg-[#19c85f33]">
+                          <Image
+                            src="/assets/images/icons/like.svg"
+                            alt="icon"
+                            width="13"
+                            height="12"
+                          />
+                          <span>{data.like}</span>
+                        </button>
+                        <button className="rounded-full flex items-center justify-center gap-[6px] px-[14px] h-[32px] bg-[#e32d2d26]">
+                          <Image
+                            src="/assets/images/icons/dislike.svg"
+                            alt="icon"
+                            width="13"
+                            height="12"
+                          />
+                          <span>{data.dislike}</span>
+                        </button>
+                      </div>
+                    </li>
+                  </ul>
+                </Link>
+              );
+            })
+          ) : (
+            <p>No msgs yet</p>
+          )}
         </div>
       </div>
       <div className="mt-[30px]">
-        <Pagination2 totalPages={totalPages} page={page} setPage={setPage}/>
+        <Pagination2 totalPages={totalPages} page={page} setPage={setPage} />
       </div>
     </div>
   );
