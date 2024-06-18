@@ -3,7 +3,7 @@ import React from 'react'
 const AboutTestimonial = () => {
   return (
     <div className='about-testimonial-section'>
-        <div className="px-[20px] md:px-[10px] max-w-[1210px] mx-auto lg:max-w-[720px] relative z-[4]">
+        <div className="px-[20px] md:px-[14px] max-w-[1210px] mx-auto lg:max-w-[720px] relative z-[4]">
             <div className="about-testimonial-card">
                 <div className="about-testimonial-content">
                     <div className="about-testimonial-img">

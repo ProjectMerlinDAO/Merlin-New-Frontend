@@ -28,7 +28,7 @@ const featureData = [
 const FeatureSection = () => {
     return (
         <div className='feature-section'>
-            <div className="px-[20px] md:px-[10px] max-w-[1450px] mx-auto lg:max-w-[720px]">
+            <div className="px-[20px] md:px-[14px] max-w-[1450px] mx-auto lg:max-w-[720px]">
                 <div className="flex items-start justify-between flex-wrap mx-[-15px]">
                     {featureData.map((feature, index) => (
                         <div key={index} className="w-2/6 lg:w-1/2 xsm:w-full px-[15px] lg:mb-[30px]">

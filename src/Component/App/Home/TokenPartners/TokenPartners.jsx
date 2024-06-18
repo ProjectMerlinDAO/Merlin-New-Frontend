@@ -66,7 +66,7 @@ const TokenPartners = () => {
       className="relative bg-no-repeat bg-cover token-partners-section bg-center-top"
       style={{ backgroundImage: 'url(/assets/images/bg/grain-texture.png)' }}
     >
-      <div className="px-[20px] md:px-[10px] max-w-[1210px] mx-auto lg:max-w-[720px] relative z-20">
+      <div className="px-[20px] md:px-[14px] max-w-[1210px] mx-auto lg:max-w-[720px] relative z-20">
         <div className="text-center max-w-[768px] mx-auto">
           <h2 className="text-white quantico uppercase leading-[130%] text-[60px] lg:text-[48px] md:text-[40px] sm:text-[32px] font-[700] mt-[30px] lg:mt-[20px] md:mt-[10px]">
             Meet the Partners and collaborators
@@ -101,7 +101,7 @@ const TokenPartners = () => {
           </ul>
         </div>
         <div>
-          <a href="https://wkf.ms/3RqpEi5" target='_blank' className='hov-btn btn-has-shape gap-[7px] bg-[rgba(255,255,255,0.10)] rounded-full bg-opacity-10 backdrop-blur-[5px] h-[60px] w-[270px] mx-auto flex items-center justify-center text-white text-center leading-trim-both text-edge-cap font-[600] text-[16px] uppercase quantico mt-[20px]' >
+          <a href="#" className='hov-btn btn-has-shape gap-[7px] bg-[rgba(255,255,255,0.10)] rounded-full bg-opacity-10 backdrop-blur-[5px] h-[60px] w-[270px] mx-auto flex items-center justify-center text-white text-center  font-[600] text-[16px] uppercase quantico mt-[20px]' >
             <span className="btn-hov-text">
               <span className="btn-text">Become an Investor</span>
               <span className="btn-text">Become an Investor</span>

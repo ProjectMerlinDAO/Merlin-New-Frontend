@@ -7,15 +7,13 @@ import { useAccount } from "wagmi";
 import { useWeb3Modal } from "@web3modal/wagmi/react";
 
 const AppHeader = ({ isSidebarVisible }) => {
-  const { open } = useWeb3Modal()
+  const { open } = useWeb3Modal();
   const { address } = useAccount();
-
-
   const [isOpen, setIsOpen] = useState(false);
   const handleSignin = () => {
     if (address) {
       open();
-    }else{
+    } else {
       setIsOpen(true);
     }
   };
@@ -54,8 +52,8 @@ const AppHeader = ({ isSidebarVisible }) => {
 
               <ul className="flex items-center justify-end gap-[20px] ml-auto app-header-right">
                 <li className="xl:hidden">
-                  <a
-                    href="https://discord.gg/projectmerlin"
+                  <Link
+                     href="https://discord.gg/projectmerlin"
                     target="_blank"
                     className="icon-btn btn-has-shape social-icon hov-btn bg-[#ffffff19] h-[50px] w-[50px] rounded-full bg-opacity-10 backdrop-blur-[5px] flex items-center justify-center"
                   >
@@ -77,12 +75,12 @@ const AppHeader = ({ isSidebarVisible }) => {
                         />
                       </span>
                     </span>
-                  </a>
+                  </Link>
                 </li>
                 <li className="xl:hidden">
                   <a
                     href="#"
-                    className="buy-btn btn-has-shape hov-btn bg-[#ffffff19] rounded-full bg-opacity-10 backdrop-blur-[5px] h-[50px] w-[170px] sm:w-[120px] flex items-center justify-center text-white text-center leading-trim-both text-edge-cap font-[600] text-[16px] sm:text[14px] uppercase quantico"
+                    className="buy-btn btn-has-shape hov-btn bg-[#ffffff19] rounded-full bg-opacity-10 backdrop-blur-[5px] h-[50px] w-[170px] sm:w-[120px] flex items-center justify-center text-white text-center  font-[600] text-[16px] sm:text[14px] uppercase quantico"
                   >
                     <span className="btn-hov-text">
                       <span className="btn-text">Buy NFT</span>
@@ -94,7 +92,7 @@ const AppHeader = ({ isSidebarVisible }) => {
                   <a
                     href="#"
                     onClick={handleSignin}
-                    className="flex btn-has-shape items-center justify-center hov-btn rounded-full gap-[8px] connect-btn bg-12CFA7 h-[50px] w-[170px] sm:w-[140px] bg-[#12CFA7] text-white text-center leading-trim-both text-edge-cap font-[600] text-[16px] sm:text[14px] uppercase quantico"
+                    className="flex btn-has-shape items-center justify-center hov-btn rounded-full gap-[8px] connect-btn bg-12CFA7 h-[50px] w-[170px] sm:w-[140px] bg-[#12CFA7] text-white text-center  font-[600] text-[16px] sm:text[14px] uppercase quantico"
                   >
                     <Image
                       src="/assets/images/icons/wallet.svg"
@@ -122,7 +120,7 @@ const AppHeader = ({ isSidebarVisible }) => {
         </div>
       </header>
 
-      <div className="drawer fixed z-[99999] top-0 left-0">
+      <div className="drawer fixed z-[999999] top-0 left-0">
         <input id="my-drawer" type="checkbox" className="drawer-toggle" />
 
         <div className="drawer-side">
@@ -171,7 +169,7 @@ const AppHeader = ({ isSidebarVisible }) => {
               </a>
               <a
                 href="#"
-                className="buy-btn btn-has-shape hov-btn bg-[#ffffff19] rounded-full bg-opacity-10 backdrop-blur-[5px] h-[50px] w-[170px] sm:w-[120px] flex items-center justify-center text-white text-center leading-trim-both text-edge-cap font-[600] text-[16px] sm:text[14px] uppercase quantico"
+                className="buy-btn btn-has-shape hov-btn bg-[#ffffff19] rounded-full bg-opacity-10 backdrop-blur-[5px] h-[50px] w-[170px] sm:w-[120px] flex items-center justify-center text-white text-center  font-[600] text-[16px] sm:text[14px] uppercase quantico"
               >
                 <span className="btn-hov-text mobile-menu-buy-btn !h-[17px]">
                   <span className="btn-text">Buy NFT</span>

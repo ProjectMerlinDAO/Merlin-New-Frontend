@@ -38,8 +38,8 @@ const Tokenomics = () => {
   }, []);
 
   return (
-    <div className="tokenomics-section" id="Tokeneconomics">
-      <div className="px-[20px] md:px-[10px] max-w-[1210px] mx-auto lg:max-w-[720px]">
+    <div className="tokenomics-section" id="tokeneconomics">
+      <div className="px-[20px] md:px-[14px] max-w-[1210px] mx-auto lg:max-w-[720px]">
         <div className='max-w-[669px] mx-auto'>
           <HomeSectionTitle
             title="Community-focused Tokenomics"
@@ -55,7 +55,7 @@ const Tokenomics = () => {
           appreciation in value with each passing day.
         </p>
         <div className="mb-[80px]">
-          <a href="/assets/pdf/Project Merlin Whitepaper.pdf" target="_blank" className='hov-btn btn-has-shape gap-[7px] bg-[#12CFA7] rounded-full backdrop-blur-[5px] h-[60px] w-[220px] mx-auto flex items-center justify-center text-white text-center leading-trim-both text-edge-cap font-[600] text-[16px] uppercase quantico mt-[20px]' >
+          <a href="/assets/pdf/Project Merlin Whitepaper_18 May.pdf" target="_blank" className='hov-btn btn-has-shape gap-[7px] bg-[#12CFA7] rounded-full backdrop-blur-[5px] h-[60px] w-[220px] mx-auto flex items-center justify-center text-white text-center  font-[600] text-[16px] uppercase quantico mt-[20px]' >
             <span className="btn-hov-text">
               <span className="btn-text" >Whitepaper</span>
               <span className="btn-text" >Whitepaper</span>
@@ -70,17 +70,17 @@ const Tokenomics = () => {
               Ticker
             </li>
             <li>
-              MULTICHAIN<br />
-              TOKEN TYPE
+              Multichain<br />
+              Token Type
             </li>
             <li>
-              800M<br />
-              Total Supply
-            </li>
-            <li>
-              260.000
-              <br />
+              260,000 $<br />
               Initial Market Cap
+            </li>
+            <li>
+              800M
+              <br />
+              Max Supply
             </li>
           </ul>
         </div>

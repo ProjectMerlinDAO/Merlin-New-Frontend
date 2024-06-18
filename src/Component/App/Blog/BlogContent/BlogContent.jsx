@@ -1,4 +1,3 @@
-"use client"
 import React, { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import ScarchBox from '@/src/Component/Core/ScarchBox';
@@ -6,9 +5,8 @@ import BlogCard from './BlogCard';
 import Link from 'next/link';
 import Image from 'next/image';
 
-
 // Dynamic import for Isotope, disabling server-side rendering
-const Isotope = dynamic(() => import('isotope-layout'), { ssr: false });;
+const Isotope = dynamic(() => import('isotope-layout'), { ssr: false });
 
 const blogData = [
     {
@@ -129,7 +127,7 @@ const BlogContent = () => {
 
     return (
         <div className='pt-[80px] pb-[440px] lg:pb-[400] sm:pb-[380px] xsm:pb-[340px] 2xsm:pb-[310px]'>
-            <div className="relative z-10 px-[20px] md:px-[10px] max-w-[1210px] mx-auto lg:max-w-[720px]">
+            <div className="relative z-10 px-[20px] md:px-[14px] max-w-[1210px] mx-auto lg:max-w-[720px]">
                 <div className="flex lg:flex-wrap items-center justify-between gap-[15px]">
                     <ul className='flex items-center justify-start lg:justify-between sm:justify-start lg:w-full gap-[15px] lg:flex-wrap'>
                         <li>

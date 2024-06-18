@@ -20,7 +20,7 @@ const cardData = [
 const MissionVission = () => {
     return (
         <div className='pt-[50px] pb-[80px] xl:pt-[40px] xl:pb-[50px] lg:pb-[30px] md:pt-[20px] md:pb-[20px] sm:pt-[10px] sm:pb-[10px]'>
-            <div className="px-[20px] md:px-[10px] max-w-[1450px] mx-auto lg:max-w-[720px]">
+            <div className="px-[20px] md:px-[14px] max-w-[1450px] mx-auto lg:max-w-[720px]">
                 <div className="flex items-start justify-center mx-[-15px] flex-wrap">
                     {cardData.map((card, index) => (
                         <div key={index} className="w-1/2 lg:w-full lg:mb-[30px] px-[15px]">

@@ -14,8 +14,8 @@ const InfiniteVideo = () => {
 
     return (
         <div className="banner-video-section pt-[50px]">
-            <div className="px-[20px] md:px-[10px] max-w-[1210px] mx-auto lg:max-w-[720px] relative z-[4]">
-                <div className="banner-video-card w-full relative xl:max-w-[800px] mx-auto rounded-[40px] h-[550px] lg:h-[450px] md:h-[400px] xsm:h-[360px] overflow-hidden flex items-center justify-center">
+            <div className="px-[20px] md:px-[14px] max-w-[1210px] mx-auto lg:max-w-[720px] relative z-[4]">
+                <div className="banner-video-card w-full relative xl:max-w-[800px] mx-auto rounded-[40px] sm:rounded-[30px] h-[550px] lg:h-[450px] md:h-[400px] xsm:h-[360px] overflow-hidden flex items-center justify-center">
                     <video loop autoPlay muted className='object-fill w-full h-full'>
                         <source src="../assets/videos/meta_video.mp4" type="video/mp4" />
                     </video>

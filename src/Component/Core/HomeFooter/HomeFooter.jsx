@@ -4,53 +4,55 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import axios from "axios";
+
 const HomeFooter = () => {
   const router = useRouter();
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   const [email, setEmail] = useState("");
+
 // Function for validating the email::::
-  const isValidEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
+const isValidEmail = (email) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+};
 //   function saving the mail in the backend:::::
-  const handelEmailSubscription = async (e) => {
-    try {
-      e.preventDefault();
-      if (email && isValidEmail(email)) {
-        const subs = await axios.post(
-          `${baseUrl}/user/emailSubscription`,
-          { email },
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        if(subs.status === 200)
-      toast.success(subs.data.msg);
-       
-        setEmail("");
-      } else {
-        toast.error("Email is not valid!",{className: 'bg-black-500 text-white',
-        progressClassName: 'bg-green-500'});
-        return;
-      }
-    } catch (error) {
-      console.log(error?.response?.data?.msg);
-      toast.error(error?.response?.data?.msg,{className:"toast-error"});
+const handelEmailSubscription = async (e) => {
+  try {
+    e.preventDefault();
+    if (email && isValidEmail(email)) {
+      const subs = await axios.post(
+        `${baseUrl}/user/emailSubscription`,
+        { email },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if(subs.status === 200)
+    toast.success(subs.data.msg);
+     
       setEmail("");
+    } else {
+      toast.error("Email is not valid!",{className: 'bg-black-500 text-white',
+      progressClassName: 'bg-green-500'});
       return;
     }
-  };
+  } catch (error) {
+    console.log(error?.response?.data?.msg);
+    toast.error(error?.response?.data?.msg,{className:"toast-error"});
+    setEmail("");
+    return;
+  }
+};
   return (
     <div className="home-footer-section">
-      <div className="px-[20px] md:px-[10px] max-w-[1450px] mx-auto lg:max-w-[720px]">
+      <div className="px-[20px] md:px-[14px] max-w-[1450px] mx-auto lg:max-w-[720px]">
         <div className="home-footer-content">
           <div className="max-w-[140px] mx-auto text-center mt-[-230px] lg:mt-[-320px]">
             <img src="../assets/images/logo/fevicon.svg" alt="logo" />
           </div>
-          <div className="flex flex-wrap-reverse relative">
+          <div className="relative flex flex-wrap-reverse">
             <div className="w-2/6 lg:w-full">
               <div className="home-footer-left">
                 <h3>Project Merlin</h3>
@@ -85,7 +87,7 @@ const HomeFooter = () => {
                   </li>
                   <li className="social-icon-btn">
                     <Link
-                       href="https://www.linkedin.com/company/projectmerlinio"
+                     href="https://www.linkedin.com/company/projectmerlinio"
                        target="_blank"
                       className="flex btn-has-shape items-center justify-center rounded-[16px] sm:rounded-[10px] bg-[#FFFFFF05] backdrop-blur-[5px] h-[70px] w-[70px] sm:h-[50px] sm:w-[50px]"
                     >
@@ -101,7 +103,7 @@ const HomeFooter = () => {
                   </li>
                   <li className="social-icon-btn">
                     <Link
-                      href="https://discord.gg/projectmerlin"
+                       href="https://discord.gg/projectmerlin"
                       target="_blank"
                       className="flex btn-has-shape items-center justify-center rounded-[16px] sm:rounded-[10px] bg-[#FFFFFF05] backdrop-blur-[5px] h-[70px] w-[70px] sm:h-[50px] sm:w-[50px]"
                     >
@@ -169,9 +171,9 @@ const HomeFooter = () => {
               <div className="home-footer-center mt-[180px] lg:mt-0">
                 <div className="mb-[80px] lg:mb-0 lg:absolute top-[30px]">
                   <Link
-                   href="https://discord.gg/projectmerlin"
+                     href="https://discord.gg/projectmerlin"
                    target="_blank"
-                    className="hov-btn btn-has-shape gap-[7px] bg-[#5865F2] rounded-full backdrop-blur-[5px] h-[60px] w-[220px] mx-auto flex items-center justify-center text-white text-center leading-trim-both text-edge-cap font-[600] text-[16px] uppercase quantico mt-[20px]"
+                    className="hov-btn btn-has-shape gap-[7px] bg-[#5865F2] rounded-full backdrop-blur-[5px] h-[60px] w-[220px] mx-auto flex items-center justify-center text-white text-center  font-[600] text-[16px] uppercase quantico mt-[20px]"
                   >
                     <Image
                       src="/assets/images/icons/discord.svg"
@@ -190,7 +192,7 @@ const HomeFooter = () => {
                   href="#"
                   className="back-to-top flex items-center justify-center gap-[8px] lg:!bottom-[-50px]"
                 >
-                  Back to top{" "}
+                  Back to top
                   <img src="../assets/images/icons/back-top-icon.svg" alt="" />
                 </Link>
               </div>
@@ -210,7 +212,7 @@ const HomeFooter = () => {
                   />{" "}
                   <button
                     type="submit"
-                    className="hov-btn btn-has-shape bg-[#12CFA7] rounded-full backdrop-blur-[5px] h-[50px] w-[150px] mx-auto flex items-center justify-center text-white text-center leading-trim-both text-edge-cap font-[600] text-[16px] uppercase quantico"
+                    className="hov-btn btn-has-shape bg-[#12CFA7] rounded-full backdrop-blur-[5px] h-[50px] w-[150px] mx-auto flex items-center justify-center text-white text-center  font-[600] text-[16px] uppercase quantico"
                     onClick={(e) => handelEmailSubscription(e)}
                   >
                     <span className="btn-hov-text lg:mt-[10px]">
@@ -221,30 +223,30 @@ const HomeFooter = () => {
                 </form>
                 <h5>
                   Mail us:{" "}
-                  <Link href="mailto:info@projectmerlin.io" target="_blank">
+                  <Link href="mailto:info@projectmerlin.io">
                     info@projectmerlin.io
                   </Link>
                 </h5>
                 <ul>
                   <li>
-                    <Link href={router.pathname === "/" ? "#home" : "/#home"}>Home</Link>
+                  <Link href={router.pathname === "/" ? "#home" : "/#home"}>Home</Link>
                   </li>
                   <li>
-                    <Link href={router.pathname === "/" ? "#Tokeneconomics" : "/#Tokeneconomics"}>Token</Link>
+                  <Link href={router.pathname === "/" ? "#Tokeneconomics" : "/#Tokeneconomics"}>Token</Link>
                   </li>
                   <li>
-                    <Link href="https://docs.projectmerlin.io/projectmerlin" target="_blank">
+                  <Link href="https://docs.projectmerlin.io/projectmerlin" target="_blank">
                       Docs
                     </Link>
                   </li>
                   <li>
-                    <Link href="/about" target="_blank">About</Link>
+                  <Link href="/about" target="_blank">About</Link>
                   </li>
                   <li>
-                    <Link href={router.pathname === "/" ? "#faq" : "/#faq"}>FAQ</Link>
+                  <Link href={router.pathname === "/" ? "#faq" : "/#faq"}>FAQ</Link>
                   </li>
-                  <li >
-                    <Link className="pointer-events-none text-gray-500 opacity-10"  href="/articles">Articles</Link>
+                  <li>
+                  <Link className="pointer-events-none text-gray-500 opacity-10"  href="/articles">Articles</Link>
                   </li>
                 </ul>
               </div>
@@ -253,7 +255,7 @@ const HomeFooter = () => {
         </div>
       </div>
     </div>
-  )
+  );
 };
 
 export default HomeFooter;

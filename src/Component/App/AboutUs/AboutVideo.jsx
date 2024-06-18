@@ -10,7 +10,7 @@ const AboutVideo = () => {
 
   return (
     <div className='pt-[70px] pb-[130px] lg:pb-[100px] md:pt-[50px] xsm:pt-[30px] md:pb-[70px]'>
-      <div className="px-[20px] md:px-[10px] max-w-[1210px] mx-auto lg:max-w-[720px]">
+      <div className="px-[20px] md:px-[14px] max-w-[1210px] mx-auto lg:max-w-[720px]">
         <div className="w-full rounded-[30px] relative overflow-hidden h-[650px] lg:h-[400px] sm:h-[350px] xsm:h-[280px]">
           {videoSrc === '../assets/images/img/about-video-thambnail.jpg' ? (
             <video 
@@ -21,7 +21,7 @@ const AboutVideo = () => {
               poster={videoSrc}
               className='z-0 w-full h-full object-fill rounded-[30px]'
             >
-              <source src="https://youtu.be/CLkxRnRQtDE" type="video/mp4" />
+              <source src="https://www.youtube.com/watch?v=5fyF5tmn6Zc" type="video/mp4" />
             </video>
           ) : (
             <iframe
