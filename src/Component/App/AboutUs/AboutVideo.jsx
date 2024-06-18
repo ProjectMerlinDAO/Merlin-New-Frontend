@@ -5,7 +5,7 @@ const AboutVideo = () => {
   const [videoSrc, setVideoSrc] = useState('../assets/images/img/about-video-thambnail.jpg')
 
   const handlePlayButtonClick = () => {
-    setVideoSrc('https://www.youtube.com/embed/CLkxRnRQtDE?autoplay=1')
+    setVideoSrc('/assets/videos/Merlin.mp4')
   }
 
   return (

@@ -11,7 +11,7 @@ const tableData1 = [
     title: "I want sport equipments for ...",
     code: "Code: #A00049",
     icons: [
-      { src: "/assets/images/img/personal.png", tooltip: "Personal Goals" },
+      { src: "/assets/images/img/Personal.png", tooltip: "Personal Goals" },
       { src: "/assets/images/img/SportsAndArts.png", tooltip: "Sports and Arts" },
     ],
     inProposal: "No",
@@ -22,7 +22,7 @@ const tableData1 = [
     title: "I need Fund for a AI software",
     code: "Code: #A00048",
     icons: [
-      { src: "/assets/images/img/innovation.png", tooltip: "Innovation" }
+      { src: "/assets/images/img/Innovation.png", tooltip: "Innovation" }
     ],
     inProposal: "No",
     balance: '00,000 MRLN',
@@ -32,7 +32,7 @@ const tableData1 = [
     title: "We want to build VR",
     code: "Code: #A00047",
     icons: [
-      { src: "/assets/images/img/innovation.png", tooltip: "Innovation" },
+      { src: "/assets/images/img/Innovation.png", tooltip: "Innovation" },
       { src: "/assets/images/img/Social.png", tooltip: "Social Responsibilities" }
     ],
     inProposal: "No",
@@ -106,7 +106,7 @@ const tableData2 = [
     title: "We want to build VR",
     code: "Code: #A00047",
     icons: [
-      { src: "/assets/images/img/innovation.png", tooltip: "Innovation" },
+      { src: "/assets/images/img/Innovation.png", tooltip: "Innovation" },
       { src: "/assets/images/img/Social.png", tooltip: "Social Responsibilities" }
     ],
     inProposal: "No",
@@ -117,7 +117,7 @@ const tableData2 = [
     title: "I need Fund for a AI software",
     code: "Code: #A00048",
     icons: [
-      { src: "/assets/images/img/innovation.png", tooltip: "Innovation" }
+      { src: "/assets/images/img/Innovation.png", tooltip: "Innovation" }
     ],
     inProposal: "No",
     balance: '00,000 MRLN',
@@ -127,7 +127,7 @@ const tableData2 = [
     title: "I want sport equipments for ...",
     code: "Code: #A00049",
     icons: [
-      { src: "/assets/images/img/personal.png", tooltip: "Personal Goals" },
+      { src: "/assets/images/img/Personal.png", tooltip: "Personal Goals" },
       { src: "/assets/images/img/SportsAndArts.png", tooltip: "Sports and Arts" },
     ],
     inProposal: "No",

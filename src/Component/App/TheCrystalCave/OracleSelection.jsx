@@ -50,7 +50,7 @@ const crystalData = [
         title: "Want to visit Maldives",
         code: "Code: #A00043",
         icons: [
-            { src: "/assets/images/img/personal.png", tooltip: "Personal Goals" }
+            { src: "/assets/images/img/Personal.png", tooltip: "Personal Goals" }
         ],
         userType: "Member",
         goal: "250,000 MRLN (25.5%)",
@@ -63,8 +63,8 @@ const crystalData = [
         title: "Seeking funds for a Business",
         code: "Code: #A00042",
         icons: [
-            { src: "/assets/images/img/innovation.png", tooltip: "Innovation" },
-            { src: "/assets/images/img/personal.png", tooltip: "Personal Goals" }
+            { src: "/assets/images/img/Innovation.png", tooltip: "Innovation" },
+            { src: "/assets/images/img/Personal.png", tooltip: "Personal Goals" }
         ],
         userType: "Member",
         goal: "250,000 MRLN (25.5%)",

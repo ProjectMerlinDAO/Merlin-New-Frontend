@@ -8,7 +8,7 @@ const CrystalTable = () => {
       title: "I want sport equipments for ...",
       author: "Fargo HKN",
       icons: [
-        { src: "/assets/images/img/personal.png", tooltip: "Personal Goals" },
+        { src: "/assets/images/img/Personal.png", tooltip: "Personal Goals" },
         { src: "/assets/images/img/SportsAndArts.png", tooltip: "Sports and Arts" },
       ],
       created: "10m ago",
@@ -20,7 +20,7 @@ const CrystalTable = () => {
       title: "I need Fund for a AI software",
       author: "Smith",
       icons: [
-        { src: "/assets/images/img/innovation.png", tooltip: "Innovation" }
+        { src: "/assets/images/img/Innovation.png", tooltip: "Innovation" }
       ],
       created: "2h ago",
       goal: "820,000 MRLN",
@@ -31,7 +31,7 @@ const CrystalTable = () => {
       title: "We want to build VR",
       author: "Estevan",
       icons: [
-        { src: "/assets/images/img/innovation.png", tooltip: "Innovation" },
+        { src: "/assets/images/img/Innovation.png", tooltip: "Innovation" },
         { src: "/assets/images/img/Social.png", tooltip: "Social Responsibilities" }
       ],
       created: "5h ago",
@@ -76,7 +76,7 @@ const CrystalTable = () => {
       title: "Want to visit Maldives",
       author: "Martens",
       icons: [
-        { src: "/assets/images/img/personal.png", tooltip: "Personal Goals" }
+        { src: "/assets/images/img/Personal.png", tooltip: "Personal Goals" }
       ],
       created: "22h ago",
       goal: "440,000 MRLN",
@@ -87,8 +87,8 @@ const CrystalTable = () => {
       title: "Seeking funds for a Business",
       author: "Melissa ",
       icons: [
-        { src: "/assets/images/img/innovation.png", tooltip: "Innovation" },
-        { src: "/assets/images/img/personal.png", tooltip: "Personal Goals" }
+        { src: "/assets/images/img/Innovation.png", tooltip: "Innovation" },
+        { src: "/assets/images/img/Personal.png", tooltip: "Personal Goals" }
       ],
       created: "1d ago",
       goal: "500,000 MRLN",
@@ -110,7 +110,7 @@ const CrystalTable = () => {
       title: "Seeking funds for our group tour",
       author: "K. Hubbard",
       icons: [
-        { src: "/assets/images/img/personal.png", tooltip: "Personal Goals" }
+        { src: "/assets/images/img/Personal.png", tooltip: "Personal Goals" }
       ],
       created: "5d ago",
       goal: "99,000 MRLN",

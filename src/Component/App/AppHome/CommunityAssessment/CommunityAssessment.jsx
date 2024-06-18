@@ -7,7 +7,7 @@ const CommunityAssessment = ({ isSidebarVisible }) => {
   const assessmentData = [
     {
       title: "Personal Goals",
-      cardImg: "/assets/images/img/personal.png",
+      cardImg: "/assets/images/img/Personal.png",
       totalPreProposal: 20,
       description: 'At this stage, 20 different pre-proposals are evaluated by the community. Community members participating in this stage are rewarded with both Merlin Tokens and bonus tokens.',
       description2: 'Evaluate the pre-proposals created by the editors and the candidates in these pre-proposals. Vote for the pre-proposal that you believe will benefit the community or deserves it, and make it become the Camelot Proposal.',
@@ -49,7 +49,7 @@ const CommunityAssessment = ({ isSidebarVisible }) => {
     },
     {
       title: "Innovation",
-      cardImg: "/assets/images/img/innovation.png",
+      cardImg: "/assets/images/img/Innovation.png",
       totalPreProposal: 20,
       description: 'At this stage, 20 different pre-proposals are evaluated by the community. Community members participating in this stage are rewarded with both Merlin Tokens and bonus tokens.',
       description2: 'Evaluate the pre-proposals created by the editors and the candidates in these pre-proposals. Vote for the pre-proposal that you believe will benefit the community or deserves it, and make it become the Camelot Proposal.',
