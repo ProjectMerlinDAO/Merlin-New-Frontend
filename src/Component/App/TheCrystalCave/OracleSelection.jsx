@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Dropdown from '../../Core/Dropdown'
 import Image from 'next/image';
 import CategoriesDropdown from '../../Core/CategoriesDropdown';
@@ -76,6 +76,7 @@ const crystalData = [
 ];
 
 const OracleSelection = () => {
+    const [category, setCategory] = useState("all");
     return (
         <div className='rounded-[40px] backdrop-blur-[15px] p-[60px] 2xl:py-[35px] 2xl:px-[25px] xl:px-[20px]' style={{ background: 'linear-gradient(178deg, rgba(255, 255, 255, 0.05) 2.04%, rgba(255, 255, 255, 0.01) 97.96%)' }}>
             <div className="flex items-end justify-between gap-[4%] flex-wrap mb-[30px] xl:mb-[15px]">
@@ -85,7 +86,7 @@ const OracleSelection = () => {
                 </div>
                 <div className="w-[48%] lg:w-[100%] lg:mt-[20px] flex items-center justify-end gap-[20px] lg:gap-[4%] lg:mb-[10px] lg:flex-wrap">
                     <div className='w-[194px] xl:w-[48%]'>
-                        <CategoriesDropdown />
+                        <CategoriesDropdown setCategory={setCategory} category={category} />
                     </div>
                     <div className='w-[153px] xl:w-[48%]'>
                         <button type='submit' className="hov-btn no-border btn-has-shape bg-[#12CFA7] h-[50px] text-white quantico font-[700] w-full rounded-[18px] uppercase">

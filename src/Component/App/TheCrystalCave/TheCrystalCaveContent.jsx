@@ -7,7 +7,7 @@ import Oracle from "./Oracle";
 const TheCrystalCaveContent = ({ isSidebarVisible }) => {
   return (
     <div
-      className="pt-[110px] relative bg-no-repeat position-top bg-contain"
+      className="pt-[110px] relative bg-no-repeat position-top bg-contain z-10"
       style={{
         backgroundImage: "url(./assets/images/bg/sub-bg.png)",
         backgroundSize: "100% 388px",

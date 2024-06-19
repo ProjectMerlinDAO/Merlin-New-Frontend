@@ -26,7 +26,7 @@ const AppHeader = ({ isSidebarVisible }) => {
             isSidebarVisible ? "sidebar-visible" : "sidebar-hidden"
           }`}
         >
-          <div className="px-[20px] md:px-[10px] max-w-[1365px] mx-auto lg:max-w-[720px]">
+          <div className="px-[20px] md:px-[10px] max-w-[1365px] mx-auto lg:max-w-[720px] ">
             <div className="flex items-center app-header-content relative z-[9999]">
               <label
                 htmlFor="my-drawer"
