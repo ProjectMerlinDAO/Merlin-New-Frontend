@@ -8,6 +8,7 @@ import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useAccount } from "wagmi";
+import { toast } from "react-toastify";
 
 const TheCrystalCaveTable = () => {
   let { address } = useAccount();
@@ -43,6 +44,9 @@ const TheCrystalCaveTable = () => {
   console.log(msgList, "LIST");
 
   const handleLike = async (id) => {
+    if(!address){
+      return toast.error("Please connect wallet to proceed further")
+    }
       const like = await axios.post(`${baseUrl}/raven/like`, {
         id,
         address,
@@ -54,6 +58,9 @@ const TheCrystalCaveTable = () => {
   };
 
   const handleDislike = async (id) => {
+    if(!address){
+      return toast.error("Please connect wallet to proceed further")
+    }
       const disLike = await axios.post(`${baseUrl}/raven/dislike`, {
         id,
         address,
