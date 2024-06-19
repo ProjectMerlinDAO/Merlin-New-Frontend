@@ -152,7 +152,7 @@ const TheCrystalCaveTable = () => {
                             width="13"
                             height="12"
                           />
-                          <span>{data.like}</span>
+                          <span>{data.like.length}</span>
                         </button>
                         <button className="rounded-full flex items-center justify-center gap-[6px] px-[14px] h-[32px] bg-[#e32d2d26]">
                           <Image
@@ -161,7 +161,7 @@ const TheCrystalCaveTable = () => {
                             width="13"
                             height="12"
                           />
-                          <span>{data.dislike}</span>
+                          <span>{data.dislike.length}</span>
                         </button>
                       </div>
                     </li>

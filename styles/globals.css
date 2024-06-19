@@ -1938,6 +1938,16 @@ textarea.no-outline:focus-visible {
   object-position: center;
 }
 
+/* Error Css */
+.error-message{
+  font-family: "Lexend", sans-serif !important;
+  color: #cc0033;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 15px;
+  margin: 5px 0 0;
+}
+
 @media screen and (max-width: 1199px) {
   .tokenomics-section .tokenomics-content {
     max-width: 755px;

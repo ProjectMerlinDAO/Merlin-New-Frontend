@@ -150,6 +150,9 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if(data.walletAddress === "" || !address){
+      return toast.error("Please connect wallet to proceed further")
+    }
     if (checkValidations()) {
       return;
     }
