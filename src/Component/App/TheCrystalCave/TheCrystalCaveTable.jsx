@@ -7,9 +7,10 @@ import Pagination2 from "../../Core/Pagination2";
 import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/router";
-
+import { useAccount } from "wagmi";
 
 const TheCrystalCaveTable = () => {
+  let { address } = useAccount();
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   const router = useRouter();
   const [search, setSearch] = useState("");
@@ -41,6 +42,27 @@ const TheCrystalCaveTable = () => {
   };
   console.log(msgList, "LIST");
 
+  const handleLike = async (id) => {
+      const like = await axios.post(`${baseUrl}/raven/like`, {
+        id,
+        address,
+      });
+      if(like.status === 200 && like.data.msg === "Success"){
+        fetchMsgs();
+        return;
+      }
+  };
+
+  const handleDislike = async (id) => {
+      const disLike = await axios.post(`${baseUrl}/raven/dislike`, {
+        id,
+        address,
+      });
+     if(disLike.status === 200 && disLike.data.msg === "Success"){
+      fetchMsgs();
+      return;
+     }
+  };
   useEffect(() => {
     fetchMsgs();
   }, [search, category, sort, page]);
@@ -84,16 +106,17 @@ const TheCrystalCaveTable = () => {
           {msgList ? (
             msgList?.map((data, index) => {
               return (
-                <Link key={index} href="/raven-detail">
+                  <>
                   <ul
+                  key={index}
                     className="rounded-[20px] mb-[15px] relative crystal-table-row backdrop-blur-[10px] py-[15px] flex items-center justify-between"
                     style={{
                       background:
                         "linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 50%, rgba(255, 255, 255, 0.08) 100%);",
                     }}
                   >
-                    <li className="w-[40%] px-[15px] xl:pr-[5px]">
-                      <div className="flex items-center justify-start">
+                    <li className="w-[40%] px-[15px] xl:pr-[5px] z-10" onClick={() => handleClick(data?._id)}>
+                      <div className="flex items-center justify-start"  >
                         <div className="min-h-[60px] min-w-[60px] max-h-[60px] max-w-[60px] rounded-[15px] overflow-hidden">
                           <Image
                             src={data?.avatarImage}
@@ -143,9 +166,12 @@ const TheCrystalCaveTable = () => {
                         {data.UserType}
                       </span>
                     </li>
-                    <li className="px-[15px] xl:pr-0 w-[15%] text-right pr-[15px]">
+                    <li className="px-[15px] xl:pr-0 w-[15%] text-right pr-[15px] z-10">
                       <div className="flex items-center justify-end gap-[5px]">
-                        <button className="rounded-full flex items-center justify-center gap-[6px] px-[14px] h-[32px] bg-[#19c85f33]">
+                        <button
+                          className="rounded-full flex items-center justify-center gap-[6px] px-[14px] h-[32px] bg-[#19c85f33] "
+                          onClick={() => handleLike(data._id)}
+                        >
                           <Image
                             src="/assets/images/icons/like.svg"
                             alt="icon"
@@ -154,7 +180,10 @@ const TheCrystalCaveTable = () => {
                           />
                           <span>{data.like.length}</span>
                         </button>
-                        <button className="rounded-full flex items-center justify-center gap-[6px] px-[14px] h-[32px] bg-[#e32d2d26]">
+                        <button
+                          className="rounded-full flex items-center justify-center gap-[6px] px-[14px] h-[32px] bg-[#e32d2d26]"
+                          onClick={() => handleDislike(data._id)}
+                        >
                           <Image
                             src="/assets/images/icons/dislike.svg"
                             alt="icon"
@@ -166,7 +195,7 @@ const TheCrystalCaveTable = () => {
                       </div>
                     </li>
                   </ul>
-                </Link>
+                  </>
               );
             })
           ) : (
