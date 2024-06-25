@@ -9,9 +9,12 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useAccount } from "wagmi";
 import { toast } from "react-toastify";
+import { useWallet } from "@solana/wallet-adapter-react";
 
 const TheCrystalCaveTable = () => {
   let { address } = useAccount();
+  const { publicKey } = useWallet();
+ const key = publicKey?.toBase58()
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   const router = useRouter();
   const [search, setSearch] = useState("");
@@ -33,7 +36,6 @@ const TheCrystalCaveTable = () => {
     // console.log(data, "DATATAATAT");
   };
   const handleClick = (id) => {
-    console.log(id, "ID");
     router.push({
       pathname: "/raven-detail",
       query: {
@@ -41,15 +43,15 @@ const TheCrystalCaveTable = () => {
       },
     });
   };
-  console.log(msgList, "LIST");
+  // console.log(msgList, "LIST");
 
   const handleLike = async (id) => {
-    if(!address){
+    if(!key){
       return toast.error("Please connect wallet to proceed further")
     }
       const like = await axios.post(`${baseUrl}/raven/like`, {
         id,
-        address,
+        key,
       });
       if(like.status === 200 && like.data.msg === "Success"){
         fetchMsgs();
@@ -58,12 +60,12 @@ const TheCrystalCaveTable = () => {
   };
 
   const handleDislike = async (id) => {
-    if(!address){
+    if(!key){
       return toast.error("Please connect wallet to proceed further")
     }
       const disLike = await axios.post(`${baseUrl}/raven/dislike`, {
         id,
-        address,
+        key,
       });
      if(disLike.status === 200 && disLike.data.msg === "Success"){
       fetchMsgs();

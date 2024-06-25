@@ -10,20 +10,26 @@ import {useStickyBox} from "react-sticky-box";
 import Link from 'next/link'
 import axios from 'axios'
 
-const RavenDetailCard = ({ isSidebarVisible }) => {
+const RavenDetailCard = ({ isSidebarVisible, id }) => {
     const stickyRef = useStickyBox({offsetTop: 20, offsetBottom: 20})
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
     const [detail, setDetail] = useState();
     const fetchDetails = async () => {
         try {
-            const details = await axios.get(`${baseUrl}/`)
+            const details = await axios.get(`${baseUrl}/raven/fetch-raven/${id}`);
+            console.log(details.data.ravenMsg,"DETAILSSSLSS")
+            if(details.status === 200 && details.data.msg === "Raven message fetched successfully!!"){
+                setDetail(details.data.ravenMsg);
+            }
         } catch (error) {
-            
+            console.log(error)
         }
     }
     useEffect(() => {
-
-    },[])
+        if(id){
+            fetchDetails()
+        }
+    },[id])
     return (
         <div className="pt-[110px] relative bg-no-repeat position-top bg-contain" style={{ backgroundImage: 'url(./assets/images/bg/sub-bg.png)', backgroundSize: '100% 388px' }}>
             <div className={`app-home-wrapper mt-[-70px] lg:mt-[0px]  ${isSidebarVisible ? "sidebar-visible" : "sidebar-hidden"}`}>
@@ -33,7 +39,7 @@ const RavenDetailCard = ({ isSidebarVisible }) => {
                         <li className='flex items-center justify-start gap-[8px]'><a href="#" className="flex">app HOME  </a> . </li>
                         <li className='flex items-center justify-start gap-[8px]'><a href="#" className="flex">The Crystal Cave</a> . </li>
                         <li className='flex items-center justify-start gap-[8px]'><a href="#" className="flex">Raven Message</a> . </li>
-                        <li className='flex items-center justify-start gap-[8px]'><a href="#" className="flex text-[#12CFA7]">#A000235</a></li>
+                        <li className='flex items-center justify-start gap-[8px]'><a href="#" className="flex text-[#12CFA7]">{detail ? detail.code : null}</a></li>
                     </ul>
                     <div className="p-[60px] 2xl:py-[40px] 2xl:px-[20px] rounded-[40px] relative backdrop-blur-[15px] overflow-hidden" style={{ background: 'linear-gradient(178deg, rgba(255, 255, 255, 0.05) 2.04%, rgba(255, 255, 255, 0.01) 97.96%)' }}>
                         <Image src='/assets/images/shape/raven-detail-shape.png' fill={true} className='top-0 right-0 z-0 mt-[-30%] mr-[-15%]' />
@@ -46,22 +52,22 @@ const RavenDetailCard = ({ isSidebarVisible }) => {
                                                 <Image src="/assets/images/img/raven-detail-img.png" alt="icon" fill={true} />
                                             </div>
                                             <div className='text-white xsm:w-full'>
-                                                <h3 className='mb-[20px] md:mb-[15px] text-[40px] 2xl:text-[32px] lg:text-[26px] leading-[150%] xsm:pl-[100px]'>We want to build VR</h3>
-                                                <p className='xsm:mt-[58px] 2xsm:mt-[20px]'>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                                <h3 className='mb-[20px] md:mb-[15px] text-[40px] 2xl:text-[32px] lg:text-[26px] leading-[150%] xsm:pl-[100px]'>{detail ? detail.title : null}</h3>
+                                                <p className='xsm:mt-[58px] 2xsm:mt-[20px]'>{detail?.shortBrief}</p>
                                             </div>
                                         </div>
-                                        <p className='mb-[30px]'>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best</p>
-                                        <RavenDetailVideo/>
+                                        <p className='mb-[30px]'>{detail?.proposalDetail}</p>
+                                        <RavenDetailVideo url={detail?.videoLink}/>
                                         <p className='mb-[30px]'>So blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain.</p>
                                         <p className='mb-[30px]'>These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled.</p>
-                                        <RavenImages/>
+                                        <RavenImages images={detail?.images}/>
                                         <TransactionLogs/>
                                     </div>
                                 </div>
                                 <aside ref={stickyRef} className="w-[35%] px-[15px] lg:w-full raven-detail-right">
                                     <Fundrising/>
                                     <ProposalInfoCard/>
-                                    <LikeShareCard/>
+                                    <LikeShareCard id={id} like={detail?.like} dislike={detail?.dislike} fetch={fetchDetails}/>
                                 </aside>
                             </div>
                         </div>

@@ -1,9 +1,43 @@
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-const RavenDetailVideo = () => {
+const RavenDetailVideo = ({url}) => {
   const [videoPlaying, setVideoPlaying] = useState(false);
-  const videoUrl = "https://www.youtube.com/embed/CLkxRnRQtDE?si=vzqo0zI26lnozjBt&autoplay=1";
+  const [id, setId] = useState();
+
+  const getYouTubeVideoId = ()=> {
+    var videoId = null;
+    var regexShort = /youtu\.be\/([a-zA-Z0-9_-]{11})/;
+    var regexStandard = /youtube\.com\/watch\?v=([a-zA-Z0-9_-]{11})/;
+    var regexStandardAlternate = /youtube\.com\/.*\/([a-zA-Z0-9_-]{11})/;
+
+    var match = url.match(regexShort);
+    if (match && match[1]) {
+        videoId = match[1];
+    } else {
+        match = url.match(regexStandard);
+        if (match && match[1]) {
+            videoId = match[1];
+        } else {
+            match = url.match(regexStandardAlternate);
+            if (match && match[1]) {
+                videoId = match[1];
+            }
+        }
+    }
+    setId(videoId)
+    // return videoId;
+}
+useEffect(() => {
+if(url){
+  getYouTubeVideoId()
+}
+},[url])
+  console.log(id,"URL")
+
+  // const videoUrl = "https://www.youtube.com/embed/CLkxRnRQtDE?si=vzqo0zI26lnozjBt&autoplay=1";
+  const videoUrl = `https://www.youtube.com/embed/${id}`
+  
 
   const handlePlayButtonClick = () => {
     setVideoPlaying(true);

@@ -1,22 +1,61 @@
+import { useWallet } from '@solana/wallet-adapter-react';
+import axios from 'axios';
 import Image from 'next/image'
 import React, { useState } from 'react'
 
-const LikeShareCard = () => {
+const LikeShareCard = ({ id, like, dislike, fetch }) => {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   const [isLiked, setIsLiked] = useState(false); // Track like button state
   const [isDisliked, setIsDisliked] = useState(false); // Track dislike button state
+  const { publicKey } = useWallet();
+  const key = publicKey?.toBase58();
 
+  const handleLikeApi = async () => {
+    if (!key) {
+      return toast.error("Please connect wallet to proceed further")
+    }
+    try {
+      const like = await axios.post(`${baseUrl}/raven/like`, {
+        id,
+        key,
+      });
+      if (like.status === 200 && like.data.msg === "Success") {
+        fetch();
+        return;
+      }
+    } catch (error) {
+      console.log(error)
+    }
+   
+  };
+ 
+  const handleDislikeApi = async () => {
+    if(!key){
+      return toast.error("Please connect wallet to proceed further")
+    }
+      const disLike = await axios.post(`${baseUrl}/raven/dislike`, {
+        id,
+        key,
+      });
+     if(disLike.status === 200 && disLike.data.msg === "Success"){
+      fetch();
+      return;
+     }
+  };
   const handleLikeClick = () => {
     if (isDisliked) {
       setIsDisliked(false); // Deactivate dislike button if it was active
     }
-    setIsLiked(!isLiked); // Toggle like state on click
+    setIsLiked(true); // Toggle like state on click
+    handleLikeApi();
   }
 
   const handleDislikeClick = () => {
     if (isLiked) {
       setIsLiked(false); // Deactivate like button if it was active
     }
-    setIsDisliked(!isDisliked); // Toggle dislike state on click
+    setIsDisliked(true); // Toggle dislike state on click
+    handleDislikeApi();
   }
 
   return (
@@ -27,11 +66,11 @@ const LikeShareCard = () => {
           onClick={handleLikeClick}
         >
           <Image src="/assets/images/icons/like.svg" alt="icon" width="21" height="20" />
-          <span>1249</span>  {/* Update text content based on like state */}
+          <span>{like?.length}</span>  {/* Update text content based on like state */}
         </button>
         <button className={`rounded-[18px] flex items-center justify-center gap-[10px] w-1/2 h-[60px] text-${isDisliked ? 'white' : ''} ${isDisliked ? 'dislike-active' : 'dislike-btn'}`} onClick={handleDislikeClick}>
           <Image src="/assets/images/icons/dislike.svg" alt="icon" width="21" height="20" />
-          <span>1,249</span>
+          <span>{dislike?.length}</span>
         </button>
       </div>
       <button type='submit' className="hov-btn no-border btn-has-shape flex items-center justify-center gap-[10px] bg-[#ffffff0c] h-[60px] text-white quantico font-[700] w-full rounded-[18px] uppercase mt-[30px]">

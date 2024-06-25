@@ -3,14 +3,14 @@ import Image from 'next/image';
 import Lightbox from 'yet-another-react-lightbox';
 import 'yet-another-react-lightbox/styles.css';
 
-const images = [
-    '/assets/images/img/raven-img1.jpg',
-    '/assets/images/img/raven-img2.jpg',
-    '/assets/images/img/raven-img3.jpg',
-    '/assets/images/img/raven-img4.jpg'
-];
+// const images = [
+//     '/assets/images/img/raven-img1.jpg',
+//     '/assets/images/img/raven-img2.jpg',
+//     '/assets/images/img/raven-img3.jpg',
+//     '/assets/images/img/raven-img4.jpg'
+// ];
 
-const RavenImages = () => {
+const RavenImages = ({images}) => {
     const [open, setOpen] = useState(false);
     const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -18,11 +18,11 @@ const RavenImages = () => {
         setCurrentIndex(index);
         setOpen(true);
     };
-
+console.log(images?.length,"IMAMAMA")
     return (
         <div>
             <div className='flex items-start justify-start mx-[-10px] xsm:flex-wrap' style={{ rowGap: '20px' }}>
-                {images.map((img, index) => (
+                { images?.length ? images.map((img, index) => (
                     <div key={index} className="w-1/2 xsm:w-[50%] px-[10px]">
                         <div className="relative overflow-hidden rounded-[20px] group cursor-pointer h-[120px]" onClick={() => handleImageClick(index)}>
                             <Image src={img} alt={`raven image ${index + 1}`} width="100" height="100" className="!h-[100%] !w-[100%] relative z-0" />
@@ -31,7 +31,7 @@ const RavenImages = () => {
                             </div>
                         </div>
                     </div>
-                ))}
+                )) : null}
             </div>
 
             {open && (
