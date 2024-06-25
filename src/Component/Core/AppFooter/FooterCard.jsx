@@ -73,7 +73,7 @@ const FooterCard = () => {
               <div className="w-[30%] lg:w-1/2">
                 <ul>
                   {firstColumnLinks.map((link, index) => (
-                    <li key={index} className="hover:text-white mb-[10px]">
+                    <li key={index} className={link.text === "Proposals" ? "pointer-events-none text-gray-500":"hover:text-white mb-[10px]"}>
                       <a href={link.href}>{link.text}</a>
                     </li>
                   ))}

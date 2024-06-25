@@ -2,12 +2,26 @@ import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import CommonerSignIn from "./CommonerSignIn";
 import { useWeb3Modal } from '@web3modal/ethers/react'
+import { useWalletModal, WalletMultiButton } from '@solana/wallet-adapter-react-ui'
+import { useWallet } from "@solana/wallet-adapter-react";
+
 
 
 const SignInPopup = ({ isOpen, setIsOpen }) => {
   const { open } = useWeb3Modal()
+  const { publicKey } = useWallet();
   const [showCommonerSignIn, setShowCommonerSignIn] = useState(false);
   const dialogRef = useRef(null);
+
+  const handleFetchWallet = () => {
+    if (publicKey) {
+      console.log("Connected wallet public key:", publicKey.toBase58());
+      // You can now use the publicKey to interact with the connected wallet
+    } else {
+      console.log("No wallet connected");
+    }
+  };
+  
   const handleCommonerClick = () => {
     setShowCommonerSignIn(true);
   };
@@ -34,19 +48,27 @@ const SignInPopup = ({ isOpen, setIsOpen }) => {
     };
   }, [isOpen, setIsOpen]);
 
-  const handleWalletConnect = () => {
-    // document.getElementById('signInModal').close();
+  const handleWalletConnect = async () => {
+    // EVM based Modal
     setIsOpen(false);
-    open();
-   }
+    // open();
+    setVisible(true);
+
+  }
+  const { setVisible } = useWalletModal();
+  useEffect(() => {
+    handleFetchWallet()
+  }, [setVisible]);
+
   return (
     <>
       {isOpen ? (
         <div>
-          <dialog ref={dialogRef}  className="modal">
+          <dialog ref={dialogRef} className="modal">
             <div className="modal-box max-w-[570px] w-full bg-transparent p-0">
               {!showCommonerSignIn ? (
                 <div className="relative bg-[#27312E] rounded-[30px] p-[50px] w-full overflow-hidden text-center flex items-center justify-center flex-col">
+                    {/* <WalletMultiButton style={{}} /> */}
                   <div className="h-[133px] w-[133px] rounded-[50%] bg-[#12CFA7] blur-[100px] mx-auto top-[-65px] z-0 absolute"></div>
                   <div className="relative z-0">
                     <h3 className="mb-[25px] text-[30px] text-white quantico font-[700] uppercase">

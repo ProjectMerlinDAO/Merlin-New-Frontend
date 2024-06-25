@@ -36,7 +36,14 @@
     "use-typing-headlines": "^0.9.1",
     "viem": "^2.13.6",
     "wagmi": "^2.9.8",
-    "yet-another-react-lightbox": "^3.19.0"
+    "yet-another-react-lightbox": "^3.19.0",
+    "@solana/wallet-adapter-backpack": "^0.1.13",
+    "@solana/wallet-adapter-base": "^0.9.22",
+    "@solana/wallet-adapter-phantom": "^0.9.22",
+    "@solana/wallet-adapter-react": "^0.15.32",
+    "@solana/wallet-adapter-react-ui": "^0.9.31",
+    "@solana/wallet-adapter-wallets": "^0.15.5",
+    "@solana/web3.js": "^1.37.0"
   },
   "devDependencies": {
     "@iconify/tailwind": "^1.0.1",

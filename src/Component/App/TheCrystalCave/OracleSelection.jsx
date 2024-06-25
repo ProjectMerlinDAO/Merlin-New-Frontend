@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Dropdown from '../../Core/Dropdown'
 import Image from 'next/image';
 import CategoriesDropdown from '../../Core/CategoriesDropdown';
 import StampsDropdown from '../../Core/StampsDropdown';
+import axios from 'axios';
 
 const crystalData = [
     {
@@ -76,7 +77,26 @@ const crystalData = [
 ];
 
 const OracleSelection = () => {
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+    const [oracleList, setOracleList] = useState();
     const [category, setCategory] = useState("all");
+    const [stamp, setStamp] = useState("Stamps");
+
+    const handleOracle = async () => {
+        try {
+            const url = `category=${category}`
+            const data = await axios.get(`${baseUrl}/raven/oracleList?${url}`);
+            if (data?.status === 200 && data?.data?.msg === "Success") {
+                setOracleList(data?.data?.result)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    useEffect(() => {
+        handleOracle();
+    }, [])  
+    console.log(stamp,"STAMP")
     return (
         <div className='rounded-[40px] backdrop-blur-[15px] p-[60px] 2xl:py-[35px] 2xl:px-[25px] xl:px-[20px]' style={{ background: 'linear-gradient(178deg, rgba(255, 255, 255, 0.05) 2.04%, rgba(255, 255, 255, 0.01) 97.96%)' }}>
             <div className="flex items-end justify-between gap-[4%] flex-wrap mb-[30px] xl:mb-[15px]">
@@ -89,7 +109,7 @@ const OracleSelection = () => {
                         <CategoriesDropdown setCategory={setCategory} category={category} />
                     </div>
                     <div className='w-[153px] xl:w-[48%]'>
-                        <button type='submit' className="hov-btn no-border btn-has-shape bg-[#12CFA7] h-[50px] text-white quantico font-[700] w-full rounded-[18px] uppercase">
+                        <button type='submit' onClick={() => handleOracle()} className="hov-btn no-border btn-has-shape bg-[#12CFA7] h-[50px] text-white quantico font-[700] w-full rounded-[18px] uppercase">
                             <span className="btn-hov-text">
                                 <span className="btn-text">once more</span>
                                 <span className="btn-text">once more</span>
@@ -98,7 +118,6 @@ const OracleSelection = () => {
                     </div>
                 </div>
             </div>
-
             <div className="lg:overflow-x-scroll">
                 <div className="xl:text-[14px] min-w-[950px] ">
                     <ul className="flex items-center justify-between py-[15px] uppercase">
@@ -108,47 +127,64 @@ const OracleSelection = () => {
                         <li className="px-[15px] xl:px-[5px] w-[15%]">User Type</li>
                         <li className="px-[15px] xl:px-[5px] pr-[30px] w-[15%] text-right xl:min-w-[max-content]">Like / Dislike</li>
                     </ul>
-                    {crystalData.map((crystal, index) => (
-                        <ul key={index} className={`rounded-[20px] mb-[15px] relative crystal-table-row backdrop-blur-[10px] py-[15px] flex items-center justify-between`} style={{ background: 'linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 50%, rgba(255, 255, 255, 0.08) 100%);', zIndex: crystalData.length - index }}>
-                            <li className="w-[40%] px-[15px] xl:pr-[5px]">
-                                <div className="flex items-center justify-start">
-                                    <div className="min-h-[60px] min-w-[60px] max-h-[60px] max-w-[60px] rounded-[15px] overflow-hidden">
-                                        <Image src={crystal.imgSrc} alt="img" className="object-cover w-full h-full" width="60" height="60" />
-                                    </div>
-                                    <div className="ml-[14px]">
-                                        <h3 className="overflow-hidden text-ellipsis text-[20px] lg:text-[18px] md:text-[16px] font-[500] text-white lexend mb-[5px] text-nowrap max-w-[320px] 2xl:max-w-[260px]">{crystal.title}</h3>
-                                        <p className="text-[16px] lg:text-[15px] md:text-[14px] font-[300] lexend uppercase">{crystal.code}</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li className="px-[15px] xl:px-[5px] w-[15%]">
-                                <span className="text-[16px] lg:text-[15px] md:text-[14px] text-white font-[400] lexend">{crystal.goal}</span>
-                            </li>
-                            <li className="px-[15px] xl:px-[5px] w-[15%]">
-                                <div className="flex items-center justify-start gap-[20px]">
-                                    {crystal.icons.map((icon, idx) => (
-                                        <div className="tooltip" data-tip={icon.tooltip} key={idx}>
-                                            <Image src={icon.src} alt="icon" width={34} height={34} />
+                    {oracleList ? (
+                        oracleList.map((data, index) => (
+                            <ul key={index} className={`rounded-[20px] mb-[15px] relative crystal-table-row backdrop-blur-[10px] py-[15px] flex items-center justify-between`} style={{ background: 'linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 50%, rgba(255, 255, 255, 0.08) 100%)', zIndex: crystalData.length - index }}>
+                                <li className="w-[40%] px-[15px] xl:pr-[5px]">
+                                    <div className="flex items-center justify-start">
+                                        <div className="min-h-[60px] min-w-[60px] max-h-[60px] max-w-[60px] rounded-[15px] overflow-hidden">
+                                            <Image src={data.avatarImage} alt="Avatar" className="object-cover w-full h-full" width="60" height="60" />
                                         </div>
-                                    ))}
-                                </div>
-                            </li>
-                            <li className="px-[15px] xl:px-[5px] w-[15%]">
-                                <span className="text-[16px] lg:text-[15px] md:text-[14px] text-white font-[400] lexend">{crystal.userType}</span>
-                            </li>
-                            <li className="px-[15px] w-[15%] relative z-[999]">
-                                <div className='w-full justify-end flex'>
-                                    <StampsDropdown />
-                                </div>
-                            </li>
-                        </ul>
-                    ))}
+                                        <div className="ml-[14px]">
+                                            <h3 className="overflow-hidden text-ellipsis text-[20px] lg:text-[18px] md:text-[16px] font-[500] text-white lexend mb-[5px] text-nowrap max-w-[320px] 2xl:max-w-[260px]">{data.title}</h3>
+                                            <p className="text-[16px] lg:text-[15px] md:text-[14px] font-[300] lexend uppercase">{data.code}</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li className="px-[15px] xl:px-[5px] w-[15%]">
+                                    <span className="text-[16px] lg:text-[15px] md:text-[14px] text-white font-[400] lexend">{data.projectGoal}</span>
+                                </li>
+                                <li className="px-[15px] xl:px-[5px] w-[15%]">
+                                    <div className="flex items-center justify-start gap-[20px]">
+                                        <div className="flex items-center justify-start gap-[20px]">
+                                            {data.categories.map((item, index) => {
+                                                return (
+                                                    <div
+                                                        className="tooltip"
+                                                        data-tip={item}
+                                                        key={index}
+                                                    >
+                                                        <Image
+                                                            src={`/assets/images/img/${item}.png`}
+                                                            alt="icon"
+                                                            width={34}
+                                                            height={34}
+                                                        />
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
+                                    </div>
+                                </li>
+                                <li className="px-[15px] xl:px-[5px] w-[15%]">
+                                    <span className="text-[16px] lg:text-[15px] md:text-[14px] text-white font-[400] lexend">{data.UserType}</span>
+                                </li>
+                                <li className="px-[15px] w-[15%] relative z-[999]">
+                                    <div className='w-full justify-end flex'>
+                                        <StampsDropdown stamp={stamp} setStamp={setStamp} />
+                                    </div>
+                                </li>
+                            </ul>
+                        ))
+                    ) : (
+                        <p>No list</p>
+                    )}
+
                 </div>
             </div>
 
         </div>
     )
 }
-
 export default OracleSelection
 

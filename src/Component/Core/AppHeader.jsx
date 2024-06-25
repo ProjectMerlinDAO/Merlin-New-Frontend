@@ -5,16 +5,29 @@ import Link from "next/link";
 import SignInPopup from "../App/Auth/SignInPopup";
 import { useAccount } from "wagmi";
 import { useWeb3Modal } from "@web3modal/wagmi/react";
+import { useWallet } from "@solana/wallet-adapter-react";
 
 const AppHeader = ({ isSidebarVisible }) => {
   const { open } = useWeb3Modal();
+  const { publicKey, disconnect } = useWallet();
   const { address } = useAccount();
   const [isOpen, setIsOpen] = useState(false);
+  console.log(publicKey?.toBase58(),"PUBLIC KEY")
   const handleSignin = () => {
     if (address) {
       open();
     } else {
       setIsOpen(true);
+    }
+  }
+  const handleDisconnect = () => {
+    disconnect();
+  }
+  const handleClick = () => {
+    if (publicKey) {
+      handleDisconnect();
+    } else {
+      handleSignin();
     }
   };
   return (
@@ -22,9 +35,8 @@ const AppHeader = ({ isSidebarVisible }) => {
       {isOpen ? <SignInPopup isOpen={isOpen} setIsOpen={setIsOpen} /> : null}
       <header className="absolute top-0 left-0 z-[999] flex items-center w-full h-[110px]">
         <div
-          className={`app-home-wrapper ${
-            isSidebarVisible ? "sidebar-visible" : "sidebar-hidden"
-          }`}
+          className={`app-home-wrapper ${isSidebarVisible ? "sidebar-visible" : "sidebar-hidden"
+            }`}
         >
           <div className="px-[20px] md:px-[10px] max-w-[1365px] mx-auto lg:max-w-[720px] ">
             <div className="flex items-center app-header-content relative z-[9999]">
@@ -53,7 +65,7 @@ const AppHeader = ({ isSidebarVisible }) => {
               <ul className="flex items-center justify-end gap-[20px] ml-auto app-header-right">
                 <li className="xl:hidden">
                   <Link
-                     href="https://discord.gg/projectmerlin"
+                    href="https://discord.gg/projectmerlin"
                     target="_blank"
                     className="icon-btn btn-has-shape social-icon hov-btn bg-[#ffffff19] h-[50px] w-[50px] rounded-full bg-opacity-10 backdrop-blur-[5px] flex items-center justify-center"
                   >
@@ -91,7 +103,7 @@ const AppHeader = ({ isSidebarVisible }) => {
                 <li>
                   <a
                     href="#"
-                    onClick={handleSignin}
+                    onClick={handleClick}
                     className="flex btn-has-shape items-center justify-center hov-btn rounded-full gap-[8px] connect-btn bg-12CFA7 h-[50px] w-[170px] sm:w-[140px] bg-[#12CFA7] text-white text-center  font-[600] text-[16px] sm:text[14px] uppercase quantico"
                   >
                     <Image
@@ -102,14 +114,16 @@ const AppHeader = ({ isSidebarVisible }) => {
                     />
                     <span className="btn-hov-text">
                       <span className="btn-text">
-                        {address
+                        {/* {address
                           ? address.slice(0, 2) + "...." + address.slice(-5)
-                          : "Connect"}
+                          : "Connect"} */}
+                        {publicKey ? publicKey.toBase58().slice(0, 2) + "...." + publicKey.toBase58().slice(-5) : "Connect"}
                       </span>
                       <span className="btn-text">
-                        {address
+                        {/* {address
                           ? address.slice(0, 2) + "...." + address.slice(-5)
-                          : "Connect"}
+                          : "Connect"} */}
+                        {publicKey ? publicKey.toBase58().slice(0, 2) + "...." + publicKey.toBase58().slice(-5) : "Connect"}
                       </span>
                     </span>
                   </a>

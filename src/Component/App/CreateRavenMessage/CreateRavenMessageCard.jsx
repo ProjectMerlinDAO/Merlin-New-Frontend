@@ -15,9 +15,11 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import Loader from "../../Core/Loader/Loader";
 import { useRouter } from 'next/router';
+import { useWallet } from "@solana/wallet-adapter-react";
 
 const CreateRavenMessageCard = ({ isSidebarVisible }) => {
   const { address } = useAccount();
+  const { publicKey } = useWallet();
   const router = useRouter();
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   const stickyRef = useStickyBox({ offsetTop: 20, offsetBottom: 20 });
@@ -36,7 +38,7 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
     fee: 0,
     termsAndConditions: false,
     categories: [],
-    walletAddress: address,
+    walletAddress: publicKey?.toBase58(),
   });
   const [uploadImages, setUploadImages] = useState({
     avatarImage: "",
@@ -140,7 +142,7 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
       fee: 0,
       termsAndConditions: false,
       categories: [],
-      walletAddress: address,
+      walletAddress: publicKey.toBase58(),
     }));
     setUploadImages(() => ({
       avatarImage: "",
@@ -150,7 +152,7 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if(data.walletAddress === "" || !address){
+    if(data.walletAddress === "" || !publicKey){
       return toast.error("Please connect wallet to proceed further")
     }
     if (checkValidations()) {
@@ -270,9 +272,10 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
                         </div>
                         <p className="mb-0">
                           <span className="text-white leading-[16px]">
-                            {address
+                            {/* {address
                               ? address.slice(0, 4) + "...." + address.slice(-5)
-                              : null}
+                              : null} */}
+                              {publicKey ? publicKey.toBase58().slice(0, 2) + "...." + publicKey.toBase58().slice(-5) : null}
                           </span>
                           <br />
                           <span className="text-[14px] leading-[14px]">
@@ -281,7 +284,7 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
                         </p>
                       </div>
                       <button className="text-[14px] text-[#12CFA7] rounded-[10px] px-[15px] py-[4px] bg-[#12cfa615]">
-                        Connected
+                        {publicKey ? "Connected" : "Connect"}
                       </button>
                     </div>
                     <div className="mt-[40px] xl:mt-[30px]">
