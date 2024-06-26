@@ -124,8 +124,8 @@ const TheCrystalCaveTable = () => {
                         "linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 50%, rgba(255, 255, 255, 0.08) 100%);",
                     }}
                   >
-                    <li className="w-[40%] px-[15px] xl:pr-[5px] z-10" onClick={() => handleClick(data?._id)}>
-                      <div className="flex items-center justify-start"  >
+                    <li className="w-[40%] px-[15px] xl:pr-[5px] z-10 " >
+                      <div className="flex items-center justify-start cursor-pointer" onClick={() => handleClick(data?._id)} >
                         <div className="min-h-[60px] min-w-[60px] max-h-[60px] max-w-[60px] rounded-[15px] overflow-hidden">
                           <Image
                             src={data?.avatarImage}

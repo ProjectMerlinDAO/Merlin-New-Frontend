@@ -1,43 +1,39 @@
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 
-const RavenDetailVideo = ({url}) => {
+const RavenDetailVideo = ({ url }) => {
   const [videoPlaying, setVideoPlaying] = useState(false);
-  const [id, setId] = useState();
+  const [videoUrl, setVideoUrl] = useState();
+  const getYoutubeId = () => {
+    let id = url.split('/').pop();
+    return id;
+  }
 
-  const getYouTubeVideoId = ()=> {
-    var videoId = null;
-    var regexShort = /youtu\.be\/([a-zA-Z0-9_-]{11})/;
-    var regexStandard = /youtube\.com\/watch\?v=([a-zA-Z0-9_-]{11})/;
-    var regexStandardAlternate = /youtube\.com\/.*\/([a-zA-Z0-9_-]{11})/;
-
-    var match = url.match(regexShort);
-    if (match && match[1]) {
-        videoId = match[1];
-    } else {
-        match = url.match(regexStandard);
-        if (match && match[1]) {
-            videoId = match[1];
-        } else {
-            match = url.match(regexStandardAlternate);
-            if (match && match[1]) {
-                videoId = match[1];
-            }
-        }
+  const getVimeoId = () => {
+    let id = url.split('/').pop();
+    return id;
+  }
+  const getVideoId = () => {
+    let link;
+    if (url.includes('youtu.be') || url.includes('youtube')) {
+      link = getYoutubeId();
+      let video = `https://www.youtube.com/embed/${link}&autoplay=1`
+      setVideoUrl(video);
+      return;
     }
-    setId(videoId)
-    // return videoId;
-}
-useEffect(() => {
-if(url){
-  getYouTubeVideoId()
-}
-},[url])
-  console.log(id,"URL")
+    if (url.includes('vimeo')) {
+      link = getVimeoId();
+      let video = `https://player.vimeo.com/video/${link}`
+      setVideoUrl(video);
+      return;
+    }
+  }
 
-  // const videoUrl = "https://www.youtube.com/embed/CLkxRnRQtDE?si=vzqo0zI26lnozjBt&autoplay=1";
-  const videoUrl = `https://www.youtube.com/embed/${id}`
-  
+  useEffect(() => {
+    if (url) {
+      getVideoId()
+    }
+  }, [url])
 
   const handlePlayButtonClick = () => {
     setVideoPlaying(true);
@@ -51,7 +47,6 @@ if(url){
             width="100%"
             height="100%"
             src={videoUrl}
-            frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
             title="YouTube video player"

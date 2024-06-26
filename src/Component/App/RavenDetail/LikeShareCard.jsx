@@ -2,13 +2,15 @@ import { useWallet } from '@solana/wallet-adapter-react';
 import axios from 'axios';
 import Image from 'next/image'
 import React, { useState } from 'react'
+import { toast } from 'react-toastify';
 
-const LikeShareCard = ({ id, like, dislike, fetch }) => {
+const LikeShareCard = ({ id, like, dislike, fetch, isOpen ,setIsOpen }) => {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   const [isLiked, setIsLiked] = useState(false); // Track like button state
   const [isDisliked, setIsDisliked] = useState(false); // Track dislike button state
   const { publicKey } = useWallet();
   const key = publicKey?.toBase58();
+
 
   const handleLikeApi = async () => {
     if (!key) {
@@ -31,7 +33,8 @@ const LikeShareCard = ({ id, like, dislike, fetch }) => {
  
   const handleDislikeApi = async () => {
     if(!key){
-      return toast.error("Please connect wallet to proceed further")
+       toast.error("Please connect wallet to proceed further");
+       return;
     }
       const disLike = await axios.post(`${baseUrl}/raven/dislike`, {
         id,
@@ -42,6 +45,7 @@ const LikeShareCard = ({ id, like, dislike, fetch }) => {
       return;
      }
   };
+
   const handleLikeClick = () => {
     if (isDisliked) {
       setIsDisliked(false); // Deactivate dislike button if it was active
@@ -57,8 +61,13 @@ const LikeShareCard = ({ id, like, dislike, fetch }) => {
     setIsDisliked(true); // Toggle dislike state on click
     handleDislikeApi();
   }
-
+ 
+  const openModal = () => {
+    setIsOpen(true);
+  }
   return (
+    <>
+   
     <div className='rounded-[20px] backdrop-blur-[5px] p-[40px] 2xl:p-[20px] relative personal-info-card' style={{ background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.00) 100%)' }}>
       <div className="flex items-center justify-between gap-[20px] relative z-10">
         <button
@@ -73,13 +82,15 @@ const LikeShareCard = ({ id, like, dislike, fetch }) => {
           <span>{dislike?.length}</span>
         </button>
       </div>
-      <button type='submit' className="hov-btn no-border btn-has-shape flex items-center justify-center gap-[10px] bg-[#ffffff0c] h-[60px] text-white quantico font-[700] w-full rounded-[18px] uppercase mt-[30px]">
+      <button type='submit' onClick={openModal} className="hov-btn no-border btn-has-shape flex items-center justify-center gap-[10px] bg-[#ffffff0c] h-[60px] text-white quantico font-[700] w-full rounded-[18px] uppercase mt-[30px]">
         <Image src="/assets/images/icons/share-icon.svg" alt="icon" width="16" height="18" />
         <span className="btn-hov-text">
           <span className="btn-text">Share</span>
           <span className="btn-text">Share</span>
         </span>
       </button>
+      
+
       <button type='submit' className="hov-btn no-border btn-has-shape flex items-center justify-center gap-[10px] bg-[#ffffff0c] h-[60px] text-white quantico font-[700] w-full rounded-[18px] uppercase mt-[30px]">
         <span className="btn-hov-text">
           <span className="btn-text">🚀 Boost Raven Message</span>
@@ -93,6 +104,7 @@ const LikeShareCard = ({ id, like, dislike, fetch }) => {
         </span>
       </button>
     </div>
+    </>
   )
 }
 

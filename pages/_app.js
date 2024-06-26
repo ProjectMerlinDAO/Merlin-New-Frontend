@@ -5,8 +5,6 @@ import "@/styles/globals.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { cookieToInitialState } from "wagmi";
-
-
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import { ConnectionProvider, WalletProvider } from "@solana/wallet-adapter-react";
@@ -38,7 +36,7 @@ export default function App({ Component, pageProps }) {
       <WalletProvider wallets={wallets} autoConnect>
         <WalletModalProvider>
       <Web3ModalProvider>
-        <Component {...pageProps} />
+        <Component {...pageProps} suppressHydrationWarning />
       </Web3ModalProvider>
       </WalletModalProvider >
       </WalletProvider >
