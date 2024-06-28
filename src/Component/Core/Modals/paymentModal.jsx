@@ -44,9 +44,10 @@ const PaymentModal = ({ isOpen, setIsOpen }) => {
                         <div className="flex min-h-full items-center justify-center p-4 text-center sm:items-center sm:p-0">
                             <DialogPanel
                                 transition
-                                className="relative transform overflow-hidden rounded-lg bg-white w-full max-w-[650px] text-left shadow-xl transition-all data-[closed]:translate-y-4 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in sm:my-8 sm:w-full sm:max-w-lg data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95"
+                                className="relative py-24 px-24 transform overflow-hidden rounded-lg bg-white w-full max-w-[650px] text-left shadow-xl transition-all data-[closed]:translate-y-4 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in sm:my-8 sm:w-full sm:max-w-lg data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95"
                             >
-                                {qrCodeData ?  <QRCode value={qrCodeData} /> :
+                                {qrCodeData ?  <div className="qrdiv flex justify-center items-center flex-col gap-5"> <h2 className=' text-black font-bold text-xl'>Scan QR Code To pay</h2> <QRCode value={qrCodeData}/>
+                                    </div>  :
                                 <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4 w-full">
                                     <div className="sm:flex sm:items-start">
                                         <div className="Sharetext">
@@ -67,8 +68,7 @@ const PaymentModal = ({ isOpen, setIsOpen }) => {
                                     </div>
                                 </div>
 }
-                                <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                                </div>
+                                
                             </DialogPanel>
                         </div>
                     </div>
