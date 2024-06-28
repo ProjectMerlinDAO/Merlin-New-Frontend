@@ -1,8 +1,9 @@
+import { Timeleft } from '@/utils/Timer';
 import React, { useState, useEffect } from 'react';
 
-const FundrisingTimer = () => {
+const FundrisingTimer = ({timer}) => {
   const calculateTimeLeft = () => {
-    const difference = +new Date("2024-08-16T00:00:00") - +new Date();
+    const difference = Timeleft(timer);
     let timeLeft = {};
 
     if (difference > 0) {
@@ -18,8 +19,13 @@ const FundrisingTimer = () => {
 
     return timeLeft;
   };
-
+  
+  const calculate = () => {
+    let time = Timeleft(timer);
+    setTime(time)
+  }
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+  const [time, setTime] = useState();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -28,6 +34,7 @@ const FundrisingTimer = () => {
 
     return () => clearTimeout(timer);
   });
+  
 
   const timerComponents = [];
 
@@ -35,6 +42,7 @@ const FundrisingTimer = () => {
     if (!timeLeft[interval]) {
       return;
     }
+
 
     timerComponents.push(
       <span key={interval} className='text-[30px] 2xl:text-[24px] quantico text-white font-[700]'>

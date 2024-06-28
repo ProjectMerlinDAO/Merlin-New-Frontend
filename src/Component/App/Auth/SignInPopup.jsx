@@ -4,6 +4,7 @@ import CommonerSignIn from "./CommonerSignIn";
 import { useWeb3Modal } from '@web3modal/ethers/react'
 import { useWalletModal, WalletMultiButton } from '@solana/wallet-adapter-react-ui'
 import { useWallet } from "@solana/wallet-adapter-react";
+import axios from "axios";
 
 
 
@@ -13,10 +14,11 @@ const SignInPopup = ({ isOpen, setIsOpen }) => {
   const [showCommonerSignIn, setShowCommonerSignIn] = useState(false);
   const dialogRef = useRef(null);
 
-  const handleFetchWallet = () => {
+  const handleFetchWallet = async() => {
     if (publicKey) {
       console.log("Connected wallet public key:", publicKey.toBase58());
       // You can now use the publicKey to interact with the connected wallet
+     
     } else {
       console.log("No wallet connected");
     }
@@ -49,16 +51,18 @@ const SignInPopup = ({ isOpen, setIsOpen }) => {
   }, [isOpen, setIsOpen]);
 
   const handleWalletConnect = async () => {
-    // EVM based Modal
     setIsOpen(false);
     // open();
     setVisible(true);
-
+   
   }
+  
   const { setVisible } = useWalletModal();
+
   useEffect(() => {
-    handleFetchWallet()
+    handleFetchWallet();
   }, [setVisible]);
+ 
 
   return (
     <>

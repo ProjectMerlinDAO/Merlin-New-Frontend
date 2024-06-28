@@ -1,13 +1,15 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MenuData from "./MenuData";
 import Link from "next/link";
 import SignInPopup from "../App/Auth/SignInPopup";
 import { useAccount } from "wagmi";
 import { useWeb3Modal } from "@web3modal/wagmi/react";
 import { useWallet } from "@solana/wallet-adapter-react";
+import axios from "axios";
 
 const AppHeader = ({ isSidebarVisible }) => {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   const { open } = useWeb3Modal();
   const { publicKey, disconnect } = useWallet();
   const { address } = useAccount();
@@ -30,6 +32,17 @@ const AppHeader = ({ isSidebarVisible }) => {
       handleSignin();
     }
   };
+  const userDetails = async() => {
+    const user = await axios.post(`${baseUrl}/user/register`, {
+      wallet: publicKey?.toBase58()
+    })
+    console.log(user)
+  }
+  useEffect(() =>{
+    if(publicKey){
+      userDetails();
+    }
+  },[publicKey])
   return (
     <>
       {isOpen ? <SignInPopup isOpen={isOpen} setIsOpen={setIsOpen} /> : null}

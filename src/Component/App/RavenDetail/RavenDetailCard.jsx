@@ -10,9 +10,11 @@ import { useStickyBox } from "react-sticky-box";
 import Link from 'next/link'
 import axios from 'axios'
 import ShareModal from '../../Core/Modals/shareModal'
+import PaymentModal from '../../Core/Modals/paymentModal'
 
 const RavenDetailCard = ({ isSidebarVisible, id }) => {
-    const [isOpen, setIsOpen] = useState(false)
+    const [isOpen, setIsOpen] = useState(false);
+    const [isPayment, setIsPayment] = useState(false);
     const stickyRef = useStickyBox({ offsetTop: 20, offsetBottom: 20 })
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
     const [detail, setDetail] = useState();
@@ -34,6 +36,7 @@ const RavenDetailCard = ({ isSidebarVisible, id }) => {
     return (
         <>
             <ShareModal isOpen={isOpen} setIsOpen={setIsOpen} />
+            <PaymentModal isOpen={isPayment} setIsOpen={setIsPayment} />
             <div className="pt-[110px] relative bg-no-repeat position-top bg-contain" style={{ backgroundImage: 'url(./assets/images/bg/sub-bg.png)', backgroundSize: '100% 388px' }}>
                 <div className={`app-home-wrapper mt-[-70px] lg:mt-[0px]  ${isSidebarVisible ? "sidebar-visible" : "sidebar-hidden"}`}>
                     <div className="px-[20px] md:px-[10px] max-w-[1365px] mx-auto lg:max-w-[720px]">
@@ -59,17 +62,17 @@ const RavenDetailCard = ({ isSidebarVisible, id }) => {
                                                     <p className='xsm:mt-[58px] 2xsm:mt-[20px]'>{detail?.shortBrief}</p>
                                                 </div>
                                             </div>
-                                            <p className='mb-[30px]'>{detail?.proposalDetail}</p>
+                                            <p className='mb-[30px]'>{detail?.proposalDetail.slice(0,300)}</p>
                                             <RavenDetailVideo url={detail?.videoLink} />
-                                            <p className='mb-[30px]'>So blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain.</p>
-                                            <p className='mb-[30px]'>These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled.</p>
+                                            <p className='mb-[30px]'>{detail?.proposalDetail.slice(301,400)}</p>
+                                            {/* <p className='mb-[30px]'>These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled.</p> */}
                                             <RavenImages images={detail?.images} />
                                             <TransactionLogs />
                                         </div>
                                     </div>
                                     <aside ref={stickyRef} className="w-[35%] px-[15px] lg:w-full raven-detail-right">
-                                        <Fundrising />
-                                        <ProposalInfoCard />
+                                        <Fundrising timer={detail?.endDate} goal={detail?.projectGoal} isOpen={isPayment} setIsOpen={setIsPayment} />
+                                        <ProposalInfoCard detail={detail}/>
                                         <LikeShareCard id={id} like={detail?.like} dislike={detail?.dislike} fetch={fetchDetails} isOpen={isOpen} setIsOpen={setIsOpen} />
                                     </aside>
                                 </div>

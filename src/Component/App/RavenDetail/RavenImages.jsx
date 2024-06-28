@@ -3,13 +3,6 @@ import Image from 'next/image';
 import Lightbox from 'yet-another-react-lightbox';
 import 'yet-another-react-lightbox/styles.css';
 
-// const images = [
-//     '/assets/images/img/raven-img1.jpg',
-//     '/assets/images/img/raven-img2.jpg',
-//     '/assets/images/img/raven-img3.jpg',
-//     '/assets/images/img/raven-img4.jpg'
-// ];
-
 const RavenImages = ({images}) => {
     const [open, setOpen] = useState(false);
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -18,7 +11,6 @@ const RavenImages = ({images}) => {
         setCurrentIndex(index);
         setOpen(true);
     };
-console.log(images?.length,"IMAMAMA")
     return (
         <div>
             <div className='flex items-start justify-start mx-[-10px] xsm:flex-wrap' style={{ rowGap: '20px' }}>

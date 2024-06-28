@@ -1241,6 +1241,60 @@ textarea.no-outline:focus-visible {
   transform: rotate(-45deg);
 }
 
+/* Share Modal Popup */
+
+.Sharetext{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.modalinner{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.SocialIcon{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.modalLink{
+  width: 100%;
+  position: relative;
+}
+.modalLink input{
+  color: #000;
+  border: 1px solid #12CFA7;
+  width: 100%;
+  position: relative;
+  height: 45px;
+    padding: 0px 25px;
+    border-radius: 20px;
+  
+}
+.modalLink button{
+  position: absolute;
+  top: 0;
+  right: -10px;
+  color: #fff;
+  border-radius: 25px;
+  background-color: #12CFA7;
+  padding: 8px 25px;
+}
+ .button_1{
+  position: absolute;
+  top: 0;
+  right: -10px;
+  color: black;
+  border-radius: 25px;
+  background-color: #12CFA7;
+  padding: 8px 25px;
+ }
+
+/* Share Modal Popup */
+
 
 .home-footer-section {
   position: relative;

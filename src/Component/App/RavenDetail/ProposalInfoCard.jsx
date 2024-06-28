@@ -1,12 +1,13 @@
+import { FormatDate } from '@/utils/Formatdate';
 import React from 'react';
 
-const ProposalInfoCard = () => {
+const ProposalInfoCard = ({detail}) => {
     const proposalInfo = [
-        { label: 'User', value: 'Member #45678' },
+        { label: 'User', value: `Member ${detail?.code}` },
         { label: 'Category', value: 'Sports and Arts' },
-        { label: 'Message Date', value: '25 Aug, 2024' },
+        { label: 'Message Date', value: FormatDate(detail?.endDate)},
         { label: 'Total Raven Message', value: '1' },
-        { label: 'User Type', value: 'Commoner' },
+        { label: 'User Type', value: detail?.UserType },
         { label: 'Message Status', value: 'Active' }
     ];
 
