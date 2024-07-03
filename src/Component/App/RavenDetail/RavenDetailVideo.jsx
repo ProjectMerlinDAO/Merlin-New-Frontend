@@ -17,7 +17,9 @@ const RavenDetailVideo = ({ url }) => {
     let link;
     if (url.includes('youtu.be') || url.includes('youtube')) {
       link = getYoutubeId();
-      let video = `https://www.youtube.com/embed/${link}&autoplay=1`
+      let video = `https://www.youtube.com/embed/${link}?rel=0&autoplay=1`
+      // &autoplay=1`
+      // ?rel=0
       setVideoUrl(video);
       return;
     }
@@ -38,11 +40,11 @@ const RavenDetailVideo = ({ url }) => {
   const handlePlayButtonClick = () => {
     setVideoPlaying(true);
   };
-
+  console.log(videoUrl,"URL")
   return (
     <div>
       <div className='rounded-[30px] overflow-hidden relative bg-[#D9D9D9] w-full h-[370px] xsm:h-[260px] mb-[30px]'>
-        {videoPlaying ? (
+        {videoPlaying  ? (
           <iframe
             width="100%"
             height="100%"
