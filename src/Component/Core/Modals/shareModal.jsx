@@ -58,12 +58,12 @@ const ShareModal = ({ isOpen, setIsOpen }) => {
                                                     <RedditIcon size={50} round />
                                                 </RedditShareButton>
                                             </div>
-                                            {/* <div className="modalLink">
-                                                <input type="text" value={currentUrl} readOnly />
+                                            <div className="modalLink">
+                                                <input type="text" value={`${currentUrl.slice(0,40)}....`} readOnly />
                                                 <CopyToClipboard text={currentUrl}>
                                                     <button className={copied ? "button_1" : null} onClick={() => setIsCopied(true)}>{copied ? "Copied" : "Copy"}</button>
                                                 </CopyToClipboard>
-                                            </div> */}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
