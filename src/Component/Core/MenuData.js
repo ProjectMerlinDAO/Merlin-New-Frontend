@@ -69,16 +69,16 @@ const Data = [
       },
     ],
   },
-  {
-    title: "Profile",
-    src: "/assets/images/menuIcons/user.svg",
-    url: "/member-profile",
-  },
-  {
-    title: "Airdrop",
-    src: "/assets/images/menuIcons/money.svg",
-    url: "airdrop",
-  }
+  // {
+  //   title: "Profile",
+  //   src: "/assets/images/menuIcons/user.svg",
+  //   url: "/member-profile",
+  // },
+  // {
+  //   title: "Airdrop",
+  //   src: "/assets/images/menuIcons/money.svg",
+  //   url: "airdrop",
+  // }
 ];
 
 export default Data;

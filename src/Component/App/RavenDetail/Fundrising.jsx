@@ -1,10 +1,15 @@
 import React from 'react'
 import FundrisingTimer from './FundrisingTimer'
 import Image from 'next/image'
+import { toast } from 'react-toastify'
 
-const Fundrising = ({timer, goal, isOpen,setIsOpen}) => {
+const Fundrising = ({timer, goal, isOpen,setIsOpen, wallet}) => {
   const mrlnTokenPrice = 0.5 //(1 mrlnToken == 0.5 USDT);
   const openModal = () => {
+    if(!wallet){
+      toast.error("Please connect wallet");
+      return;
+    }
     setIsOpen(true);
   }
   return (

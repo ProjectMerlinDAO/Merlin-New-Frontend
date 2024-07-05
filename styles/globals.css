@@ -17,7 +17,7 @@ body {
 }
 
 .app-home-wrapper {
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   padding-left: 285px;
   width: 100%;
   transition: 0.2s;
@@ -1265,13 +1265,13 @@ textarea.no-outline:focus-visible {
   position: relative;
 }
 .modalLink input{
-  color: #000;
-  border: 1px solid #12CFA7;
+  border: 1px solid #4a504f;
   width: 100%;
   position: relative;
   height: 45px;
     padding: 0px 25px;
     border-radius: 20px;
+    background: #43474e9e;
   
 }
 .modalLink button{

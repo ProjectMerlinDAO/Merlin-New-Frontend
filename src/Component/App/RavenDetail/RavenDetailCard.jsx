@@ -11,8 +11,10 @@ import Link from 'next/link'
 import axios from 'axios'
 import ShareModal from '../../Core/Modals/shareModal'
 import PaymentModal from '../../Core/Modals/paymentModal'
+import { useWallet } from '@solana/wallet-adapter-react'
 
 const RavenDetailCard = ({ isSidebarVisible, id }) => {
+    const { publicKey } = useWallet();
     const [isOpen, setIsOpen] = useState(false);
     const [isPayment, setIsPayment] = useState(false);
     const stickyRef = useStickyBox({ offsetTop: 20, offsetBottom: 20 })
@@ -36,7 +38,7 @@ const RavenDetailCard = ({ isSidebarVisible, id }) => {
     return (
         <>
             <ShareModal isOpen={isOpen} setIsOpen={setIsOpen} />
-            <PaymentModal isOpen={isPayment} setIsOpen={setIsPayment} />
+            <PaymentModal isOpen={isPayment} setIsOpen={setIsPayment} publicKey={publicKey} />
             <div className="pt-[110px] relative bg-no-repeat position-top bg-contain" style={{ backgroundImage: 'url(./assets/images/bg/sub-bg.png)', backgroundSize: '100% 388px' }}>
                 <div className={`app-home-wrapper mt-[-70px] lg:mt-[0px]  ${isSidebarVisible ? "sidebar-visible" : "sidebar-hidden"}`}>
                     <div className="px-[20px] md:px-[10px] max-w-[1365px] mx-auto lg:max-w-[720px]">
@@ -71,7 +73,7 @@ const RavenDetailCard = ({ isSidebarVisible, id }) => {
                                         </div>
                                     </div>
                                     <aside ref={stickyRef} className="w-[35%] px-[15px] lg:w-full raven-detail-right">
-                                        <Fundrising timer={detail?.endDate} goal={detail?.projectGoal} isOpen={isPayment} setIsOpen={setIsPayment} />
+                                        <Fundrising timer={detail?.endDate} goal={detail?.projectGoal} isOpen={isPayment} setIsOpen={setIsPayment} wallet={publicKey} />
                                         <ProposalInfoCard detail={detail}/>
                                         <LikeShareCard id={id} like={detail?.like} dislike={detail?.dislike} fetch={fetchDetails} isOpen={isOpen} setIsOpen={setIsOpen} />
                                     </aside>

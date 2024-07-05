@@ -10,7 +10,7 @@ import Categories from "./Categories";
 import Cost from "./Cost";
 import PreviewCard from "./PreviewCard";
 import { useStickyBox } from "react-sticky-box";
-import { useAccount } from "wagmi";
+// import { useAccount } from "wagmi";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Loader from "../../Core/Loader/Loader";
@@ -18,7 +18,7 @@ import { useRouter } from 'next/router';
 import { useWallet } from "@solana/wallet-adapter-react";
 
 const CreateRavenMessageCard = ({ isSidebarVisible }) => {
-  const { address } = useAccount();
+  // const { address } = useAccount();
   const { publicKey } = useWallet();
   const router = useRouter();
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
@@ -211,14 +211,14 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
     calculateCost();
   }, [data.categories]);
 
-  useEffect(() => {
-    if (address) {
-      setData((prevData) => ({
-        ...prevData,
-        walletAddress: address,
-      }));
-    }
-  }, [address]);
+  // useEffect(() => {
+  //   if (address) {
+  //     setData((prevData) => ({
+  //       ...prevData,
+  //       walletAddress: address,
+  //     }));
+  //   }
+  // }, [address]);
   console.log(data, "DATA");
   console.log(errors, "ERRORS");
   return (

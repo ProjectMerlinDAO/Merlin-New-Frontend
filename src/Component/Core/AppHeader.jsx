@@ -3,46 +3,45 @@ import React, { useEffect, useState } from "react";
 import MenuData from "./MenuData";
 import Link from "next/link";
 import SignInPopup from "../App/Auth/SignInPopup";
-import { useAccount } from "wagmi";
-import { useWeb3Modal } from "@web3modal/wagmi/react";
+// import { useAccount } from "wagmi";
+// import { useWeb3Modal } from "@web3modal/wagmi/react";
 import { useWallet } from "@solana/wallet-adapter-react";
 import axios from "axios";
+import Example from "./Modals/dropdown";
 
 const AppHeader = ({ isSidebarVisible }) => {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-  const { open } = useWeb3Modal();
+  // const { open } = useWeb3Modal();
   const { publicKey, disconnect } = useWallet();
-  const { address } = useAccount();
+  // const { address } = useAccount();
   const [isOpen, setIsOpen] = useState(false);
-  console.log(publicKey?.toBase58(),"PUBLIC KEY")
+  console.log(publicKey?.toBase58(), "PUBLIC KEY")
   const handleSignin = () => {
-    if (address) {
-      open();
-    } else {
-      setIsOpen(true);
-    }
+    // if (address) {
+    // open();
+    // } else {
+    setIsOpen(true);
   }
+
   const handleDisconnect = () => {
     disconnect();
   }
   const handleClick = () => {
-    if (publicKey) {
-      handleDisconnect();
-    } else {
+    if (!publicKey) {
       handleSignin();
     }
   };
-  const userDetails = async() => {
+  const userDetails = async () => {
     const user = await axios.post(`${baseUrl}/user/register`, {
       wallet: publicKey?.toBase58()
     })
     console.log(user)
   }
-  useEffect(() =>{
-    if(publicKey){
+  useEffect(() => {
+    if (publicKey) {
       userDetails();
     }
-  },[publicKey])
+  }, [publicKey])
   return (
     <>
       {isOpen ? <SignInPopup isOpen={isOpen} setIsOpen={setIsOpen} /> : null}
@@ -113,34 +112,33 @@ const AppHeader = ({ isSidebarVisible }) => {
                     </span>
                   </a>
                 </li>
-                <li>
-                  <a
-                    href="#"
-                    onClick={handleClick}
-                    className="flex btn-has-shape items-center justify-center hov-btn rounded-full gap-[8px] connect-btn bg-12CFA7 h-[50px] w-[170px] sm:w-[140px] bg-[#12CFA7] text-white text-center  font-[600] text-[16px] sm:text[14px] uppercase quantico"
-                  >
-                    <Image
-                      src="/assets/images/icons/wallet.svg"
-                      alt="icon"
-                      width="20"
-                      height="20"
-                    />
-                    <span className="btn-hov-text">
-                      <span className="btn-text">
-                        {/* {address
-                          ? address.slice(0, 2) + "...." + address.slice(-5)
-                          : "Connect"} */}
-                        {publicKey ? publicKey.toBase58().slice(0, 2) + "...." + publicKey.toBase58().slice(-5) : "Connect"}
+                {publicKey ?
+                  (<li>
+                    <Example wallet={publicKey} handleDisconnect={handleDisconnect} />
+                  </li>) :
+                  (<li>
+                    <a
+                      href="#"
+                      onClick={handleClick}
+                      className="flex btn-has-shape items-center justify-center hov-btn rounded-full gap-[8px] connect-btn bg-12CFA7 h-[50px] w-[170px] sm:w-[140px] bg-[#12CFA7] text-white text-center  font-[600] text-[16px] sm:text[14px] uppercase quantico"
+                    >
+                      <Image
+                        src="/assets/images/icons/wallet.svg"
+                        alt="icon"
+                        width="20"
+                        height="20"
+                      />
+                      <span className="btn-hov-text">
+                        <span className="btn-text">
+                          Connect
+                        </span>
+                        <span className="btn-text">
+                          Connect
+                        </span>
                       </span>
-                      <span className="btn-text">
-                        {/* {address
-                          ? address.slice(0, 2) + "...." + address.slice(-5)
-                          : "Connect"} */}
-                        {publicKey ? publicKey.toBase58().slice(0, 2) + "...." + publicKey.toBase58().slice(-5) : "Connect"}
-                      </span>
-                    </span>
-                  </a>
-                </li>
+                    </a>
+                  </li>)
+                }
               </ul>
             </div>
           </div>
