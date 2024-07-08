@@ -27,8 +27,10 @@ const PaymentModal = ({ isOpen, setIsOpen }) => {
             if (publicKey) {
                 setProgress(true);
                 const connection = new Connection(clusterApiUrl('devnet'));
+                console.log(connection,"TEST CONNECTION")
                 // Fetch the recent blockhash
                 const { blockhash, lastValidBlockHeight } = await connection.getLatestBlockhash();
+                console.log(blockhash,"TEST BlockhASH")
                 const transaction = new Transaction({
                     blockhash,
                     lastValidBlockHeight,
@@ -40,11 +42,11 @@ const PaymentModal = ({ isOpen, setIsOpen }) => {
                         lamports: Number(amt) * LAMPORTS_PER_SOL
                     }),
                 );
-                console.log("first")
+                console.log(transaction, "TEST TRNASACTION")
                 const signedTransaction = await signTransaction(transaction);
-                console.log("two")
+                console.log(signedTransaction,"TEST SIGNED ")
                 const signature = await sendAndConfirmRawTransaction(connection, signedTransaction.serialize(), "finalized");
-                console.log(signature, "signature");
+                console.log(signature, "TEST sIGN");
                 if(signature){
                     setProgress(false);
                     handleClose();
