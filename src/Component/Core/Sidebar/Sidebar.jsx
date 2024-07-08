@@ -115,7 +115,7 @@ const Sidebar = ({ isSidebarVisible, setIsSidebarVisible }) => {
           const submenu = item.parentNode.querySelector(".submenu");
           submenu.classList.toggle("active");
 
-          // Remove "active" class from sibling submenus
+          // Remove "active" className from sibling submenus
           const siblings = Array.from(item.parentNode.parentNode.children);
           siblings.forEach((sibling) => {
             if (
@@ -148,11 +148,11 @@ const Sidebar = ({ isSidebarVisible, setIsSidebarVisible }) => {
           <div className="flex fixed top-[93px] items-center justify-center">
             <div className="flex flex-col items-center w-6 h-6">
               <div
-                class="h-3 w-1 rounded-full duration-200"
+                className="h-3 w-1 rounded-full duration-200"
                 style={togglerUpStyle}
               ></div>
               <div
-                class="h-3 w-1 rounded-full duration-200"
+                className="h-3 w-1 rounded-full duration-200"
                 style={togglerDownStyle}
               ></div>
             </div>

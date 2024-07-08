@@ -43,7 +43,7 @@ const RavenUploadImg = ({image, setImage, errors}) => {
           
         />
       </div>
-      {errors && Object.keys(errors).length > 0  && errors?.hasOwnProperty("avatarImage")? <div class="error-message">{errors["avatarImage"]}</div> : null}
+      {errors && Object.keys(errors).length > 0  && errors?.hasOwnProperty("avatarImage")? <div className="error-message">{errors["avatarImage"]}</div> : null}
     </div>
   )
 }

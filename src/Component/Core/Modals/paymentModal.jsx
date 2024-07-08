@@ -40,7 +40,9 @@ const PaymentModal = ({ isOpen, setIsOpen }) => {
                         lamports: Number(amt) * LAMPORTS_PER_SOL
                     }),
                 );
+                console.log("first")
                 const signedTransaction = await signTransaction(transaction);
+                console.log("two")
                 const signature = await sendAndConfirmRawTransaction(connection, signedTransaction.serialize(), "finalized");
                 console.log(signature, "signature");
                 if(signature){

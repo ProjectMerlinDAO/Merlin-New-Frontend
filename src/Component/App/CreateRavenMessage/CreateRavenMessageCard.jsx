@@ -370,7 +370,7 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
                     errors &&
                     Object.keys(errors).length > 0 &&
                     errors?.hasOwnProperty("checkbox") ? (
-                      <div class="error-message">{errors["checkbox"]}</div>
+                      <div className="error-message">{errors["checkbox"]}</div>
                     ) : null}
                     <button
                       onClick={handleSubmit}

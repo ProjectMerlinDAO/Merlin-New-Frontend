@@ -36,7 +36,7 @@ export default function App({ Component, pageProps }) {
       <WalletProvider wallets={wallets} autoConnect>
         <WalletModalProvider>
       {/* <Web3ModalProvider> */}
-        <Component {...pageProps} suppressHydrationWarning />
+        <Component {...pageProps}  />
       {/* </Web3ModalProvider> */}
       </WalletModalProvider >
       </WalletProvider >

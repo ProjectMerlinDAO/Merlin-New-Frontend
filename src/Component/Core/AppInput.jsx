@@ -10,7 +10,7 @@ const AppInput = ({inputTitle, inputPlaceholder, inputType, inputSubTitle,name,o
             name={name}
             onChange={onChange}
          />
-         {errors && Object.keys(errors).length > 0  && errors?.hasOwnProperty(name)? <div class="error-message">{errors[name]}</div> : null}
+         {errors && Object.keys(errors).length > 0  && errors?.hasOwnProperty(name)? <div className="error-message">{errors[name]}</div> : null}
         
     </div>
   )
