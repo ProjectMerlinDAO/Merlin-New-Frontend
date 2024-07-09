@@ -14,9 +14,13 @@ import PaymentModal from '../../Core/Modals/paymentModal'
 import { useWallet } from '@solana/wallet-adapter-react'
 
 const RavenDetailCard = ({ isSidebarVisible, id }) => {
+    const baseurl = process.env.NEXT_PUBLIC_BASE_URL;
     const { publicKey } = useWallet();
     const [isOpen, setIsOpen] = useState(false);
     const [isPayment, setIsPayment] = useState(false);
+    const [page, setPage] = useState(1);
+    const [transactions, setTransactions] = useState();
+    const [pageCount, setPageCount] = useState(0);
     const stickyRef = useStickyBox({ offsetTop: 20, offsetBottom: 20 })
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
     const [detail, setDetail] = useState();
@@ -25,11 +29,34 @@ const RavenDetailCard = ({ isSidebarVisible, id }) => {
             const details = await axios.get(`${baseUrl}/raven/fetch-raven/${id}`);
             if (details.status === 200 && details.data.msg === "Raven message fetched successfully!!") {
                 setDetail(details.data.ravenMsg);
+                
             }
         } catch (error) {
             console.log(error)
         }
     }
+
+    const fetchTransactions = async (id) => {
+        try {
+            const data = await axios.post(`${baseurl}/solana/fetchTransactions`, {
+                id,
+                page
+            });
+            console.log(data?.data?.count, "DDDATATAATAT")
+            if (data?.data?.transactions) {
+                setTransactions(data?.data?.transactions)
+                setPageCount(data?.data?.count)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    useEffect(() => {
+        if(id){
+        fetchTransactions(id);
+        }
+    }, [page,id])
+
     useEffect(() => {
         if (id) {
             fetchDetails()
@@ -38,7 +65,7 @@ const RavenDetailCard = ({ isSidebarVisible, id }) => {
     return (
         <>
             <ShareModal isOpen={isOpen} setIsOpen={setIsOpen} />
-            <PaymentModal isOpen={isPayment} setIsOpen={setIsPayment} publicKey={publicKey} />
+            <PaymentModal isOpen={isPayment} setIsOpen={setIsPayment} publicKey={publicKey} id={id} />
             <div className="pt-[110px] relative bg-no-repeat position-top bg-contain" style={{ backgroundImage: 'url(./assets/images/bg/sub-bg.png)', backgroundSize: '100% 388px' }}>
                 <div className={`app-home-wrapper mt-[-70px] lg:mt-[0px]  ${isSidebarVisible ? "sidebar-visible" : "sidebar-hidden"}`}>
                     <div className="px-[20px] md:px-[10px] max-w-[1365px] mx-auto lg:max-w-[720px]">
@@ -64,17 +91,17 @@ const RavenDetailCard = ({ isSidebarVisible, id }) => {
                                                     <p className='xsm:mt-[58px] 2xsm:mt-[20px]'>{detail?.shortBrief}</p>
                                                 </div>
                                             </div>
-                                            <p className='mb-[30px]'>{detail?.proposalDetail.slice(0,300)}</p>
+                                            <p className='mb-[30px]'>{detail?.proposalDetail.slice(0, 300)}</p>
                                             <RavenDetailVideo url={detail?.videoLink} />
-                                            <p className='mb-[30px]'>{detail?.proposalDetail.slice(301,400)}</p>
+                                            <p className='mb-[30px]'>{detail?.proposalDetail.slice(301, 400)}</p>
                                             {/* <p className='mb-[30px]'>These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled.</p> */}
                                             <RavenImages images={detail?.images} />
-                                            <TransactionLogs />
+                                            <TransactionLogs transactions={transactions} page={page} pageCount={pageCount} setPage={setPage}/>
                                         </div>
                                     </div>
                                     <aside ref={stickyRef} className="w-[35%] px-[15px] lg:w-full raven-detail-right">
                                         <Fundrising timer={detail?.endDate} goal={detail?.projectGoal} isOpen={isPayment} setIsOpen={setIsPayment} wallet={publicKey} />
-                                        <ProposalInfoCard detail={detail}/>
+                                        <ProposalInfoCard detail={detail} />
                                         <LikeShareCard id={id} like={detail?.like} dislike={detail?.dislike} fetch={fetchDetails} isOpen={isOpen} setIsOpen={setIsOpen} />
                                     </aside>
                                 </div>

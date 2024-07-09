@@ -3,19 +3,21 @@ import { Dialog, DialogBackdrop, DialogPanel } from '@headlessui/react'
 import axios from 'axios';
 import QRCode from 'qrcode.react';
 import { useWallet } from '@solana/wallet-adapter-react';
-import { Transaction, SystemProgram, LAMPORTS_PER_SOL, PublicKey, Connection, clusterApiUrl, sendAndConfirmRawTransaction } from "@solana/web3.js";
+import { Transaction, SystemProgram, LAMPORTS_PER_SOL, PublicKey, Connection, clusterApiUrl, sendAndConfirmRawTransaction, VersionedTransaction } from "@solana/web3.js";
+import { toast } from 'react-toastify';
 
-const PaymentModal = ({ isOpen, setIsOpen }) => {
+const PaymentModal = ({ isOpen, setIsOpen, id }) => {
     const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
     const baseurl = process.env.NEXT_PUBLIC_BASE_URL;
     const merchantWallet = process.env.NEXT_PUBLIC_MERCHANT;
     const [open, setOpen] = useState(true);
     const [txId, setTxId] = useState("");
-    const[progress, setProgress] = useState(false);
+    const [progress, setProgress] = useState(false);
     const [txnStatus, setTxnStatus] = useState("pending");
     const [qrCodeData, setQrCodeData] = useState('');
     const [amt, setAmt] = useState(0);
-    const { publicKey, signTransaction } = useWallet();
+
+    const { publicKey, signTransaction, signMessage } = useWallet();
     // console.log(balance, "BALALA")
 
     const handleClose = () => {
@@ -27,10 +29,15 @@ const PaymentModal = ({ isOpen, setIsOpen }) => {
             if (publicKey) {
                 setProgress(true);
                 const connection = new Connection(clusterApiUrl('devnet'));
-                console.log(connection,"TEST CONNECTION")
+                try {
+                    const version = await connection.getVersion();
+                    console.log('Connection version:', version);
+                } catch (error) {
+                    console.error('Failed to connect to the Solana network:', error);
+                    return;
+                }
                 // Fetch the recent blockhash
                 const { blockhash, lastValidBlockHeight } = await connection.getLatestBlockhash();
-                console.log(blockhash,"TEST BlockhASH")
                 const transaction = new Transaction({
                     blockhash,
                     lastValidBlockHeight,
@@ -42,14 +49,22 @@ const PaymentModal = ({ isOpen, setIsOpen }) => {
                         lamports: Number(amt) * LAMPORTS_PER_SOL
                     }),
                 );
-                console.log(transaction, "TEST TRNASACTION")
+                // Check if the account has enough balance
+                const balance = await connection.getBalance(publicKey);
+                const requiredLamports = Number(amt) * LAMPORTS_PER_SOL;
+                if (balance < requiredLamports) {
+                    toast.error('Insufficient funds:', balance)
+                    return;
+                }
+                // Sign the transaction
                 const signedTransaction = await signTransaction(transaction);
-                console.log(signedTransaction,"TEST SIGNED ")
+                // Send the signed transaction
                 const signature = await sendAndConfirmRawTransaction(connection, signedTransaction.serialize(), "finalized");
-                console.log(signature, "TEST sIGN");
-                if(signature){
+                if (signature) {
                     setProgress(false);
+                    registerTransaction()
                     handleClose();
+                    toast.success("Transaction Success!!!")
                 }
             }
         } catch (error) {
@@ -57,7 +72,20 @@ const PaymentModal = ({ isOpen, setIsOpen }) => {
             setProgress(false)
         }
     }
- 
+    const registerTransaction = async () => {
+        try {
+            if (id) {
+                const data = await axios.post(`${baseurl}/solana/processOrder`, {
+                    customerWallet: publicKey,
+                    amount: amt,
+                    id: id
+                })
+                console.log(data, "DATA")
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
     return (
         <>
             {isOpen &&
@@ -95,7 +123,7 @@ const PaymentModal = ({ isOpen, setIsOpen }) => {
                                                 </div>
                                                 <div className="modalLink">
                                                     <input type="text" value={amt == 0 ? null : amt} onChange={(e) => setAmt(e.target.value)} />
-                                                    <button onClick={handlePayment}>{progress ? "Processing...":"Payment"}</button>
+                                                    <button onClick={handlePayment}>{progress ? "Processing..." : "Payment"}</button>
                                                 </div>
                                             </div>
                                         }
