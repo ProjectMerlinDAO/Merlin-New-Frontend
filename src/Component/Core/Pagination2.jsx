@@ -20,7 +20,7 @@ const Pagination2 = ({ totalPages, page, setPage }) => {
             <div onClick={handlePrevious} className='cursor-pointer flex items-center justify-center rounded-[12px] sm:rounded-[8px] h-[40px] w-[40px] sm:h-[30px] sm:w-[30px] bg-transparent border border-[#ffffff26] hover:bg-[#ffffff26] hover:text-[#12CFA7] duration-[0.4s]'><Image src="/assets/images/icons/pagination-arrow-left.svg" alt="icon" height="12" width="7" /></div>
           </li> : null
         }
-        {Array.from({ length: totalPages }).map((_, index) => (
+        {totalPages > 1 ?  Array.from({ length: totalPages }).map((_, index) => (
           <li key={index}>
             <div
               onClick={() => setPage(index + 1)}
@@ -29,7 +29,7 @@ const Pagination2 = ({ totalPages, page, setPage }) => {
               {index + 1}
             </div>
           </li>
-        ))}
+        )) : null}
 
         {page == totalPages ? null :
           <li>

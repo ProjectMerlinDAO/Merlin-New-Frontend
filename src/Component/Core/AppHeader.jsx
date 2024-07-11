@@ -32,7 +32,7 @@ const AppHeader = ({ isSidebarVisible }) => {
     }
   };
   const userDetails = async () => {
-    const user = await axios.post(`${baseUrl}/user/register`, {
+    const user = await axios.post(`${baseUrl}/user/details`, {
       wallet: publicKey?.toBase58()
     })
     console.log(user)

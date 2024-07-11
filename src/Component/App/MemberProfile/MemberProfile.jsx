@@ -7,7 +7,6 @@ import MemberProfileCard from "./MemberProfileCard";
 const MemberProfile = () => {
     const [isSidebarVisible, setIsSidebarVisible] = useState(true);
     const [contentStyle, setContentStyle] = useState({ marginLeft: "285px" });
-
     useEffect(() => {
         if (isSidebarVisible) {
             setContentStyle({
@@ -27,8 +26,6 @@ const MemberProfile = () => {
                 setIsSidebarVisible={setIsSidebarVisible}
             />
             <MemberProfileCard isSidebarVisible={isSidebarVisible}/>
-
-
             <AppFooter isSidebarVisible={isSidebarVisible} />
         </>
     )

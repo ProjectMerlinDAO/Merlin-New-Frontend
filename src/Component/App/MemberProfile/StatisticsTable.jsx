@@ -2,13 +2,13 @@ import React from 'react';
 
 const StatisticsTable = () => {
   const statistics = [
-    { label: 'Has become a Senator', value: '1' },
+    { label: 'Has become a Senator', value: '0' },
     { label: 'Has become an Editor', value: '0' },
     { label: 'Community Assessment', value: '0/0' },
     { label: 'Created Pre-proposals', value: '0/0' },
     { label: 'Senator Assessment', value: '0/0' },
-    { label: 'Vote', value: '20/5' },
-    { label: 'Raven Message', value: '3/5' },
+    { label: 'Vote', value: '0/0' },
+    { label: 'Raven Message', value: '0/0' },
   ];
 
   return (

@@ -14,6 +14,8 @@ import {
 } from "@solana/wallet-adapter-wallets";
 import { clusterApiUrl } from "@solana/web3.js";
 import { BackpackWalletAdapter } from "@solana/wallet-adapter-backpack";
+import { Provider } from "react-redux";
+import store from "@/src/redux/store";
 
 require("@solana/wallet-adapter-react-ui/styles.css");
 
@@ -32,6 +34,7 @@ export default function App({ Component, pageProps }) {
   );
   return (
     <>
+    <Provider store={store}>
      <ConnectionProvider endpoint={endpoint}>
       <WalletProvider wallets={wallets} autoConnect>
         <WalletModalProvider>
@@ -55,6 +58,7 @@ export default function App({ Component, pageProps }) {
         pauseOnHover
         theme="light"
       />
+      </Provider>
     </>
   )
 }

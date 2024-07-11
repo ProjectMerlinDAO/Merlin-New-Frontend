@@ -4,7 +4,7 @@ import Image from 'next/image';
 import CategoriesDropdown from '../../Core/CategoriesDropdown';
 import StampsDropdown from '../../Core/StampsDropdown';
 import axios from 'axios';
-
+import { useRouter } from 'next/router';
 const crystalData = [
     {
         imgSrc: "/assets/images/img/cave4.png",
@@ -81,7 +81,7 @@ const OracleSelection = () => {
     const [oracleList, setOracleList] = useState();
     const [category, setCategory] = useState("all");
     const [stamp, setStamp] = useState("Stamps");
-
+     const {router} = useRouter()
     const handleOracle = async () => {
         try {
             const url = `category=${category}`
@@ -93,10 +93,21 @@ const OracleSelection = () => {
             console.log(error)
         }
     }
+    const handleClick = (id) => {
+        console.log("first")
+        router.push({
+          pathname: "/raven-detail",
+          query: {
+            id: id,
+          },
+        });
+      };
+
     useEffect(() => {
         handleOracle();
     }, [])  
-    console.log(stamp,"STAMP")
+
+    console.log(oracleList,"list");
     return (
         <div className='rounded-[40px] backdrop-blur-[15px] p-[60px] 2xl:py-[35px] 2xl:px-[25px] xl:px-[20px]' style={{ background: 'linear-gradient(178deg, rgba(255, 255, 255, 0.05) 2.04%, rgba(255, 255, 255, 0.01) 97.96%)' }}>
             <div className="flex items-end justify-between gap-[4%] flex-wrap mb-[30px] xl:mb-[15px]">
@@ -129,9 +140,9 @@ const OracleSelection = () => {
                     </ul>
                     {oracleList ? (
                         oracleList.map((data, index) => (
-                            <ul key={index} className={`rounded-[20px] mb-[15px] relative crystal-table-row backdrop-blur-[10px] py-[15px] flex items-center justify-between`} style={{ background: 'linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 50%, rgba(255, 255, 255, 0.08) 100%)', zIndex: crystalData.length - index }}>
+                            <ul key={index} className={`cursor-pointer rounded-[20px] mb-[15px] relative crystal-table-row backdrop-blur-[10px] py-[15px] flex items-center justify-between`} style={{ background: 'linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 50%, rgba(255, 255, 255, 0.08) 100%)', zIndex: crystalData.length - index }}>
                                 <li className="w-[40%] px-[15px] xl:pr-[5px]">
-                                    <div className="flex items-center justify-start">
+                                    <div className="flex items-center justify-start" onClick={() => handleClick(data?._id)}>
                                         <div className="min-h-[60px] min-w-[60px] max-h-[60px] max-w-[60px] rounded-[15px] overflow-hidden">
                                             <Image src={data.avatarImage} alt="Avatar" className="object-cover w-full h-full" width="60" height="60" />
                                         </div>
@@ -171,7 +182,7 @@ const OracleSelection = () => {
                                 </li>
                                 <li className="px-[15px] w-[15%] relative z-[999]">
                                     <div className='w-full justify-end flex'>
-                                        <StampsDropdown stamp={stamp} setStamp={setStamp} />
+                                        <StampsDropdown stamp={stamp} setStamp={setStamp} id={data._id} image={data.avatarImage} code={data.code} />
                                     </div>
                                 </li>
                             </ul>

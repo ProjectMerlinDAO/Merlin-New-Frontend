@@ -1,157 +1,12 @@
 import React from 'react';
 import OracalCard from './OracalCard';
 import Pagination from '../../Core/Pagination';
+import { useSelector } from 'react-redux';
 
 
 const Oracle = () => {
-    // Define an array of data for OracalCard components
-    const cardsData = [
-        {
-            messageCode: "#A00041",
-            oracalImg: "/assets/images/img/cave7.png",
-            title: "I want to plant 10 million trees",
-            oracalParagraph: "Get funds for your project by creating a Raven message. Send us details of your proposal to publish it."
-        },
-        {
-            messageCode: "#A00089",
-            oracalImg: "/assets/images/img/cave5.png",
-            title: "Support renewable energy in rural areas",
-            oracalParagraph: "Contribute to the adoption of renewable energy sources in underserved communities. Join us in making a difference."
-        },
-        {
-            messageCode: "#A00015",
-            oracalImg: "/assets/images/img/cave1.png",
-            title: "Empower women through education",
-            oracalParagraph: "Promote gender equality and empower women and girls through access to quality education. Together, we can create a brighter future for all."
-        },
-        {
-            messageCode: "#A00088",
-            oracalImg: "/assets/images/img/cave9.png",
-            title: "Combatting climate change with sustainable agriculture",
-            oracalParagraph: "Implement sustainable agricultural practices to mitigate the effects of climate change and ensure food security for future generations."
-        },
-        {
-            messageCode: "#A00056",
-            oracalImg: "/assets/images/img/cave2.png",
-            title: "Protecting endangered species habitats",
-            oracalParagraph: "Preserve habitats and protect endangered species from extinction. Your support can make a difference in conservation efforts worldwide."
-        },
-        {
-            messageCode: "#A00022",
-            oracalImg: "/assets/images/img/cave8.png",
-            title: "Clean water for all",
-            oracalParagraph: "Provide access to clean and safe drinking water for communities in need. Together, we can ensure that everyone has the basic necessity of life."
-        },
-        {
-            messageCode: "#A00077",
-            oracalImg: "/assets/images/img/cave10.png",
-            title: "Promoting sustainable transportation",
-            oracalParagraph: "Invest in sustainable transportation infrastructure to reduce carbon emissions and improve air quality in urban areas. Join us in building a greener future."
-        },
-        {
-            messageCode: "#A00010",
-            oracalImg: "/assets/images/img/cave3.png",
-            title: "Ending hunger in impoverished communities",
-            oracalParagraph: "Combat food insecurity and malnutrition by supporting initiatives that provide sustainable solutions to hunger. Together, we can create a world without hunger."
-        },
-        {
-            messageCode: "#A00099",
-            oracalImg: "/assets/images/img/cave6.png",
-            title: "Promoting mental health awareness",
-            oracalParagraph: "Raise awareness about mental health issues and advocate for access to mental health services and support for those in need. Let's break the stigma surrounding mental illness."
-        },
-        {
-            messageCode: "#A00072",
-            oracalImg: "/assets/images/img/cave4.png",
-            title: "Empowering youth through sports",
-            oracalParagraph: "Promote youth development and social inclusion through sports programs. Let's empower the next generation to reach their full potential both on and off the field."
-        }
-    ];
-    const cardsData2 = [
-        {
-            messageCode: "#A00077",
-            oracalImg: "/assets/images/img/cave10.png",
-            title: "Promoting sustainable transportation",
-            oracalParagraph: "Invest in sustainable transportation infrastructure to reduce carbon emissions and improve air quality in urban areas. Join us in building a greener future."
-        },
-        {
-            messageCode: "#A00010",
-            oracalImg: "/assets/images/img/cave3.png",
-            title: "Ending hunger in impoverished communities",
-            oracalParagraph: "Combat food insecurity and malnutrition by supporting initiatives that provide sustainable solutions to hunger. Together, we can create a world without hunger."
-        },
-        {
-            messageCode: "#A00099",
-            oracalImg: "/assets/images/img/cave6.png",
-            title: "Promoting mental health awareness",
-            oracalParagraph: "Raise awareness about mental health issues and advocate for access to mental health services and support for those in need. Let's break the stigma surrounding mental illness."
-        },
-        {
-            messageCode: "#A00072",
-            oracalImg: "/assets/images/img/cave4.png",
-            title: "Empowering youth through sports",
-            oracalParagraph: "Promote youth development and social inclusion through sports programs. Let's empower the next generation to reach their full potential both on and off the field."
-        }
-    ];
-    const cardsData3 = [
-        {
-            messageCode: "#A00056",
-            oracalImg: "/assets/images/img/cave2.png",
-            title: "Protecting endangered species habitats",
-            oracalParagraph: "Preserve habitats and protect endangered species from extinction. Your support can make a difference in conservation efforts worldwide."
-        },
-        {
-            messageCode: "#A00022",
-            oracalImg: "/assets/images/img/cave8.png",
-            title: "Clean water for all",
-            oracalParagraph: "Provide access to clean and safe drinking water for communities in need. Together, we can ensure that everyone has the basic necessity of life."
-        },
-        {
-            messageCode: "#A00077",
-            oracalImg: "/assets/images/img/cave10.png",
-            title: "Promoting sustainable transportation",
-            oracalParagraph: "Invest in sustainable transportation infrastructure to reduce carbon emissions and improve air quality in urban areas. Join us in building a greener future."
-        },
-        {
-            messageCode: "#A00010",
-            oracalImg: "/assets/images/img/cave3.png",
-            title: "Ending hunger in impoverished communities",
-            oracalParagraph: "Combat food insecurity and malnutrition by supporting initiatives that provide sustainable solutions to hunger. Together, we can create a world without hunger."
-        },
-        {
-            messageCode: "#A00015",
-            oracalImg: "/assets/images/img/cave1.png",
-            title: "Empower women through education",
-            oracalParagraph: "Promote gender equality and empower women and girls through access to quality education. Together, we can create a brighter future for all."
-        },
-        {
-            messageCode: "#A00088",
-            oracalImg: "/assets/images/img/cave9.png",
-            title: "Combatting climate change with sustainable agriculture",
-            oracalParagraph: "Implement sustainable agricultural practices to mitigate the effects of climate change and ensure food security for future generations."
-        },
-    ];
-    const cardsData4 = [
-        {
-            messageCode: "#A00056",
-            oracalImg: "/assets/images/img/cave2.png",
-            title: "Protecting endangered species habitats",
-            oracalParagraph: "Preserve habitats and protect endangered species from extinction. Your support can make a difference in conservation efforts worldwide."
-        },
-        {
-            messageCode: "#A00022",
-            oracalImg: "/assets/images/img/cave8.png",
-            title: "Clean water for all",
-            oracalParagraph: "Provide access to clean and safe drinking water for communities in need. Together, we can ensure that everyone has the basic necessity of life."
-        },
-        {
-            messageCode: "#A00077",
-            oracalImg: "/assets/images/img/cave10.png",
-            title: "Promoting sustainable transportation",
-            oracalParagraph: "Invest in sustainable transportation infrastructure to reduce carbon emissions and improve air quality in urban areas. Join us in building a greener future."
-        },
-    ];
-
+    const data = useSelector((state) => state.oracleList.oracleList);
+    console.log(data,"LPLPPLPLP")
     return (
         <div className='rounded-[40px] backdrop-blur-[15px] overflow-hidden' style={{ background: 'linear-gradient(178deg, rgba(255, 255, 255, 0.05) 2.04%, rgba(255, 255, 255, 0.01) 97.96%)' }}>
             <div className='px-[60px] pt-[60px] 2xl:pt-[35px] 2xl:px-[25px] xl:px-[20px]'>            
@@ -166,16 +21,16 @@ const Oracle = () => {
                             <h3 className='font-[300] text-[18px] lexend text-[#0fe57ebb] uppercase text-center mb-[20px]'>Green Stamp</h3>
                             <ul>
                                 {/* Map through cardsData array and generate OracalCard components */}
-                                {cardsData.map((card, index) => (
-                                    <li key={index} className={index === cardsData.length - 1 ? 'mb-[15px]' : 'mb-[15px] last:mb-0'}>
+                                {data?.GreenStamp.length > 0 ? data.GreenStamp.map((card, index) => (
+                                    <li key={index} className={index === data?.GreenStamp - 1 ? 'mb-[15px]' : 'mb-[15px] last:mb-0'}>
                                         <OracalCard
-                                            messageCode={card.messageCode}
-                                            oracalImg={card.oracalImg}
-                                            title={card.title}
-                                            oracalParagraph={card.oracalParagraph}
+                                            messageCode={card.code}
+                                            oracalImg={card.image}
+                                            id={card.id}
+                                            
                                         />
                                     </li>
-                                ))}
+                                )) : "No data"}
                             </ul>
                         </div>
                     </div>
@@ -184,16 +39,15 @@ const Oracle = () => {
                             <h3 className='font-[300] text-[18px] lexend text-[#fbc70ad0] uppercase text-center mb-[20px]'>Yellow Stamp</h3>
                             <ul>
                                 {/* Map through cardsData2 array and generate OracalCard components */}
-                                {cardsData2.map((card, index) => (
-                                    <li key={index} className={index === cardsData2.length - 1 ? 'mb-[15px]' : 'mb-[15px] last:mb-0'}>
+                                {data.YellowStamp.length > 0 ?  data.YellowStamp.map((card, index) => (
+                                    <li key={index} className={index === data.YellowStamp.length - 1 ? 'mb-[15px]' : 'mb-[15px] last:mb-0'}>
                                         <OracalCard
-                                            messageCode={card.messageCode}
-                                            oracalImg={card.oracalImg}
-                                            title={card.title}
-                                            oracalParagraph={card.oracalParagraph}
+                                            messageCode={card.code}
+                                            oracalImg={card.image}
+                                            id={card.id}
                                         />
                                     </li>
-                                ))}
+                                )) : "No data"}
                             </ul>
                         </div>
                     </div>
@@ -202,16 +56,15 @@ const Oracle = () => {
                             <h3 className='font-[300] text-[18px] lexend text-[#158effc7] uppercase text-center mb-[20px]'>Blue Stamp</h3>
                             <ul>
                                 {/* Map through cardsData3 array and generate OracalCard components */}
-                                {cardsData3.map((card, index) => (
-                                    <li key={index} className={index === cardsData3.length - 1 ? 'mb-[15px]' : 'mb-[15px] last:mb-0'}>
+                                {data.BlueStamp.length > 0 ? data.BlueStamp.map((card, index) => (
+                                    <li key={index} className={index === data.BlueStamp.length - 1 ? 'mb-[15px]' : 'mb-[15px] last:mb-0'}>
                                         <OracalCard
-                                            messageCode={card.messageCode}
-                                            oracalImg={card.oracalImg}
-                                            title={card.title}
-                                            oracalParagraph={card.oracalParagraph}
+                                            messageCode={card.code}
+                                            oracalImg={card.image}
+                                            id={card.id}
                                         />
                                     </li>
-                                ))}
+                                )) : "No Data"}
                             </ul>
                         </div>
                     </div>
@@ -220,16 +73,15 @@ const Oracle = () => {
                             <h3 className='font-[300] text-[18px] lexend text-[#eb1a1acb] uppercase text-center mb-[20px]'>Red Stamp</h3>
                             <ul>
                                 {/* Map through cardsData4 array and generate OracalCard components */}
-                                {cardsData4.map((card, index) => (
-                                    <li key={index} className={index === cardsData4.length - 1 ? 'mb-[15px]' : 'mb-[15px] last:mb-0'}>
+                                {data?.RedStamp.length > 0 ? data.RedStamp.map((card, index) => (
+                                    <li key={index} className={index === data?.RedStamp.length - 1 ? 'mb-[15px]' : 'mb-[15px] last:mb-0'}>
                                         <OracalCard
-                                            messageCode={card.messageCode}
-                                            oracalImg={card.oracalImg}
-                                            title={card.title}
-                                            oracalParagraph={card.oracalParagraph}
+                                            messageCode={card.code}
+                                            oracalImg={card.image}
+                                            id={card.id}
                                         />
                                     </li>
-                                ))}
+                                )) : "No Data"}
                             </ul>
                         </div>
                     </div>

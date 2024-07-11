@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from 'react';
 
-const FundriseTimer = () => {
+const FundriseTimer = ({ endTime }) => {
   const calculateTimeLeft = () => {
-    const difference = +new Date("2024-08-16T00:00:00") - +new Date();
+    const currentTime = new Date().getTime();
+    const Endtime = new Date(endTime).getTime();
+    const diff = Endtime - currentTime;
     let timeLeft = {};
-
-    if (difference > 0) {
+    if (diff > 0) {
       timeLeft = {
-        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((difference / 1000 / 60) % 60),
-        seconds: Math.floor((difference / 1000) % 60)
-      };
+        days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((diff / 1000 / 60) % 60),
+        seconds: Math.floor((diff / 1000) % 60)
+      }
     } else {
       timeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0 };
     }
-
     return timeLeft;
   };
 
