@@ -79,21 +79,24 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
       }
     }
   };
-
+console.log(data.shortBrief.trim().length,"fbfgjsdgfugyufgwryufgyuwergf")
   const checkValidations = () => {
+    setErrors({});
     let isValidationsFailed = false;
     let newErrors = {};
     if (!data?.title || data.title.trim().length === 0) {
       isValidationsFailed = true;
       newErrors["title"] = "Title can't be empty";
     }
-    if (!data.shortBrief || data.shortBrief.trim().length === 0) {
+    if (data.shortBrief.trim().length === 0) {
+      console.log("errorrororororo1111111111111")
       isValidationsFailed = true;
       newErrors["shortBrief"] = "ShortBrief can't be empty!";
     }
-    if (data.shortBrief.length > 120) {
+    if (data.shortBrief.trim().length > 120) {
+        console.log("errorrororororo222222222222")
       isValidationsFailed = true;
-      newErrors["shortBrief"] = "Maximum length exceeds!";
+      newErrors["shortBrief"] = "Maximum length exceeds!!!!";
     }
     if (!data.proposalDetail || data.proposalDetail.trim().length === 0) {
       isValidationsFailed = true;
@@ -210,7 +213,6 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
   useEffect(() => {
     calculateCost();
   }, [data.categories]);
-
   // useEffect(() => {
   //   if (address) {
   //     setData((prevData) => ({
@@ -223,7 +225,6 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
   console.log(errors, "ERRORS");
   return (
     <>
-    
     <div
       className="pt-[110px] relative bg-no-repeat position-top bg-contain"
       style={{
@@ -231,7 +232,6 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
         backgroundSize: "100% 388px",
       }}
     >
-     
       <div
         className={`app-home-wrapper ${
           isSidebarVisible ? "sidebar-visible" : "sidebar-hidden"
@@ -279,7 +279,7 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
                           </span>
                           <br />
                           <span className="text-[14px] leading-[14px]">
-                            Ethereum
+                           {publicKey ? "Solana" : "Ethereum" }
                           </span>
                         </p>
                       </div>
@@ -305,6 +305,7 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
                         onChange={(e) => handleChange(e)}
                         name="shortBrief"
                         errors={errors}
+                        value={data.shortBrief}
                       />
                     </div>
                     <RavenUploadImg
@@ -393,7 +394,7 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
                   <PreviewCard
                     title={data.title}
                     goal={Number(data.projectGoal) * 0.5}
-                    img={data.avatarImage}
+                    img={uploadImages?.avatarImage}
                     category={data.categories}
                   />
                 </aside>

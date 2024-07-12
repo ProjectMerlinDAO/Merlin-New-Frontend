@@ -13,15 +13,12 @@ const PreviewCard = ({title,goal,img,category}) => {
         };
         reader.readAsDataURL(img);
     }
-      
     };
-    // const handleCategory = () => {
-    //     // for(let i=0; i<)
-    // }
-    
     useEffect(() => {
     handleImageUpload()
     },[img])
+
+    console.log(img,"vbhdfjhhj")
     return (
         <div classNAme="mt-[50px]">
             <label className="text-white uppercase">Preview</label>

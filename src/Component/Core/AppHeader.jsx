@@ -7,7 +7,7 @@ import SignInPopup from "../App/Auth/SignInPopup";
 // import { useWeb3Modal } from "@web3modal/wagmi/react";
 import { useWallet } from "@solana/wallet-adapter-react";
 import axios from "axios";
-import Example from "./Modals/dropdown";
+import Dropdown from "./Modals/dropdown";
 
 const AppHeader = ({ isSidebarVisible }) => {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
@@ -114,10 +114,10 @@ const AppHeader = ({ isSidebarVisible }) => {
                 </li>
                 {publicKey ?
                   (<li>
-                    <Example wallet={publicKey} handleDisconnect={handleDisconnect} />
+                    <Dropdown wallet={publicKey} handleDisconnect={handleDisconnect} />
                   </li>) :
                   (<li>
-                    <a
+                    <Link
                       href="#"
                       onClick={handleClick}
                       className="flex btn-has-shape items-center justify-center hov-btn rounded-full gap-[8px] connect-btn bg-12CFA7 h-[50px] w-[170px] sm:w-[140px] bg-[#12CFA7] text-white text-center  font-[600] text-[16px] sm:text[14px] uppercase quantico"
@@ -136,7 +136,7 @@ const AppHeader = ({ isSidebarVisible }) => {
                           Connect
                         </span>
                       </span>
-                    </a>
+                    </Link>
                   </li>)
                 }
               </ul>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import OracalCard from './OracalCard';
 import Pagination from '../../Core/Pagination';
 import { useSelector } from 'react-redux';
@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 
 const Oracle = () => {
     const data = useSelector((state) => state.oracleList.oracleList);
-    console.log(data,"LPLPPLPLP")
+    const [deleteList, setDeleteList] = useState([]);
     return (
         <div className='rounded-[40px] backdrop-blur-[15px] overflow-hidden' style={{ background: 'linear-gradient(178deg, rgba(255, 255, 255, 0.05) 2.04%, rgba(255, 255, 255, 0.01) 97.96%)' }}>
             <div className='px-[60px] pt-[60px] 2xl:pt-[35px] 2xl:px-[25px] xl:px-[20px]'>            
@@ -20,14 +20,14 @@ const Oracle = () => {
                         <div className="rounded-[20px] py-[30px] px-[20px] min-h-[923px] sm:min-h-[auto]" style={{ background: 'linear-gradient(180deg, rgba(15, 229, 127, 0.10) 0%, rgba(255, 255, 255, 0.01) 100%)' }}>
                             <h3 className='font-[300] text-[18px] lexend text-[#0fe57ebb] uppercase text-center mb-[20px]'>Green Stamp</h3>
                             <ul>
-                                {/* Map through cardsData array and generate OracalCard components */}
                                 {data?.GreenStamp.length > 0 ? data.GreenStamp.map((card, index) => (
                                     <li key={index} className={index === data?.GreenStamp - 1 ? 'mb-[15px]' : 'mb-[15px] last:mb-0'}>
                                         <OracalCard
                                             messageCode={card.code}
                                             oracalImg={card.image}
                                             id={card.id}
-                                            
+                                            deleteList={deleteList}
+                                            setDeleteList={setDeleteList}
                                         />
                                     </li>
                                 )) : "No data"}
@@ -38,13 +38,14 @@ const Oracle = () => {
                         <div className="rounded-[20px] py-[30px] px-[20px] min-h-[923px] sm:min-h-[auto]" style={{ background: 'linear-gradient(180deg, rgba(251, 198, 10, 0.10) 0%, rgba(255, 255, 255, 0.01) 100%)' }}>
                             <h3 className='font-[300] text-[18px] lexend text-[#fbc70ad0] uppercase text-center mb-[20px]'>Yellow Stamp</h3>
                             <ul>
-                                {/* Map through cardsData2 array and generate OracalCard components */}
                                 {data.YellowStamp.length > 0 ?  data.YellowStamp.map((card, index) => (
                                     <li key={index} className={index === data.YellowStamp.length - 1 ? 'mb-[15px]' : 'mb-[15px] last:mb-0'}>
                                         <OracalCard
                                             messageCode={card.code}
                                             oracalImg={card.image}
                                             id={card.id}
+                                            list={deleteList}
+                                            setList={setDeleteList}
                                         />
                                     </li>
                                 )) : "No data"}
@@ -55,7 +56,6 @@ const Oracle = () => {
                         <div className="rounded-[20px] py-[30px] px-[20px] min-h-[923px] sm:min-h-[auto]" style={{ background: 'linear-gradient(180deg, rgba(21, 143, 255, 0.10) 0%, rgba(255, 255, 255, 0.01) 100%)' }}>
                             <h3 className='font-[300] text-[18px] lexend text-[#158effc7] uppercase text-center mb-[20px]'>Blue Stamp</h3>
                             <ul>
-                                {/* Map through cardsData3 array and generate OracalCard components */}
                                 {data.BlueStamp.length > 0 ? data.BlueStamp.map((card, index) => (
                                     <li key={index} className={index === data.BlueStamp.length - 1 ? 'mb-[15px]' : 'mb-[15px] last:mb-0'}>
                                         <OracalCard
@@ -72,7 +72,6 @@ const Oracle = () => {
                         <div className="rounded-[20px] py-[30px] px-[20px] min-h-[923px] sm:min-h-[auto]" style={{ background: 'linear-gradient(180deg, rgba(235, 26, 26, 0.10) 0%, rgba(255, 255, 255, 0.01) 100%)' }}>
                             <h3 className='font-[300] text-[18px] lexend text-[#eb1a1acb] uppercase text-center mb-[20px]'>Red Stamp</h3>
                             <ul>
-                                {/* Map through cardsData4 array and generate OracalCard components */}
                                 {data?.RedStamp.length > 0 ? data.RedStamp.map((card, index) => (
                                     <li key={index} className={index === data?.RedStamp.length - 1 ? 'mb-[15px]' : 'mb-[15px] last:mb-0'}>
                                         <OracalCard

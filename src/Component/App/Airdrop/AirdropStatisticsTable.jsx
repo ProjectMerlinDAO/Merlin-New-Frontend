@@ -1,14 +1,14 @@
 import React from 'react'
 
 const statistics = [
-    { label: 'Incomplete Tasks:', value: '30' },
-    { label: 'Completed Tasks:', value: '25' },
-    { label: 'Total Earned Karma Points:', value: '4000' },
-    { label: 'Total Earned Merlin Tokens:', value: '1000' },
-    { label: 'Earned NFTs:', value: '2' },
-    { label: 'Total Referred People:', value: '20' },
-    { label: 'Total People Registered via Referral:', value: '15' },
-    { label: 'Karma Points Earned from Referrals:', value: '1000' },
+    { label: 'Incomplete Tasks:', value: '0' },
+    { label: 'Completed Tasks:', value: '0' },
+    { label: 'Total Earned Karma Points:', value: '0' },
+    { label: 'Total Earned Merlin Tokens:', value: '0' },
+    { label: 'Earned NFTs:', value: '0' },
+    { label: 'Total Referred People:', value: '0' },
+    { label: 'Total People Registered via Referral:', value: '0' },
+    { label: 'Karma Points Earned from Referrals:', value: '0' },
   ];
 
 const AirdropStatisticsTable = () => {

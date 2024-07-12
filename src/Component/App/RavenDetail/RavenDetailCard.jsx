@@ -66,10 +66,10 @@ const RavenDetailCard = ({ isSidebarVisible, id }) => {
         <>
             <ShareModal isOpen={isOpen} setIsOpen={setIsOpen} />
             <PaymentModal isOpen={isPayment} setIsOpen={setIsPayment} publicKey={publicKey} id={id} />
-            <div className="pt-[110px] relative bg-no-repeat position-top bg-contain" style={{ backgroundImage: 'url(./assets/images/bg/sub-bg.png)', backgroundSize: '100% 388px' }}>
+            <div className="pt-[110px]  bg-no-repeat position-top bg-contain" style={{ backgroundImage: 'url(./assets/images/bg/sub-bg.png)', backgroundSize: '100% 388px' }}>
                 <div className={`app-home-wrapper mt-[-70px] lg:mt-[0px]  ${isSidebarVisible ? "sidebar-visible" : "sidebar-hidden"}`}>
                     <div className="px-[20px] md:px-[10px] max-w-[1365px] mx-auto lg:max-w-[720px]">
-                        <ul className='flex items-center justify-start gap-[8px] uppercase relative pt-[5px] pl-[48px] z-[999]  mb-[30px] 2xl:text-[14px] xl:ml-[100px] lg:ml-[0px] md:flex-wrap'>
+                        <ul className='flex items-center justify-start gap-[8px] uppercase relative pt-[5px] pl-[48px]  mb-[30px] 2xl:text-[14px] xl:ml-[100px] lg:ml-[0px] md:flex-wrap'>
                             <li className='flex items-center justify-start gap-[8px] mr-10px ml-[-5px]'><Link href="/crystal-cave" className="flex absolute left-0 top-0"  ><Image src="/assets/images/icons/back-arrow.svg" alt="icon" height="40" width="40" /></Link></li>
                             <li className='flex items-center justify-start gap-[8px]'><a href="#" className="flex">app HOME  </a> . </li>
                             <li className='flex items-center justify-start gap-[8px]'><a href="#" className="flex">The Crystal Cave</a> . </li>

@@ -54,9 +54,9 @@ const ShareModal = ({ isOpen, setIsOpen }) => {
                                                 <WhatsappShareButton url={currentUrl ? currentUrl : ""} openShareDialogOnClick={true}>
                                                     <WhatsappIcon size={50} round />
                                                 </WhatsappShareButton>
-                                                <RedditShareButton url={currentUrl ? currentUrl : ""} openShareDialogOnClick={true}>
+                                                {/* <RedditShareButton url={currentUrl ? currentUrl : ""} openShareDialogOnClick={true}>
                                                     <RedditIcon size={50} round />
-                                                </RedditShareButton>
+                                                </RedditShareButton> */}
                                             </div>
                                             <div className="modalLink " style={{ maxWidth: "350px", margin: "0 auto" }}>
                                                 <input className='text-[#FFFFFF]' style={{ background: 'linear-gradient(90deg, rgba(18, 207, 167, 0.00) 0%, #12CFA7 100%)' }} type="text" value={`${currentUrl.slice(0, 29)}....`} readOnly />

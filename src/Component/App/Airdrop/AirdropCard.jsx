@@ -41,7 +41,7 @@ const AirdropCard = ({ isSidebarVisible }) => {
                                     <AirdropStatistics/>
 
                                     <div className="mt-[35px] lg:mt-[25px] md:mt-[15px] profile-form lg:mb-[40px]">
-                                        <label className="text-white uppercase">Eail address</label>
+                                        <label className="text-white uppercase">Email address</label>
                                         <form className="flex xsm:flex-wrap gap-[15px] mt-[15px]">
                                             <input type="email" placeholder="Enter your email address" className="px-[20px] py-[5px] bg-transparent text-white border-2 border-[rgba(255,255,255,0.12)] h-[60px] rounded-[18px] max-w-[418px] xsm:max-w-full w-full" />
                                             <a href='#' className='hov-btn bg-[#12CFA7] rounded-[15px] h-[58px] relative w-[170px] xsm:w-full flex items-center justify-center text-white text-center  font-[600] text-[16px] uppercase quantico'>
