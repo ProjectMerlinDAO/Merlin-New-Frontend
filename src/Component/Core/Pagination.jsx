@@ -2,7 +2,6 @@ import Image from 'next/image'
 import React from 'react'
 
 const Pagination = ({ page, pageCount, setPage }) => {
-  console.log(page, " PAGE ", pageCount, " PAGE Count ");
   const handleNextPage = () => {
     if (page < pageCount) {
       setPage((page) => page + 1); // Decrement page number by 1

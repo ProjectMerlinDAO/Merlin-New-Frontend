@@ -102,10 +102,10 @@ console.log(data.shortBrief.trim().length,"fbfgjsdgfugyufgwryufgyuwergf")
       isValidationsFailed = true;
       newErrors["proposalDetail"] = "Proposal Detail can't be empty!";
     }
-    if (!data.videoLink || data.videoLink.trim().length === 0) {
-      isValidationsFailed = true;
-      newErrors["videoLink"] = "Video Link can't be empty!";
-    }
+    // if (!data.videoLink || data.videoLink.trim().length === 0) {
+    //   isValidationsFailed = true;
+    //   newErrors["videoLink"] = "Video Link can't be empty!";
+    // }
     if (data.projectGoal <= 0) {
       isValidationsFailed = true;
       newErrors["projectGoal"] = "Please enter a valid amount!";
@@ -279,7 +279,7 @@ console.log(data.shortBrief.trim().length,"fbfgjsdgfugyufgwryufgyuwergf")
                           </span>
                           <br />
                           <span className="text-[14px] leading-[14px]">
-                           {publicKey ? "Solana" : "Ethereum" }
+                           {publicKey ? "Solana" : null }
                           </span>
                         </p>
                       </div>
