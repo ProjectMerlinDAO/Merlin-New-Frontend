@@ -40,7 +40,7 @@ const RavenDetailVideo = ({ url }) => {
   const handlePlayButtonClick = () => {
     setVideoPlaying(true);
   };
-  console.log(videoUrl,"URL")
+  // console.log(videoUrl,"URL")
   return (
     <>
       {url ? (

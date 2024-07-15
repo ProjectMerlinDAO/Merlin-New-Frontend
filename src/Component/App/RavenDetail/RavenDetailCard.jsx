@@ -42,7 +42,6 @@ const RavenDetailCard = ({ isSidebarVisible, id }) => {
                 id,
                 page
             });
-            console.log(data?.data?.count, "DDDATATAATAT")
             if (data?.data?.transactions) {
                 setTransactions(data?.data?.transactions)
                 setPageCount(data?.data?.count)
@@ -55,7 +54,7 @@ const RavenDetailCard = ({ isSidebarVisible, id }) => {
         if(id){
         fetchTransactions(id);
         }
-    }, [page,id])
+    }, [page,id,transactions])
 
     useEffect(() => {
         if (id) {
@@ -65,7 +64,7 @@ const RavenDetailCard = ({ isSidebarVisible, id }) => {
     return (
         <>
             <ShareModal isOpen={isOpen} setIsOpen={setIsOpen} />
-            <PaymentModal isOpen={isPayment} setIsOpen={setIsPayment} publicKey={publicKey} id={id} />
+            <PaymentModal isOpen={isPayment} setIsOpen={setIsPayment} publicKey={publicKey} id={id} fetchTransactions={fetchTransactions} page={page} />
             <div className="pt-[110px]  bg-no-repeat position-top bg-contain" style={{ backgroundImage: 'url(./assets/images/bg/sub-bg.png)', backgroundSize: '100% 388px' }}>
                 <div className={`app-home-wrapper mt-[-70px] lg:mt-[0px]  ${isSidebarVisible ? "sidebar-visible" : "sidebar-hidden"}`}>
                     <div className="px-[20px] md:px-[10px] max-w-[1365px] mx-auto lg:max-w-[720px]">

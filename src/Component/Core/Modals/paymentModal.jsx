@@ -6,7 +6,7 @@ import { useWallet } from '@solana/wallet-adapter-react';
 import { Transaction, SystemProgram, LAMPORTS_PER_SOL, PublicKey, Connection, clusterApiUrl, sendAndConfirmRawTransaction } from "@solana/web3.js";
 import { toast } from 'react-toastify';
 
-const PaymentModal = ({ isOpen, setIsOpen, id }) => {
+const PaymentModal = ({ isOpen, setIsOpen, id, fetchTransactions, page }) => {
     const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
     const baseurl = process.env.NEXT_PUBLIC_BASE_URL;
     const merchantWallet = process.env.NEXT_PUBLIC_MERCHANT;
@@ -80,7 +80,9 @@ const PaymentModal = ({ isOpen, setIsOpen, id }) => {
                     amount: amt,
                     id: id
                 })
-                console.log(data, "DATA")
+                if(data.status && data?.data?.txnId){
+                    fetchTransactions();
+                }
             }
         } catch (error) {
             console.log(error);

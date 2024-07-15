@@ -7,7 +7,7 @@ const RavenUploadImg = ({ image, setImage, errors }) => {
   const handleImageUpload = (e) => {
     const MAX_SIZE_BYTES = 10;
     const file = e.target.files[0];
-    const fileSizeInMB = file.size / (1024 * 1024);
+    const fileSizeInMB = file.size / (1000 * 1024);
     console.log(file.size, "file size", (fileSizeInMB))
     if (file) {
       if (fileSizeInMB > MAX_SIZE_BYTES) {
