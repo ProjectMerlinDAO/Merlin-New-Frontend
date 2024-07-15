@@ -32,7 +32,7 @@ const StampsDropdown = ({ stamp, setStamp, id, image, code }) => {
             {/* <ul className="dropdown-content z-[999] menu p-2 shadow bg-[#000000] rounded-box w-full absolute top-[50px] left-0"> */}
             <ul tabIndex={0} className="dropdown-content z-[999] menu p-2 shadow bg-[#000000] rounded-box w-full absolute top-[50px] left-0">
                 <li className='hover:bg-[#FFFFFF20] rounded-[4px] px-0'><div onClick={(e) => handleClick(e)} value="Green Stamp" className='px-[5px]' >Green Stamp</div></li>
-                <li className='hover:bg-[#FFFFFF20] rounded-[4px] px-0'><div onClick={(e) => handleClick(e)} value="Yellow Stamp" lassName='px-[5px]' >Yellow Stamp</div></li>
+                <li className='hover:bg-[#FFFFFF20] rounded-[4px] px-0'><div onClick={(e) => handleClick(e)} value="Yellow Stamp" className='px-[5px]' >Yellow Stamp</div></li>
                 <li className='hover:bg-[#FFFFFF20] rounded-[4px] px-0'><div onClick={(e) => handleClick(e)} value="Blue Stamp" className='px-[5px]' >Blue Stamp</div></li>
                 <li className='hover:bg-[#FFFFFF20] rounded-[4px] px-0'><div onClick={(e) => handleClick(e)} value="Red Stamp" className='px-[5px]' >Red Stamp</div></li>
             </ul>

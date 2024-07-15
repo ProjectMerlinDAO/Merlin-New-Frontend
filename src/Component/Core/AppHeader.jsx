@@ -45,13 +45,13 @@ const AppHeader = ({ isSidebarVisible }) => {
   return (
     <>
       {isOpen ? <SignInPopup isOpen={isOpen} setIsOpen={setIsOpen} /> : null}
-      <header className="absolute top-0 left-0 z-[999] flex items-center w-full h-[110px]">
+      <header className="absolute top-0 left-0 z-[555] flex items-center w-full h-[110px]">
         <div
           className={`app-home-wrapper ${isSidebarVisible ? "sidebar-visible" : "sidebar-hidden"
             }`}
         >
           <div className="px-[20px] md:px-[10px] max-w-[1365px] mx-auto lg:max-w-[720px] ">
-            <div className="flex items-center app-header-content relative z-[9999]">
+            <div className="flex items-center app-header-content relative z-[555]">
               <label
                 htmlFor="my-drawer"
                 className="hidden cursor-pointer drawer-button xl:block"
