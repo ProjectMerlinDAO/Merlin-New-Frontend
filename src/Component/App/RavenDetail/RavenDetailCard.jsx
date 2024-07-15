@@ -84,7 +84,7 @@ const RavenDetailCard = ({ isSidebarVisible, id }) => {
                                         <div className="max-w-[715px]">
                                             <div className="flex items-start justify-start gap-[25px] mb-[40px] md:mb-[30px] sm:mb-[20px]" >
                                                 <div className="min-h-[120px] min-w-[120px] max-h-[120px] sm:min-h-[80px] sm:min-w-[80px] xm:max-h-[80px] xm:max-w-[80px] xsm:absolute relative rounded-[20px] overflow-hidden">
-                                                    <Image src="/assets/images/img/raven-detail-img.png" alt="icon" fill={true} />
+                                                    <Image src={detail?.avatarImage} alt="icon" fill={true} />
                                                 </div>
                                                 <div className='text-white xsm:w-full'>
                                                     <h3 className='mb-[20px] md:mb-[15px] text-[40px] 2xl:text-[32px] lg:text-[26px] leading-[150%] xsm:pl-[100px]'>{detail ? detail.title : null}</h3>
