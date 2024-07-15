@@ -126,7 +126,7 @@ const MemberProfileCard = ({ isSidebarVisible }) => {
                                                 <Image src="/assets/images/coins/eth.png" alt="coin" fill={true} />
                                             </div>
                                             <p className="mb-0">
-                                                <span className='text-white leading-[16px]'>{publicKey && publicKey.toBase58().slice(0, 2) + "...." + publicKey.toBase58().slice(-5)}</span>
+                                                <span className='text-white leading-[16px]'>{publicKey && publicKey?.toBase58().slice(0, 2) + "...." + publicKey?.toBase58().slice(-5)}</span>
                                                 <br />
                                                 <span className='text-[14px] leading-[14px]'>Solana</span>
                                             </p>
