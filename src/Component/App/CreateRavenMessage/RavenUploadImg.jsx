@@ -2,12 +2,15 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import { toast } from 'react-toastify';
 
-const RavenUploadImg = ({image, setImage, errors}) => {
+const RavenUploadImg = ({ image, setImage, errors }) => {
   const [uploadedImage, setUploadedImage] = useState(null);
   const handleImageUpload = (e) => {
+    const MAX_SIZE_BYTES = 10;
     const file = e.target.files[0];
+    const fileSizeInMB = file.size / (1024 * 1024);
+    console.log(file.size, "file size", (fileSizeInMB))
     if (file) {
-      if(file.size > 10 * 1024 *1024){
+      if (fileSizeInMB > MAX_SIZE_BYTES) {
         toast.error("Image size is greater than 10mb");
         return
       }
@@ -26,7 +29,7 @@ const RavenUploadImg = ({image, setImage, errors}) => {
   return (
     <div className='mt-[40px] xl:mt-[30px]'>
       <label className='font-[400] uppercase text-white'>Raven Message Avatar Photo</label>
-      <div className="rounded-[18px] relative cursor-pointer bg-[#FFFFFF05] overflow-hidden h-[250px] p-[20px] w-full mt-[8px] md:mt-[4px] text-center flex items-center justify-center flex-col" style={{border: '2px dashed rgba(255, 255, 255, 0.12)'}}>
+      <div className="rounded-[18px] relative cursor-pointer bg-[#FFFFFF05] overflow-hidden h-[250px] p-[20px] w-full mt-[8px] md:mt-[4px] text-center flex items-center justify-center flex-col" style={{ border: '2px dashed rgba(255, 255, 255, 0.12)' }}>
         {uploadedImage ? (
           <Image src={uploadedImage} alt="Uploaded preview" fill={true} className="object-cover" />
         ) : (
@@ -40,10 +43,10 @@ const RavenUploadImg = ({image, setImage, errors}) => {
           accept="image/*"
           className='absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer'
           onChange={handleImageUpload}
-          
+
         />
       </div>
-      {errors && Object.keys(errors).length > 0  && errors?.hasOwnProperty("avatarImage")? <div className="error-message">{errors["avatarImage"]}</div> : null}
+      {errors && Object.keys(errors).length > 0 && errors?.hasOwnProperty("avatarImage") ? <div className="error-message">{errors["avatarImage"]}</div> : null}
     </div>
   )
 }

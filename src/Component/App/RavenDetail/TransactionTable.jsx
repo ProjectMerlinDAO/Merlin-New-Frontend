@@ -1,58 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
 
-const transactions = [
-  {
-    wallet: '0x95....7400',
-    period: '29 Aug, 24  02:03 (GMT+6)',
-    amount: '16.00 USDT (320.00 MRLN)',
-  },
-  {
-    wallet: '0x95....7400',
-    period: '29 Aug, 24 06:59 (GMT+6)',
-    amount: '5.00 USDT (100.00 MRLN)',
-  },
-  {
-    wallet: '0x95....7400',
-    period: '30 Aug, 24  12:45 (GMT+6)',
-    amount: '2.00 USDT (40.00 MRLN)',
-  },
-  {
-    wallet: '0x95....7400',
-    period: '01 Sep, 24 03:40 (GMT+6)',
-    amount: '130.00 USDT (2,600.00 MRLN)',
-  },
-  {
-    wallet: '0x95....7400',
-    period: '01 Sep, 24 09:59 (GMT+6)',
-    amount: '16.00 USDT (320.00 MRLN)',
-  },
-  {
-    wallet: '0x95....7400',
-    period: '03 Sep, 24 18:05 (GMT+6)',
-    amount: '5.00 USDT (100.00 MRLN)',
-  },
-  {
-    wallet: '0x95....7400',
-    period: '05 Sep, 24 02:59 (GMT+6)',
-    amount: '16.00 USDT (320.00 MRLN)',
-  },
-  {
-    wallet: '0x95....7400',
-    period: '05 Sep, 24 12:55 (GMT+6)',
-    amount: '2.00 USDT (40.00 MRLN)',
-  },
-  {
-    wallet: '0x95....7400',
-    period: '08 Sep, 24 18:08 (GMT+6)',
-    amount: '1500.00 USDT (30,000.00 MRLN)',
-  },
-  {
-    wallet: '0x95....7400',
-    period: '12 Sep, 24 03:00 (GMT+6)',
-    amount: '16.00 USDT (320.00 MRLN)',
-  },
-];
 
 const TransactionTable = ({list}) => {
   const options = {

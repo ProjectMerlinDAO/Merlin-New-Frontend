@@ -79,7 +79,6 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
       }
     }
   };
-console.log(data.shortBrief.trim().length,"fbfgjsdgfugyufgwryufgyuwergf")
   const checkValidations = () => {
     setErrors({});
     let isValidationsFailed = false;
@@ -89,12 +88,10 @@ console.log(data.shortBrief.trim().length,"fbfgjsdgfugyufgwryufgyuwergf")
       newErrors["title"] = "Title can't be empty";
     }
     if (data.shortBrief.trim().length === 0) {
-      console.log("errorrororororo1111111111111")
       isValidationsFailed = true;
       newErrors["shortBrief"] = "ShortBrief can't be empty!";
     }
     if (data.shortBrief.trim().length > 120) {
-        console.log("errorrororororo222222222222")
       isValidationsFailed = true;
       newErrors["shortBrief"] = "Maximum length exceeds!!!!";
     }
