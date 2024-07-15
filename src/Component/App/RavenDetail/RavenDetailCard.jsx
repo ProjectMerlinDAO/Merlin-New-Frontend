@@ -65,15 +65,15 @@ const RavenDetailCard = ({ isSidebarVisible, id }) => {
         <>
             <ShareModal isOpen={isOpen} setIsOpen={setIsOpen} />
             <PaymentModal isOpen={isPayment} setIsOpen={setIsPayment} publicKey={publicKey} id={id} fetchTransactions={fetchTransactions} page={page} />
-            <div className="pt-[110px]  bg-no-repeat position-top bg-contain" style={{ backgroundImage: 'url(./assets/images/bg/sub-bg.png)', backgroundSize: '100% 388px' }}>
-                <div className={`app-home-wrapper mt-[-70px] lg:mt-[0px]  ${isSidebarVisible ? "sidebar-visible" : "sidebar-hidden"}`}>
-                    <div className="px-[20px] md:px-[10px] max-w-[1365px] mx-auto lg:max-w-[720px]">
-                        <ul className='flex items-center justify-start gap-[8px] uppercase relative pt-[5px] pl-[48px]  mb-[30px] 2xl:text-[14px] xl:ml-[100px] lg:ml-[0px] md:flex-wrap'>
+            <div className="pt-[110px]  bg-no-repeat relative position-top bg-contain" style={{ backgroundImage: 'url(./assets/images/bg/sub-bg.png)', backgroundSize: '100% 388px' }}>
+                <div className={`app-home-wrapper lg:mt-[0px]  ${isSidebarVisible ? "sidebar-visible" : "sidebar-hidden"}`}>
+                    <div className="px-[20px] md:px-[10px] max-w-[1365px] mx-auto lg:max-w-[720px] relative  max-w-screen-2xl">
+                        <ul className='cursor-pointer flex items-cenetr  justify-start gap-[8px] mt-[-70px] uppercase absolute lg:mt-0 lg:static   pl-[48px] z-[99999] mb-[30px] 2xl:text-[14px] xl:ml-[100px] lg:ml-[0px] max-w-2xl md:flex-wrap'>
                             <li className='flex items-center justify-start gap-[8px] mr-10px ml-[-5px]'><Link href="/crystal-cave" className="flex absolute left-0 top-0"  ><Image src="/assets/images/icons/back-arrow.svg" alt="icon" height="40" width="40" /></Link></li>
-                            <li className='flex items-center justify-start gap-[8px]'><a href="#" className="flex">app HOME  </a> . </li>
-                            <li className='flex items-center justify-start gap-[8px]'><a href="#" className="flex">The Crystal Cave</a> . </li>
-                            <li className='flex items-center justify-start gap-[8px]'><a href="#" className="flex">Raven Message</a> . </li>
-                            <li className='flex items-center justify-start gap-[8px]'><a href="#" className="flex text-[#12CFA7]">{detail ? detail.code : null}</a></li>
+                            <li className='flex items-center justify-start gap-[8px]'><a href="#" className="flex cursor-pointer">app HOME  </a> . </li>
+                            <li className='flex items-center justify-start gap-[8px]'><a href="#" className="flex cursor-pointer">The Crystal Cave</a> . </li>
+                            <li className='flex items-center justify-start gap-[8px]'><a href="#" className="flex cursor-pointer">Raven Message</a> . </li>
+                            <li className='flex items-center justify-start gap-[8px]'><a href="#" className="flex cursor-pointer text-[#12CFA7]">{detail ? detail.code : null}</a></li>
                         </ul>
                         <div className="p-[60px] 2xl:py-[40px] 2xl:px-[20px] rounded-[40px] relative backdrop-blur-[15px] overflow-hidden" style={{ background: 'linear-gradient(178deg, rgba(255, 255, 255, 0.05) 2.04%, rgba(255, 255, 255, 0.01) 97.96%)' }}>
                             <Image src='/assets/images/shape/raven-detail-shape.png' fill={true} className='top-0 right-0 z-0 mt-[-30%] mr-[-15%]' />
