@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react'
 
 const cardData = [
@@ -25,7 +26,7 @@ const MissionVission = () => {
                     {cardData.map((card, index) => (
                         <div key={index} className="w-1/2 lg:w-full lg:mb-[30px] px-[15px]">
                             <div className="relative mission-vision-card overflow-hidden rounded-[30px] p-[40px] min-h-[390px] lg:min-h-[auto]" style={{ background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%)' }}>
-                                <div className={`absolute ${card.shapePosition} z-0 shape`}><img src={card.shape} alt={card.shapeAlt} /></div>
+                                <div className={`absolute ${card.shapePosition} z-0 shape`}><Image src={card.shape} alt={card.shapeAlt} /></div>
                                 <h3 className='text-white quantico text-[45px] xl:text-[32px] lg:-text-[36px] md:text-[28px] font-[700] leading-[177.778%] uppercase mb-[10px] relative z-10'>{card.title}</h3>
                                 <p className='text-white lexend text-[16px] sm:text-[14px] font-[400] leading-[200%] relative z-10'>{card.text}</p>
                             </div>

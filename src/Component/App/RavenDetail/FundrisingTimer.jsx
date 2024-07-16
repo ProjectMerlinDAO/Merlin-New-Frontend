@@ -61,7 +61,7 @@ const FundrisingTimer = ({ timer }) => {
 
   return (
     <span>
-      {timerComponents.length ? timerComponents : <span>Time's End</span>}
+      {timerComponents.length ? timerComponents : <span>Time&apos;s End</span>}
     </span>
   );
 };

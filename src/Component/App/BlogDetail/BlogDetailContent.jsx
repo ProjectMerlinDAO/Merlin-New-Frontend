@@ -22,7 +22,7 @@ const BlogDetailContent = () => {
     };
     return (
         <div className="relative pb-[430px] lg:pb-[390] sm:pb-[370px] xsm:pb-[330px] 2xsm:pb-[300px] z-0">
-            <img src="../assets/images/bg/about-bg.png" alt="bg" className="absolute top-0 left-0 z-0 w-full h-[22%]" />
+            <Image src="../assets/images/bg/about-bg.png" alt="bg" className="absolute top-0 left-0 z-0 w-full h-[22%]" />
             <div className="absolute top-0 left-0 w-full h-[22%]" style={{background: 'linear-gradient(180deg, rgba(13, 16, 20, 0.00) 0%, rgba(13, 16, 20, 0.76) 33%, #0D1014 85.42%)'}}></div>
             <div className="pt-[115px] xl:pt-[105px] lg:pt-[100px] relative z-20 md:pt-[90px]" style={{ background: 'linear-gradient(180deg, rgba(13, 16, 20, 0.00) 0%, rgba(13, 16, 20, 0.76) 33%, #0D1014 85.42%)' }}>
             <div className="relative z-10 px-[20px] md:px-[10px] max-w-[1210px] mx-auto lg:max-w-[720px]">
@@ -56,7 +56,7 @@ const BlogDetailContent = () => {
                             </ul>
                         </div>
                         <div className="rounded-[30px] mb-[35px] overflow-hidden bg-[#D9D9D9]">
-                            <img src="../assets/images/blog/blog-detail-img.png" alt="img" className='w-full' />
+                            <Image src="../assets/images/blog/blog-detail-img.png" alt="img" className='w-full' />
                         </div>
                         <h6 className="text-white font-[500] text-[18px] leading-[200%] mb-[20px]">Project Merlin is a next-generation DAO with a mission to benefit individuals within the community. We have redesigned the DAO governance mechanism and coined it as DAO v2</h6>
                         <div className="my-[30px] text-white">

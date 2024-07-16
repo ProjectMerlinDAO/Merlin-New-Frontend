@@ -28,7 +28,7 @@ const Fundrising = ({ timer, goal, setIsOpen, wallet, amtRaised }) => {
         <FundrisingTimer timer={timer} />
 
         <div className="h-[20px] rounded-[10px] bg-[#ffffff19] w-full mt-[25px] mb-[15px]">
-          <div className={`bg-[#12CFA7] rounded-[10px] text-white text-[14px] quantico flex items-center justify-end gap-[5px] h-[20px] w-[${percentAmt.toFixed(2)}px]`}>
+          <div className={`bg-[#12CFA7] rounded-[10px] text-white text-[14px] quantico flex items-center justify-end gap-[5px] h-[20px] w-[${Math.round(percentAmt)}px]`}>
             <span>{percentAmt ? percentAmt.toFixed(2) : 0}%</span>
             <Image src="/assets/images/icons/range-dot.svg" alt="icon" width="39" height="34" className="mr-[-5px]" />
           </div>

@@ -33,6 +33,7 @@ const SignInPopup = ({ isOpen, setIsOpen }) => {
   const handleClose = () => {
     setIsOpen(false);
   };
+
   useEffect(() => {
     const dialog = dialogRef.current;
     if (dialog) {
@@ -111,7 +112,7 @@ const SignInPopup = ({ isOpen, setIsOpen }) => {
                     onClick={handleBackClick}
                   >
                     <div className="rounded-full h-[40px] w-[40px] flex items-center justify-center backdrop-blur-[5px] mr-[5px]">
-                      <img
+                      <Image
                         src="../assets/images/icons/back-arrow.svg"
                         alt="icon"
                       />
