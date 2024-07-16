@@ -24,6 +24,7 @@ const RavenDetailCard = ({ isSidebarVisible, id }) => {
     const stickyRef = useStickyBox({ offsetTop: 20, offsetBottom: 20 })
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
     const [detail, setDetail] = useState();
+
     const fetchDetails = async () => {
         try {
             const details = await axios.get(`${baseUrl}/raven/fetch-raven/${id}`);
@@ -38,33 +39,37 @@ const RavenDetailCard = ({ isSidebarVisible, id }) => {
 
     const fetchTransactions = async (id) => {
         try {
+            console.log("Fetching Transaction.........")
             const data = await axios.post(`${baseurl}/solana/fetchTransactions`, {
                 id,
                 page
             });
             if (data?.data?.transactions) {
                 setTransactions(data?.data?.transactions)
-                setPageCount(data?.data?.count)
+                setPageCount(data?.data?.totalPages)
+               
             }
         } catch (error) {
             console.log(error)
         }
     }
+
     useEffect(() => {
         if(id){
         fetchTransactions(id);
         }
-    }, [page,id,transactions])
+    }, [page,id])
 
     useEffect(() => {
         if (id) {
             fetchDetails()
         }
-    }, [id])
+    }, [id,transactions])
+    console.log(transactions,"TXNNNNN")
     return (
         <>
             <ShareModal isOpen={isOpen} setIsOpen={setIsOpen} />
-            <PaymentModal isOpen={isPayment} setIsOpen={setIsPayment} publicKey={publicKey} id={id} fetchTransactions={fetchTransactions} page={page} />
+            <PaymentModal isOpen={isPayment} setIsOpen={setIsPayment} publicKey={publicKey} id={id} fetchTransactions={fetchTransactions} page={page} goal={detail?.projectGoal} amtRaised={detail?.amtRaised}/>
             <div className="pt-[110px]  bg-no-repeat relative position-top bg-contain" style={{ backgroundImage: 'url(./assets/images/bg/sub-bg.png)', backgroundSize: '100% 388px' }}>
                 <div className={`app-home-wrapper lg:mt-[0px]  ${isSidebarVisible ? "sidebar-visible" : "sidebar-hidden"}`}>
                     <div className="px-[20px] md:px-[10px] max-w-[1365px] mx-auto lg:max-w-[720px] relative  max-w-screen-2xl">
@@ -99,7 +104,7 @@ const RavenDetailCard = ({ isSidebarVisible, id }) => {
                                         </div>
                                     </div>
                                     <aside ref={stickyRef} className="w-[35%] px-[15px] lg:w-full raven-detail-right">
-                                        <Fundrising timer={detail?.endDate} goal={detail?.projectGoal} isOpen={isPayment} setIsOpen={setIsPayment} wallet={publicKey} />
+                                        <Fundrising timer={detail?.endDate} goal={detail?.projectGoal} isOpen={isPayment} setIsOpen={setIsPayment} wallet={publicKey} amtRaised={detail?.amtRaised}/>
                                         <ProposalInfoCard detail={detail} />
                                         <LikeShareCard id={id} like={detail?.like} dislike={detail?.dislike} fetch={fetchDetails} isOpen={isOpen} setIsOpen={setIsOpen} />
                                     </aside>

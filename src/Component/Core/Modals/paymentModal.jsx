@@ -6,7 +6,7 @@ import { useWallet } from '@solana/wallet-adapter-react';
 import { Transaction, SystemProgram, LAMPORTS_PER_SOL, PublicKey, Connection, clusterApiUrl, sendAndConfirmRawTransaction } from "@solana/web3.js";
 import { toast } from 'react-toastify';
 
-const PaymentModal = ({ isOpen, setIsOpen, id, fetchTransactions, page }) => {
+const PaymentModal = ({ isOpen, setIsOpen, id, fetchTransactions,goal,amtRaised }) => {
     const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
     const baseurl = process.env.NEXT_PUBLIC_BASE_URL;
     const merchantWallet = process.env.NEXT_PUBLIC_MERCHANT;
@@ -28,6 +28,12 @@ const PaymentModal = ({ isOpen, setIsOpen, id, fetchTransactions, page }) => {
         try {
             if (publicKey) {
                 setProgress(true);
+                const balremaining = goal - amtRaised;
+                if(amt > balremaining){
+                    toast.error("Amt exceeds the remianing balance");
+                    setProgress(false);
+                    return;
+                }
                 const connection = new Connection(clusterApiUrl('devnet'));
                 try {
                     const version = await connection.getVersion();
@@ -54,6 +60,7 @@ const PaymentModal = ({ isOpen, setIsOpen, id, fetchTransactions, page }) => {
                 const requiredLamports = Number(amt) * LAMPORTS_PER_SOL;
                 if (balance < requiredLamports) {
                     toast.error('Insufficient funds:', balance)
+                    setProgress(false);
                     return;
                 }
                 // Sign the transaction
@@ -62,7 +69,7 @@ const PaymentModal = ({ isOpen, setIsOpen, id, fetchTransactions, page }) => {
                 const signature = await sendAndConfirmRawTransaction(connection, signedTransaction.serialize(), "finalized");
                 if (signature) {
                     setProgress(false);
-                    registerTransaction()
+                    registerTransaction();
                     handleClose();
                     toast.success("Transaction Success!!!")
                 }
@@ -81,11 +88,13 @@ const PaymentModal = ({ isOpen, setIsOpen, id, fetchTransactions, page }) => {
                     id: id
                 })
                 if(data.status && data?.data?.txnId){
-                    fetchTransactions();
+                    console.log("STATAUSUS")
+                    fetchTransactions(id);
                 }
             }
         } catch (error) {
             console.log(error);
+            toast.error(error?.response?.msg)
         }
     }
     return (
