@@ -22,17 +22,17 @@ const TheCrystalCaveContent = ({ isSidebarVisible }) => {
         <div className="px-[20px] relative md:px-[10px] max-w-[1365px] mx-auto lg:max-w-[720px]">
           <ul className="cursor-pointer flex items-cenetr  justify-start gap-[8px] mt-[-70px] uppercase absolute lg:mt-0 lg:static   pl-[48px] z-[99999] mb-[30px] 2xl:text-[14px] xl:ml-[100px] lg:ml-[0px] max-w-lg md:flex-wrap">
             <li className="flex items-center justify-start gap-[8px] mr-10px ml-[-5px] cursor-pointer">
-              <a href="#" className=" flex absolute left-0 top-0 cursor-pointer">
+              <Link href="/launch-app" className=" flex absolute left-0 top-0 cursor-pointer">
                 <Image
                   src="/assets/images/icons/back-arrow.svg"
                   alt="icon"
                   height="40"
                   width="40"
                 />
-              </a>
+              </Link>
             </li>
             <li className="flex items-center justify-start gap-[8px]">
-              <Link href="#" className="flex cursor-pointer">
+              <Link href="/launch-app" className="flex cursor-pointer">
                 app HOME{" "}
               </Link>{" "}
               .{" "}

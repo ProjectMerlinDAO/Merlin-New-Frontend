@@ -65,7 +65,7 @@ const RavenDetailCard = ({ isSidebarVisible, id }) => {
             fetchDetails()
         }
     }, [id,transactions])
-    console.log(transactions,"TXNNNNN")
+    
     return (
         <>
             <ShareModal isOpen={isOpen} setIsOpen={setIsOpen} />

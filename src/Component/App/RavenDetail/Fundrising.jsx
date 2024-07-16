@@ -20,7 +20,7 @@ const Fundrising = ({ timer, goal, setIsOpen, wallet, amtRaised }) => {
   useEffect(() => {
     calculateAmt()
   }, [wallet, amtRaised])
-  console.log(percentAmt, "AMT RAISED")
+  console.log(Math.round(percentAmt), "AMT RAISED")
   return (
     <div className='rounded-[20px] backdrop-blur-[5px] p-[40px] 2xl:p-[20px] relative fundrising-card mb-[30px]' style={{ background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.00) 100%)' }}>
       <div className='relative z-10'>
@@ -28,7 +28,7 @@ const Fundrising = ({ timer, goal, setIsOpen, wallet, amtRaised }) => {
         <FundrisingTimer timer={timer} />
 
         <div className="h-[20px] rounded-[10px] bg-[#ffffff19] w-full mt-[25px] mb-[15px]">
-          <div className={`bg-[#12CFA7] rounded-[10px] text-white text-[14px] quantico flex items-center justify-end gap-[5px] h-[20px] w-[${Math.round(percentAmt)}px]`}>
+          <div className={`bg-[#12CFA7] rounded-[10px] text-white text-[14px] quantico flex items-center justify-end gap-[5px] h-[20px] w-[${Math.floor(percentAmt)}px]`}>
             <span>{percentAmt ? percentAmt.toFixed(2) : 0}%</span>
             <Image src="/assets/images/icons/range-dot.svg" alt="icon" width="39" height="34" className="mr-[-5px]" />
           </div>
