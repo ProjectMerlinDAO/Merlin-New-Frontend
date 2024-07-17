@@ -1,12 +1,30 @@
 import { FormatDate } from '@/utils/Formatdate';
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 
-const ProposalInfoCard = ({detail}) => {
+const ProposalInfoCard = ({detail, wallet}) => {
+    const [count, setCount] = useState(0);
+    const baseurl = process.env.NEXT_PUBLIC_BASE_URL;
+    const calculateCount = async() => {
+        try {
+            const response = await axios.post(`${baseurl}/raven/countRavenMsgs`, {
+                wallet
+            })
+            if(response?.status === 200 && response?.data?.count){
+                setCount(response?.data?.count)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    useEffect(() => {
+        calculateCount()
+    },[wallet])
     const proposalInfo = [
         { label: 'User', value: `Member ${detail?.code}` },
         { label: 'Category', value: 'Sports and Arts' },
         { label: 'Message Date', value: FormatDate(detail?.endDate)},
-        { label: 'Total Raven Message', value: '1' },
+        { label: 'Total Raven Message', value: `${count}` },
         { label: 'User Type', value: detail?.UserType },
         { label: 'Message Status', value: 'Active' }
     ];

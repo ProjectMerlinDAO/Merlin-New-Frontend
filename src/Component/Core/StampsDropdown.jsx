@@ -23,7 +23,6 @@ const StampsDropdown = ({ stamp, setStamp, id, image, code }) => {
             type = "RedStamp"
         }
         let details = { id, image, code };
-        console.log(type,"pppppppp")
         dispatch(addToList({ type, details }));
     }
     return (

@@ -25,7 +25,6 @@ const TheCrystalCaveTable = () => {
   const [totalPages, setTotalPages] = useState();
   const fetchMsgs = async () => {
     const queryUrl = `?search=${search}&categories=${category}&sort=${sort}&page=${page}`;
-    console.log(queryUrl, "URL");
     const data = await axios.get(
       `${baseUrl}/raven/fetch-all-raven/${queryUrl}`
     );
@@ -33,7 +32,6 @@ const TheCrystalCaveTable = () => {
       setMsgList(data.data?.ravenMsgs);
       setTotalPages(data?.data?.numOfPages);
     }
-    // console.log(data, "DATATAATAT");
   };
   const handleClick = (id) => {
     router.push({
@@ -43,7 +41,6 @@ const TheCrystalCaveTable = () => {
       },
     });
   };
-  // console.log(msgList, "LIST");
 
   const handleLike = async (id) => {
     if(!key){

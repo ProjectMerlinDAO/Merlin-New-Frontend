@@ -18,7 +18,6 @@ const PaymentModal = ({ isOpen, setIsOpen, id, fetchTransactions,goal,amtRaised 
     const [amt, setAmt] = useState(0);
 
     const { publicKey, signTransaction, signMessage } = useWallet();
-    // console.log(balance, "BALALA")
 
     const handleClose = () => {
         setAmt(0);
@@ -88,7 +87,6 @@ const PaymentModal = ({ isOpen, setIsOpen, id, fetchTransactions,goal,amtRaised 
                     id: id
                 })
                 if(data.status && data?.data?.txnId){
-                    console.log("STATAUSUS")
                     fetchTransactions(id);
                 }
             }

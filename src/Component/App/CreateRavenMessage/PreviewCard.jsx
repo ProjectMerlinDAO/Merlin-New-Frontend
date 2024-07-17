@@ -18,7 +18,6 @@ const PreviewCard = ({title,goal,img,category}) => {
     handleImageUpload()
     },[img])
 
-    console.log(img,"vbhdfjhhj")
     return (
         <div classNAme="mt-[50px]">
             <label className="text-white uppercase">Preview</label>

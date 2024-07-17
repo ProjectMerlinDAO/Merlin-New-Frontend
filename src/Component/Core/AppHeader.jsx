@@ -15,7 +15,6 @@ const AppHeader = ({ isSidebarVisible }) => {
   const { publicKey, disconnect } = useWallet();
   // const { address } = useAccount();
   const [isOpen, setIsOpen] = useState(false);
-  console.log(publicKey?.toBase58(), "PUBLIC KEY")
   const handleSignin = () => {
     // if (address) {
     // open();

@@ -26,8 +26,6 @@ const Airdrop = () => {
                 setIsSidebarVisible={setIsSidebarVisible}
             />
             <AirdropCard isSidebarVisible={isSidebarVisible}/>
-
-
             <div className="airdrop-footer">
                 <AppFooter isSidebarVisible={isSidebarVisible} />
             </div>

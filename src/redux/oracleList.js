@@ -28,14 +28,23 @@ const OracleList = createSlice({
         state.oracleList[type].push(details);
       }
     },
-    
     removeFromList: (state, action) => {
-      const { type, details } = action.payload;
-      state.oracleList[type].filter((element) => element.id != details.id);
+      const { deleteList } = action.payload;
+      const tempArr = ["GreenStamp", "YellowStamp", "BlueStamp", "RedStamp"];
+      tempArr.forEach((type) => {
+      let arr = state.oracleList[type];
+      state.oracleList[type] = arr.filter((item) => !deleteList.includes(item.id))
+      })
     },
-  },
+    removeAll:(state) => {
+     state.oracleList.BlueStamp = [],
+     state.oracleList.GreenStamp = [],
+     state.oracleList.YellowStamp = [],
+     state.oracleList.RedStamp = []
+  }
+},
 });
 
-export const { addToList, removeFromList } = OracleList.actions;
+export const { addToList, removeFromList, removeAll } = OracleList.actions;
 
 export default OracleList.reducer;

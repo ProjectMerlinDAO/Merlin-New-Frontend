@@ -3,7 +3,7 @@ import oracleListReducer from "./oracleList";
 
 const store = configureStore({
     reducer: {
-        oracleList: oracleListReducer
+        List: oracleListReducer
     },
   });
   

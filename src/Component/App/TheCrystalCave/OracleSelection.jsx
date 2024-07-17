@@ -94,7 +94,6 @@ const OracleSelection = () => {
         }
     }
     const handleClick = (id) => {
-        console.log("first")
         router.push({
           pathname: "/raven-detail",
           query: {
@@ -107,7 +106,6 @@ const OracleSelection = () => {
         handleOracle();
     }, [])  
 
-    console.log(oracleList,"list");
     return (
         <div className='rounded-[40px] backdrop-blur-[15px] p-[60px] 2xl:py-[35px] 2xl:px-[25px] xl:px-[20px]' style={{ background: 'linear-gradient(178deg, rgba(255, 255, 255, 0.05) 2.04%, rgba(255, 255, 255, 0.01) 97.96%)' }}>
             <div className="flex items-end justify-between gap-[4%] flex-wrap mb-[30px] xl:mb-[15px]">

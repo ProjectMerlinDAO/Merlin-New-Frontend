@@ -24,13 +24,13 @@ const RavenDetailCard = ({ isSidebarVisible, id }) => {
     const stickyRef = useStickyBox({ offsetTop: 20, offsetBottom: 20 })
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
     const [detail, setDetail] = useState();
-
+    const [count, setCount] = useState(0);
+    
     const fetchDetails = async () => {
         try {
             const details = await axios.get(`${baseUrl}/raven/fetch-raven/${id}`);
             if (details.status === 200 && details.data.msg === "Raven message fetched successfully!!") {
                 setDetail(details.data.ravenMsg);
-                
             }
         } catch (error) {
             console.log(error)
@@ -39,7 +39,6 @@ const RavenDetailCard = ({ isSidebarVisible, id }) => {
 
     const fetchTransactions = async (id) => {
         try {
-            console.log("Fetching Transaction.........")
             const data = await axios.post(`${baseurl}/solana/fetchTransactions`, {
                 id,
                 page
@@ -54,6 +53,18 @@ const RavenDetailCard = ({ isSidebarVisible, id }) => {
         }
     }
 
+    const calculateCount = async() => {
+        try {
+            const response = await axios.post(`${baseUrl}/raven/countRavenMsgs`, {
+                wallet:detail?.walletAddress
+            })
+            console.log(response?.data?.count,"RESSSSSSSS");
+            console.log(response,"RESSSSSSSS");
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     useEffect(() => {
         if(id){
         fetchTransactions(id);
@@ -62,10 +73,12 @@ const RavenDetailCard = ({ isSidebarVisible, id }) => {
 
     useEffect(() => {
         if (id) {
-            fetchDetails()
+            fetchDetails();
         }
     }, [id,transactions])
     
+  
+   
     return (
         <>
             <ShareModal isOpen={isOpen} setIsOpen={setIsOpen} />
@@ -105,7 +118,7 @@ const RavenDetailCard = ({ isSidebarVisible, id }) => {
                                     </div>
                                     <aside ref={stickyRef} className="w-[35%] px-[15px] lg:w-full raven-detail-right">
                                         <Fundrising timer={detail?.endDate} goal={detail?.projectGoal} isOpen={isPayment} setIsOpen={setIsPayment} wallet={publicKey} amtRaised={detail?.amtRaised}/>
-                                        <ProposalInfoCard detail={detail} />
+                                        <ProposalInfoCard detail={detail} wallet={detail?.walletAddress} />
                                         <LikeShareCard id={id} like={detail?.like} dislike={detail?.dislike} fetch={fetchDetails} isOpen={isOpen} setIsOpen={setIsOpen} />
                                     </aside>
                                 </div>

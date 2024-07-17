@@ -2,11 +2,23 @@ import React, { useState } from 'react';
 import OracalCard from './OracalCard';
 import Pagination from '../../Core/Pagination';
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
+import { removeAll, removeFromList } from '@/src/redux/oracleList';
 
 
 const Oracle = () => {
-    const data = useSelector((state) => state.oracleList.oracleList);
+    const data = useSelector((state) => state.List.oracleList);
+    const dispatch = useDispatch();
     const [deleteList, setDeleteList] = useState([]);
+
+    const handleSelectDelete = () => {
+        if(deleteList.length == 0){
+            toast.error("Please select in order to delete!!")
+        }
+        dispatch(removeFromList({deleteList}));
+    }
+    console.log(deleteList,"LIST")
     return (
         <div className='rounded-[40px] backdrop-blur-[15px] overflow-hidden' style={{ background: 'linear-gradient(178deg, rgba(255, 255, 255, 0.05) 2.04%, rgba(255, 255, 255, 0.01) 97.96%)' }}>
             <div className='px-[60px] pt-[60px] 2xl:pt-[35px] 2xl:px-[25px] xl:px-[20px]'>            
@@ -28,6 +40,7 @@ const Oracle = () => {
                                             id={card.id}
                                             deleteList={deleteList}
                                             setDeleteList={setDeleteList}
+                                            type={"GreenStamp"}
                                         />
                                     </li>
                                 )) : "No data"}
@@ -45,7 +58,8 @@ const Oracle = () => {
                                             oracalImg={card.image}
                                             id={card.id}
                                             list={deleteList}
-                                            setList={setDeleteList}
+                                            setDeleteList={setDeleteList}
+                                            type={"YellowStamp"}
                                         />
                                     </li>
                                 )) : "No data"}
@@ -62,6 +76,9 @@ const Oracle = () => {
                                             messageCode={card.code}
                                             oracalImg={card.image}
                                             id={card.id}
+                                            list={deleteList}
+                                            setDeleteList={setDeleteList}
+                                            type={"BlueStamp"}
                                         />
                                     </li>
                                 )) : "No Data"}
@@ -78,6 +95,9 @@ const Oracle = () => {
                                             messageCode={card.code}
                                             oracalImg={card.image}
                                             id={card.id}
+                                            list={deleteList}
+                                            setDeleteList={setDeleteList}
+                                            type={"RedStamp"}
                                         />
                                     </li>
                                 )) : "No Data"}
@@ -89,13 +109,13 @@ const Oracle = () => {
             </div>
 
             <div className="card-footer py-[15px] px-[60px] 2xl:px-[25px] xl:px-[20px] mt-[30px] bg-[#ffffff0c] backdrop-blur-[15px] flex justify-end sm:justify-between sm:flex-wrap gap-[30px] sm:gap-[16px]">
-                <button type='submit' className="hov-btn no-border btn-has-shape bg-[#FFFFFF10] border-1 border-[#FFFFFF15] px-[10px] h-[60px] text-white quantico font-[700] max-w-[146px] sm:max-w-[47%] w-full rounded-[18px] uppercase">
-                    <span className="btn-hov-text">
+                <button type='submit' onClick={() => dispatch(removeAll())}className="hov-btn no-border btn-has-shape bg-[#FFFFFF10] border-1 border-[#FFFFFF15] px-[10px] h-[60px] text-white quantico font-[700] max-w-[146px] sm:max-w-[47%] w-full rounded-[18px] uppercase">
+                    <span className="btn-hov-text" >
                         <span className="btn-text">Delete all</span>
                         <span className="btn-text">Delete all</span>
                     </span>
                 </button>
-                <button type='submit' className="hov-btn no-border btn-has-shape bg-[#FFFFFF10] border-1 border-[#FFFFFF15] px-[10px] h-[60px] text-white quantico font-[700] max-w-[195px] sm:max-w-[47%] w-full rounded-[18px] uppercase">
+                <button type='submit' onClick={handleSelectDelete} className="hov-btn no-border btn-has-shape bg-[#FFFFFF10] border-1 border-[#FFFFFF15] px-[10px] h-[60px] text-white quantico font-[700] max-w-[195px] sm:max-w-[47%] w-full rounded-[18px] uppercase">
                     <span className="btn-hov-text">
                         <span className="btn-text">Delete Selected</span>
                         <span className="btn-text">Delete Selected</span>

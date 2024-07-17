@@ -180,7 +180,6 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
           `${baseUrl}/raven/create-raven`,
           obj
         );
-        console.log(createMsg);
         if (createMsg.status === 200) {
           handleReset();
           setLoad(false);
@@ -210,16 +209,7 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
   useEffect(() => {
     calculateCost();
   }, [data.categories]);
-  // useEffect(() => {
-  //   if (address) {
-  //     setData((prevData) => ({
-  //       ...prevData,
-  //       walletAddress: address,
-  //     }));
-  //   }
-  // }, [address]);
-  console.log(data, "DATA");
-  console.log(errors, "ERRORS");
+
   return (
     <>
     <div

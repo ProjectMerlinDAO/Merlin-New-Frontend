@@ -1,15 +1,16 @@
 import Image from 'next/image'
 import React, { useState } from 'react'
 
-const OracalCard = ( { messageCode, oracalImg, id, deleteList, setDeleteList } ) => {
+const OracalCard = ( { messageCode, oracalImg, id, deleteList, setDeleteList ,type} ) => {
+    console.log(type,"TYPE OF MESSS")
     const [isTextVisible, setIsTextVisible] = useState(false);
     const toggleTextVisibility = () => {
         setIsTextVisible(!isTextVisible);
     }
     const handleCheck = (e) => {
-        console.log(e.target.checked, e.target.value, "  TARGET")
         const checked = e.target.checked;
         const value = e.target.value;
+        console.log(e.target,"TARGETETETE")
         if (checked) {
             setDeleteList((list) => [
                 ...list,
@@ -21,7 +22,6 @@ const OracalCard = ( { messageCode, oracalImg, id, deleteList, setDeleteList } )
             })
         }
     }
-    console.log(deleteList, "LIST")
     return (
         <div
             className="rounded-[20px] cursor-pointer relative"
@@ -30,7 +30,7 @@ const OracalCard = ( { messageCode, oracalImg, id, deleteList, setDeleteList } )
             <div className="flex items-center justify-start gap-[10px] py-[10px] px-[20px]">
                 <div className="form-control ml-[-10px]">
                     <label className="cursor-pointer label">
-                        <input type="checkbox" value={id} className="checkbox checkbox-accent rounded-[50%]" onClick={(e) => handleCheck(e)} />
+                        <input type="checkbox" value={id}  className="checkbox checkbox-accent rounded-[50%]" onClick={(e) => handleCheck(e)} />
                     </label>
                 </div>
                 <div className="oracle-card-img h-[50px] w-[50px] overflow-hidden rounded-[12px] relative">
