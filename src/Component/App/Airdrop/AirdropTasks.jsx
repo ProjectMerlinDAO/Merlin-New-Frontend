@@ -21,7 +21,17 @@ const AirdropTasks = () => {
     {
       id: 2,
       taskUrl: '#',
-      number: 4,
+      number: 2,
+      icon: "../assets/images/icons/refer-friend.svg",
+      description: 'Refer Friends For Extra Entries',
+      status: 'Pending',
+      points: 100,
+      pointsClass: 'text-[#FFFFFF] bg-[#12CF69]'
+    },
+    {
+      id: 3,
+      taskUrl: '#',
+      number: 3,
       icon: "../assets/images/icons/x.svg",
       description: 'Follow @projectmerlin on Twitter',
       status: 'Completed',
@@ -30,9 +40,9 @@ const AirdropTasks = () => {
       statusIcon: "../assets/images/icons/green-check.svg"
     },
     {
-      id: 3,
+      id: 4,
       taskUrl: '#',
-      number: 3,
+      number: 4,
       icon: "../assets/images/icons/telegram.svg",
       description: 'Join @projectmerlin on Telegram',
       status: 'Pending',
@@ -40,7 +50,7 @@ const AirdropTasks = () => {
       pointsClass: 'text-[#FFFFFF] bg-[#12CF69]'
     },
     {
-      id: 4,
+      id: 5,
       taskUrl: '#',
       number: 5,
       icon: "../assets/images/icons/discord-outline2.svg",
@@ -50,7 +60,7 @@ const AirdropTasks = () => {
       pointsClass: 'text-[#FFFFFF] bg-[#12CF69]'
     },
     {
-      id: 5,
+      id: 6,
       taskUrl: '#',
       number: 6,
       icon: "../assets/images/icons/fb-f2.svg",
@@ -60,7 +70,7 @@ const AirdropTasks = () => {
       pointsClass: 'text-[#FFFFFF] bg-[#12CF69]'
     },
     {
-      id: 6,
+      id: 7,
       taskUrl: '#',
       number: 7,
       icon: "../assets/images/icons/presale.svg",
@@ -70,25 +80,16 @@ const AirdropTasks = () => {
       pointsClass: 'text-[#FFFFFF] bg-[#12CF69]'
     },
     {
-      id: 7,
+      id: 8,
       taskUrl: '#',
-      number: 7,
+      number: 8,
       icon: "../assets/images/icons/wallet.svg",
       description: 'Submit Presale Wallet Address',
       status: 'Pending',
       points: 500,
       pointsClass: 'text-[#FFFFFF] bg-[#12CF69]'
     },
-    {
-      id: 8,
-      taskUrl: '#',
-      number: 8,
-      icon: "../assets/images/icons/refer-friend.svg",
-      description: 'Refer Friends For Extra Entries',
-      status: 'Pending',
-      points: 100,
-      pointsClass: 'text-[#FFFFFF] bg-[#12CF69]'
-    }
+ 
   ];
 
   const tasksData2 = [

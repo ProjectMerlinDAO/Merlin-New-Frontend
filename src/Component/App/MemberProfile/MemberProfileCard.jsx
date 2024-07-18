@@ -7,15 +7,25 @@ import StatisticsTable from './StatisticsTable'
 import axios from 'axios'
 import { useWallet } from '@solana/wallet-adapter-react'
 import { toast } from 'react-toastify'
+import { useRouter } from 'next/router'
+import { useWalletModal } from '@solana/wallet-adapter-react-ui'
 
 
 const MemberProfileCard = ({ isSidebarVisible }) => {
+    const router = useRouter();
+    const { setVisible } = useWalletModal();
     const baseurl = process.env.NEXT_PUBLIC_BASE_URL;
     const { publicKey } = useWallet();
     const [details, setDetails] = useState();
     const [email, setEmail] = useState();
     const [msgsType, setMsgsType] = useState("active");
     const [msgList, setMsgList] = useState();
+
+  if(router?.query?.ref){
+    if(!publicKey){
+       setVisible(true)
+    }
+  }
     const fetchDetails = async () => {
         try {
             const wallet = publicKey.toBase58();
@@ -55,7 +65,8 @@ const MemberProfileCard = ({ isSidebarVisible }) => {
                 })
                 if (res.status === 200) {
                     toast.success(res?.data?.msg);
-                    setEmail("")
+                    setEmail("");
+                    fetchDetails();
                     return;
                 }
             } else {
@@ -74,6 +85,7 @@ const MemberProfileCard = ({ isSidebarVisible }) => {
             fetchRavenMsgs();
         }
     }, [publicKey,msgsType])
+  
     return (
         <div className="pt-[110px] relative bg-no-repeat position-top bg-contain" style={{ backgroundImage: 'url(./assets/images/bg/sub-bg.png)', backgroundSize: '100% 388px' }}>
             <div className={`app-home-wrapper ${isSidebarVisible ? "sidebar-visible" : "sidebar-hidden"}`}>
@@ -110,10 +122,10 @@ const MemberProfileCard = ({ isSidebarVisible }) => {
                                             <label className="text-white uppercase">Email address</label>
                                             <form className="flex xsm:flex-wrap gap-[15px] mt-[15px]">
                                                 <input type="email" placeholder="Enter your email address" value={email} onChange={(e) => setEmail(e.target.value)} className="px-[20px] py-[5px] bg-transparent text-white border-2 border-[rgba(255,255,255,0.12)] h-[60px] rounded-[18px] max-w-[418px] xsm:max-w-full w-full" />
-                                                <div onClick={handleEmail} className='hov-btn bg-[#12CFA7] rounded-[15px] h-[58px] relative w-[170px] xsm:w-full flex items-center justify-center text-white text-center  font-[600] text-[16px] uppercase quantico'>
+                                                <div onClick={handleEmail} className='cursor-pointer hov-btn bg-[#12CFA7] rounded-[15px] h-[58px] relative w-[170px] xsm:w-full flex items-center justify-center text-white text-center  font-[600] text-[16px] uppercase quantico'>
                                                     <span className="btn-hov-text">
-                                                        <span className="btn-text">Verify</span>
-                                                        <span className="btn-text">Verify</span>
+                                                        <span className="btn-text">Register</span>
+                                                        <span className="btn-text">Register</span>
                                                     </span>
                                                 </div>
                                             </form>

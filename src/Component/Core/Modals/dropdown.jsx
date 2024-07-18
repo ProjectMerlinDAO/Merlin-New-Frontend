@@ -9,7 +9,7 @@ export default function Example({ wallet, handleDisconnect }) {
     {/* btn-has-shape */}
   <div>
     <MenuButton className="items-center justify-center hov-btn rounded-full gap-[8px] connect-btn bg-12CFA7 h-[50px] w-[170px] sm:w-[140px] bg-[#12CFA7] text-white text-center  font-[600] text-[16px] sm:text[14px] uppercase quantico">
-      {wallet && wallet.toBase58().slice(0, 2) + "...." + wallet.toBase58().slice(-5)}
+      {wallet && wallet.toBase58().slice(0, 4) + "...." + wallet.toBase58().slice(-4)}
       {/* <ChevronDownIcon aria-hidden="true" className="-mr-1 h-5 w-5 text-white-400 absolute top-[14px] right-[15px] " /> */}
     </MenuButton>
   </div>

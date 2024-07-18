@@ -1,7 +1,6 @@
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import CommonerSignIn from "./CommonerSignIn";
-import { useWeb3Modal } from '@web3modal/ethers/react'
 import { useWalletModal, WalletMultiButton } from '@solana/wallet-adapter-react-ui'
 import { useWallet } from "@solana/wallet-adapter-react";
 import axios from "axios";
@@ -9,7 +8,6 @@ import axios from "axios";
 
 
 const SignInPopup = ({ isOpen, setIsOpen }) => {
-  const { open } = useWeb3Modal()
   const { publicKey } = useWallet();
   const [showCommonerSignIn, setShowCommonerSignIn] = useState(false);
   const dialogRef = useRef(null);

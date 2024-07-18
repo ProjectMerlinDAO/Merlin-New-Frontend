@@ -9,11 +9,11 @@ const socialIcons = [
   { src: '/assets/images/icons/fb-f.svg', alt: 'Medium', href: '#', height: '18', width: '11', },
 ];
 
-const AirdropReferralProgram = () => {
+const AirdropReferralProgram = ({ referralCode }) => {
   const [copied, setCopied] = useState(false);
-
+  const baseUrl = process.env.NEXT_PUBLIC_DOMAIN_URL;
   const copyToClipboard = () => {
-    const url = "https://domain.com?ref=0x47812...";
+    const url = `${baseUrl}/member-profile?ref=${referralCode}`;
     navigator.clipboard.writeText(url).then(() => {
       setCopied(true);
       setTimeout(() => {
@@ -35,7 +35,7 @@ const AirdropReferralProgram = () => {
             <div className="max-w-[730px] w-full">
               <h5 className='text-[16px] lg:text-[14px] font-[500] text-white uppercase mb-[10px]'>Your referral link</h5>
               <div className="flex items-center justify-between rounded-[15px] bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.12)] h-[55px] pl-[15px] py-[0px] w-full">
-              <span className="overflow-hidden text-nowrap text-ellipsis max-w-[267px] text-[16px] font-[500] text-white">https://domain.com?ref=0x47812...</span>
+              <span className="overflow-hidden text-nowrap text-ellipsis max-w-[267px] text-[16px] font-[500] text-white">{referralCode?`${baseUrl}/member-profile?ref=${referralCode}`:null}</span>
               <span className="cursor-pointer flex items-center justify-center h-[55px] w-[150px] rounded-[15px]" style={{ background: 'linear-gradient(90deg, rgba(18, 207, 167, 0.00) 0%, #12CFA7 100%)' }} onClick={copyToClipboard}>
                 {copied ? (
                   <span className='flex items-center justify-end gap-[15px]'>

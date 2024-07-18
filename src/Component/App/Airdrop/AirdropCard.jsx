@@ -1,13 +1,37 @@
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import AirdropDetail from './AirdropDetail'
 import AirdropStatistics from './AirdropStatistics'
 import AirdropStatisticsTable from './AirdropStatisticsTable'
 import AirdropTasks from './AirdropTasks'
 import AirdropReferralProgram from './AirdropReferralProgram'
+import { useWallet } from '@solana/wallet-adapter-react'
+import axios from 'axios'
+
 
 
 const AirdropCard = ({ isSidebarVisible }) => {
+const baseurl = process.env.NEXT_PUBLIC_BASE_URL;
+const { publicKey } = useWallet();
+const [details, setDetails] = useState();
+
+const fetchDetails = async () => {
+    try {
+        const wallet = publicKey.toBase58();
+        const response = await axios.post(`${baseurl}/user/fetchUser`, { wallet });
+        console.log(response,"depep")
+        if (response?.data?.user) {
+            setDetails(response.data.user);
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+useEffect(() => {
+ fetchDetails();
+},[publicKey])
+// console.log(details,"depep")
     return (
         <div className="pt-[110px] relative bg-no-repeat position-top bg-contain" style={{ backgroundImage: 'url(./assets/images/bg/sub-bg.png)', backgroundSize: '100% 388px' }}>
             <div className={`app-home-wrapper ${isSidebarVisible ? "sidebar-visible" : "sidebar-hidden"}`}>
@@ -58,9 +82,9 @@ const AirdropCard = ({ isSidebarVisible }) => {
                                                 <Image src="/assets/images/coins/eth.png" alt="coin" fill={true} />
                                             </div>
                                             <p className="mb-0">
-                                                <span className='text-white leading-[16px]'>0x478...2f32</span>
+                                                <span className='text-white leading-[16px]'>{publicKey ? publicKey?.toBase58().slice(0,4) + "...." + publicKey.toBase58().slice(-4) : null }</span>
                                                 <br />
-                                                <span className='text-[14px] leading-[14px]'>Ethereum</span>
+                                                <span className='text-[14px] leading-[14px]'>Solana</span>
                                             </p>
                                         </div>
                                         <button className='text-[14px] text-[#12CFA7] rounded-[10px] px-[15px] py-[4px] bg-[#12cfa615]'>Connected</button>
@@ -69,7 +93,7 @@ const AirdropCard = ({ isSidebarVisible }) => {
                                 </div>
                             </div>
                             <AirdropTasks />
-                            <AirdropReferralProgram />
+                            <AirdropReferralProgram referralCode={details?.referralCode}/>
                         </div>
                     </div>
                 </div>

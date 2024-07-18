@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 const AirdropStatistics = () => {
@@ -20,9 +21,9 @@ const AirdropStatistics = () => {
                     <h6 className="text-white lexend text-[16px] lg:text-[14px] font-[400] leading-[312.5%]">Redeemed Merlin Token</h6>
                     <div className="flex items-center justify-start gap-[15px]">
                         <h3 className="text-white uppercase leading-[137.5%] text-[26px] lg:text-[20px] font-[700] quantico">200.00MRLN</h3>
-                        <a href='#' className='bg-[#12CFA7] rounded-full h-[34px] relative w-[89px] flex items-center justify-center text-white text-center font-[600] text-[15px] uppercase quantico'>
+                        <Link href='#' className='bg-[#12CFA7] rounded-full h-[34px] relative w-[89px] flex items-center justify-center text-white text-center font-[600] text-[15px] uppercase quantico'>
                             <span className="btn-text">Redeems</span>
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>

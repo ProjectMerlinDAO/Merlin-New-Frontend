@@ -8,8 +8,11 @@ import SignInPopup from "../App/Auth/SignInPopup";
 import { useWallet } from "@solana/wallet-adapter-react";
 import axios from "axios";
 import Dropdown from "./Modals/dropdown";
+import { useRouter } from "next/router";
 
 const AppHeader = ({ isSidebarVisible }) => {
+  const {router} = useRouter();
+  console.log(router?.query,"jhrvjhjr")
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   // const { open } = useWeb3Modal();
   const { publicKey, disconnect } = useWallet();
