@@ -4,7 +4,7 @@ import Pagination from '../../Core/Pagination';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-import { removeAll, removeFromList } from '@/src/redux/oracleList';
+import { removeAll, removeFromList } from '@/src/redux/oracleListSlice';
 
 
 const Oracle = () => {

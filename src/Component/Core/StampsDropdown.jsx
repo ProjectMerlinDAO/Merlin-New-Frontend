@@ -1,4 +1,4 @@
-import { addToList } from '@/src/redux/oracleList';
+import { addToList } from '@/src/redux/oracleListSlice';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 

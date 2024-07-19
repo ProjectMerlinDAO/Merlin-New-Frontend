@@ -13,7 +13,6 @@ import { useSelector } from "react-redux";
 
 const AppHeader = ({ isSidebarVisible }) => {
   const data = useSelector((state) => state.user.referral);
-  console.log(data,"fjkvfjk")
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   // const { open } = useWeb3Modal();
   const { publicKey, disconnect } = useWallet();
