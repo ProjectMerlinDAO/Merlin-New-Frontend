@@ -9,10 +9,11 @@ import { useWallet } from "@solana/wallet-adapter-react";
 import axios from "axios";
 import Dropdown from "./Modals/dropdown";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 
 const AppHeader = ({ isSidebarVisible }) => {
-  const {router} = useRouter();
-  console.log(router?.query,"jhrvjhjr")
+  const data = useSelector((state) => state.user.referral);
+  console.log(data,"fjkvfjk")
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   // const { open } = useWeb3Modal();
   const { publicKey, disconnect } = useWallet();
@@ -33,15 +34,23 @@ const AppHeader = ({ isSidebarVisible }) => {
       handleSignin();
     }
   };
-  const userDetails = async () => {
-    const user = await axios.post(`${baseUrl}/user/details`, {
-      wallet: publicKey?.toBase58()
-    })
-    console.log(user)
+  const registerUser = async () => {
+    if(data && data !== ""){
+      const user = await axios.post(`${baseUrl}/user/details`, {
+        wallet: publicKey?.toBase58(),
+        referral: data
+      })
+      console.log(user)
+    }else{
+      const user = await axios.post(`${baseUrl}/user/details`, {
+        wallet: publicKey?.toBase58()
+      })
+      console.log(user)
+    }
   }
   useEffect(() => {
     if (publicKey) {
-      userDetails();
+      registerUser();
     }
   }, [publicKey])
   return (

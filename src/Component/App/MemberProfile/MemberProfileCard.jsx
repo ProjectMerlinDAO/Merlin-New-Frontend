@@ -9,21 +9,25 @@ import { useWallet } from '@solana/wallet-adapter-react'
 import { toast } from 'react-toastify'
 import { useRouter } from 'next/router'
 import { useWalletModal } from '@solana/wallet-adapter-react-ui'
+import { useDispatch } from 'react-redux'
+import { checkReferral } from '@/src/redux/UserSlice'
 
 
 const MemberProfileCard = ({ isSidebarVisible }) => {
     const router = useRouter();
     const { setVisible } = useWalletModal();
+    const dispatch = useDispatch()
     const baseurl = process.env.NEXT_PUBLIC_BASE_URL;
     const { publicKey } = useWallet();
     const [details, setDetails] = useState();
     const [email, setEmail] = useState();
     const [msgsType, setMsgsType] = useState("active");
     const [msgList, setMsgList] = useState();
-
   if(router?.query?.ref){
+    let ref = router?.query?.ref;
+    dispatch(checkReferral(ref))
     if(!publicKey){
-       setVisible(true)
+       setVisible(true);
     }
   }
     const fetchDetails = async () => {

@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import oracleListReducer from "./oracleList";
+import oracleListReducer from "./oracleListSlice";
+import userReducer from "./UserSlice";
 
 const store = configureStore({
     reducer: {
-        List: oracleListReducer
+        List: oracleListReducer,
+        user: userReducer
     },
   });
   
