@@ -7,12 +7,12 @@ const TeamCard = ({teamMemberImg, cardSize, teamMebername, degnation, url}) => {
     <div className={`team-card ${cardSize}`}>
         <div className="card-content">
             <div className="team-member-img">
-                <Image src={teamMemberImg} alt="img" />
+                <img src={teamMemberImg} alt="img" />
             </div>
             <h5>{teamMebername}</h5>
             <h6>{degnation}</h6>
             <Link href={`${url}`} target='_blank' className="pt-[20px] text-center flex items-center justify-center opacity-[80%] hover:opacity-[100%] delay-[0.2s]">
-              <Image src="/assets/images/icons/in.svg" alt="icon" height='24' width='24' />
+              <img src="/assets/images/icons/in.svg" alt="icon" height='24' width='24' />
             </Link>
         </div>
     </div>

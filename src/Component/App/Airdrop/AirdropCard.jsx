@@ -79,7 +79,7 @@ useEffect(() => {
                                     <div className="flex items-center justify-between rounded-[18px] mb-[30px] px-[20px] py-[13px] bg-gradient-to-r from-[#ffffff10] to-[#ffffff05] gap-[20px] mb-40px">
                                         <div className="flex items-center justify-start gap-[15px]">
                                             <div className="h-[40px] relative w-[40px] rounded-full overflow-hidden flex items-center justify-center">
-                                                <Image src="/assets/images/coins/eth.png" alt="coin" fill={true} />
+                                                <img src="/assets/images/coins/eth.png" alt="coin" fill={true} />
                                             </div>
                                             <p className="mb-0">
                                                 <span className='text-white leading-[16px]'>{publicKey ? publicKey?.toBase58().slice(0,4) + "...." + publicKey.toBase58().slice(-4) : null }</span>

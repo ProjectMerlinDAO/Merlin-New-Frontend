@@ -56,7 +56,7 @@ const UploadOptional = ({ image, setImage }) => {
             <div key={index} className="w-1/4 xsm:w-1/2 px-[10px]">
               <div className="bg-[#FFFFFF05] flex items-center relative justify-center rounded-[12px] overflow-hidden h-[100px] w-full">
                 {image ? (
-                  <Image
+                  <img
                     src={image}
                     alt={`Uploaded preview ${index + 1}`}
                     fill={true}

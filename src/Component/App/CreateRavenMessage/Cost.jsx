@@ -12,7 +12,7 @@ const Cost = ({data}) => {
                         <div className="flex items-center gap-[13px]">
                             <p>MRLN</p>
                             <div className="h-[30px] relative w-[30px] rounded-full overflow-hidden flex items-center justify-center">
-                                <Image src="/assets/images/img/banner-img.png" alt="coin" fill={true} />
+                                <img src="/assets/images/img/banner-img.png" alt="coin" fill={true} />
                             </div>
                         </div>
                     </div>

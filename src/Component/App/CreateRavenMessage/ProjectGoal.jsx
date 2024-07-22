@@ -16,7 +16,7 @@ const ProjectGoal = ({name, onChange, value, errors}) => {
                     <div className="w-1/2 xsm:w-full">
                         <div className="flex px-[20px] items-center py-[10px] gap-[13px] border-r-2 border-[#FFFFFF12] h-[60px]" onClick={toggleTextVisibility}>
                             <div className="h-[30px] relative w-[30px] rounded-full overflow-hidden flex items-center justify-center">
-                                <Image src="/assets/images/coins/usdt.svg" alt="coin" fill={true} />
+                                <img src="/assets/images/coins/usdt.svg" alt="coin" fill={true} />
                             </div>
                             <input type="text" placeholder='USDT Amount' className='text-white no-outline bg-transparent border-0' name={name} onChange={onChange} value={value == 0 ? null : value }/>
                         </div>
@@ -28,7 +28,7 @@ const ProjectGoal = ({name, onChange, value, errors}) => {
                             <div className="flex items-center gap-[13px]">
                                 <p>MRLN</p>
                                 <div className="h-[30px] relative w-[30px] rounded-full overflow-hidden flex items-center justify-center">
-                                    <Image src="/assets/images/img/banner-img.png" alt="coin" fill={true} />
+                                    <img src="/assets/images/img/banner-img.png" alt="coin" fill={true} />
                                 </div>
                             </div>
                         </div>

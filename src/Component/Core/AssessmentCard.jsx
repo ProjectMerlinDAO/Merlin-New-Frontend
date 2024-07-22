@@ -17,7 +17,7 @@ const AssessmentCard = ({ title, cardImg, totalPreProposal, description, descrip
     
       <div className='flex items-center justify-start relative z-10 gap-[18px] xl:gap-[12px] px-[40px] 2xl:px-[20px] max-w-[75%] lg:max-w-full pt-[40px] xl:pt-[25px] pb-[25px] xl-[10px] lg:mb-[30px] xsm:lg:mb-[30px]  md:mb-[0px]'>
         <div className="overflow-hidden rounder-[25px] relative min-h-[100px] min-w-[100px] 2xl:min-h-[80px] 2xl:min-w-[80px] max-h-[100px] max-w-[100px] 2xl:max-h-[80px] 2xl:max-w-[80px] xl:min-h-[80px] xl:min-w-[80px] xl:max-h-[80px] xl:max-w-[80px] lg:min-h-[60px] lg:min-w-[60px] lg:max-h-[60px] lg:max-w-[60px]">
-          <Image src={cardImg} alt="img" className="object-cover w-[100px] h-[100px] item-img" fill={true} />
+          <img src={cardImg} alt="img" className="object-cover w-[100px] h-[100px] item-img" fill={true} />
         </div>
         <div className="max-w-[70%]">
           <h3 className='mb-[15px] 2xl:mb-[0] text-[26px] lg:text-[18px] text-white text-ellipsis overflow-hidden text-nowrap'>{title}</h3>

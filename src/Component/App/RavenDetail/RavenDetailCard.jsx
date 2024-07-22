@@ -58,8 +58,6 @@ const RavenDetailCard = ({ isSidebarVisible, id }) => {
             const response = await axios.post(`${baseUrl}/raven/countRavenMsgs`, {
                 wallet:detail?.walletAddress
             })
-            console.log(response?.data?.count,"RESSSSSSSS");
-            console.log(response,"RESSSSSSSS");
         } catch (error) {
             console.log(error)
         }
@@ -94,14 +92,14 @@ const RavenDetailCard = ({ isSidebarVisible, id }) => {
                             <li className='flex items-center justify-start gap-[8px]'><a href="#" className="flex cursor-pointer text-[#12CFA7]">{detail ? detail.code : null}</a></li>
                         </ul>
                         <div className="p-[60px] 2xl:py-[40px] 2xl:px-[20px] rounded-[40px] relative backdrop-blur-[15px] overflow-hidden" style={{ background: 'linear-gradient(178deg, rgba(255, 255, 255, 0.05) 2.04%, rgba(255, 255, 255, 0.01) 97.96%)' }}>
-                            <Image src='/assets/images/shape/raven-detail-shape.png' fill={true} className='top-0 right-0 z-0 mt-[-30%] mr-[-15%]' />
+                            <img src='/assets/images/shape/raven-detail-shape.png' fill={true} className='top-0 right-0 z-0 mt-[-30%] mr-[-15%]' />
                             <div className="relative z-10">
                                 <div className="flex items-start justify-between mx-[-15px] lg:flex-wrap row">
                                     <div className="w-[65%] px-[15px] lg:w-full raven-detail-left lg:mb-[30px]">
                                         <div className="max-w-[715px]">
                                             <div className="flex items-start justify-start gap-[25px] mb-[40px] md:mb-[30px] sm:mb-[20px]" >
                                                 <div className="min-h-[120px] min-w-[120px] max-h-[120px] sm:min-h-[80px] sm:min-w-[80px] xm:max-h-[80px] xm:max-w-[80px] xsm:absolute relative rounded-[20px] overflow-hidden">
-                                                    <Image src={detail?.avatarImage} alt="icon" fill={true} />
+                                                    <img src={detail?.avatarImage} alt="icon" fill={true} />
                                                 </div>
                                                 <div className='text-white xsm:w-full'>
                                                     <h3 className='mb-[20px] md:mb-[15px] text-[40px] 2xl:text-[32px] lg:text-[26px] leading-[150%] xsm:pl-[100px]'>{detail ? detail.title : null}</h3>

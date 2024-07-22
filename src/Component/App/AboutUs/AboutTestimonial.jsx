@@ -8,13 +8,13 @@ const AboutTestimonial = () => {
             <div className="about-testimonial-card">
                 <div className="about-testimonial-content">
                     <div className="about-testimonial-Image">
-                        <Image src="../assets/images/Image/ceo-Image.png" alt="Image" />
+                        <img src="../assets/images/Image/ceo-Image.png" alt="Image" />
                     </div>
                     <div className="about-testimonial-text">
                         <p>At Project Merlin, we are not just building a platform; we are nurturing a movement where every voice can truly make a difference. With each of your contributions, we unlock the potential to transform the future together. You are in the right place to be a part of the global blockchain revolution.</p>
                         <div className="name">
                             <div className="icon">
-                                <Image src="../assets/images/icons/quot.svg" alt="icon" />
+                                <img src="../assets/images/icons/quot.svg" alt="icon" />
                             </div>
                             <div className="text">
                                 <h5>HAKAN BEKTAŞ</h5>

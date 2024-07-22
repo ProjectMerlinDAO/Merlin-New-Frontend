@@ -57,7 +57,7 @@ const RavenDetailVideo = ({ url }) => {
               ></iframe>
             ) : (
               <>
-                <Image src="/assets/images/img/raven-video-thambnail.jpg" alt="img" fill={true} className='object-cover' />
+                <img src="/assets/images/img/raven-video-thambnail.jpg" alt="img" fill={true} className='object-cover' />
                 <div className="bg-[#00000099] absolute top-0 left-0 h-full w-full z-10 flex items-center justify-center">
                   <button onClick={handlePlayButtonClick} className='flex items-center justify-center bg-white h-[80px] w-[80px] rounded-[50%] overflow-hidden'>
                     <Image src="/assets/images/icons/play.svg" alt="icon" height={24} width={24} />

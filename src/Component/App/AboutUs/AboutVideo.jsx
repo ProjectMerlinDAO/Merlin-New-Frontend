@@ -39,7 +39,7 @@ const AboutVideo = () => {
                 onClick={handlePlayButtonClick}
                 className='play-btn flex items-center justify-center h-[100px] w-[100px] lg:h-[80px] lg:w-[80px] md:h-[60px] md:w-[60px] bg-[#FFFFFF] p-[20px] rounded-[50%]'
               >
-                <Image src="../assets/images/icons/play.svg" alt="Play button" />
+                <img src="../assets/images/icons/play.svg" alt="Play button" />
               </button>
             </div>
           )}

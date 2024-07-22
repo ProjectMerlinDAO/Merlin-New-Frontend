@@ -31,7 +31,7 @@ const RavenUploadImg = ({ image, setImage, errors }) => {
       <label className='font-[400] uppercase text-white'>Raven Message Avatar Photo</label>
       <div className="rounded-[18px] relative cursor-pointer bg-[#FFFFFF05] overflow-hidden h-[250px] p-[20px] w-full mt-[8px] md:mt-[4px] text-center flex items-center justify-center flex-col" style={{ border: '2px dashed rgba(255, 255, 255, 0.12)' }}>
         {uploadedImage ? (
-          <Image src={uploadedImage} alt="Uploaded preview" fill={true} className="object-cover" />
+          <img src={uploadedImage} alt="Uploaded preview" fill={true} className="object-cover" />
         ) : (
           <>
             <p className='mb-[35px] relative z-0'>JPEG, JPG, PNG, GIF, WEBP. Max size 10mb.</p>
