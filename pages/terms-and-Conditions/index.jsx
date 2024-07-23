@@ -1,7 +1,7 @@
 import React from 'react'
 import { PolPara, PolText, PolicyMainHeading } from '../cookiesPolicy/index'
-import HomeFooter from "@/src/Component/Core/HomeFooter/HomeFooter";
-import Header from '@/src/Component/App/Home/Header/Header'
+import HomeFooter from "../../src/Component/Core/HomeFooter/HomeFooter";
+import Header from '../../src/Component/App/Home/Header/Header'
 
 function TermsConditions() {
   return (

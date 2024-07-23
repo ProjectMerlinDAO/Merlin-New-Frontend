@@ -1,10 +1,10 @@
 import React from "react";
-import HomeFooter from "@/src/Component/Core/HomeFooter/HomeFooter";
-import Header from '@/src/Component/App/Home/Header/Header'
+// import HomeFooter from "@/src/Component/Core/HomeFooter/HomeFooter";
+import HomeFooter from "../../src/Component/Core/HomeFooter/HomeFooter.jsx";
+import Header from "../../src/Component/App/Home/Header/Header.jsx"
 function CookiesPolicy() {
   return (
     <>
-   
     <Header />
     <div className='bg-[rgba(255,255,255,0.05)]'>
       
