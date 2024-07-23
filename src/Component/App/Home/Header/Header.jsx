@@ -19,7 +19,7 @@ const Header = () => {
           <div className="center max-w-[529px] w-full mx-auto lg:hidden">
             <ul className='flex items-center justify-between w-full text-white uppercase quantico'>
               <li><Link href={router.pathname === "/" ? "#home" : "/#home"}>Home</Link></li>
-              <li><Link href={router.pathname === "/" ? "#tokenEconomics" : "/#tokenEconomics"}>Token</Link></li>
+              <li><Link href={router.pathname === "/" ? "#tokeneconomics" : "/#tokeneconomics"}>Token</Link></li>
               <li><Link target="_blank" href="https://docs.projectmerlin.io/projectmerlin">Docs</Link></li>
               <li><Link href="/about">About</Link></li>
               <li><Link href={router.pathname === "/" ? "#faq" : "/#faq"}>FAQ</Link></li>
