@@ -23,6 +23,8 @@ const MemberProfileCard = ({ isSidebarVisible }) => {
     const [email, setEmail] = useState();
     const [msgsType, setMsgsType] = useState("active");
     const [msgList, setMsgList] = useState();
+    const [isOpen, setIsOpen] = useState(false);
+
   if(router?.query?.ref){
     let ref = router?.query?.ref;
     dispatch(checkReferral(ref))
@@ -40,7 +42,8 @@ const MemberProfileCard = ({ isSidebarVisible }) => {
         } catch (error) {
             console.log(error);
         }
-    }
+    };
+
     const fetchRavenMsgs = async () => {
         try {
             const wallet = publicKey.toBase58();
@@ -54,16 +57,18 @@ const MemberProfileCard = ({ isSidebarVisible }) => {
         } catch (error) {
             console.log(error);
         }
-    }
+    };
+
     const isValidEmail = (email) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     };
+
     const handleEmail = async () => {
         try {
             if (email && isValidEmail(email)) {
                 const wallet = publicKey.toBase58();
-                const res = await axios.patch(`${baseurl}/user/details`, {
+                const res = await axios.put(`${baseurl}/user/details`, {
                     wallet,
                     email,
                 })
@@ -81,7 +86,7 @@ const MemberProfileCard = ({ isSidebarVisible }) => {
             toast.error("Something went wrong!")
         }
 
-    }
+    };
 
     useEffect(() => {
         if (publicKey) {
@@ -91,6 +96,7 @@ const MemberProfileCard = ({ isSidebarVisible }) => {
     }, [publicKey,msgsType])
   
     return (
+        <>
         <div className="pt-[110px] relative bg-no-repeat position-top bg-contain" style={{ backgroundImage: 'url(./assets/images/bg/sub-bg.png)', backgroundSize: '100% 388px' }}>
             <div className={`app-home-wrapper ${isSidebarVisible ? "sidebar-visible" : "sidebar-hidden"}`}>
                 <div className="px-[20px] md:px-[10px] max-w-[1365px] mx-auto lg:max-w-[720px]">
@@ -111,7 +117,7 @@ const MemberProfileCard = ({ isSidebarVisible }) => {
                                 height={373}
                             />
                         </div>
-                        <MemberDetail details={details} setDetails={setDetails} />
+                        <MemberDetail details={details} setDetails={setDetails} isOpen={isOpen} setIsOpen={setIsOpen} wallet={publicKey?.toBase58()} detailFun={fetchDetails}/>
                         <div className="relative z-30">
                             <div className="flex items-start justify-start mx-[-15px] xl:flex-wrap row">
                                 <div className="w-[60%] lg:w-full px-[15px]">
@@ -158,6 +164,7 @@ const MemberProfileCard = ({ isSidebarVisible }) => {
                 </div>
             </div>
         </div>
+        </>
 
     )
 }
