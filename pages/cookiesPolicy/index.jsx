@@ -164,7 +164,7 @@ export function PolText({Textheading}) {
 
 export function PolicyMainHeading({Head}) {
   return <div className="PolicyHead flex justify-center">
-    <h2 className="rounded-full text-[60px] font-semibold lexend text-white px-[20px] py-[5px] mb-[22px] w-[max-content]" style={{ background: 'linear-gradient(90deg, rgba(208, 46, 190, 0.20) 0%, rgba(108, 211, 108, 0.20) 100%)' }}>{Head}</h2>
+    <h2 className="rounded-full text-[35px] font-semibold lexend text-white px-[20px] py-[5px] mb-[22px] w-[max-content] leading-normal text-center" style={{ background: 'linear-gradient(90deg, rgba(208, 46, 190, 0.20) 0%, rgba(108, 211, 108, 0.20) 100%)' }}>{Head}</h2>
   </div>;
 }
 

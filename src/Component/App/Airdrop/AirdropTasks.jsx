@@ -1,7 +1,8 @@
 import React from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-import Dropdown from '@/src/Component/Core/Dropdown';
+// import Dropdown from '@/src/Component/Core/Dropdown';
+import Dropdown from '../../Core/Dropdown';
 import SectionTitle from '@/src/Component/Core/SectionTitle';
 import AirdropTaskTable from './AirdropTaskTable';
 

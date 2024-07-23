@@ -62,7 +62,7 @@ const Rename = ({isOpen, setIsOpen, wallet,title, details ,setDetails, detailFun
                                                 <label for="">Name</label>
                                             </div>
                                             <div className="modalLink">
-                                                <input type="text" value={name !== "" ? name : "null"} onChange={(e) => setName(e.target.value)} />
+                                                <input type="text" value={name !== "" ? name : null} onChange={(e) => setName(e.target.value)} />
                                                 <button onClick={handleName}>{progress ? "Processing..." : "Update Name"}</button>
                                             </div>
                                         </div>

@@ -8,6 +8,7 @@ import AirdropReferralProgram from './AirdropReferralProgram'
 import { useWallet } from '@solana/wallet-adapter-react'
 import axios from 'axios'
 import Link from 'next/link'
+import { toast } from 'react-toastify'
 
 
 
@@ -15,6 +16,7 @@ const AirdropCard = ({ isSidebarVisible }) => {
 const baseurl = process.env.NEXT_PUBLIC_BASE_URL;
 const { publicKey } = useWallet();
 const [details, setDetails] = useState();
+const [loading, setIsLoading] = useState(false);
 
 const fetchDetails = async () => {
     try {
@@ -30,13 +32,22 @@ const fetchDetails = async () => {
 }
 const handleVerification = async () => {
  try {
+    setIsLoading(true);
     const wallet = publicKey.toBase58();
     const res = await axios.post(`${baseurl}/user/verifyEmail`,{
         wallet
     })
-    console.log(res)
+    if(res?.status === 200){
+        setIsLoading(false);
+        toast.success(res.data?.message);
+    }else{
+        setIsLoading(false);
+        toast.error(res.data?.message)
+    }
  } catch (error) {
     console.log(error)
+    setIsLoading(false);
+
  }
 }
 useEffect(() => {
@@ -76,12 +87,17 @@ useEffect(() => {
                                     <div className="mt-[35px] lg:mt-[25px] md:mt-[15px] profile-form lg:mb-[40px]">
                                         <label className="text-white uppercase">Email address</label>
                                         <form className="flex xsm:flex-wrap gap-[15px] mt-[15px]">
-                                            <input type="email" placeholder="Enter your email address" value={details?.email} className="px-[20px] py-[5px] bg-transparent text-white border-2 border-[rgba(255,255,255,0.12)] h-[60px] rounded-[18px] max-w-[418px] xsm:max-w-full w-full" />
-                                            <div  className='hov-btn bg-[#12CFA7] rounded-[15px] h-[58px] relative w-[170px] xsm:w-full flex items-center justify-center text-white text-center  font-[600] text-[16px] uppercase quantico'>
-                                                <span className="btn-hov-text" onClick={handleVerification}>
-                                                    <span className="btn-text">Verify</span>
-                                                    <span className="btn-text">Verify</span>
+                                            <input type="email"  readOnly value={details?.email} className="px-[20px] py-[5px] bg-transparent text-white border-2 border-[rgba(255,255,255,0.12)] h-[60px] rounded-[18px] max-w-[418px] xsm:max-w-full w-full" />
+                                            <div  className=' hov-btn bg-[#12CFA7] rounded-[15px] h-[58px] relative w-[170px] xsm:w-full flex items-center justify-center text-white text-center  font-[600] text-[16px] uppercase quantico'>
+                                                {details?.emailVerified === true ? 
+                                                <span className="btn-text cursor-none">
+                                                    {/* <span className="btn-text">Verified</span> */}
+                                                    <span className="btn-text">Verified</span>
                                                 </span>
+                                                :   <span className="btn-hov-text cursor-pointer" onClick={handleVerification}>
+                                                <span className="btn-text">{loading ? "Sending...." : "Verify"}</span>
+                                                <span className="btn-text">{loading ? "Sending...." : "Verify"}</span>
+                                            </span>}
                                             </div>
                                         </form>
                                     </div>

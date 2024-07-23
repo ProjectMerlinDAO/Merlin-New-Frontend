@@ -232,7 +232,7 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
                 "linear-gradient(178deg, rgba(255, 255, 255, 0.05) 2.04%, rgba(255, 255, 255, 0.01) 97.96%)",
             }}
           >
-            <img
+            <Image
               src="/assets/images/shape/raven-card-shape.png"
               fill={true}
               className="top-0 left-0 z-0 mt-[-40%] ml-[-20%]"

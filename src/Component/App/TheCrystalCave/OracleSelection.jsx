@@ -81,7 +81,7 @@ const OracleSelection = () => {
     const [oracleList, setOracleList] = useState();
     const [category, setCategory] = useState("all");
     const [stamp, setStamp] = useState("Stamps");
-     const {router} = useRouter()
+     const router = useRouter();
     const handleOracle = async () => {
         try {
             const url = `category=${category}`
@@ -138,9 +138,9 @@ const OracleSelection = () => {
                     </ul>
                     {oracleList ? (
                         oracleList.map((data, index) => (
-                            <ul key={index} className={`cursor-pointer rounded-[20px] mb-[15px] relative crystal-table-row backdrop-blur-[10px] py-[15px] flex items-center justify-between`} style={{ background: 'linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 50%, rgba(255, 255, 255, 0.08) 100%)', zIndex: crystalData.length - index }}>
-                                <li className="w-[40%] px-[15px] xl:pr-[5px]">
-                                    <div className="flex items-center justify-start" onClick={() => handleClick(data?._id)}>
+                            <ul key={index} className={`rounded-[20px] mb-[15px] relative crystal-table-row backdrop-blur-[10px] py-[15px] flex items-center justify-between`} style={{ background: 'linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 50%, rgba(255, 255, 255, 0.08) 100%)', zIndex: crystalData.length - index }}>
+                                <li className=" w-[40%] px-[15px] xl:pr-[5px] z-50 relative" onClick={() => handleClick(data?._id)} >
+                                    <div className="flex items-center justify-start cursor-pointer " >
                                         <div className="min-h-[60px] min-w-[60px] max-h-[60px] max-w-[60px] rounded-[15px] overflow-hidden">
                                             <Image src={data.avatarImage} alt="Avatar" className="object-cover w-full h-full" width="60" height="60" />
                                         </div>

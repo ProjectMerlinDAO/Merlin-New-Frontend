@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AppFooter from "@/src/Component/Core/AppFooter/AppFooter";
-import AppHeader from "@/src/Component/Core/AppHeader";
+// import AppHeader from "@/src/Component/Core/AppHeader";
+import AppHeader from "../../src/Component/Core/AppHeader";
 import Sidebar from "@/src/Component/Core/Sidebar/Sidebar";
 import CommunityAssessment from "@/src/Component/App/AppHome/CommunityAssessment/CommunityAssessment";
 const Index = () => {

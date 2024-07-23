@@ -1,4 +1,6 @@
-import SectionTitle from '@/src/Component/Core/SectionTitle'
+// import SectionTitle from '../../src/Component/Core/SectionTitle'
+// import SectionTitle from '../../../Core'
+import SectionTitle from '../../../Core/SectionTitle'
 import React from 'react'
 import DonutChartSection from './DonutChartSection'
 

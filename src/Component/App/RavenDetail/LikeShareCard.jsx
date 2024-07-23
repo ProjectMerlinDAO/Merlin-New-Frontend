@@ -65,6 +65,14 @@ const LikeShareCard = ({ id, like, dislike, fetch, isOpen ,setIsOpen }) => {
   const openModal = () => {
     setIsOpen(true);
   }
+
+  const handleBoost = (e) =>{
+    e.preventDefault();
+    if(!publicKey){
+      toast.error("Please Connect wallet")
+    }
+    
+  }
   return (
     <>
    
@@ -91,7 +99,7 @@ const LikeShareCard = ({ id, like, dislike, fetch, isOpen ,setIsOpen }) => {
       </button>
       
 
-      <button type='submit' className="hov-btn no-border btn-has-shape flex items-center justify-center gap-[10px] bg-[#ffffff0c] h-[60px] text-white quantico font-[700] w-full rounded-[18px] uppercase mt-[30px]">
+      <button type='submit' onClick={handleBoost} className="hov-btn no-border btn-has-shape flex items-center justify-center gap-[10px] bg-[#ffffff0c] h-[60px] text-white quantico font-[700] w-full rounded-[18px] uppercase mt-[30px]">
         <span className="btn-hov-text">
           <span className="btn-text">🚀 Boost Raven Message</span>
           <span className="btn-text">🚀 Boost Raven Message</span>

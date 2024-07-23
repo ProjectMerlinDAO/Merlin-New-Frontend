@@ -15,7 +15,7 @@ const FooterCard = () => {
   const secondColumnLinks = [
     { text: "Latest Articles", href: "#" },
     { text: "Docs", href: "https://docs.projectmerlin.io/projectmerlin" },
-    { text: "Tokenomic", href: "/#Tokeneconomics" },
+    { text: "Tokenomic", href: "/#tokeneconomics" },
   ];
 
   const socialIcons = [
@@ -83,7 +83,7 @@ const FooterCard = () => {
                 <ul>
                   {secondColumnLinks.map((link, index) => (
                     <li key={index} className={link.text === "Latest Articles" ? "pointer-events-none text-gray-500" : "hover:text-white mb-[10px]"}>
-                      <a href={link.href}>{link.text}</a>
+                      <Link href={link.href} target={link.text === "Docs" ? "_blank": undefined } >{link.text}</Link>
                     </li>
                   ))}
                 </ul>

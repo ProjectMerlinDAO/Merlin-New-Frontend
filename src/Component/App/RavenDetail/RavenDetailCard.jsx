@@ -25,7 +25,7 @@ const RavenDetailCard = ({ isSidebarVisible, id }) => {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
     const [detail, setDetail] = useState();
     const [count, setCount] = useState(0);
-    
+
     const fetchDetails = async () => {
         try {
             const details = await axios.get(`${baseUrl}/raven/fetch-raven/${id}`);
@@ -46,17 +46,17 @@ const RavenDetailCard = ({ isSidebarVisible, id }) => {
             if (data?.data?.transactions) {
                 setTransactions(data?.data?.transactions)
                 setPageCount(data?.data?.totalPages)
-               
+
             }
         } catch (error) {
             console.log(error)
         }
     }
 
-    const calculateCount = async() => {
+    const calculateCount = async () => {
         try {
             const response = await axios.post(`${baseUrl}/raven/countRavenMsgs`, {
-                wallet:detail?.walletAddress
+                wallet: detail?.walletAddress
             })
         } catch (error) {
             console.log(error)
@@ -64,23 +64,23 @@ const RavenDetailCard = ({ isSidebarVisible, id }) => {
     }
 
     useEffect(() => {
-        if(id){
-        fetchTransactions(id);
+        if (id) {
+            fetchTransactions(id);
         }
-    }, [page,id])
+    }, [page, id])
 
     useEffect(() => {
         if (id) {
             fetchDetails();
         }
-    }, [id,transactions])
-    
-  
-   
+    }, [id, transactions])
+
+
+
     return (
         <>
             <ShareModal isOpen={isOpen} setIsOpen={setIsOpen} />
-            <PaymentModal isOpen={isPayment} setIsOpen={setIsPayment} publicKey={publicKey} id={id} fetchTransactions={fetchTransactions} page={page} goal={detail?.projectGoal} amtRaised={detail?.amtRaised}/>
+            <PaymentModal isOpen={isPayment} setIsOpen={setIsPayment} publicKey={publicKey} id={id} fetchTransactions={fetchTransactions} page={page} goal={detail?.projectGoal} amtRaised={detail?.amtRaised} />
             <div className="pt-[110px]  bg-no-repeat relative position-top bg-contain" style={{ backgroundImage: 'url(./assets/images/bg/sub-bg.png)', backgroundSize: '100% 388px' }}>
                 <div className={`app-home-wrapper lg:mt-[0px]  ${isSidebarVisible ? "sidebar-visible" : "sidebar-hidden"}`}>
                     <div className="px-[20px] md:px-[10px] max-w-[1365px] mx-auto lg:max-w-[720px] relative  max-w-screen-2xl">
@@ -92,14 +92,14 @@ const RavenDetailCard = ({ isSidebarVisible, id }) => {
                             <li className='flex items-center justify-start gap-[8px]'><a href="#" className="flex cursor-pointer text-[#12CFA7]">{detail ? detail.code : null}</a></li>
                         </ul>
                         <div className="p-[60px] 2xl:py-[40px] 2xl:px-[20px] rounded-[40px] relative backdrop-blur-[15px] overflow-hidden" style={{ background: 'linear-gradient(178deg, rgba(255, 255, 255, 0.05) 2.04%, rgba(255, 255, 255, 0.01) 97.96%)' }}>
-                            <img src='/assets/images/shape/raven-detail-shape.png' fill={true} className='top-0 right-0 z-0 mt-[-30%] mr-[-15%]' />
+                            <Image src='/assets/images/shape/raven-detail-shape.png' fill={true} className='top-0 right-0 z-0 mt-[-30%] mr-[-15%]' />
                             <div className="relative z-10">
                                 <div className="flex items-start justify-between mx-[-15px] lg:flex-wrap row">
                                     <div className="w-[65%] px-[15px] lg:w-full raven-detail-left lg:mb-[30px]">
                                         <div className="max-w-[715px]">
                                             <div className="flex items-start justify-start gap-[25px] mb-[40px] md:mb-[30px] sm:mb-[20px]" >
                                                 <div className="min-h-[120px] min-w-[120px] max-h-[120px] sm:min-h-[80px] sm:min-w-[80px] xm:max-h-[80px] xm:max-w-[80px] xsm:absolute relative rounded-[20px] overflow-hidden">
-                                                    <img src={detail?.avatarImage} alt="icon" fill={true} />
+                                                    <Image src={detail?.avatarImage} alt="icon" fill={true} />
                                                 </div>
                                                 <div className='text-white xsm:w-full'>
                                                     <h3 className='mb-[20px] md:mb-[15px] text-[40px] 2xl:text-[32px] lg:text-[26px] leading-[150%] xsm:pl-[100px]'>{detail ? detail.title : null}</h3>
@@ -111,11 +111,11 @@ const RavenDetailCard = ({ isSidebarVisible, id }) => {
                                             <p className='mb-[30px]'>{detail?.proposalDetail.slice(301, 400)}</p>
                                             {/* <p className='mb-[30px]'>These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled.</p> */}
                                             <RavenImages images={detail?.images} />
-                                            <TransactionLogs transactions={transactions} page={page} pageCount={pageCount} setPage={setPage}/>
+                                            <TransactionLogs transactions={transactions} page={page} pageCount={pageCount} setPage={setPage} />
                                         </div>
                                     </div>
                                     <aside ref={stickyRef} className="w-[35%] px-[15px] lg:w-full raven-detail-right">
-                                        <Fundrising timer={detail?.endDate} goal={detail?.projectGoal} isOpen={isPayment} setIsOpen={setIsPayment} wallet={publicKey} amtRaised={detail?.amtRaised}/>
+                                        <Fundrising timer={detail?.endDate} goal={detail?.projectGoal} isOpen={isPayment} setIsOpen={setIsPayment} wallet={publicKey} amtRaised={detail?.amtRaised} />
                                         <ProposalInfoCard detail={detail} wallet={detail?.walletAddress} />
                                         <LikeShareCard id={id} like={detail?.like} dislike={detail?.dislike} fetch={fetchDetails} isOpen={isOpen} setIsOpen={setIsOpen} />
                                     </aside>

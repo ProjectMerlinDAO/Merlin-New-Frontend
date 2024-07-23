@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import SenatorAssessment from "@/src/Component/App/AppHome/SenatorAssessment/SenatorAssessment";
-import AppHeader from "@/src/Component/Core/AppHeader";
+// import AppHeader from "@/src/Component/Core/AppHeader";
+import AppHeader from "../../src/Component/Core/AppHeader";
 import Sidebar from "@/src/Component/Core/Sidebar/Sidebar";
 import AppFooter from "@/src/Component/Core/AppFooter/AppFooter";
 

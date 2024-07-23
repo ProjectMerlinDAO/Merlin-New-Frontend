@@ -30,11 +30,15 @@ const CamelotCard = ({ title, imageSrc, editorAvatar, editorName, treasury, cate
       <div className="flex items-center justify-between gap-[20px] mt-[20px]">
         <a 
         //  href=""
-         className='hov-btn relative gap-[7px] bg-[#ffffff10] rounded-full bg-opacity-10 backdrop-blur-[5px] h-[45px] w-[120px] flex items-center justify-center text-white text-center leading-trim-both text-edge-cap font-[600] text-[16px] uppercase quantico' >
-          <span className="btn-hov-text">
-              <span className="btn-text" >Vote Now</span>
-              <span className="btn-text" >Vote Now</span>
+        //  className='hov-btn relative gap-[7px] bg-[#ffffff10] rounded-full bg-opacity-10 backdrop-blur-[5px] h-[45px] w-[120px] flex items-center justify-center text-white text-center leading-trim-both text-edge-cap font-[600] text-[16px] uppercase quantico' >
+        className='buy-btn  rounded-full h-[50px] w-[170px] flex items-center justify-center text-white text-center leading-trim-both text-edge-cap font-[600] text-[16px] uppercase quantico'>
+          <span className="disable">
+          <span className="">Vote Now</span>
           </span>
+          {/* <span className="btn-hov-text">
+              <span className="btn-text" >Vote Now</span>
+              <span className="btn-text" >Vote Now</span>
+          </span> */}
         </a>
         <div className=' gap-[7px] bg-gradient-to-r from-[transparent] to-[#ffffff10] rounded-full backdrop-blur-[5px] h-[45px] w-[120px] flex items-center justify-center text-white text-center leading-trim-both text-edge-cap font-[600] text-[16px] uppercase quantico' >
           <Image src="/assets/images/icons/calander.svg" alt="icon" width="13" height="13" /> {date}

@@ -2,7 +2,7 @@ import React from 'react'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import MyMessageTable from './MyMessageTable'
-import Dropdown from '@/src/Component/Core/Dropdown'
+// import Dropdown from '@/src/Component/Core/Dropdown'
 import SectionTitle from '@/src/Component/Core/SectionTitle'
 
 const MyMessages = ({msgList,Type, setType}) => {
@@ -31,9 +31,9 @@ const MyMessages = ({msgList,Type, setType}) => {
                         </span>
                     </Tab>
                 </TabList>
-                <div className='w-[194px] xsm:w-full'>
+                {/* <div className='w-[194px] xsm:w-full'>
                     <Dropdown btnTitle="Filters" /> 
-                </div>
+                </div> */}
             </div>
 
             <TabPanel>

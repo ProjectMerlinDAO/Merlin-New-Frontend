@@ -10,6 +10,7 @@ import axios from "axios";
 import Dropdown from "./Modals/dropdown";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const AppHeader = ({ isSidebarVisible }) => {
   const data = useSelector((state) => state.user.referral);
@@ -46,6 +47,15 @@ const AppHeader = ({ isSidebarVisible }) => {
       })
       console.log(user)
     }
+  }
+  const handleNft = () => {
+    console.log("first")
+   if(!publicKey){
+    toast.error("Please Connect wallet to proceed further");
+    return;
+   }else{
+    toast.success("Nft page is in development")
+   }
   }
   useEffect(() => {
     if (publicKey) {
@@ -112,15 +122,16 @@ const AppHeader = ({ isSidebarVisible }) => {
                   </Link>
                 </li>
                 <li className="xl:hidden">
-                  <a
-                    href="#"
-                    className="buy-btn btn-has-shape hov-btn bg-[#ffffff19] rounded-full bg-opacity-10 backdrop-blur-[5px] h-[50px] w-[170px] sm:w-[120px] flex items-center justify-center text-white text-center  font-[600] text-[16px] sm:text[14px] uppercase quantico"
+                  <div
+                  onClick={handleNft}
+                    // href="#"
+                    className="cursor-pointer buy-btn btn-has-shape hov-btn bg-[#ffffff19] rounded-full bg-opacity-10 backdrop-blur-[5px] h-[50px] w-[170px] sm:w-[120px] flex items-center justify-center text-white text-center  font-[600] text-[16px] sm:text[14px] uppercase quantico"
                   >
-                    <span className="btn-hov-text">
+                    <span className="btn-hov-text" >
                       <span className="btn-text">Buy NFT</span>
                       <span className="btn-text">Buy NFT</span>
                     </span>
-                  </a>
+                  </div>
                 </li>
                 {publicKey ?
                   (<li>

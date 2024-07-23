@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const ApplyGrant = () => {
@@ -22,8 +23,8 @@ const ApplyGrant = () => {
               Great Project Merlin Community.
             </p>
           </div>
-          <a
-            href="#"
+          <Link
+            href="/launch-app"
             className="hov-btn btn-has-shape gap-[10px] bg-[#12CFA7] rounded-full h-[60px] min-w-[220px] md:mx-auto flex items-center justify-center text-white text-center leading-trim-both text-edge-cap font-[600] text-[16px] uppercase quantico"
           >
             <span className="btn-hov-text">
@@ -37,7 +38,7 @@ const ApplyGrant = () => {
               width={8}
               height={8}
             />
-          </a>
+          </Link>
         </div>
       </div>
     </div>

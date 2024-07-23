@@ -19,6 +19,10 @@ const isValidEmail = (email) => {
 const handelEmailSubscription = async (e) => {
   try {
     e.preventDefault();
+    if(email === ""){
+      toast.error("Email can't be empty");
+      return;
+    }
     if (email && isValidEmail(email)) {
       const subs = await axios.post(
         `${baseUrl}/user/emailSubscription`,
@@ -29,10 +33,13 @@ const handelEmailSubscription = async (e) => {
           },
         }
       );
-      if(subs.status === 200)
-    toast.success(subs.data.msg);
-     
-      setEmail("");
+      if(subs.status === 200){
+        toast.success(subs.data.msg);
+        setEmail("");
+      }else if(subs.status === 409){
+        toast.warning(subs.data.msg);
+        setEmail("");
+      }
     } else {
       toast.error("Email is not valid!",{className: 'bg-black-500 text-white',
       progressClassName: 'bg-green-500'});
@@ -232,7 +239,7 @@ const handelEmailSubscription = async (e) => {
                   <Link href={router.pathname === "/" ? "#home" : "/#home"}>Home</Link>
                   </li>
                   <li>
-                  <Link href={router.pathname === "/" ? "#Tokeneconomics" : "/#Tokeneconomics"}>Token</Link>
+                  <Link href={router.pathname === "/" ? "#tokeneconomics" : "/#tokeneconomics"}>Token</Link>
                   </li>
                   <li>
                   <Link href="https://docs.projectmerlin.io/projectmerlin" target="_blank">

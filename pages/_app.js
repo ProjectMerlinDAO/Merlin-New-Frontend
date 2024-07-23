@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
-import { config } from "@/config";
-import Web3ModalProvider from "@/context";
+// import { config } from "@/config";
+// import Web3ModalProvider from "@/context";
 import "@/styles/globals.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
