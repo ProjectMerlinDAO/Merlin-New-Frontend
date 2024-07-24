@@ -38,8 +38,8 @@ const Fundrising = ({ timer, goal, setIsOpen, wallet, amtRaised }) => {
           </span></li>
           <li className='relative flex items-center justify-between py-[15px] text-white'><span>Goal</span> <span>{goal} USDT {`(${goal * mrlnTokenPrice} MRLN)`}</span></li>
         </ul>
-        <button type='submit' onClick={openModal} disabled={percentAmt === 100} className="disabled:opacity-75   hov-btn no-border btn-has-shape bg-[#12CFA7] h-[60px] text-white quantico font-[700] w-full rounded-[18px] uppercase mt-[30px]">
-          { Math.round(percentAmt) == 100 ? 
+        <button type='submit' onClick={openModal} disabled={percentAmt === 100} className="disabled:opacity-75  opacity-65 pointer-events-none   hov-btn no-border btn-has-shape bg-[#12CFA7] h-[60px] text-white quantico font-[700] w-full rounded-[18px] uppercase mt-[30px]">
+          {!Math.round(percentAmt) == 100 ? 
             <span className="disabled:opacity-100 btn-text">Donate Now</span>
           : <span className="btn-hov-text !h-[27px]">
             <span className="disabled:opacity-100 btn-text">Donate Now</span>

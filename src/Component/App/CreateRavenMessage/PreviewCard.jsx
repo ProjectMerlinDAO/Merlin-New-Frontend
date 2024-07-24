@@ -22,8 +22,8 @@ const PreviewCard = ({title,goal,img,category}) => {
         <div classNAme="mt-[50px]">
             <label className="text-white uppercase">Preview</label>
             <div className="p-[30px] mt-[10px] rounded-[30px]" style={{ background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%)' }}>
-                <div className="rounded-[15px] bg-[#D9D9D9] overflow-hidden h-[200px] w-[100%] relative mb-[22px]">
-                    <img src={uploadedImage ? uploadedImage : "/assets/images/img/preview-img.jpg"} alt="img" fill={true} className='object-cover' />
+                <div className="rounded-[15px]   h-[200px] w-[100%] relative mb-[22px]">
+                    <img src={uploadedImage ? uploadedImage : "/assets/images/img/preview-img.jpg"} alt="img" fill={true} className='object-contain h-52 m-auto rounded-[15px]' />
                     {/* <Image src= "/assets/images/img/preview-img.jpg" alt="img" fill={true} className='object-cover' /> */}
                 </div>
                 <h4 className="text-white text-[20px] font-[400] lexend mb-25px">{title ? title : "Untitled"}</h4>
