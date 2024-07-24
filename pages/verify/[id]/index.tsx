@@ -22,13 +22,14 @@ const Verify = () => {
     },[id])
   return (
     <div className="flex items-center h-screen">
-    <div className="flex items-center justify-center flex-col w-full max-w-4xl m-auto">
-      <section className="w-full mx-auto bg-white">
+    <div className="flex items-center justify-center flex-col w-full  h-screen ">
+      <section className="w-full mx-auto bg-white  h-screen">
         <header className="py-4 flex justify-center w-full bg-[rgb(26,109,20)]">
           <a href="#">
           <img className='w-[150px] '  src="https://www.projectmerlin.io/assets/images/logo/main-logo.svg" alt="logo" />
           </a>
         </header>
+        <div className="grid items-center min-h-min overflow-auto" style={{ height: `calc(100vh - 138px)` }}>
         <div className="h-[200px] bg-[#ffffff] w-full text-black flex items-center justify-center flex-col gap-5">
           <div className="flex items-center gap-3">
             <div className="w-10 h-[1px] bg-black"></div>
@@ -37,15 +38,15 @@ const Verify = () => {
           </div>
           <div className="flex flex-col gap-3 px-5">
             <div className="text-center text-sm sm:text-xl tracking-widest font-normal">
-            <h2 className="text-gray-700 ">Hello John Deo,</h2>
+            <h2 className="text-gray-700 text-xl ">Hello John Deo,</h2>
               THANKS FOR SIGNING UP!
             </div>
-            <div className="text-xl sm:text-3xl tracking-wider font-bold capitalize">
+            <div className="text-xl  tracking-wider font-bold capitalize text-center">
               Verify your E-mail Address
             </div>
           </div>
         </div>
-        <main className="mt-8 px-5 sm:px-10 text-center">
+        <main className="mt-8 px-5  text-center">
           <button className="px-6 py-2 mt-6 text-lg font-bold tracking-wider text-white capitalize transition-colors duration-300 transform bg-[#1a6d14] rounded-3xl hover:bg-[#12cfa7] focus:outline-none ">
             Verify email
           </button>
@@ -54,9 +55,10 @@ const Verify = () => {
             Merlin Team
           </p>
         </main>
-        <footer className="mt-8">
-          <div className="bg-[rgb(26,109,20)]  py-1 text-white text-center">
-            <p className="mt-3 ">
+        </div>
+        <footer className="">
+          <div className="bg-[rgb(26,109,20)]  py-3 text-white text-center">
+            <p className=" text-sm">
               © {new Date().getFullYear()} Merlin. All Rights Reserved.
             </p>
           </div>
