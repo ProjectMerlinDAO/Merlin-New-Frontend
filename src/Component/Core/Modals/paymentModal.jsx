@@ -6,7 +6,7 @@ import { useWallet } from '@solana/wallet-adapter-react';
 import { Transaction, SystemProgram, LAMPORTS_PER_SOL, PublicKey, Connection, clusterApiUrl, sendAndConfirmRawTransaction } from "@solana/web3.js";
 import { toast } from 'react-toastify';
 
-const PaymentModal = ({ isOpen, setIsOpen, id, fetchTransactions,goal,amtRaised }) => {
+const PaymentModal = ({ isOpen, setIsOpen, id, fetchTransactions, goal, amtRaised, boostAmt, isBoost, setIsBoost }) => {
     const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
     const baseurl = process.env.NEXT_PUBLIC_BASE_URL;
     const merchantWallet = process.env.NEXT_PUBLIC_MERCHANT;
@@ -15,20 +15,21 @@ const PaymentModal = ({ isOpen, setIsOpen, id, fetchTransactions,goal,amtRaised 
     const [progress, setProgress] = useState(false);
     const [txnStatus, setTxnStatus] = useState("pending");
     const [qrCodeData, setQrCodeData] = useState('');
-    const [amt, setAmt] = useState(0);
-
+    const [amt, setAmt] = useState(boostAmt && boostAmt !== 0 ? boostAmt : 0);
     const { publicKey, signTransaction, signMessage } = useWallet();
 
     const handleClose = () => {
         setAmt(0);
-        setIsOpen(false)
+        setIsOpen(false);
+        setIsBoost(false);
     }
+
     const handlePayment = async () => {
         try {
             if (publicKey) {
                 setProgress(true);
                 const balremaining = goal - amtRaised;
-                if(amt > balremaining){
+                if (amt > balremaining) {
                     toast.error("Amt exceeds the remianing balance");
                     setProgress(false);
                     return;
@@ -42,6 +43,7 @@ const PaymentModal = ({ isOpen, setIsOpen, id, fetchTransactions,goal,amtRaised 
                     return;
                 }
                 // Fetch the recent blockhash
+               
                 const { blockhash, lastValidBlockHeight } = await connection.getLatestBlockhash();
                 const transaction = new Transaction({
                     blockhash,
@@ -51,7 +53,7 @@ const PaymentModal = ({ isOpen, setIsOpen, id, fetchTransactions,goal,amtRaised 
                     SystemProgram.transfer({
                         fromPubkey: publicKey,
                         toPubkey: new PublicKey(merchantWallet),
-                        lamports: Number(amt) * LAMPORTS_PER_SOL
+                        lamports: Number * LAMPORTS_PER_SOL
                     }),
                 );
                 // Check if the account has enough balance
@@ -78,6 +80,7 @@ const PaymentModal = ({ isOpen, setIsOpen, id, fetchTransactions,goal,amtRaised 
             setProgress(false)
         }
     }
+
     const registerTransaction = async () => {
         try {
             if (id) {
@@ -86,7 +89,7 @@ const PaymentModal = ({ isOpen, setIsOpen, id, fetchTransactions,goal,amtRaised 
                     amount: amt,
                     id: id
                 })
-                if(data.status && data?.data?.txnId){
+                if (data.status && data?.data?.txnId) {
                     fetchTransactions(id);
                 }
             }
@@ -95,6 +98,7 @@ const PaymentModal = ({ isOpen, setIsOpen, id, fetchTransactions,goal,amtRaised 
             toast.error(error?.response?.msg)
         }
     }
+
     return (
         <>
             {isOpen &&
@@ -131,7 +135,8 @@ const PaymentModal = ({ isOpen, setIsOpen, id, fetchTransactions,goal,amtRaised 
                                                     <label for="">Amount</label>
                                                 </div>
                                                 <div className="modalLink">
-                                                    <input type="text" value={amt == 0 ? null : amt} onChange={(e) => setAmt(e.target.value)} />
+                                                    {isBoost === true ? <input type="text" disabled value={boostAmt && boostAmt} /> :
+                                                        <input type="text" value={amt == 0 ? null : amt} onChange={(e) => setAmt(e.target.value)} />}
                                                     <button onClick={handlePayment}>{progress ? "Processing..." : "Payment"}</button>
                                                 </div>
                                             </div>
@@ -142,7 +147,9 @@ const PaymentModal = ({ isOpen, setIsOpen, id, fetchTransactions,goal,amtRaised 
                         </div>
                     </div>
                 </Dialog>
-            }</>
+            }
+        </>
     )
 }
+
 export default PaymentModal;

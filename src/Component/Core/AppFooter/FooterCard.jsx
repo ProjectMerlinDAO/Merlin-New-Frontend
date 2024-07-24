@@ -27,9 +27,9 @@ const FooterCard = () => {
       width: "22",
     },
     {
-      src: "/assets/images/icons/fb.svg",
-      alt: "Facebook",
-      href: "#",
+      src: "/assets/images/icons/reddit.png",
+      alt: "Reddit",
+      href: "https://www.reddit.com/r/ProjectMerlinDAO/?rdt=54246",
       height: "22",
       width: "22",
     },

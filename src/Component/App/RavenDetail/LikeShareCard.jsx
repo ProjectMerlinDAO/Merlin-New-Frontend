@@ -4,7 +4,7 @@ import Image from 'next/image'
 import React, { useState } from 'react'
 import { toast } from 'react-toastify';
 
-const LikeShareCard = ({ id, like, dislike, fetch, isOpen ,setIsOpen }) => {
+const LikeShareCard = ({ id, like, dislike, fetch, isOpen ,setIsOpen, wallet, isPayment, setIsPayment, setIsBoost }) => {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   const [isLiked, setIsLiked] = useState(false); // Track like button state
   const [isDisliked, setIsDisliked] = useState(false); // Track dislike button state
@@ -63,19 +63,25 @@ const LikeShareCard = ({ id, like, dislike, fetch, isOpen ,setIsOpen }) => {
   }
  
   const openModal = () => {
+    if (!wallet) {
+      toast.error("Please connect wallet");
+      return;
+    }
     setIsOpen(true);
   }
 
-  const handleBoost = (e) =>{
+  const handleBoost = (e) => {
     e.preventDefault();
-    if(!publicKey){
-      toast.error("Please Connect wallet")
+    if(!wallet){
+      toast.error("Please Connect wallet");
+      return;
     }
-    
+    setIsPayment(true);
+    setIsBoost(true);
   }
+
   return (
     <>
-   
     <div className='rounded-[20px] backdrop-blur-[5px] p-[40px] 2xl:p-[20px] relative personal-info-card' style={{ background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.00) 100%)' }}>
       <div className="flex items-center justify-between gap-[20px] relative z-10">
         <button

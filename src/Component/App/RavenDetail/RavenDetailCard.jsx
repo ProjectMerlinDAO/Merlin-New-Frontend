@@ -24,13 +24,15 @@ const RavenDetailCard = ({ isSidebarVisible, id }) => {
     const stickyRef = useStickyBox({ offsetTop: 20, offsetBottom: 20 })
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
     const [detail, setDetail] = useState();
-    const [count, setCount] = useState(0);
+    const [isBoost, setIsBoost] = useState(false);
+    const[boostAmt, setBoostAmt] = useState(0);
 
     const fetchDetails = async () => {
         try {
             const details = await axios.get(`${baseUrl}/raven/fetch-raven/${id}`);
             if (details.status === 200 && details.data.msg === "Raven message fetched successfully!!") {
                 setDetail(details.data.ravenMsg);
+                calculateBoostAmt(details.data.ravenMsg.projectGoal, details.data.ravenMsg.amtRaised);
             }
         } catch (error) {
             console.log(error)
@@ -63,11 +65,20 @@ const RavenDetailCard = ({ isSidebarVisible, id }) => {
         }
     }
 
+    const calculateBoostAmt = (projectGoal, amtRaised) => {
+        const diff = Number(projectGoal) - Number(amtRaised);
+        if(diff > 0){
+          let amt = Number((diff * 10)/100);
+            setBoostAmt(amt);
+        }
+    }
+
     useEffect(() => {
         if (id) {
             fetchTransactions(id);
         }
     }, [page, id])
+
 
     useEffect(() => {
         if (id) {
@@ -75,12 +86,10 @@ const RavenDetailCard = ({ isSidebarVisible, id }) => {
         }
     }, [id, transactions])
 
-
-
     return (
         <>
             <ShareModal isOpen={isOpen} setIsOpen={setIsOpen} />
-            <PaymentModal isOpen={isPayment} setIsOpen={setIsPayment} publicKey={publicKey} id={id} fetchTransactions={fetchTransactions} page={page} goal={detail?.projectGoal} amtRaised={detail?.amtRaised} />
+            <PaymentModal boostAmt={boostAmt} isOpen={isPayment} setIsOpen={setIsPayment} publicKey={publicKey} id={id} fetchTransactions={fetchTransactions} page={page} goal={detail?.projectGoal} amtRaised={detail?.amtRaised} isBoost={isBoost} setIsBoost={setIsBoost}/>
             <div className="pt-[110px]  bg-no-repeat relative position-top bg-contain" style={{ backgroundImage: 'url(./assets/images/bg/sub-bg.png)', backgroundSize: '100% 388px' }}>
                 <div className={`app-home-wrapper lg:mt-[0px]  ${isSidebarVisible ? "sidebar-visible" : "sidebar-hidden"}`}>
                     <div className="px-[20px] md:px-[10px] max-w-[1365px] mx-auto lg:max-w-[720px] relative  max-w-screen-2xl">
@@ -115,9 +124,9 @@ const RavenDetailCard = ({ isSidebarVisible, id }) => {
                                         </div>
                                     </div>
                                     <aside ref={stickyRef} className="w-[35%] px-[15px] lg:w-full raven-detail-right">
-                                        <Fundrising timer={detail?.endDate} goal={detail?.projectGoal} isOpen={isPayment} setIsOpen={setIsPayment} wallet={publicKey} amtRaised={detail?.amtRaised} />
+                                        <Fundrising timer={detail?.endDate} fundRaiseTimer={detail?.fundsEndDate} goal={detail?.projectGoal} isOpen={isPayment} setIsOpen={setIsPayment} wallet={publicKey} amtRaised={detail?.amtRaised} />
                                         <ProposalInfoCard detail={detail} wallet={detail?.walletAddress} />
-                                        <LikeShareCard id={id} like={detail?.like} dislike={detail?.dislike} fetch={fetchDetails} isOpen={isOpen} setIsOpen={setIsOpen} />
+                                        <LikeShareCard id={id} setIsBoost={setIsBoost} isPayment={isPayment} setIsPayment={setIsPayment} wallet={publicKey} like={detail?.like} dislike={detail?.dislike} fetch={fetchDetails} isOpen={isOpen} setIsOpen={setIsOpen} amtRaised={detail?.amtRaised} goal={detail?.projectGoal} />
                                     </aside>
                                 </div>
                             </div>
@@ -129,4 +138,4 @@ const RavenDetailCard = ({ isSidebarVisible, id }) => {
     )
 }
 
-export default RavenDetailCard
+export default RavenDetailCard;
