@@ -38,7 +38,7 @@ const BoostRavenModal = ({ isOpen, setIsOpen }) => {
           <div class="flex mt-0 flex-col p-3 mx-auto max-w-lg text-center text-gray-900 bg-[#204634] rounded-lg border border-gray-100 shadow dark:border-gray-600  dark:text-white w-full hover:bg-[#1b9b7f]">
               <h3 class="mb-4 text-1 font-semibold">Platinum</h3>
               <div class="flex justify-center items-baseline">
-                  <span class=" text-3xl sm:text-base font-extrabold">$329</span>
+                  <span class=" text-3xl sm:text-base font-extrabold">100 MRLN</span>
               </div>
               <div class="flex justify-center items-baseline mt-2">
                   <span class="">/month</span>
@@ -50,7 +50,7 @@ const BoostRavenModal = ({ isOpen, setIsOpen }) => {
           <div class="flex mt-0 flex-col p-3 mx-auto max-w-lg text-center text-gray-900 bg-[#204634] rounded-lg border border-gray-100 shadow dark:border-gray-600  dark:text-white w-full hover:bg-[#1b9b7f]">
               <h3 class="mb-4 text-1 font-semibold">Gold</h3>
               <div class="flex justify-center items-baseline">
-                  <span class=" text-3xl sm:text-base font-extrabold">$229</span>
+                  <span class=" text-3xl sm:text-base font-extrabold">50 MRLN</span>
               </div>
               <div class="flex justify-center items-baseline mt-2">
                   <span class="">/month</span>
@@ -62,7 +62,7 @@ const BoostRavenModal = ({ isOpen, setIsOpen }) => {
           <div class="flex mt-0 flex-col p-3 mx-auto max-w-lg text-center text-gray-900 bg-[#204634] rounded-lg border border-gray-100 shadow dark:border-gray-600  dark:text-white w-full hover:bg-[#1b9b7f]">
               <h3 class="mb-4 text-1 font-semibold">Silver</h3>
               <div class="flex justify-center items-baseline">
-                  <span class="text-3xl sm:text-base font-extrabold">$129</span>
+                  <span class="text-3xl sm:text-base font-extrabold">25 MRLN</span>
               </div>
               <div class="flex justify-center items-baseline mt-2">
                   <span class="">/month</span>
