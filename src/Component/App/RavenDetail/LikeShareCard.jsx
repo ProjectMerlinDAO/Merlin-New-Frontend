@@ -76,7 +76,6 @@ const LikeShareCard = ({ id, like, dislike, fetch, isOpen ,setIsOpen, wallet, is
       toast.error("Please Connect wallet");
       return;
     }
-    setIsPayment(true);
     setIsBoost(true);
   }
 

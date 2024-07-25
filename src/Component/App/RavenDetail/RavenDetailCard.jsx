@@ -12,6 +12,7 @@ import axios from 'axios'
 import ShareModal from '../../Core/Modals/shareModal'
 import PaymentModal from '../../Core/Modals/paymentModal'
 import { useWallet } from '@solana/wallet-adapter-react'
+import BoostRavenModal from '../../Core/Modals/boostRavenMsg'
 
 const RavenDetailCard = ({ isSidebarVisible, id }) => {
     const baseurl = process.env.NEXT_PUBLIC_BASE_URL;
@@ -88,8 +89,9 @@ const RavenDetailCard = ({ isSidebarVisible, id }) => {
 
     return (
         <>
+            <BoostRavenModal isOpen={isBoost} setIsOpen={setIsBoost} />
             <ShareModal isOpen={isOpen} setIsOpen={setIsOpen} />
-            <PaymentModal boostAmt={boostAmt} isOpen={isPayment} setIsOpen={setIsPayment} publicKey={publicKey} id={id} fetchTransactions={fetchTransactions} page={page} goal={detail?.projectGoal} amtRaised={detail?.amtRaised} isBoost={isBoost} setIsBoost={setIsBoost}/>
+            <PaymentModal  isOpen={isPayment} setIsOpen={setIsPayment} publicKey={publicKey} id={id} fetchTransactions={fetchTransactions} page={page} goal={detail?.projectGoal} amtRaised={detail?.amtRaised} />
             <div className="pt-[110px]  bg-no-repeat relative position-top bg-contain" style={{ backgroundImage: 'url(./assets/images/bg/sub-bg.png)', backgroundSize: '100% 388px' }}>
                 <div className={`app-home-wrapper lg:mt-[0px]  ${isSidebarVisible ? "sidebar-visible" : "sidebar-hidden"}`}>
                     <div className="px-[20px] md:px-[10px] max-w-[1365px] mx-auto lg:max-w-[720px] relative  max-w-screen-2xl">
