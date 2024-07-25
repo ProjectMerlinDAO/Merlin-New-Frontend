@@ -16,6 +16,7 @@ const PaymentModal = ({ isOpen, setIsOpen, id, fetchTransactions, goal, amtRaise
     const [txnStatus, setTxnStatus] = useState("pending");
     const [qrCodeData, setQrCodeData] = useState('');
     const [amt, setAmt] = useState(0);
+    const[signature, setSignature] = useState();
     const { publicKey, signTransaction, signMessage } = useWallet();
 
     const handleClose = () => {
@@ -52,7 +53,7 @@ const PaymentModal = ({ isOpen, setIsOpen, id, fetchTransactions, goal, amtRaise
                     SystemProgram.transfer({
                         fromPubkey: publicKey,
                         toPubkey: new PublicKey(merchantWallet),
-                        lamports: Number * LAMPORTS_PER_SOL
+                        lamports: Number(amt) * LAMPORTS_PER_SOL
                     }),
                 );
                 // Check if the account has enough balance
@@ -67,9 +68,10 @@ const PaymentModal = ({ isOpen, setIsOpen, id, fetchTransactions, goal, amtRaise
                 const signedTransaction = await signTransaction(transaction);
                 // Send the signed transaction
                 const signature = await sendAndConfirmRawTransaction(connection, signedTransaction.serialize(), "finalized");
+                console.log(signature,"Signature")
                 if (signature) {
                     setProgress(false);
-                    registerTransaction();
+                    registerTransaction(signature);
                     handleClose();
                     toast.success("Transaction Success!!!")
                 }
@@ -80,13 +82,14 @@ const PaymentModal = ({ isOpen, setIsOpen, id, fetchTransactions, goal, amtRaise
         }
     }
 
-    const registerTransaction = async () => {
+    const registerTransaction = async (signature) => {
         try {
             if (id) {
                 const data = await axios.post(`${baseurl}/solana/processOrder`, {
                     customerWallet: publicKey,
                     amount: amt,
-                    id: id
+                    id: id,
+                    signature: signature
                 })
                 if (data.status && data?.data?.txnId) {
                     fetchTransactions(id);

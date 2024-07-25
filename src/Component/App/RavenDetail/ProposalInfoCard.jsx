@@ -1,6 +1,7 @@
 import { FormatDate } from '@/utils/Formatdate';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 const ProposalInfoCard = ({detail, wallet}) => {
     const [count, setCount] = useState(0);
@@ -31,6 +32,11 @@ const ProposalInfoCard = ({detail, wallet}) => {
         { label: 'Message Status', value: 'Active' }
     ];
    
+    const handleClick = (e) => {
+        e.preventDefault();
+        toast.success("You can't claim.The timer has not yet expired");
+        return;
+    }
     return (
         <div className='rounded-[20px] backdrop-blur-[5px] p-[40px] 2xl:p-[20px] relative personal-info-card mb-[30px]' style={{ background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.00) 100%)' }}>
             <h3 className='text-white text-[18px] lexend mb-[5px] uppercase' >Proposal Info </h3>
@@ -43,7 +49,7 @@ const ProposalInfoCard = ({detail, wallet}) => {
                     </li>
                 ))}
             </ul>
-            <button type='submit' className="hov-btn no-border btn-has-shape bg-[#12cfa719] h-[60px] text-[#12CFA7] quantico font-[700] w-full rounded-[18px] uppercase mt-[30px]" >
+            <button type='submit' onClick={handleClick} className="hov-btn no-border btn-has-shape bg-[#12cfa719] h-[60px] text-[#12CFA7] quantico font-[700] w-full rounded-[18px] uppercase mt-[30px]" >
                 <span className="btn-hov-text !h-[27px]">
                     <span className="btn-text">Claim</span>
                     <span className="btn-text">Claim</span>
