@@ -37,7 +37,8 @@ const ShareModal = ({ isOpen, setIsOpen }) => {
                                 transition
                                 className="relative transform overflow-hidden rounded-lg  w-full max-w-[650px] text-left shadow-xl transition-all data-[closed]:translate-y-4 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in sm:my-8 sm:w-full sm:max-w-lg data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95"
                             >
-                                <div className="bg-[#2e2e2e] px-4 pb-4 pt-5 sm:p-6 sm:pb-4 w-full " style={{ maxWidth: "550px" }} >
+                                {/* <div className="bg-[#2e2e2e] px-4 pb-4 pt-5 sm:p-6 sm:pb-4 w-full " style={{ maxWidth: "550px" }} > */}
+                                <div className="bg-[#000000]  border border-solid border-[#12cfa7] rounded-2xl px-4 pb-4 mb-4 pt-5 sm:p-2 sm:pb-2 w-full " >
                                     <div className="sm:flex sm:items-start">
                                         <div className="Sharetext">
                                             <h2 className=' text-3xl font-medium  text-white '>Share</h2>

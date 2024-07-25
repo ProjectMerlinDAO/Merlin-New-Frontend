@@ -114,7 +114,7 @@ const RavenDetailCard = ({ isSidebarVisible, id }) => {
                                                 </div>
                                                 <div className='text-white xsm:w-full'>
                                                     <h3 className='mb-[20px] md:mb-[15px] text-[40px] 2xl:text-[32px] lg:text-[26px] leading-[150%] xsm:pl-[100px]'>{detail ? detail.title : null}</h3>
-                                                    <p className='xsm:mt-[58px] 2xsm:mt-[20px]'>{detail?.shortBrief}</p>
+                                                    <p className='xsm:mt-[58px] 2xsm:mt-[50px]'>{detail?.shortBrief}</p>
                                                 </div>
                                             </div>
                                             <p className='mb-[30px]'>{detail?.proposalDetail.slice(0, 300)}</p>
