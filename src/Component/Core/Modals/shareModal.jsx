@@ -7,6 +7,12 @@ import {
     TwitterShareButton,
     WhatsappIcon,
     WhatsappShareButton,
+    XIcon,
+    LinkedinIcon,
+    LinkedinShareButton,
+    TelegramIcon,
+    TelegramShareButton
+
 } from "react-share";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 const ShareModal = ({ isOpen, setIsOpen }) => {
@@ -50,14 +56,21 @@ const ShareModal = ({ isOpen, setIsOpen }) => {
                                         <div className="modalinner">
                                             <div className="SocialIcon">
                                                 <TwitterShareButton url={currentUrl ? currentUrl : ""} openShareDialogOnClick={true}>
-                                                    <TwitterIcon size={50} round />
+                                                    {/* <TwitterIcon size={50} round /> */}
+                                                    <XIcon size={50} round />
                                                 </TwitterShareButton>
                                                 <WhatsappShareButton url={currentUrl ? currentUrl : ""} openShareDialogOnClick={true}>
                                                     <WhatsappIcon size={50} round />
                                                 </WhatsappShareButton>
-                                                {/* <RedditShareButton url={currentUrl ? currentUrl : ""} openShareDialogOnClick={true}>
+                                                <RedditShareButton url={currentUrl ? currentUrl : ""} openShareDialogOnClick={true}>
                                                     <RedditIcon size={50} round />
-                                                </RedditShareButton> */}
+                                                </RedditShareButton >
+                                                <LinkedinShareButton  url={currentUrl ? currentUrl : ""} openShareDialogOnClick={true}>
+                                                <LinkedinIcon size={50} round />
+                                                </LinkedinShareButton>
+                                                <TelegramShareButton url={currentUrl ? currentUrl : ""} openShareDialogOnClick={true}>
+                                                    <TelegramIcon size={50} round/>
+                                                </TelegramShareButton>
                                             </div>
                                             <div className="modalLink " style={{ maxWidth: "350px", margin: "0 auto" }}>
                                                 <input className='text-[#FFFFFF]' style={{ background: 'linear-gradient(90deg, rgba(18, 207, 167, 0.00) 0%, #12CFA7 100%)' }} type="text" value={`${currentUrl.slice(0, 29)}....`} readOnly />
