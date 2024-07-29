@@ -2631,6 +2631,99 @@ textarea.no-outline:focus-visible {
 /*-- nft detail style end --*/
 
 
+/* Share Modal Popup */
+.Sharetext{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.modalinner{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.SocialIcon{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.modalLink{
+  width: 100%;
+  position: relative;
+}
+.modalLink input{
+  border: 1px solid #4a504f;
+  width: 100%;
+  position: relative;
+  height: 45px;
+    padding: 0px 25px;
+    border-radius: 20px;
+    background: #43474e9e;
+
+}
+.modalLink button{
+  position: absolute;
+  top: 0;
+  right: -10px;
+  color: #fff;
+  border-radius: 25px;
+  background-color: #12CFA7;
+  padding: 8px 25px;
+}
+ .button_1{
+  position: absolute;
+  top: 0;
+  right: -10px;
+  color: black;
+  border-radius: 25px;
+  background-color: #12CFA7;
+  padding: 8px 25px;
+ }
+
+/* Share Modal Popup */
+
+/* Site Loader  */
+.SiteLoader {
+  position: relative;
+}
+.SiteLoader img{
+  width: 76px;
+  height: 35px;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* Error Css */
+.error-message{
+  font-family: "Lexend", sans-serif !important;
+  color: #cc0033;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 15px;
+  margin: 5px 0 0;
+}
+iframe {
+	opacity: 0;
+	animation: fadeIn .4s ease-in forwards 0.25s;
+}
+@keyframes fadeIn {
+	100% {opacity: 1;}
+}
+
+.custom_toast_error .Toastify__toast {
+  background: linear-gradient(to right,  #424b37 0%,#20293a 50%,#11213f 100%); 
+  color: #fff !important;
+  backdrop-filter: blur(40px) !important;
+  font-family: "Lexend", sans-serif !important
+}
+.custom_toast_error .Toastify__close-button {
+  color: #fff !important;
+  opacity: 1 !important;
+  font-family: "Lexend", sans-serif !important
+}
+
 @media screen and (max-width: 1279px) {
   .nft-footer-column::before{
     left: 0px;
