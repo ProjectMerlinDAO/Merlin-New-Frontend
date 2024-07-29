@@ -55,12 +55,12 @@ const Tokenomics = () => {
           appreciation in value with each passing day.
         </p>
         <div className="mb-[80px]">
-          <a href="/assets/pdf/Project Merlin Whitepaper_18 May.pdf" target="_blank" className='hov-btn btn-has-shape gap-[7px] bg-[#12CFA7] rounded-full backdrop-blur-[5px] h-[60px] w-[220px] mx-auto flex items-center justify-center text-white text-center  font-[600] text-[16px] uppercase quantico mt-[20px]' >
+          <a href="/assets/pdf/Project Merlin Whitepaper.pdf" target="_blank" className='hov-btn btn-has-shape gap-[7px] bg-[#12CFA7] rounded-full backdrop-blur-[5px] h-[60px] w-[220px] mx-auto flex items-center justify-center text-white text-center  font-[600] text-[16px] uppercase quantico mt-[20px]' >
             <span className="btn-hov-text">
               <span className="btn-text" >Whitepaper</span>
               <span className="btn-text" >Whitepaper</span>
             </span>
-            <Image src="/assets/images/icons/arrow-right-white.svg" alt="icon" className='mt-0' width="16" height="14" />
+            <img src="/assets/images/icons/arrow-right-white.svg" alt="icon" className='mt-0' width="16" height="14" />
           </a>
         </div>
         <div className="tokenomics-text">
