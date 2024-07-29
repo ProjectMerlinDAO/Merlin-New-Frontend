@@ -18,6 +18,7 @@ const AppHeader = ({ isSidebarVisible }) => {
   // const { open } = useWeb3Modal();
   const { publicKey, disconnect } = useWallet();
   // const { address } = useAccount();
+  const router = useRouter()
   const [isOpen, setIsOpen] = useState(false);
   const handleSignin = () => {
     // if (address) {
@@ -49,12 +50,12 @@ const AppHeader = ({ isSidebarVisible }) => {
     }
   }
   const handleNft = () => {
-    console.log("first")
    if(!publicKey){
     toast.error("Please Connect wallet to proceed further");
     return;
-   }else{
-    toast.success("Nft page is in development")
+  }else{
+     router.push("/nft")
+    // toast.success("Nft page is in development")
    }
   }
   useEffect(() => {
