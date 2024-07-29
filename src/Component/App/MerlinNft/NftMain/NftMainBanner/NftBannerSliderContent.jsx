@@ -21,10 +21,11 @@ const NftBannerSliderContent = () => {
                             className="flex btn-has-shape light-shape items-center btn-no-border justify-center hov-btn rounded-full gap-[8px] backdrop-blur-[5px] h-[60px] w-[179px] sm:w-[160px] text-[#ffffff] text-center font-[600] text-[16px] sm:text[14px] uppercase"
                             style={{ background: 'rgba(255, 255, 255, 0.20)' }}
                         >
-                            <span className="btn-hov-text">
-                                <span className="btn-text">View Drops</span>
-                                <span className="btn-text">View Drops</span>
-                            </span>
+                            {/* <span className="pointer-events-none text-gray-500 "> */}
+                                {/* <span className="btn-text">View Drops</span> */}
+                                <span className="pointer-events-none text-gray-500 ">View Drops</span>
+                                {/* btn-hov-text  */}
+                            {/* </span> */}
                         </a>
                     </div>
                 </div>

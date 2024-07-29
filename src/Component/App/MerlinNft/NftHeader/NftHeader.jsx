@@ -3,8 +3,11 @@ import NftContainerWrapper from '../NftContainerWrapper'
 import Link from 'next/link';
 import Image from "next/image";
 import NftMobileMenu from './NftMobileMenu';
+import { useWallet } from '@solana/wallet-adapter-react';
 
 const NftHeader = () => {
+    const { publicKey } = useWallet();
+
     return (
         <div className='w-full absolute left-[0] top-[0] z-[999]'>
             <NftContainerWrapper>
@@ -27,8 +30,9 @@ const NftHeader = () => {
                             <li><a href="#" className="pointer-events-none text-gray-500 uppercase">Drops</a></li>
                         </ul>
                         <div className="header-bts flex items-center justify-end gap-[35px] xl:gap-[20px]">
-                            <a
-                                href="#"
+                            <Link
+                                href="https://discord.com/invite/projectmerlin"
+                                target='_blank'
                                 className="icon-btn btn-has-shape mr-[-10px] !p-0 social-icon hov-btn bg-[#ffffff19] h-[50px] w-[50px] rounded-full bg-opacity-10 backdrop-blur-[5px] flex items-center justify-center"
                             >
                                 <span className="btn-icons">
@@ -49,7 +53,7 @@ const NftHeader = () => {
                                         />
                                     </span>
                                 </span>
-                            </a>
+                            </Link>
                             <div
                                 className="flex btn-has-shape light-shape items-center justify-center hov-btn rounded-full gap-[8px] nft-connect-btn h-[50px] w-[170px] sm:w-[170px] text-[#0CE466] text-center font-[600] text-[16px] sm:text[14px] uppercase quantico"
                                 style={{background: 'linear-gradient(90deg, rgba(12, 228, 102, 0.15) 0%, rgba(255, 255, 255, 0.15) 100%)'}}
@@ -61,8 +65,8 @@ const NftHeader = () => {
                                     height="20"
                                 />
                                 <span className="btn-hov-text">
-                                    <span className="btn-text">Connect</span>
-                                    <span className="btn-text">Connect</span>
+                                    <span className="btn-text cursor-pointer">{publicKey ? publicKey.toBase58().slice(0,3) + "......" + publicKey.toBase58().slice(-4): "Connect"}</span>
+                                    <span className="btn-text cursor-pointer">{publicKey ? publicKey.toBase58().slice(0,3) + "......" + publicKey.toBase58().slice(-4): "Connect"}</span>
                                 </span>
                             </div>
 

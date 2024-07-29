@@ -24,10 +24,10 @@ const TrendingMembership = () => {
                     className="flex btn-has-shape items-center btn-no-border justify-center hov-btn rounded-full gap-[8px] backdrop-blur-[5px] h-[60px] w-[179px] sm:w-[160px] text-[#ffffff] text-center font-[600] text-[16px] sm:text[14px] uppercase"
                     style={{ background: 'rgba(255, 255, 255, 0.15)' }}
                   >
-                    <span className="btn-hov-text">
-                      <span className="btn-text">Explore all</span>
-                      <span className="btn-text">Explore all</span>
-                    </span>
+                    {/* <span className="btn-hov-text"> */}
+                      <span className="pointer-events-none text-gray-500 ">Explore all</span>
+                      {/* <span className="btn-text">Explore all</span> */}
+                    {/* </span> */}
                   </a>
                 </div>
               </div>

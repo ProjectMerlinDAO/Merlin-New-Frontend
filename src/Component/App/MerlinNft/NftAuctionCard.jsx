@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import NftCardTimer from './NftCardTimer';
+import Link from 'next/link';
 
 
 const NftAuctionCard = ({ id, title, price, change, supply, showTimer, itemImg }) => {
@@ -38,7 +39,7 @@ const NftAuctionCard = ({ id, title, price, change, supply, showTimer, itemImg }
         </div>
       </div>
       <div className="absolute bottom-0 left-0 w-full nft-auction-card-btn">
-        <a href="#" className="p-[17px] w-full flex items-center justify-center bg-[#0CE466] text-[#111] text-[16px] font-[700] leading-[125%] uppercase">Buy Now</a>
+        <Link href="/nft-details" className="p-[17px] w-full flex items-center justify-center bg-[#0CE466] text-[#111] text-[16px] font-[700] leading-[125%] uppercase">Buy Now</Link>
       </div>
     </div>
   );

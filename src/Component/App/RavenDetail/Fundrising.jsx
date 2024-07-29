@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { toast } from 'react-toastify'
 
 const Fundrising = ({ timer, goal, setIsOpen, wallet, amtRaised, fundRaiseTimer }) => {
-  const [percentAmt, setPercentAmt] = useState(0);
+  const [percentAmt, setPercentAmt] = useState(100);
   const [isFundRaising, setIsFundRaising] = useState(true);
   const calculateAmt = () => {
     let amt = (Number(amtRaised) / Number(goal)) * 100
