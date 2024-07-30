@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
-import { useWeb3Modal } from '@web3modal/ethers/react'
 
 
 const CommonerSignIn = ({isOpen, setIsOpen}) => {
-    const { open } = useWeb3Modal()
     const [activeIndex, setActiveIndex] = useState(null);
 
     const images = [

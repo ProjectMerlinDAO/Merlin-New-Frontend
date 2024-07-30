@@ -4,6 +4,7 @@ import CommonerSignIn from "./CommonerSignIn";
 import { useWalletModal, WalletMultiButton } from '@solana/wallet-adapter-react-ui'
 import { useWallet } from "@solana/wallet-adapter-react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 
 
@@ -23,6 +24,9 @@ const SignInPopup = ({ isOpen, setIsOpen }) => {
   };
   
   const handleCommonerClick = () => {
+    handleClose();
+    toast.error("You don't have Merlin NFT! Please sigin as Commoner");
+    return;
     setShowCommonerSignIn(true);
   };
   const handleBackClick = () => {

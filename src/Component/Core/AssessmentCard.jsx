@@ -58,7 +58,7 @@ const AssessmentCard = ({ title, cardImg, totalPreProposal, description, descrip
           </a>
           <div className='px-[20px] py-[8px] flex justify-end items-center gap-[20px] rounded-full h-[50px] w-[207px] lg:w-[140px] ml-auto bg-gradient-to-l from-[#ffffff10] to-[transparent]' >
             {icons && icons.map((icon, index) => (
-              <a key={index} href="#">
+              <a key={index} className="pointer-events-none" href="#">
                 <Image src={icon} alt="icon" width="24" height="24" />
               </a>
             ))}
