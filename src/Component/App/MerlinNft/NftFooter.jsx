@@ -110,8 +110,8 @@ const NftFooter = () => {
                 <h3 className='text-[18px] lg:text-[16px] font-[700] text-[#FFFFFF] leading-[166.667%] uppercase mb-[35px] lg:mb-[25px] xsm:mb-[10px]'>{section.title}</h3>
                 <ul>
                   {section.links.map((link, linkIndex) => (
-                    <li key={linkIndex} className='pointer-events-none text-gray-500 mb-[5px] sm:mb-[2px]'>
-                      <Link href={link.href} className={section.title === "Categories" || section.title === "Resources" ?' pointer-events-none text-gray-500': 'font-[400] text-[16px] lg:text-[14px] leading-[250%] text-[rgba(255,255,255,0.80)] hover:text-white delay-[0.3s] outfit'}>{link.label}</Link>
+                    <li key={linkIndex} className='mb-[5px] sm:mb-[2px]'>
+                      <Link href={link.href} className={section.title === "Categories" || section.title === "Resources" || link.label === "Contact Us" ?' pointer-events-none text-gray-500': 'font-[400] text-[16px] lg:text-[14px] leading-[250%] text-[rgba(255,255,255,0.80)] hover:text-white delay-[0.3s] outfit'}>{link.label}</Link>
                     </li>
                   ))}
                 </ul>

@@ -17,7 +17,7 @@ const RavenDetailVideo = ({ url }) => {
     let link;
     if (url.includes('youtu.be') || url.includes('youtube')) {
       link = getYoutubeId();
-      let video = `https://www.youtube.com/embed/${link}?rel=0&autoplay=1`
+      let video = `https://www.youtube.com/embed/${link}?rel=0`
       // &autoplay=1`
       // ?rel=0
       setVideoUrl(video);

@@ -16,7 +16,7 @@ export default function Example({ wallet, handleDisconnect }) {
 
   <MenuItems
     transition
-    className="absolute bg-gradient-to-t from-[#ffffff10] to-transparent backdrop-blur-[10px] border border-[#ffffff24] w-full top-16 rounded-xl"
+    className="absolute right-0 z-[999] mt-2 w-56 origin-top-right   bg-gradient-to-t from-[#ffffff10] to-transparent backdrop-blur-[10px] border border-[#ffffff24] w-full top-16 rounded-xl"
   >
     <div className="">
       <MenuItem>
