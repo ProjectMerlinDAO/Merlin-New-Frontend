@@ -29,6 +29,7 @@ const AppHeader = ({ isSidebarVisible }) => {
 
   const handleDisconnect = () => {
     disconnect();
+    router.push('/');
   }
   const handleClick = () => {
     if (!publicKey) {
@@ -139,10 +140,10 @@ const AppHeader = ({ isSidebarVisible }) => {
                     <Dropdown wallet={publicKey} handleDisconnect={handleDisconnect} />
                   </li>) :
                   (<li>
-                    <Link
-                      href="#"
+                    <div
+                      // href="#"
                       onClick={handleClick}
-                      className="flex btn-has-shape items-center justify-center hov-btn rounded-full gap-[8px] connect-btn bg-12CFA7 h-[50px] w-[170px] sm:w-[140px] bg-[#12CFA7] text-white text-center  font-[600] text-[16px] sm:text[14px] uppercase quantico"
+                      className="cursor-pointer flex btn-has-shape items-center justify-center hov-btn rounded-full gap-[8px] connect-btn bg-12CFA7 h-[50px] w-[170px] sm:w-[140px] bg-[#12CFA7] text-white text-center  font-[600] text-[16px] sm:text[14px] uppercase quantico"
                     >
                       <Image
                         src="/assets/images/icons/wallet.svg"
@@ -158,7 +159,7 @@ const AppHeader = ({ isSidebarVisible }) => {
                           Connect
                         </span>
                       </span>
-                    </Link>
+                    </div>
                   </li>)
                 }
               </ul>

@@ -3,12 +3,30 @@ import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import Link from 'next/link'
 import { CgDollar, CgDrop, CgLogOut, CgProfile } from "react-icons/cg";
 
-export default function Dropdown({ wallet, handleDisconnect, signOut }) {
+export default function NftDropdown({ wallet, handleDisconnect }) {
   return (
+//     <div
+//     className="flex btn-has-shape light-shape items-center justify-center hov-btn rounded-full gap-[8px] nft-connect-btn h-[50px] w-[170px] sm:w-[170px] text-[#0CE466] text-center font-[600] text-[16px] sm:text[14px] uppercase quantico"
+//     style={{background: 'linear-gradient(90deg, rgba(12, 228, 102, 0.15) 0%, rgba(255, 255, 255, 0.15) 100%)'}}
+// >
+//     <Image
+//         src="/assets/images/icons/wallet-green.svg"
+//         alt="icon"
+//         width="20"
+//         height="20"
+//     />
+//     <span className="btn-hov-text">
+//         <span className="btn-text cursor-pointer">{publicKey ? publicKey.toBase58().slice(0,3) + "......" + publicKey.toBase58().slice(-4): "Connect"}</span>
+//         <span className="btn-text cursor-pointer">{publicKey ? publicKey.toBase58().slice(0,3) + "......" + publicKey.toBase58().slice(-4): "Connect"}</span>
+//     </span>
+// </div>
+
     <Menu as="div" className="relative inline-block text-left">
     {/* btn-has-shape */}
   <div>
-    <MenuButton className="items-center justify-center hov-btn rounded-full gap-[8px] connect-btn bg-12CFA7 h-[50px] w-[170px] sm:w-[140px] bg-[#12CFA7] text-white text-center  font-[600] text-[16px] sm:text[14px] uppercase quantico">
+    <MenuButton className="flex btn-has-shape light-shape items-center justify-center hov-btn rounded-full gap-[8px] nft-connect-btn h-[50px] w-[170px] sm:w-[170px] text-[#0CE466] text-center font-[600] text-[16px] sm:text[14px] uppercase quantico"
+    style={{background: 'linear-gradient(90deg, rgba(12, 228, 102, 0.15) 0%, rgba(255, 255, 255, 0.15) 100%)'}}
+>
       {wallet && wallet.toBase58().slice(0, 4) + "...." + wallet.toBase58().slice(-4)}
       {/* <ChevronDownIcon aria-hidden="true" className="-mr-1 h-5 w-5 text-white-400 absolute top-[14px] right-[15px] " /> */}
     </MenuButton>

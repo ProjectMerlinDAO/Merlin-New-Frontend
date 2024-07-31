@@ -4,9 +4,16 @@ import Link from 'next/link';
 import Image from "next/image";
 import NftMobileMenu from './NftMobileMenu';
 import { useWallet } from '@solana/wallet-adapter-react';
+import NftDropdown from '@/src/Component/Core/Modals/nftDropDown';
+import { useRouter } from "next/router";
 
 const NftHeader = () => {
-    const { publicKey } = useWallet();
+    const { publicKey, disconnect } = useWallet();
+    const router = useRouter()
+    const handleDisconnect = () => {
+        disconnect();
+        router.push("/");
+      }
 
     return (
         <div className='w-full absolute left-[0] top-[0] z-[999]'>
@@ -54,26 +61,30 @@ const NftHeader = () => {
                                     </span>
                                 </span>
                             </Link>
-                            <div
-                                className="flex btn-has-shape light-shape items-center justify-center hov-btn rounded-full gap-[8px] nft-connect-btn h-[50px] w-[170px] sm:w-[170px] text-[#0CE466] text-center font-[600] text-[16px] sm:text[14px] uppercase quantico"
-                                style={{background: 'linear-gradient(90deg, rgba(12, 228, 102, 0.15) 0%, rgba(255, 255, 255, 0.15) 100%)'}}
-                            >
-                                <Image
-                                    src="/assets/images/icons/wallet-green.svg"
-                                    alt="icon"
-                                    width="20"
-                                    height="20"
-                                />
-                                <span className="btn-hov-text">
-                                    <span className="btn-text cursor-pointer">{publicKey ? publicKey.toBase58().slice(0,3) + "......" + publicKey.toBase58().slice(-4): "Connect"}</span>
-                                    <span className="btn-text cursor-pointer">{publicKey ? publicKey.toBase58().slice(0,3) + "......" + publicKey.toBase58().slice(-4): "Connect"}</span>
-                                </span>
-                            </div>
-
+                            {/* {{publicKey ?
+                    <Dropdown wallet={publicKey} />
+                  ) :} */}
+                            {publicKey ? <NftDropdown wallet={publicKey} handleDisconnect={handleDisconnect}/> :
+                                <div
+                                    className="flex btn-has-shape light-shape items-center justify-center hov-btn rounded-full gap-[8px] nft-connect-btn h-[50px] w-[170px] sm:w-[170px] text-[#0CE466] text-center font-[600] text-[16px] sm:text[14px] uppercase quantico"
+                                    style={{ background: 'linear-gradient(90deg, rgba(12, 228, 102, 0.15) 0%, rgba(255, 255, 255, 0.15) 100%)' }}
+                                >
+                                    <Image
+                                        src="/assets/images/icons/wallet-green.svg"
+                                        alt="icon"
+                                        width="20"
+                                        height="20"
+                                    />
+                                    <span className="btn-hov-text">
+                                        <span className="btn-text cursor-pointer">{publicKey ? publicKey.toBase58().slice(0, 3) + "......" + publicKey.toBase58().slice(-4) : "Connect"}</span>
+                                        <span className="btn-text cursor-pointer">{publicKey ? publicKey.toBase58().slice(0, 3) + "......" + publicKey.toBase58().slice(-4) : "Connect"}</span>
+                                    </span>
+                                </div>
+                            }
                         </div>
                     </div>
                     <div className="hidden lg:block">
-                        <NftMobileMenu/>
+                        <NftMobileMenu />
                     </div>
                 </div>
             </NftContainerWrapper>

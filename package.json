@@ -33,6 +33,7 @@
     "isotope-layout": "^3.0.6",
     "news-ticker-davidkrack": "^2.1.9",
     "next": "14.2.3",
+    "next-auth": "^4.24.7",
     "qrcode.react": "^3.1.0",
     "react": "^18",
     "react-accessible-accordion": "^5.0.0",
