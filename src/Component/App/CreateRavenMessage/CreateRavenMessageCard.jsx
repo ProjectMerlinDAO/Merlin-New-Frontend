@@ -45,6 +45,7 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
     images: {},
   });
   const [errors, setErrors] = useState({});
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name === "memberNft" && value === "Yes") {
@@ -79,6 +80,7 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
       }
     }
   };
+
   const checkValidations = () => {
     setErrors({});
     let isValidationsFailed = false;
@@ -98,6 +100,10 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
     if (!data.proposalDetail || data.proposalDetail.trim().length === 0) {
       isValidationsFailed = true;
       newErrors["proposalDetail"] = "Proposal Detail can't be empty!";
+    }
+    if(data.proposalDetail.trim().length > 1000){
+      isValidationsFailed = true;
+      newErrors["proposalDetail"] = "Maximum length exceeds!Characters should be not be greater than 1000 characters";
     }
     // if (!data.videoLink || data.videoLink.trim().length === 0) {
     //   isValidationsFailed = true;
@@ -210,6 +216,8 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
     calculateCost();
   }, [data.categories]);
 
+  console.log(errors,"ERRORS");
+  console.log(data.proposalDetail.trim().length,"bvfvbfjhbjhkffb")
   return (
     <>
     <div

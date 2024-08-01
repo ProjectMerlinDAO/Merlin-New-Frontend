@@ -24,23 +24,16 @@ const Modal = ({isOpen, setIsOpen, wallet,title, details ,setDetails, detailFun}
                                 transition
                                 className="relative transform overflow-hidden rounded-lg  w-full max-w-[650px] text-left shadow-xl transition-all data-[closed]:translate-y-4 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in sm:my-8 sm:w-full sm:max-w-lg data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95"
                             >
-                                <div className="bg-[#2e2e2e] px-4 pb-4 pt-5 sm:p-6 sm:pb-4 w-full " style={{ maxWidth: "550px" }} >
-                                    <div className="sm:flex sm:items-start">
-                                        <div className="Sharetext">
+                                <div className="bg-[#2e2e2e] px-4 pb-4 pt-5 sm:p-6 sm:pb-4 w-full  " style={{ maxWidth: "550px" }} >
+                                    <div className="flex flex-col gap-10">
+                                        <div className=" flex justify-end">
                                             <div className='text-gray-500 cursor-pointer' onClick={handleClose}><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                                                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
                                             </svg>
                                             </div>
                                         </div>
-                                        <div className="modalinner">
-                                            {/* <div className="modalLink text-gray-500">
-                                                <label for="">Name</label>
-                                            </div> */}
-                                            <div className="modalLink">
-                                                {/* <input type="text"  onChange={(e) => setName(e.target.value)} /> */}
-                                                <div type="text">To apply for partnership click here</div>
-                                                <Link href="https://wkf.ms/3RqpEi5" target='_blank'><button>Click here</button></Link>
-                                            </div>
+                                        <div className="ModalPara">
+                                            <h6 className='text-center text-xl font-bold'>To apply for partnership <Link className='text-[#12cfa6]' href="https://wkf.ms/3RqpEi5" target='_blank'>click here</Link> </h6>
                                         </div>
                                     </div>
                                 </div>

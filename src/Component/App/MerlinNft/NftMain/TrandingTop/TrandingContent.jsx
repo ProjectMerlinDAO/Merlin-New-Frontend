@@ -68,7 +68,11 @@ const TrandingContent = () => {
                 {timePeriods.map((period, index) => (
                     <li key={index}>
                         <span
-                            className={`flex items-center justify-center p-[5px] w-[40px] cursor-pointer h-[40px] text-[#FFFFFF] uppercase rounded-full hover:bg-[rgba(12,228,102,0.15)] hover:text-[#0CE466] ${selectedPeriod === period ? 'bg-[rgba(12,228,102,0.15)] text-[#0CE466]' : ''}`}
+                        className={`flex items-center justify-center p-[5px] w-[40px] cursor-pointer h-[40px] text-[#FFFFFF] uppercase rounded-full 
+                            ${period === "3m" || period === "1y" ? "pointer-events-none text-gray-500" : ""} 
+                            ${selectedPeriod === period ? 'bg-[rgba(12,228,102,0.15)] text-[#0CE466]' : ''} 
+                            hover:bg-[rgba(12,228,102,0.15)] hover:text-[#0CE466]`}
+                            // className={ period === "3m" || period === "1y" ? "pointer-events-none text-gray-500':`flex items-center justify-center p-[5px] w-[40px] cursor-pointer h-[40px] text-[#FFFFFF] uppercase rounded-full hover:bg-[rgba(12,228,102,0.15)] hover:text-[#0CE466] ${selectedPeriod === period ? 'bg-[rgba(12,228,102,0.15)] text-[#0CE466]' : ''}`}
                             onClick={() => setSelectedPeriod(period)}
                         >
                             {period}

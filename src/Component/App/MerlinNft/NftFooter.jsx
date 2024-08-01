@@ -54,7 +54,7 @@ const sections = [
     title: "Company",
     links: [
       { href: "/about", label: "About Us" },
-      { href: "//launch-app", label: "Project Merlin" },
+      { href: "/launch-app", label: "Project Merlin" },
       { href: "/crystal-cave", label: "Raven Messages" },
       { href: "/treasury", label: "Treasury" },
       { href: "#", label: "Contact Us" }
