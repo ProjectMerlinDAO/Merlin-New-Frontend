@@ -216,8 +216,7 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
     calculateCost();
   }, [data.categories]);
 
-  console.log(errors,"ERRORS");
-  console.log(data.proposalDetail.trim().length,"bvfvbfjhbjhkffb")
+  // console.log(errors,"ERRORS");
   return (
     <>
     <div
