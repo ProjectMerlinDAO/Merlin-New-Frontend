@@ -15,7 +15,8 @@ import { clusterApiUrl } from "@solana/web3.js";
 import { BackpackWalletAdapter } from "@solana/wallet-adapter-backpack";
 import { Provider } from "react-redux";
 import store from "@/src/redux/store";
-
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import GoogleLogin from "react-google-login";
 require("@solana/wallet-adapter-react-ui/styles.css");
 
 
@@ -33,6 +34,8 @@ export default function App({ Component, pageProps }) {
   );
   return (
     <>
+    <GoogleOAuthProvider clientId="703824111722-cd3qr2jggdqvq3ftmqfba42a85s351lm.apps.googleusercontent.com">
+
     <Provider store={store}>
      <ConnectionProvider endpoint={endpoint}>
       <WalletProvider wallets={wallets} autoConnect>
@@ -43,7 +46,6 @@ export default function App({ Component, pageProps }) {
       </WalletModalProvider >
       </WalletProvider >
       </ConnectionProvider >
-
       <ToastContainer
         position="top-right"
         className="custom_toast_error"
@@ -58,6 +60,8 @@ export default function App({ Component, pageProps }) {
         theme="light"
       />
       </Provider>
+      
+      </GoogleOAuthProvider>
     </>
   )
 }
