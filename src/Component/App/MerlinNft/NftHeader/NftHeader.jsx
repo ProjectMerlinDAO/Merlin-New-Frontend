@@ -33,7 +33,7 @@ const NftHeader = () => {
                     <div className="flex items-center justify-end nft-header-right gap-[35px] xl:gap-[20px] lg:hidden">
                         <ul className="flex items-center justify-end gap-[35px] xl:gap-[20px] text-[16px] font-[700] text-[#FFFFFF] leading-[162.5%]">
                             <li><Link href="launch-app" className="uppercase">Home</Link></li>
-                            <li><a href="#" className="pointer-events-none text-gray-500 uppercase">NFTs</a></li>
+                            <li><Link href="/nft" className="uppercase">NFTs</Link></li>
                             <li><a href="#" className="pointer-events-none text-gray-500 uppercase">Drops</a></li>
                         </ul>
                         <div className="header-bts flex items-center justify-end gap-[35px] xl:gap-[20px]">

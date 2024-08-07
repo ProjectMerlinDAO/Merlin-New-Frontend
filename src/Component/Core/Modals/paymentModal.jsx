@@ -7,7 +7,9 @@ import { Transaction, SystemProgram, LAMPORTS_PER_SOL, PublicKey, Connection, cl
 import { toast } from 'react-toastify';
 
 const PaymentModal = ({ isOpen, setIsOpen, id, fetchTransactions, goal, amtRaised }) => {
-    const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
+    // const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
+    const connection = new Connection(clusterApiUrl('mainnet-beta'), 'confirmed');
+
     const baseurl = process.env.NEXT_PUBLIC_BASE_URL;
     const merchantWallet = process.env.NEXT_PUBLIC_MERCHANT;
     const [open, setOpen] = useState(true);

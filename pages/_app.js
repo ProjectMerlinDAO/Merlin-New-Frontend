@@ -22,7 +22,8 @@ require("@solana/wallet-adapter-react-ui/styles.css");
 
 export default function App({ Component, pageProps }) {
   // const initialState = cookieToInitialState(config, headers().get('cookie'))
-   const network = WalletAdapterNetwork.Devnet;
+  //  const network = WalletAdapterNetwork.Devnet;
+   const network = WalletAdapterNetwork.Mainnet;
   const endpoint = useMemo(() => clusterApiUrl(network), [network]);
   const wallets = useMemo(
     () => [
@@ -32,9 +33,10 @@ export default function App({ Component, pageProps }) {
     ],
     [network]
   );
+  const clientId = process.env.NEXT_PUBLIC_CLIENTID;
   return (
     <>
-    <GoogleOAuthProvider clientId="703824111722-cd3qr2jggdqvq3ftmqfba42a85s351lm.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId={clientId}>
 
     <Provider store={store}>
      <ConnectionProvider endpoint={endpoint}>
