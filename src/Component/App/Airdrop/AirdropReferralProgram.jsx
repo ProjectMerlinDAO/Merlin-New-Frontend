@@ -6,7 +6,7 @@ const socialIcons = [
   { src: '/assets/images/icons/x.svg', alt: 'Facebook', href: '#', height: '16', width: '16', },
   { src: '/assets/images/icons/whatsapp.svg', alt: 'Telegram', href: '#', height: '16', width: '16', },
   { src: '/assets/images/icons/messenger.svg', alt: 'Medium', href: '#', height: '16', width: '17', },
-  { src: '/assets/images/icons/fb-f.svg', alt: 'Medium', href: '#', height: '18', width: '11', },
+  // { src: '/assets/images/icons/fb-f.svg', alt: 'Medium', href: '#', height: '18', width: '11', },
 ];
 
 const AirdropReferralProgram = ({ referralCode }) => {

@@ -9,64 +9,82 @@ import { useWallet } from "@solana/wallet-adapter-react";
 import axios from "axios";
 import Dropdown from "./Modals/dropdown";
 import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import SignIn from "@/pages/sign-in";
+import { sign } from "viem/accounts";
+import LogIn from "./Modals/Login";
+import { updateUserDetails } from "@/src/redux/UserSlice";
 
 const AppHeader = ({ isSidebarVisible }) => {
   const data = useSelector((state) => state.user.referral);
+  const userName = useSelector((state) => state.user.userName);
+  const token = useSelector((state) => state.user.token)
+  const dispatch = useDispatch();
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   // const { open } = useWeb3Modal();
   const { publicKey, disconnect } = useWallet();
   // const { address } = useAccount();
   const router = useRouter()
   const [isOpen, setIsOpen] = useState(false);
+  const [isSign, setIsSign] = useState(false);
   const handleSignin = () => {
     // if (address) {
     // open();
     // } else {
     setIsOpen(true);
   }
-
   const handleDisconnect = () => {
     disconnect();
+    dispatch(updateUserDetails({
+      name: "",
+      email: "",
+      token: ""
+    }));
     router.push('/');
   }
   const handleClick = () => {
-    if (!publicKey) {
+    // if (!publicKey) {
       handleSignin();
-    }
+    // }
   };
+
   const registerUser = async () => {
-    if(data && data !== ""){
+    if (data && data !== "") {
       const user = await axios.post(`${baseUrl}/user/details`, {
         wallet: publicKey?.toBase58(),
         referral: data
       })
       console.log(user)
-    }else{
+    } else {
       const user = await axios.post(`${baseUrl}/user/details`, {
         wallet: publicKey?.toBase58()
       })
       console.log(user)
     }
-  }
+  };
+
   const handleNft = () => {
-   if(!publicKey){
-    toast.error("Please Connect wallet to proceed further");
-    return;
-  }else{
-     router.push("/nft")
-    // toast.success("Nft page is in development")
-   }
-  }
-  useEffect(() => {
-    if (publicKey) {
-      registerUser();
+    if (!publicKey) {
+      toast.error("Please Connect wallet to proceed further");
+      return;
+    } else {
+      router.push("/nft")
+      // toast.success("Nft page is in development")
     }
-  }, [publicKey])
+  };
+
+  // useEffect(() => {
+  //   if (publicKey) {
+  //     registerUser();
+  //   }
+  // }, [publicKey]);
+
+
   return (
     <>
-      {isOpen ? <SignInPopup isOpen={isOpen} setIsOpen={setIsOpen} /> : null}
+      {isOpen ? <SignInPopup isOpen={isOpen} setIsOpen={setIsOpen} setIsSign={setIsSign} /> : null}
+      {isSign && !isOpen ? <LogIn isOpen={isSign} setIsOpen={setIsSign} /> : null}
       <header className="absolute top-0 left-0 z-[555] flex items-center w-full h-[110px]">
         <div
           className={`app-home-wrapper ${isSidebarVisible ? "sidebar-visible" : "sidebar-hidden"
@@ -125,7 +143,7 @@ const AppHeader = ({ isSidebarVisible }) => {
                 </li>
                 <li className="xl:hidden">
                   <div
-                  onClick={handleNft}
+                    onClick={handleNft}
                     // href="#"
                     className="cursor-pointer buy-btn btn-has-shape hov-btn bg-[#ffffff19] rounded-full bg-opacity-10 backdrop-blur-[5px] h-[50px] w-[170px] sm:w-[120px] flex items-center justify-center text-white text-center  font-[600] text-[16px] sm:text[14px] uppercase quantico"
                   >
@@ -135,28 +153,29 @@ const AppHeader = ({ isSidebarVisible }) => {
                     </span>
                   </div>
                 </li>
-                {publicKey ?
+                {userName && token ?
                   (<li>
-                    <Dropdown wallet={publicKey} handleDisconnect={handleDisconnect} />
+                    <Dropdown wallet={publicKey} handleDisconnect={handleDisconnect} name={userName} />
                   </li>) :
                   (<li>
                     <div
                       // href="#"
                       onClick={handleClick}
                       className="cursor-pointer flex btn-has-shape items-center justify-center hov-btn rounded-full gap-[8px] connect-btn bg-12CFA7 h-[50px] w-[170px] sm:w-[140px] bg-[#12CFA7] text-white text-center  font-[600] text-[16px] sm:text[14px] uppercase quantico"
-                    >
+                    >{userName ? null :
                       <Image
                         src="/assets/images/icons/wallet.svg"
                         alt="icon"
                         width="20"
                         height="20"
                       />
+                      }
                       <span className="btn-hov-text">
                         <span className="btn-text">
-                          Connect
+                          {userName ? userName : "Login"}
                         </span>
                         <span className="btn-text">
-                          Connect
+                          {userName ? userName : "Login"}
                         </span>
                       </span>
                     </div>

@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
 import FundriseTimer from '../FundriseTimer';
 
 const MyMessageTable = ({ data }) => {
+
   return (
     <div className="lg:overflow-x-scroll">
       <div className="2xl:text-[14px] min-w-[950px] ">
@@ -14,7 +15,7 @@ const MyMessageTable = ({ data }) => {
           <li className="px-[15px] xl:px-[5px] pr-[15px] w-[13%] text-right xl:min-w-[max-content]">Balance</li>
           <li className="px-[15px] xl:px-[5px] pr-[15px] w-[7%] text-right xl:min-w-[max-content]"></li>
         </ul>
-        {data && data.map((crystal, index) => (
+        {data ? data.map((crystal, index) => (
           <ul key={index} className="rounded-[20px] mb-[15px] relative crystal-table-row backdrop-blur-[10px] py-[15px] flex items-center justify-between" style={{ background: 'linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 50%, rgba(255, 255, 255, 0.08) 100%)', zIndex: data.length - index}}>
             <li className="w-[33%] px-[15px] xl:pr-[5px]">
               <div className="flex items-center justify-start xl:pr-[15px]">
@@ -59,7 +60,7 @@ const MyMessageTable = ({ data }) => {
               </div>
             </li>
           </ul>
-        ))}
+        )) : <h1 className='text-center font-bold mt-3'>No data to show</h1>}
       </div>
     </div>
   )

@@ -70,6 +70,7 @@ const PaymentModal = ({ isOpen, setIsOpen, id, fetchTransactions, goal, amtRaise
                 const signedTransaction = await signTransaction(transaction);
                 // Send the signed transaction
                 const signature = await sendAndConfirmRawTransaction(connection, signedTransaction.serialize(), "finalized");
+                
                 console.log(signature,"Signature")
                 if (signature) {
                     setProgress(false);

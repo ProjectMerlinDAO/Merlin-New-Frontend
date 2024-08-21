@@ -9,20 +9,22 @@ import { useWallet } from '@solana/wallet-adapter-react'
 import axios from 'axios'
 import Link from 'next/link'
 import { toast } from 'react-toastify'
+import { useSelector } from 'react-redux'
+import { useWalletModal } from '@solana/wallet-adapter-react-ui'
 
 
 
 const AirdropCard = ({ isSidebarVisible }) => {
+const userEmail = useSelector((state) => state.user.email);
 const baseurl = process.env.NEXT_PUBLIC_BASE_URL;
-const { publicKey } = useWallet();
 const [details, setDetails] = useState();
 const [loading, setIsLoading] = useState(false);
-
+const { setVisible } = useWalletModal();
+const { wallet, connect, connected, connecting, publicKey, disconnect } = useWallet();
 const fetchDetails = async () => {
     try {
         const wallet = publicKey.toBase58();
-        const response = await axios.post(`${baseurl}/user/fetchUser`, { wallet });
-        console.log(response,"depep")
+        const response = await axios.post(`${baseurl}/user/fetchUser`, { email: userEmail });
         if (response?.data?.user) {
             setDetails(response.data.user);
         }
@@ -30,6 +32,7 @@ const fetchDetails = async () => {
         console.log(error);
     }
 }
+
 const handleVerification = async () => {
  try {
     setIsLoading(true);
@@ -50,10 +53,34 @@ const handleVerification = async () => {
 
  }
 }
+
+const handleConnection = async () => {
+    try {
+      console.log("Starting wallet connection process...");
+      if (!wallet) {
+        console.log("No wallet found. Showing wallet modal...");
+        setVisible(true);
+      }
+      if (!connected) {
+        console.log("Wallet not connected. Attempting to connect...");
+        await connect();
+        console.log('Connected to wallet:', publicKey ? publicKey.toString() : 'No public key');
+      } else if (wallet && publicKey) {
+        console.log("Wallet already connected. Disconnecting...");
+        await disconnect();
+        toast.error("Wallet is Disconnected");
+        setMsgList();
+      } else {
+        console.log('Wallet already connected:', publicKey ? publicKey.toString() : 'No public key');
+      }
+    } catch (error) {
+      console.error('Wallet connection error:', error);
+    }
+  }
 useEffect(() => {
  fetchDetails();
-},[publicKey])
-// console.log(details,"depep")
+},[publicKey,userEmail])
+console.log(publicKey,"depep")
     return (
         <div className="pt-[110px] relative bg-no-repeat position-top bg-contain" style={{ backgroundImage: 'url(./assets/images/bg/sub-bg.png)', backgroundSize: '100% 388px' }}>
             <div className={`app-home-wrapper ${isSidebarVisible ? "sidebar-visible" : "sidebar-hidden"}`}>
@@ -75,7 +102,7 @@ useEffect(() => {
                                 height={373}
                             />
                         </div>
-                        <AirdropDetail />
+                        <AirdropDetail detail={details}/>
                         <div className="relative z-30">
                             <div className="flex items-start justify-start mx-[-15px] xl:flex-wrap row">
                                 <div className="w-[60%] lg:w-full px-[15px]">
@@ -84,7 +111,7 @@ useEffect(() => {
                                             I sense a great power within you, waiting to be noticed. It&apos;s clear that wizard blood runs through your veins. You can be sure you&apos;re making the right choice by joining the Project Merlin community. Both sides are sure to gain something from it. Stay on Merlin&apos;s path, and may Merlin always be with you...</p>
                                     </div>
                                     <AirdropStatistics />
-                                    <div className="mt-[35px] lg:mt-[25px] md:mt-[15px] profile-form lg:mb-[40px]">
+                                    {/* <div className="mt-[35px] lg:mt-[25px] md:mt-[15px] profile-form lg:mb-[40px]">
                                         <label className="text-white uppercase">Email address</label>
                                         <form className="flex xsm:flex-wrap gap-[15px] mt-[15px]">
                                             <input type="email"  readOnly value={details?.email} className="px-[20px] py-[5px] bg-transparent text-white border-2 border-[rgba(255,255,255,0.12)] h-[60px] rounded-[18px] max-w-[418px] xsm:max-w-full w-full" />
@@ -92,15 +119,15 @@ useEffect(() => {
                                                 {details?.emailVerified === true ? 
                                                 <span className="btn-text cursor-none">
                                                     {/* <span className="btn-text">Verified</span> */}
-                                                    <span className="btn-text">Verified</span>
-                                                </span>
-                                                :   <span className="btn-hov-text cursor-pointer" onClick={handleVerification}>
-                                                <span className="btn-text">{loading ? "Sending...." : "Verify"}</span>
-                                                <span className="btn-text">{loading ? "Sending...." : "Verify"}</span>
-                                            </span>}
-                                            </div>
-                                        </form>
-                                    </div>
+                                                    {/* <span className="btn-text">Verified</span> */}
+                                                {/* </span> */}
+                                                {/* :   <span className="btn-hov-text cursor-pointer" onClick={handleVerification}> */}
+                                                {/* <span className="btn-text">{loading ? "Sending...." : "Verify"}</span> */}
+                                                {/* <span className="btn-text">{loading ? "Sending...." : "Verify"}</span> */}
+                                            {/* </span>} */}
+                                            {/* </div> */}
+                                        {/* </form> */}
+                                    {/* </div> */} 
                                 </div>
                                 <div className="w-[40%] lg:w-full px-[15px]">
                                     <div className="flex items-center justify-between rounded-[18px] mb-[30px] px-[20px] py-[13px] bg-gradient-to-r from-[#ffffff10] to-[#ffffff05] gap-[20px] mb-40px">
@@ -114,7 +141,7 @@ useEffect(() => {
                                                 <span className='text-[14px] leading-[14px]'>Solana</span>
                                             </p>
                                         </div>
-                                        <button className='text-[14px] text-[#12CFA7] rounded-[10px] px-[15px] py-[4px] bg-[#12cfa615]'>Connected</button>
+                                        <button className='text-[14px] text-[#12CFA7] rounded-[10px] px-[15px] py-[4px] bg-[#12cfa615] pointer-events-none' onClick={handleConnection}>{publicKey ? "Disconnect" : "Connect"}</button>
                                     </div>
                                     <AirdropStatisticsTable />
                                 </div>

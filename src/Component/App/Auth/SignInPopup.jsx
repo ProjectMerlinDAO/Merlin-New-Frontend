@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 
 
 
-const SignInPopup = ({ isOpen, setIsOpen }) => {
+const SignInPopup = ({ isOpen, setIsOpen, setIsSign }) => {
   const { publicKey } = useWallet();
   const [showCommonerSignIn, setShowCommonerSignIn] = useState(false);
   const dialogRef = useRef(null);
@@ -29,9 +29,11 @@ const SignInPopup = ({ isOpen, setIsOpen }) => {
     return;
     setShowCommonerSignIn(true);
   };
+
   const handleBackClick = () => {
     setShowCommonerSignIn(false);
   };
+
   const handleClose = () => {
     setIsOpen(false);
   };
@@ -56,7 +58,8 @@ const SignInPopup = ({ isOpen, setIsOpen }) => {
   const handleWalletConnect = async () => {
     setIsOpen(false);
     // open();
-    setVisible(true);
+    setIsSign(true);
+    // setVisible(true);
    
   }
   

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { CgListTree } from 'react-icons/cg';
 import { toast } from 'react-toastify';
 
-const Rename = ({isOpen, setIsOpen, wallet,title, details ,setDetails, detailFun}) => {
+const Rename = ({isOpen, setIsOpen, wallet,title, details ,setDetails, detailFun, email}) => {
     const baseurl = process.env.NEXT_PUBLIC_BASE_URL;
     const [name, setName] = useState(title);
     const [progress, setProgress] = useState(false);
@@ -17,7 +17,7 @@ const Rename = ({isOpen, setIsOpen, wallet,title, details ,setDetails, detailFun
      try {
         setProgress(true);
         const res  = await axios.put(`${baseurl}/user/details`,{
-            wallet,
+            email,
             name
         });
         if(res.status == 200){

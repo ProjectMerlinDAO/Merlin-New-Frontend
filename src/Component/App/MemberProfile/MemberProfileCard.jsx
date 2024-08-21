@@ -5,25 +5,30 @@ import MyMessages from './MyMessages/MyMessages'
 import MemberDetail from './MemberDetail'
 import StatisticsTable from './StatisticsTable'
 import axios from 'axios'
-import { useWallet } from '@solana/wallet-adapter-react'
+import { useWallet, WalletNotConnectedError } from '@solana/wallet-adapter-react'
 import { toast } from 'react-toastify'
 import { useRouter } from 'next/router'
 import { useWalletModal } from '@solana/wallet-adapter-react-ui'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { checkReferral } from '@/src/redux/UserSlice'
 
 
 const MemberProfileCard = ({ isSidebarVisible }) => {
     const router = useRouter();
     const { setVisible } = useWalletModal();
+    const { wallet, connect, connected, connecting, publicKey, disconnect } = useWallet();
     const dispatch = useDispatch()
     const baseurl = process.env.NEXT_PUBLIC_BASE_URL;
-    const { publicKey } = useWallet();
+    
     const [details, setDetails] = useState();
     const [email, setEmail] = useState();
     const [msgsType, setMsgsType] = useState("active");
     const [msgList, setMsgList] = useState();
     const [isOpen, setIsOpen] = useState(false);
+    const userName = useSelector((state) => state.user.userName);
+    const token = useSelector((state) => state.user.token);
+    const userEmail = useSelector((state) => state.user.email);
+
 
   if(router?.query?.ref){
     let ref = router?.query?.ref;
@@ -32,10 +37,12 @@ const MemberProfileCard = ({ isSidebarVisible }) => {
        setVisible(true);
     }
   }
+
+ 
     const fetchDetails = async () => {
         try {
-            const wallet = publicKey.toBase58();
-            const response = await axios.post(`${baseurl}/user/fetchUser`, { wallet })
+            // const wallet = publicKey?.toBase58();
+            const response = await axios.post(`${baseurl}/user/fetchUser`, { email:userEmail })
             if (response?.data?.user) {
                 setDetails(response.data.user);
             }
@@ -46,7 +53,7 @@ const MemberProfileCard = ({ isSidebarVisible }) => {
 
     const fetchRavenMsgs = async () => {
         try {
-            const wallet = publicKey.toBase58();
+            const wallet = publicKey?.toBase58();
             const response = await axios.post(`${baseurl}/raven/userRavenList`, {
                 wallet,
                 type:msgsType
@@ -90,11 +97,55 @@ const MemberProfileCard = ({ isSidebarVisible }) => {
 
     useEffect(() => {
         if (publicKey) {
-            fetchDetails();
             fetchRavenMsgs();
         }
-    }, [publicKey,msgsType])
-  
+    }, [msgsType,publicKey])
+
+    useEffect(() => {
+     fetchDetails();
+    },[userEmail])
+
+    const handleConnection = async () => {
+        try {
+          console.log("Starting wallet connection process...");
+          if (!wallet) {
+            console.log("No wallet found. Showing wallet modal...");
+            setVisible(true);
+          }
+          if (!connected) {
+            console.log("Wallet not connected. Attempting to connect...");
+            await connect();
+            console.log('Connected to wallet:', publicKey ? publicKey.toString() : 'No public key');
+          } else if (wallet && publicKey) {
+            console.log("Wallet already connected. Disconnecting...");
+            await disconnect();
+            toast.error("Wallet is Disconnected");
+            setMsgList();
+          } else {
+            console.log('Wallet already connected:', publicKey ? publicKey.toString() : 'No public key');
+          }
+        } catch (error) {
+          console.error('Wallet connection error:', error);
+        }
+      }
+      
+      useEffect(() => {
+        if(publicKey){
+            registerWallet();
+        }
+      },[publicKey])
+    
+    const registerWallet = async () =>{
+     try {
+        const response = await axios.post(`${baseurl}/user/add-wallet`,{
+            email: userEmail,
+            wallet : publicKey.toBase58()
+        })
+        console.log(response);
+     } catch (error) {
+        console.log(error);
+     }
+    }
     return (
         <>
         <div className="pt-[110px] relative bg-no-repeat position-top bg-contain" style={{ backgroundImage: 'url(./assets/images/bg/sub-bg.png)', backgroundSize: '100% 388px' }}>
@@ -153,7 +204,7 @@ const MemberProfileCard = ({ isSidebarVisible }) => {
                                                 <span className='text-[14px] leading-[14px]'>Solana</span>
                                             </p>
                                         </div>
-                                        <button className='text-[14px] text-[#12CFA7] rounded-[10px] px-[15px] py-[4px] bg-[#12cfa615]'>Connected</button>
+                                        <button className='text-[14px] text-[#12CFA7] rounded-[10px] px-[15px] py-[4px] bg-[#12cfa615]' onClick={handleConnection}>{publicKey ? "Disconnect" : "Connect with Wallet"}</button>
                                     </div>
                                     <ProfileCard />
                                 </div>

@@ -7,12 +7,10 @@ import Pagination2 from "../../Core/Pagination2";
 import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/router";
-// import { useAccount } from "wagmi";
 import { toast } from "react-toastify";
 import { useWallet } from "@solana/wallet-adapter-react";
 
 const TheCrystalCaveTable = () => {
-  // let { address } = useAccount();
   const { publicKey } = useWallet();
  const key = publicKey?.toBase58()
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
@@ -23,6 +21,7 @@ const TheCrystalCaveTable = () => {
   const [page, setPage] = useState(1);
   const [msgList, setMsgList] = useState();
   const [totalPages, setTotalPages] = useState();
+  
   const fetchMsgs = async () => {
     const queryUrl = `?search=${search}&categories=${category}&sort=${sort}&page=${page}`;
     const data = await axios.get(

@@ -5,7 +5,7 @@ import Rename from '../../Core/Modals/Rename'
 const MemberDetail = ({details, setDetails,isOpen,setIsOpen, wallet, detailFun}) => {
   return (
     <>
-    <Rename isOpen={isOpen} setIsOpen={setIsOpen} wallet={wallet} title={details?.name} details={details} setDetails={setDetails} detailFun={detailFun}/> 
+    <Rename isOpen={isOpen} setIsOpen={setIsOpen} wallet={wallet} title={details?.name} details={details} setDetails={setDetails} detailFun={detailFun} email={details?.email}/> 
     <div className="backdrop-blur-[10px] py-[25px] px-[59px] 2xl:px-[20px] absolute top-0 left-0 w-[50%] lg:w-full z-20" style={{background: 'linear-gradient(90deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.00) 100%)'}}>
         <div className="flex items-center justify-start gap-[20px] mb-[10px]">
             <h3 className='text-[30px] uppercase text-white leading-[165%] font-[700]'>{details && details?.name}</h3>

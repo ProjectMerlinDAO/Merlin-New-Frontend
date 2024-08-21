@@ -3,13 +3,14 @@ import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import Link from 'next/link'
 import { CgDollar, CgDrop, CgLogOut, CgProfile } from "react-icons/cg";
 
-export default function Dropdown({ wallet, handleDisconnect, signOut }) {
+export default function Dropdown({ wallet, handleDisconnect, signOut, name }) {
   return (
     <Menu as="div" className="relative inline-block text-left">
     {/* btn-has-shape */}
   <div>
     <MenuButton className="items-center justify-center hov-btn rounded-full gap-[8px] connect-btn bg-12CFA7 h-[50px] w-[170px] sm:w-[140px] bg-[#12CFA7] text-white text-center  font-[600] text-[16px] sm:text[14px] uppercase quantico">
-      {wallet && wallet.toBase58().slice(0, 4) + "...." + wallet.toBase58().slice(-4)}
+      {/* {wallet && wallet.toBase58().slice(0, 4) + "...." + wallet.toBase58().slice(-4)} */}
+      {name ? name : null}
       {/* <ChevronDownIcon aria-hidden="true" className="-mr-1 h-5 w-5 text-white-400 absolute top-[14px] right-[15px] " /> */}
     </MenuButton>
   </div>

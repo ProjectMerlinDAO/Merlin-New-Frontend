@@ -19,7 +19,8 @@
     "baseUrl": ".", // Add this line
     "paths": {
       "@/*": ["./*"] // Add this line
-    }
+    },
+    
   },
   "include": [
     "next-env.d.ts",
