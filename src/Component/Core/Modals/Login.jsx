@@ -46,14 +46,19 @@ const userGoogleLogin = async () => {
         try {
             const response = await axios.post(`${baseurl}/user/googleLogin`,{
                 access_token: user.access_token
-            })
+            }, {
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                withCredentials: true,
+              })
             if(response?.data){
                 console.log(response,"RESPONSE");
                 let name = response?.data.user.name;
                 let email = response.data?.user?.email;
                 let token = response.data?.token
                 dispatch(updateUserDetails({name, email, token}));
-                toast.success("Login Success")
+                // toast.success("Login Success")
                 handleClose();
             }
         } catch (error) {
@@ -119,7 +124,12 @@ useEffect(
             if(isValidate){
                 const res = await axios.post(`${baseurl}/user/login`,{
                     ...data
-                })
+                },{
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                    withCredentials: true,
+                  })
                 if(res?.data?.redirectUrl){
                     router.push(res.data.redirectUrl);
                 }
@@ -165,8 +175,8 @@ useEffect(
         }
     }
       } catch (error) {
-       
-        toast.error("Something went wrong!")
+       console.log(error,"error")
+        toast.error(error?.response?.data?.msg)
       }
     }
     

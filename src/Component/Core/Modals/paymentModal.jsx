@@ -5,6 +5,7 @@ import QRCode from 'qrcode.react';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { Transaction, SystemProgram, LAMPORTS_PER_SOL, PublicKey, Connection, clusterApiUrl, sendAndConfirmRawTransaction } from "@solana/web3.js";
 import { toast } from 'react-toastify';
+import { useSelector } from 'react-redux';
 
 const PaymentModal = ({ isOpen, setIsOpen, id, fetchTransactions, goal, amtRaised }) => {
     // const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
@@ -20,13 +21,16 @@ const PaymentModal = ({ isOpen, setIsOpen, id, fetchTransactions, goal, amtRaise
     const [amt, setAmt] = useState(0);
     const[signature, setSignature] = useState();
     const { publicKey, signTransaction, signMessage } = useWallet();
-
+    const userEmail = useSelector((state) => state.user.email);
     const handleClose = () => {
         setAmt(0);
         setIsOpen(false);
     }
 
     const handlePayment = async () => {
+        if(!userEmail){
+            return toast.error("Please Login First")
+        }
         try {
             if (publicKey) {
                 setProgress(true);
@@ -92,7 +96,8 @@ const PaymentModal = ({ isOpen, setIsOpen, id, fetchTransactions, goal, amtRaise
                     customerWallet: publicKey,
                     amount: amt,
                     id: id,
-                    signature: signature
+                    signature: signature,
+                    email:userEmail
                 })
                 if (data.status && data?.data?.txnId) {
                     fetchTransactions(id);

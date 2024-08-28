@@ -23,7 +23,7 @@ const { setVisible } = useWalletModal();
 const { wallet, connect, connected, connecting, publicKey, disconnect } = useWallet();
 const fetchDetails = async () => {
     try {
-        const wallet = publicKey.toBase58();
+        // const wallet = publicKey.toBase58();
         const response = await axios.post(`${baseurl}/user/fetchUser`, { email: userEmail });
         if (response?.data?.user) {
             setDetails(response.data.user);
@@ -55,32 +55,33 @@ const handleVerification = async () => {
 }
 
 const handleConnection = async () => {
-    try {
-      console.log("Starting wallet connection process...");
-      if (!wallet) {
-        console.log("No wallet found. Showing wallet modal...");
-        setVisible(true);
-      }
-      if (!connected) {
-        console.log("Wallet not connected. Attempting to connect...");
-        await connect();
-        console.log('Connected to wallet:', publicKey ? publicKey.toString() : 'No public key');
-      } else if (wallet && publicKey) {
-        console.log("Wallet already connected. Disconnecting...");
-        await disconnect();
-        toast.error("Wallet is Disconnected");
-        setMsgList();
-      } else {
-        console.log('Wallet already connected:', publicKey ? publicKey.toString() : 'No public key');
-      }
-    } catch (error) {
-      console.error('Wallet connection error:', error);
-    }
+    console.log("Starting wallet connection process...");
+    // try {
+    //   console.log("Starting wallet connection process...");
+    //   if (!wallet) {
+    //     console.log("No wallet found. Showing wallet modal...");
+    //     setVisible(true);
+    //   }
+    //   if (!connected) {
+    //     console.log("Wallet not connected. Attempting to connect...");
+    //     await connect();
+    //     console.log('Connected to wallet:', publicKey ? publicKey.toString() : 'No public key');
+    //   } else if (wallet && publicKey) {
+    //     console.log("Wallet already connected. Disconnecting...");
+    //     await disconnect();
+    //     toast.error("Wallet is Disconnected");
+    //     setMsgList();
+    //   } else {
+    //     console.log('Wallet already connected:', publicKey ? publicKey.toString() : 'No public key');
+    //   }
+    // } catch (error) {
+    //   console.error('Wallet connection error:', error);
+    // }
   }
 useEffect(() => {
  fetchDetails();
 },[publicKey,userEmail])
-console.log(publicKey,"depep")
+console.log(publicKey,"publickey")
     return (
         <div className="pt-[110px] relative bg-no-repeat position-top bg-contain" style={{ backgroundImage: 'url(./assets/images/bg/sub-bg.png)', backgroundSize: '100% 388px' }}>
             <div className={`app-home-wrapper ${isSidebarVisible ? "sidebar-visible" : "sidebar-hidden"}`}>
@@ -141,7 +142,7 @@ console.log(publicKey,"depep")
                                                 <span className='text-[14px] leading-[14px]'>Solana</span>
                                             </p>
                                         </div>
-                                        <button className='text-[14px] text-[#12CFA7] rounded-[10px] px-[15px] py-[4px] bg-[#12cfa615] pointer-events-none' onClick={handleConnection}>{publicKey ? "Disconnect" : "Connect"}</button>
+                                        <button className='text-[14px] text-[#12CFA7] rounded-[10px] px-[15px] py-[4px] bg-[#12cfa615] pointer-events-none' onClick={()=>handleConnection()}>{publicKey ? "Disconnect" : "Connect"}</button>
                                     </div>
                                     <AirdropStatisticsTable />
                                 </div>

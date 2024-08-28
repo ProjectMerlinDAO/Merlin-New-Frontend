@@ -19,7 +19,6 @@ import { updateUserDetails } from "@/src/redux/UserSlice";
 const AppHeader = ({ isSidebarVisible }) => {
   const data = useSelector((state) => state.user.referral);
   const userName = useSelector((state) => state.user.userName);
-  const token = useSelector((state) => state.user.token)
   const dispatch = useDispatch();
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   // const { open } = useWeb3Modal();
@@ -34,13 +33,17 @@ const AppHeader = ({ isSidebarVisible }) => {
     // } else {
     setIsOpen(true);
   }
-  const handleDisconnect = () => {
+  const handleDisconnect =async () => {
     disconnect();
     dispatch(updateUserDetails({
       name: "",
       email: "",
       token: ""
     }));
+    const res = await axios.post(`${baseUrl}/user/signOut`,{},{ headers: {
+      'Content-Type': 'application/json',
+    },
+    withCredentials: true,})
     router.push('/');
   }
   const handleClick = () => {
@@ -153,7 +156,7 @@ const AppHeader = ({ isSidebarVisible }) => {
                     </span>
                   </div>
                 </li>
-                {userName && token ?
+                {userName ?
                   (<li>
                     <Dropdown wallet={publicKey} handleDisconnect={handleDisconnect} name={userName} />
                   </li>) :

@@ -1,11 +1,26 @@
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TheCrystalCaveTable from "./TheCrystalCaveTable";
 import OracleSelection from "./OracleSelection";
 import Oracle from "./Oracle";
 import Link from "next/link";
+import { useSelector } from "react-redux";
+import axios from "axios";
 
 const TheCrystalCaveContent = ({ isSidebarVisible }) => {
+  const baseurl = process.env.NEXT_PUBLIC_BASE_URL
+  const userEmail = useSelector((state) => state.user.email);
+  const [stampData, setStampData ] = useState();
+  useEffect(() => {
+    getStamp()
+  }, [])
+
+  const getStamp = async () => {
+    const res = await axios.post(`${baseurl}/user/getStampListing`, { email: userEmail })
+    setStampData(res.data.user);
+    // return res.data
+  }
+
   return (
     <div
       className="pt-[110px] relative bg-no-repeat position-top bg-contain "
@@ -15,9 +30,8 @@ const TheCrystalCaveContent = ({ isSidebarVisible }) => {
       }}
     >
       <div
-        className={` lg:mt-[0px] app-home-wrapper ${
-          isSidebarVisible ? "sidebar-visible" : "sidebar-hidden"
-        }`}
+        className={` lg:mt-[0px] app-home-wrapper ${isSidebarVisible ? "sidebar-visible" : "sidebar-hidden"
+          }`}
       >
         <div className="px-[20px] relative md:px-[10px] max-w-[1365px] mx-auto lg:max-w-[720px]">
           <ul className="cursor-pointer flex items-cenetr  justify-start gap-[8px] mt-[-70px] uppercase absolute lg:mt-0 lg:static   pl-[48px] z-[99999] mb-[30px] 2xl:text-[14px] xl:ml-[100px] lg:ml-[0px] max-w-lg md:flex-wrap">
@@ -45,10 +59,10 @@ const TheCrystalCaveContent = ({ isSidebarVisible }) => {
           </ul>
           <TheCrystalCaveTable />
           <div className="mt-[60px] lg:mt-[40px] md-mt-[30px]">
-            <OracleSelection />
+            <OracleSelection getStamp={getStamp} />
           </div>
           <div className="mt-[60px] lg:mt-[40px] md-mt-[30px]">
-            <Oracle />
+            <Oracle stampData={stampData} getStamp={getStamp} />
           </div>
         </div>
       </div>

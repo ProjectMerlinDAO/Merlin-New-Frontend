@@ -61,7 +61,7 @@
 //         theme="light"
 //       />
 //       </Provider>
-      
+
 //       </GoogleOAuthProvider>
 //     </>
 //   )
@@ -80,6 +80,7 @@ import { BackpackWalletAdapter } from "@solana/wallet-adapter-backpack";
 import { Provider } from "react-redux";
 import store from "@/src/redux/store";
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import Layout from "../src/Component/Layout";
 require("@solana/wallet-adapter-react-ui/styles.css");
 
 export default function App({ Component, pageProps }) {
@@ -87,28 +88,30 @@ export default function App({ Component, pageProps }) {
   const endpoint = useMemo(() => clusterApiUrl(network), [network]);
   const wallets = useMemo(
     () => [
+      // new GlowWalletAdapter(),
       new PhantomWalletAdapter(),
-      new GlowWalletAdapter(),
       new BackpackWalletAdapter()
     ],
     [network]
   );
   const clientId = process.env.NEXT_PUBLIC_CLIENTID;
-
+  console.log(endpoint, "ENDPOINT")
+  
   return (
     <GoogleOAuthProvider clientId={clientId}>
       <Provider store={store}>
         <ConnectionProvider endpoint={endpoint}>
           <WalletProvider wallets={wallets} autoConnect>
             <WalletModalProvider>
-              <Component {...pageProps} />
+              <Layout>
+                <Component {...pageProps} /></Layout>
             </WalletModalProvider>
           </WalletProvider>
         </ConnectionProvider>
         <ToastContainer
           position="top-right"
           className="custom_toast_error"
-          autoClose={5000}
+          autoClose={3000}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick

@@ -107,17 +107,12 @@ const MemberProfileCard = ({ isSidebarVisible }) => {
 
     const handleConnection = async () => {
         try {
-          console.log("Starting wallet connection process...");
           if (!wallet) {
-            console.log("No wallet found. Showing wallet modal...");
             setVisible(true);
           }
           if (!connected) {
-            console.log("Wallet not connected. Attempting to connect...");
             await connect();
-            console.log('Connected to wallet:', publicKey ? publicKey.toString() : 'No public key');
           } else if (wallet && publicKey) {
-            console.log("Wallet already connected. Disconnecting...");
             await disconnect();
             toast.error("Wallet is Disconnected");
             setMsgList();
@@ -135,7 +130,7 @@ const MemberProfileCard = ({ isSidebarVisible }) => {
         }
       },[publicKey])
     
-    const registerWallet = async () =>{
+    const registerWallet = async () => {
      try {
         const response = await axios.post(`${baseurl}/user/add-wallet`,{
             email: userEmail,
@@ -144,6 +139,9 @@ const MemberProfileCard = ({ isSidebarVisible }) => {
         console.log(response);
      } catch (error) {
         console.log(error);
+        toast.error(error.response?.data?.msg);
+        await disconnect();
+        
      }
     }
     return (

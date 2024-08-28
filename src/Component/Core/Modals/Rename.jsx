@@ -9,7 +9,6 @@ const Rename = ({isOpen, setIsOpen, wallet,title, details ,setDetails, detailFun
     const [name, setName] = useState(title);
     const [progress, setProgress] = useState(false);
     const handleClose = () => {
-        setName("");
         setIsOpen(false);
     }
     
@@ -35,6 +34,7 @@ const Rename = ({isOpen, setIsOpen, wallet,title, details ,setDetails, detailFun
     useEffect(() => {
         setName(title);
     }, [title]);
+    console.log(name,"NAME")
     return (
         <>
             {isOpen &&

@@ -136,7 +136,7 @@ const TheCrystalCaveTable = () => {
                             {data.title}
                           </h3>
                           <p className="text-[16px] lg:text-[15px] md:text-[14px] font-[300] lexend uppercase">
-                            {data.code}
+                            {data.author}
                           </p>
                         </div>
                       </div>

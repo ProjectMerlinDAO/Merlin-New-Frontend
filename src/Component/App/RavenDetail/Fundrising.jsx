@@ -4,13 +4,12 @@ import Image from 'next/image'
 import { toast } from 'react-toastify'
 
 const Fundrising = ({ timer, goal, setIsOpen, wallet, amtRaised, fundRaiseTimer }) => {
-  const [percentAmt, setPercentAmt] = useState(100);
+  const [percentAmt, setPercentAmt] = useState(0);
   const [isFundRaising, setIsFundRaising] = useState(true);
   const calculateAmt = () => {
     let amt = (Number(amtRaised) / Number(goal)) * 100
     setPercentAmt(amt);
   }
-  console.log(new Date(fundRaiseTimer).getTime(),"lllll")
   const mrlnTokenPrice = 0.5 //(1 mrlnToken == 0.5 USDT);
   const openModal = () => {
     if (!wallet) {
@@ -33,6 +32,7 @@ const Fundrising = ({ timer, goal, setIsOpen, wallet, amtRaised, fundRaiseTimer 
   useEffect(() => {
     handleFundRaisingTime();
   },[isFundRaising])
+  console.log(percentAmt,"AMT")
   return (
     <div className='rounded-[20px] backdrop-blur-[5px] p-[40px] 2xl:p-[20px] relative fundrising-card mb-[30px]' style={{ background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.00) 100%)' }}>
       <div className='relative z-10'>
@@ -40,14 +40,14 @@ const Fundrising = ({ timer, goal, setIsOpen, wallet, amtRaised, fundRaiseTimer 
         <FundrisingTimer timer={timer} />
 
         <div className="h-[20px] rounded-[10px] bg-[#ffffff19] w-full mt-[25px] mb-[15px]">
-          <div className={`bg-[#12CFA7] rounded-[10px] text-white text-[14px] quantico flex items-center justify-end gap-[5px] h-[20px] w-[${Math.floor(percentAmt)}%]`}>
-            <span className='mt-[45px] mr-[-9px] absolute'>{percentAmt ? percentAmt.toFixed(0) : 0}%</span>
+          <div className={`bg-[#12CFA7] rounded-[10px] text-white text-[14px] quantico flex items-center justify-end gap-[5px] h-[20px] w-[${percentAmt}%]`}>
+            <span className='mt-[45px] mr-[-9px] absolute'>{percentAmt ? percentAmt : 0}%</span>
             <Image src="/assets/images/icons/range-dot.svg" alt="icon" width="39" height="34" className="mr-[-5px]" />
           </div>
         </div>
 
         <ul className="fundrising-list 2xl:text-[15px]">
-          <li className='relative flex items-center justify-between py-[15px] text-white'><span>Raised</span> <span>{amtRaised ? `${amtRaised.toFixed(1)} USDT (${goal * mrlnTokenPrice} MRLN)` : '0 USDT(0 MRLN)'}
+          <li className='relative flex items-center justify-between py-[15px] text-white'><span>Raised</span> <span>{amtRaised ? `${amtRaised.toFixed(1)} USDT (${amtRaised.toFixed(1) * mrlnTokenPrice} MRLN)` : '0 USDT(0 MRLN)'}
           </span></li>
           <li className='relative flex items-center justify-between py-[15px] text-white'><span>Goal</span> <span>{goal} USDT {`(${goal * mrlnTokenPrice} MRLN)`}</span></li>
         </ul>
