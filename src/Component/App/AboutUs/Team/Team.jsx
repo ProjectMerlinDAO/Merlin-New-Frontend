@@ -8,7 +8,7 @@ const firstTeamMembers = [
   { id: 3, img: "../assets/images/team/team3.png", name: "Nazım Karaalp", designation: "Chief Marketing Officer",url:"https://www.linkedin.com/in/naz%C4%B1m-karaalp-a35331160/" },
   { id: 4, img: "../assets/images/team/team4.png", name: "IQBAL SINGH", designation: "Chief Technology Officer",url:"https://www.linkedin.com/in/iqbalsinghbhatti/" },
   { id: 5, img: "../assets/images/team/team5.png", name: "METE ALI BAŞKAYA", designation: "Advisor",url:"https://www.linkedin.com/in/metealibaskaya/" },
-  { id: 6, img: "../assets/images/team/team6.png", name: "AV. ELIF HILAL UMUCU", designation: "Legal Counsel" ,url:"https://www.linkedin.com/in/elif-hilal-umucu/"},
+  { id: 6, img: "../assets/images/team/sh_partners_logo.jpeg", name: "S&H PARTNERS ", designation: "Legal Counsel" ,url:"https://www.linkedin.com/in/elif-hilal-umucu/"},
   { id: 7, img: "../assets/images/team/team7.png", name: "AV. SUNA DONDAR", designation: "Legal Counsel",url:"https://www.linkedin.com/in/av-suna-d%C3%B6ndar-5a1b3020a/" }
 ];
 
