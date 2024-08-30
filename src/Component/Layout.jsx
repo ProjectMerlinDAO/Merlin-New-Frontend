@@ -35,7 +35,7 @@ const Layout = ({ children }) => {
         }
     }, [auth, loading]);
     const isPageWithoutAuthentication = () => {
-        const pagesWithoutAuthentication = ["/launch-app", "/create-raven-message","/member-profile","/wormhole"];
+        const pagesWithoutAuthentication = ["/launch-app", "/create-raven-message","/member-profile","/wormhole","/"];
         return pagesWithoutAuthentication.includes(pathname);
     };
     // const handleUnauthenticated = () => {
