@@ -203,9 +203,10 @@ const Sidebar = ({ isSidebarVisible, setIsSidebarVisible }) => {
                   }`}
               >
                 <Link
-                  href={menuItem.url == "/crystal-cave"&& !emailId || menuItem.url == "/create-raven-message" && !emailId  ? "#"
-                    : menuItem.url
-                  }
+                  // href={menuItem.url == "/crystal-cave"&& !emailId || menuItem.url == "/create-raven-message" && !emailId  ? "#"
+                  //   : menuItem.url
+                  // }
+                  href={menuItem.url}
                   // className={ menuItem.title === "Grants" ? " px-[15px] py-[5px] flex items-center gap-[14px] capitalize text-[16px] font-normal text-[#ffffffcc] bg-transparent hover:text-white hover:bg-transparent active:!bg-transparent pointer-events-none text-gray-500 ": `px-[15px] py-[5px] flex items-center gap-[14px] capitalize text-[16px] font-normal text-[#ffffffcc] bg-transparent hover:text-white hover:bg-transparent active:!bg-transparent ${menuItem?.subMenus ? "submenu-toggle" : ""
                   //   }`}
 
@@ -215,7 +216,7 @@ const Sidebar = ({ isSidebarVisible, setIsSidebarVisible }) => {
                     : null
                     } text-[#ffffffcc] ${menuItem?.subMenus ? "submenu-toggle" : ""
                     }`}
-                  onClick={() => connectWalletFirst(menuItem?.url)}
+                  // onClick={() => connectWalletFirst(menuItem?.url)}
                 >
                   <Image src={menuItem.src} alt="icon" width="18" height="18" />
                   {menuItem.title}

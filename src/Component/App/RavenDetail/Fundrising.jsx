@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react'
 import FundrisingTimer from './FundrisingTimer'
 import Image from 'next/image'
 import { toast } from 'react-toastify'
+import PaymentType from '../../Core/Modals/paymentType'
 
 const Fundrising = ({ timer, goal, setIsOpen, wallet, amtRaised, fundRaiseTimer }) => {
   const [percentAmt, setPercentAmt] = useState(0);
   const [isFundRaising, setIsFundRaising] = useState(true);
+  const [payType, setPayType] = useState(false);
   const calculateAmt = () => {
     let amt = (Number(amtRaised) / Number(goal)) * 100
     setPercentAmt(amt);
@@ -16,8 +18,9 @@ const Fundrising = ({ timer, goal, setIsOpen, wallet, amtRaised, fundRaiseTimer 
       toast.error("Please connect wallet");
       return;
     }
-    setIsOpen(true);
+    setPayType(true)    
   }
+
   useEffect(() => {
     calculateAmt()
   }, [wallet, amtRaised])
@@ -58,9 +61,9 @@ const Fundrising = ({ timer, goal, setIsOpen, wallet, amtRaised, fundRaiseTimer 
             <span className="disabled:opacity-100 btn-text">Donate Now</span>
             <span className="disabled:opacity-75  btn-text">Donate Now</span>
           </span>}
-
         </button>
       </div>
+      <PaymentType payType={payType}setPayType={setPayType} setIsOpen={setIsOpen} wallet={wallet} />
     </div>
 
   )

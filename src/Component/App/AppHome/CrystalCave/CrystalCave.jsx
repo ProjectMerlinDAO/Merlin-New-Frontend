@@ -3,6 +3,7 @@ import Image from "next/image";
 import CrystalTable from "./CrystalTable";
 import ApplySection from "./ApplySection";
 import SectionTitle from "@/src/Component/Core/SectionTitle";
+import Link from "next/link";
 
 const CrystalCave = ({ isSidebarVisible }) => {
   return (
@@ -28,8 +29,8 @@ const CrystalCave = ({ isSidebarVisible }) => {
                   titleMaxW="520px"
                   titleMargin="mb-[0px]"
                 />
-                <a
-                  href="#"
+                <Link
+                  href={'/crystal-cave'}
                   className="hov-btn btn-has-shape gap-[7px] bg-[#ffffff10] rounded-full bg-opacity-10 backdrop-blur-[5px] h-[50px] w-[170px] flex items-center justify-center text-white text-center leading-trim-both text-edge-cap font-[600] text-[16px] uppercase quantico"
                 >
                   <span className="btn-hov-text">
@@ -43,7 +44,7 @@ const CrystalCave = ({ isSidebarVisible }) => {
                     width="8"
                     height="13"
                   />
-                </a>
+                </Link>
               </div>
 
               <CrystalTable />

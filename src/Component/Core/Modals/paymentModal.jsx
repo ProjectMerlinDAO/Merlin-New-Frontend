@@ -3,7 +3,7 @@ import { Dialog, DialogBackdrop, DialogPanel } from '@headlessui/react'
 import axios from 'axios';
 import QRCode from 'qrcode.react';
 import { useWallet } from '@solana/wallet-adapter-react';
-import { Transaction, SystemProgram, LAMPORTS_PER_SOL, PublicKey, Connection, clusterApiUrl, sendAndConfirmRawTransaction } from "@solana/web3.js";
+import { Transaction, SystemProgram, LAMPORTS_PER_SOL, PublicKey, Connection, clusterApiUrl, sendAndConfirmTransaction } from "@solana/web3.js";
 import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
 
@@ -20,75 +20,73 @@ const PaymentModal = ({ isOpen, setIsOpen, id, fetchTransactions, goal, amtRaise
     const [qrCodeData, setQrCodeData] = useState('');
     const [amt, setAmt] = useState(0);
     const[signature, setSignature] = useState();
-    const { publicKey, signTransaction, signMessage } = useWallet();
+    const { publicKey, signTransaction, signMessage,sendTransaction } = useWallet();
     const userEmail = useSelector((state) => state.user.email);
     const handleClose = () => {
         setAmt(0);
         setIsOpen(false);
+        
     }
 
     const handlePayment = async () => {
-        if(!userEmail){
-            return toast.error("Please Login First")
+    
+        if (!publicKey) {
+            return toast.error("Please connect your wallet first");
         }
+    
         try {
-            if (publicKey) {
-                setProgress(true);
-                const balremaining = goal - amtRaised;
-                if (amt > balremaining) {
-                    toast.error("Amt exceeds the remianing balance");
-                    setProgress(false);
-                    return;
-                }
-                const connection = new Connection(clusterApiUrl('devnet'));
-                try {
-                    const version = await connection.getVersion();
-                    console.log('Connection version:', version);
-                } catch (error) {
-                    console.error('Failed to connect to the Solana network:', error);
-                    return;
-                }
-                // Fetch the recent blockhash
-
-                const { blockhash, lastValidBlockHeight } = await connection.getLatestBlockhash();
-                const transaction = new Transaction({
-                    blockhash,
-                    lastValidBlockHeight,
-                    feePayer: publicKey,
-                }).add(
-                    SystemProgram.transfer({
-                        fromPubkey: publicKey,
-                        toPubkey: new PublicKey(merchantWallet),
-                        lamports: Number(amt) * LAMPORTS_PER_SOL
-                    }),
-                );
-                // Check if the account has enough balance
-                const balance = await connection.getBalance(publicKey);
-                const requiredLamports = Number(amt) * LAMPORTS_PER_SOL;
-                if (balance < requiredLamports) {
-                    toast.error('Insufficient funds:', balance)
-                    setProgress(false);
-                    return;
-                }
-                // Sign the transaction
-                const signedTransaction = await signTransaction(transaction);
-                // Send the signed transaction
-                const signature = await sendAndConfirmRawTransaction(connection, signedTransaction.serialize(), "finalized");
-                
-                console.log(signature,"Signature")
-                if (signature) {
-                    setProgress(false);
+            setProgress(true);
+    
+            const balremaining = goal - amtRaised;
+            if (amt > balremaining) {
+                toast.error("Amt exceeds the remaining balance");
+                setProgress(false);
+                return;
+            }
+    
+            const connection = new Connection(clusterApiUrl('devnet'));
+            const amountInLamports = Number(amt) * LAMPORTS_PER_SOL;
+    
+            const transaction = new Transaction().add(
+                SystemProgram.transfer({
+                    fromPubkey: publicKey,
+                    toPubkey: new PublicKey(merchantWallet),
+                    lamports: amountInLamports,
+                })
+            );
+    
+            try {
+                // Send the transaction using the wallet's sendTransaction method
+                const signature = await sendTransaction(transaction, connection);
+    
+                // Wait for the transaction confirmation
+                const latestBlockhash = await connection.getLatestBlockhash();
+                const confirmation = await connection.confirmTransaction({
+                    signature,
+                    ...latestBlockhash,
+                }, 'finalized');
+    
+                // console.log('Transaction confirmed:', confirmation);
+    
+                if (confirmation.value.err) {
+                    toast.error("Transaction failed. Please try again.");
+                } else {
                     registerTransaction(signature);
                     handleClose();
-                    toast.success("Transaction Success!!!")
+                    toast.success("Transaction Success!!!");
                 }
+            } catch (sendError) {
+                console.error('Transaction failed:', sendError);
+                toast.error("Transaction failed. Please try again.");
+            } finally {
+                setProgress(false);
             }
         } catch (error) {
-            console.log(error)
-            setProgress(false)
+            console.error('Error in payment process:', error);
+            setProgress(false);
         }
-    }
-
+    };
+    
     const registerTransaction = async (signature) => {
         try {
             if (id) {

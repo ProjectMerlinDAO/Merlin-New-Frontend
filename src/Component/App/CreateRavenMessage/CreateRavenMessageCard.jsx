@@ -165,6 +165,10 @@ const CreateRavenMessageCard = ({ isSidebarVisible }) => {
       return;
     }
     try {
+
+
+
+      return
       setLoad(true);
       const formData = new FormData();
       formData.append("avatarImage", uploadImages.avatarImage);
