@@ -18,6 +18,7 @@ const TheCrystalCaveContent = ({ isSidebarVisible }) => {
   const getStamp = async () => {
     const res = await axios.post(`${baseurl}/user/getStampListing`, { email: userEmail })
     setStampData(res.data.user);
+    return res.data.user
     // return res.data
   }
 
@@ -59,7 +60,7 @@ const TheCrystalCaveContent = ({ isSidebarVisible }) => {
           </ul>
           <TheCrystalCaveTable />
           <div className="mt-[60px] lg:mt-[40px] md-mt-[30px]">
-            <OracleSelection getStamp={getStamp} />
+            <OracleSelection getStamp={getStamp} stampData={stampData} />
           </div>
           <div className="mt-[60px] lg:mt-[40px] md-mt-[30px]">
             <Oracle stampData={stampData} getStamp={getStamp} />

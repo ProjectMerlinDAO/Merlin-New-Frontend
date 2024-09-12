@@ -76,7 +76,7 @@ const crystalData = [
 
 ];
 
-const OracleSelection = ({getStamp}) => {
+const OracleSelection = ({getStamp,stampData}) => {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
     const [oracleList, setOracleList] = useState();
     const [category, setCategory] = useState("all");
@@ -180,7 +180,7 @@ const OracleSelection = ({getStamp}) => {
                                 </li>
                                 <li className="px-[15px] w-[15%] relative z-[999]">
                                     <div className='w-full justify-end flex'>
-                                        <StampsDropdown stamp={stamp} getStamp={getStamp} setStamp={setStamp} id={data._id} image={data.avatarImage} code={data.code} />
+                                        <StampsDropdown stampData={stampData} stamp={stamp} getStamp={getStamp} setStamp={setStamp} id={data._id} image={data.avatarImage} code={data.code} />
                                     </div>
                                 </li>
                             </ul>

@@ -3,7 +3,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-const StampsDropdown = ({ stamp, setStamp, id, image, code ,getStamp}) => {
+const StampsDropdown = ({ stamp, setStamp, id, image, code, getStamp, stampData }) => {
     const [localStamp, setLocalStamp] = useState(stamp);
     const dispatch = useDispatch();
     const baseurl = process.env.NEXT_PUBLIC_BASE_URL;
@@ -35,12 +35,16 @@ const StampsDropdown = ({ stamp, setStamp, id, image, code ,getStamp}) => {
         // let details = { id, image, code };
         // dispatch(addToList({ type, details }));
     }
+    // console.log(stampData?.selectedRavenMessage?.greenStamp, "VVVVVVVVVVVVVVV")
     return (
         <div className="w-full relative z-0 dropdown rounded-[15px] border border-[#ffffff26] bg-[#ffffffc] h-[50px] flex items-center justify-start">
-            <div tabIndex={0} role="button" className="relative z-10 w-full px-[15px]">{localStamp}</div>
+            <div tabIndex={0} role="button" className="relative z-10 w-full px-[15px]">
+                {stampData?.selectedRavenMessage?.greenStamp?.find(res => res._id === id) ? "Greenstamp" : stampData?.selectedRavenMessage?.blueStamp?.find(res => res._id === id)
+                    ? "Blue Stamp" : stampData?.selectedRavenMessage?.yellowStamp?.find(res => res._id === id) ? "Yellow Stamp" :
+                        stampData?.selectedRavenMessage?.redStamp?.find(res => res._id === id) ? "Red Stamp" : "Stamps"} </div>
             {/* <ul className="dropdown-content z-[999] menu p-2 shadow bg-[#000000] rounded-box w-full absolute top-[50px] left-0"> */}
             <ul tabIndex={0} className="dropdown-content z-[999] menu p-2 shadow bg-[#000000] rounded-box w-full absolute top-[50px] left-0">
-                <li className='hover:bg-[#FFFFFF20] rounded-[4px] px-0'><div onClick={(e) => handleClick(e)} value="greenStamp" className='px-[5px]' >Green Stamp</div></li>
+                <li className='hover:bg-[#FFFFFF20] rounded-[4px] px-0'><div onClick={(e) => handleClick(e)} value="greenStamp" className='px-[5px]' ></div></li>
                 <li className='hover:bg-[#FFFFFF20] rounded-[4px] px-0'><div onClick={(e) => handleClick(e)} value="yellowStamp" className='px-[5px]' >Yellow Stamp</div></li>
                 <li className='hover:bg-[#FFFFFF20] rounded-[4px] px-0'><div onClick={(e) => handleClick(e)} value="blueStamp" className='px-[5px]' >Blue Stamp</div></li>
                 <li className='hover:bg-[#FFFFFF20] rounded-[4px] px-0'><div onClick={(e) => handleClick(e)} value="redStamp" className='px-[5px]' >Red Stamp</div></li>
