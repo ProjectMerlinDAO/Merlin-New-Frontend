@@ -61,7 +61,7 @@ const Statistic = () => {
             </div>
             <div className="w-2/6 lg:w-1/2 sm:w-[40%] xsm:w-full px-[15px]">
                 <div className="rounded-[20px] bg-[rgba(255,255,255,0.05)] backdrop-blur-[5px] p-[40px] 2xl:p-[25px] lg:p-[20px] h-[250px] 2xl:h-[220px] lg:h-[180px] flex items-start justify-center flex-col">
-                    <p className='text-[18px] 2xl:text-[16px]  text-white uppercase font-[400] mb-[50px]'>Market Cap</p>
+                    <p className='text-[18px] 2xl:text-[16px]  text-white uppercase font-[400] mb-[50px]'>Treasury Fundraising</p>
                     <h3 className='text-[50px] 2xl:text-[40px]  xl:text-[32px] text-white font-[700] uppercase quantico'>
                         {/* {marketCap.toFixed(2)}M+ */}
                         3M

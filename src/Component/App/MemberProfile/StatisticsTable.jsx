@@ -8,7 +8,7 @@ const StatisticsTable = () => {
     { label: 'Created Pre-proposals', value: '0/0' },
     { label: 'Senator Assessment', value: '0/0' },
     { label: 'Vote', value: '0/0' },
-    { label: 'Raven Message', value: '0/0' },
+    { label: 'Raven Message', value: '5/0' },
   ];
 
   return (
